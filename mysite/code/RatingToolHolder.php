@@ -7,7 +7,7 @@ class RatingToolHolder extends Page{
 		'ShowInSearch' => false
 	);
 
-	static $icon = 'mysite/icons/star';
+	static $icon = 'mysite/icons/Star';
 
 	private static $allowed_children = array (
 		'RatingTool'
@@ -20,13 +20,7 @@ class RatingToolHolder extends Page{
 		$fields->removeByName('Metadata');
 
 		return $fields;
-	}
-
-	// function canView($member = null) {
-		
-	// 	return $member->inGroup('administrators');
-	// }
-	
+	}	
 }
 
 class RatingToolHolder_Controller extends Page_Controller{
