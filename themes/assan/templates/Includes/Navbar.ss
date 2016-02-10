@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="$AbsoluteBaseURL"><img style="height: 40px; width: auto; margin-top: -12px; margin-left: -0px;" src="$ThemeDir/img/envirospec-logo2.png" alt="ENVIROSPEC"></a>
+            <a class="navbar-brand" href="$AbsoluteBaseURL"><img style="height: 60px; width: auto; margin-top: -22px; margin-left: -15px;" src="$ThemeDir/img/es-logo-text-only.png" alt="ENVIROSPEC"></a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
