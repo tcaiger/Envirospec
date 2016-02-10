@@ -3,7 +3,8 @@
 class AvailableCredit extends Page{
 
 	private static $db = array (
-		'Points' => 'Varchar'
+		'Points' => 'Varchar',
+		'Description' => 'Text'
 	);
 
 	private static $can_be_root = false;
@@ -31,8 +32,8 @@ class AvailableCredit extends Page{
 		$fields->removeByName('Metadata');
 
 		$fields->addFieldsToTab('Root.Main', array (
-
-			TextField::create('Points', 'Points Available')
+			TextField::create('Points', 'Points Available'),
+			TextAreaField::create('Description', 'Description')
 		));
 
 		return $fields;
