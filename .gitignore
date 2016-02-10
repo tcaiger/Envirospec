@@ -9,6 +9,7 @@ silverstripe-cache
 .idea
 vendor/
 /silverstripe-cache/
+/silverstripe-bootstrap-forms/
 
 
 # ignore node modules
