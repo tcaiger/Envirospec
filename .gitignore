@@ -10,6 +10,7 @@ silverstripe-cache
 vendor/
 /silverstripe-cache/
 /silverstripe-bootstrap-forms/
+/mysite/_config.php
 
 
 # ignore node modules
