@@ -28,7 +28,7 @@
             <!-- ===================================== -->
             <div class="col-md-3 margin20">
                 <div class="footer-col">
-                    <h3>Latest posts</h3>
+                    <h3>Featured Products</h3>
                     <ul class="list-unstyled latest-f-news">
                         <li><a href="#">Lorem ipsum dollor sit amet <i class="fa fa-angle-right"></i></a></li>
                         <li><a href="#">Post with image <i class="fa fa-angle-right"></i></a></li>
@@ -42,7 +42,7 @@
             <!-- ===================================== -->
             <div class="col-md-3 margin20">
                 <div class="footer-col">
-                    <h3>Latest Tweets</h3>
+                    <h3>Latest News</h3>
                     <div class="tweet"></div>
                 </div>                        
             </div>
