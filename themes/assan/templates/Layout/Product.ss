@@ -125,7 +125,7 @@
                         <div class="col-sm-12">
                             <h3 class="title">$Title</h3>
                             <h3 style="margin-bottom: 0px"><small>$Subheading</small></h3>
-                            <p>$GeneralDescription</p>
+                            $GeneralDescription
 
                             <h4>Technical and Environmental Benefits</h4>
                             $BenefitsAdvantages
