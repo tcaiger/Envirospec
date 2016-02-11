@@ -21,3 +21,10 @@
     background-color: #fff;
     margin-bottom: 2em; 
 }
+
+// Add margin on the first search button on mobile view
+@media(max-width:767px){
+	.intro-text-1 .row div:first-child{
+		margin-bottom: 2em;
+	}
+}
