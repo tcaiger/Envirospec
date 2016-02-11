@@ -216,22 +216,30 @@ class Product extends Page{
 
 class Product_Controller extends Page_Controller{
 
-	public function ShowCertificates($PageID){
+	public function ShowGreenStarCertificate($PageID){
 		return Certificate::get()->filter(array(
-			'ProductID' => $PageID
+			'ProductID' => $PageID,
+			'Type' => 'Green Building Rating Compatibility',
+			'Display' => 1
 		));
 	}
-
+	public function ShowCertificates($PageID){
+		return Certificate::get()->exclude(
+				'Type', 'Green Building Rating Compatibility'
+			)
+			->filter(array(
+				'ProductID' => $PageID,
+				'Display' => 1
+			));
+	}
 	public function ShowCredits($PageID){
 		return Credit::get()->filter(array(
 			'ProductID' => $PageID
 		));
 	}
-
 	public function Company($CompanyID){
 		return dataObject::get_by_id('Companies', $CompanyID);
 	}
-
 	public function BackLink(){
 		return $_SERVER['HTTP_REFERER'];
 	}

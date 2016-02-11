@@ -149,14 +149,8 @@
                             <h3 class="title">$Title</h3>
                             <h3 style="margin-bottom: 0px"><small>Green Building Info Summary Sheet</small></h3>
                             <div class="divide30"></div>
-                            <% loop ShowCertificates($ID) %>
-                                <% if $Type == "Green Building Rating Compatibility" %>
-
-                                    <object data="$Certificate.URL" type="application/pdf"  width="100%" height="1110px">
-                                        <p>You don't have a PDF plugin for this browser. <a href="$Certificate.URL">click here to download the PDF file.</a></p>
-                                    </object>
-
-                                <% end_if %>
+                            <% loop ShowGreenStarCertificate($ID) %>
+                                 <% include Certificate %>
                             <% end_loop %>
                         </div> 
                     </div>
@@ -169,23 +163,13 @@
                             <h3 class="title">$Title</h3>
                             <h3 style="margin-bottom: 0px"><small>Certificates</small></h3>
                             <div class="divide30"></div>
-
-                            <% loop ShowCertificates($ID) %>
-                                <div class="sidebar-info-box">
-                                    <div class="services-box wow animated fadeInUp animated">
-                                         <a href="$Certificate.URL" target="_blank">
-                                            <div class="services-box-icon">
-                                                <i class="fa fa-leaf"></i>
-                                            </div>
-                                            <div class="services-box-info">
-                                                <h4>$Type</h4>
-                                                <p>$Name</p>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <hr>
-                            <% end_loop %>
+                            <% if ShowCertificates($ID) %>
+                                <% loop ShowCertificates($ID) %>
+                                    <% include Certificate %>
+                                <% end_loop %>
+                            <% else %>
+                               <h3><small> -- No Certificates For This Product -- </small></h3>
+                            <% end_if %>
                         </div>
                     </div>
                 </div>
