@@ -1,0 +1,17 @@
+assets/*
+cms/*
+framework/*
+reports/*
+silverstripe-bootstrap-forms/*
+silverstripe-cahce/*
+siteconfig/*
+themes/assan/node_modules/*
+vendor/*
+.editorconfig
+.htaccess
+composer.json
+composer.lock
+index.php
+*.config
+sftp-config.json
+mysite/_config.php
