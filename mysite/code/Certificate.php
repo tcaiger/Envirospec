@@ -9,6 +9,7 @@ class Certificate extends DataObject{
 		'Number' => 'Varchar',
 		'IsSummary' => 'Boolean',
 		'NoExpiry' => 'Boolean',
+		'Display' => 'Boolean(1)',
 		'ValidUntil' => 'Date',
 		'MonthWarning' => 'Boolean',
 		'ExpiredWarning' => 'Boolean',
@@ -23,7 +24,8 @@ class Certificate extends DataObject{
 	private static $summary_fields = array (
 		'Name' => 'Name',
 		'Status' => 'Status',
-		'Type' => 'Type'
+		'Type' => 'Type',
+		'Display' => 'Displaying On Website'
 	);
 
 	public function getCMSFields(){
@@ -63,7 +65,8 @@ class Certificate extends DataObject{
 			FieldGroup::create(
 				
 				CheckboxField::create('Is Summary', 'Summary Certificate'),
-				CheckboxField::create('NoExpiry', 'Ignore Valid Date')
+				CheckboxField::create('NoExpiry', 'Ignore Valid Date'),
+				CheckboxField::create('Display', 'Display On Website')
 			)->setTitle('Details'),
 
 			
