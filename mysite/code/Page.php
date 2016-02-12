@@ -79,4 +79,12 @@ class Page_Controller extends ContentController {
 		return ProductCategory::get();
 	}
 
+	public function GetNews(){
+		return SidebarPage::get()
+				->limit(4)
+				->filter(array(
+					'ParentID' => 107
+				));
+	}
+
 }
