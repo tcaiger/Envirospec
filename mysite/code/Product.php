@@ -211,6 +211,14 @@ class Product extends Page{
 			}
 		}
 	}
+
+	public function GetCompliance($compliant){
+		if($compliant){
+			return '<i class="fa fa-check"></i>';
+		} else {
+			return '';
+		}
+	}
 }
 
 

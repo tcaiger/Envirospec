@@ -1,18 +1,12 @@
-/*Theme    : assan
- * Author  : Design_mylife
- * Version : V1.8
+/* Custom Javascript
+ * 
  * 
  */
 
  $( window ).resize(function() {
     $(".navbar-collapse").css({ maxHeight: $(window).height() - $(".navbar-header").height() + "px" });
 });
-//sticky header on scroll
-// $(document).ready(function () {
-//     $(window).load(function () {
-//         $(".sticky").sticky({topSpacing: 0});
-//     });
-// });
+
 
 /* ==============================================
  WOW plugin triggers animate.css on scroll
@@ -91,7 +85,7 @@ $(document).ready(function () {
 });
 
 /* ==============================================
- AJAX For Ordering Results
+ AJAX For Ordering Greenstar Results
  =============================================== */
 $(document).ready(function () {
 
@@ -117,110 +111,33 @@ $(document).ready(function () {
     });
 });
 
-//parallax
-// $(document).ready(function () {
-//     $(window).stellar({
-//         horizontalScrolling: false,
-//         responsive: true,
-//          scrollProperty: 'scroll',
-//          parallaxElements: false,
-//          horizontalScrolling: false,
-//          horizontalOffset: 0,
-//          verticalOffset: 0
-//     });
-// });
 
-// //owl carousel for work
-// $(document).ready(function () {
+/* ==============================================
+ AJAX For Ordering Comparison Table Results
+ =============================================== */
+$(document).ready(function () {
 
-//     $("#work-carousel").owlCarousel({
-//         // Most important owl features
-//         items: 4,
-//         itemsCustom: false,
-//         itemsDesktop: [1199, 3],
-//         itemsDesktopSmall: [980, 3],
-//         itemsTablet: [768, 3],
-//         itemsTabletSmall: false,
-//         itemsMobile: [479, 1],
-//         singleItem: false,
-//         startDragging: true,
-//         autoPlay: 6000
-//     });
+   $('.comparison-table').on('click','th', function(e){
+        console.log('change event', e.currentTarget.innerHTML);
 
-// });
+        // Get selected value
+        // var sort = $(  )
+        //     .attr('value');
+        
+        // Send an ajax request
+        // var url = window.location.href + '&sort=' + sort;
 
-
-// //owl carousel for news
-// $(document).ready(function () {
-
-//     $("#news-carousel").owlCarousel({
-//         // Most important owl features
-//         items: 2,
-//         itemsCustom: false,
-//         itemsDesktop: [1199, 2],
-//         itemsDesktopSmall: [980, 2],
-//         itemsTablet: [768, 2],
-//         itemsTabletSmall: false,
-//         itemsMobile: [479, 1],
-//         singleItem: false,
-//         startDragging: true,
-//         autoPlay: 4000
-//     });
-
-// });
-
-
-
-// //owl carousel for testimonials
-// $(document).ready(function () {
-
-//     $("#testi-carousel").owlCarousel({
-//         // Most important owl features
-//         items: 1,
-//         itemsCustom: false,
-//         itemsDesktop: [1199, 1],
-//         itemsDesktopSmall: [980, 1],
-//         itemsTablet: [768, 1],
-//         itemsTabletSmall: false,
-//         itemsMobile: [479, 1],
-//         singleItem: false,
-//         startDragging: true,
-//         autoPlay: 4000
-//     });
-
-// });
-// //featured work carousel slider
-
-// $(document).ready(function () {
-
-//     $("#featured-work").owlCarousel({
-//         autoPlay: 5000, //Set AutoPlay to 3 seconds
-//         navigation: true,
-//         navigationText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
-//         pagination: false,
-//         items: 4,
-//         itemsDesktop: [1199, 3],
-//         itemsDesktopSmall: [979, 3],
-//         stopOnHover: true
-
-//     });
-
-// });
-//  ==============================================
-//  Counter Up
-//  =============================================== 
-// jQuery(document).ready(function ($) {
-//     $('.counter').counterUp({
-//         delay: 10,
-//         time: 800
-//     });
-// });
-
-
-
-
-
-
+        //        $.ajax(url)
+        //     .done(function(response){
+        //         // Update the results table
+        //         $('.results-table').html(response);
+        //         console.log('ajax request complete');
+        //     })
+        //     .fail(function(xhr){
+        //         alert('Error:' + xhr.responseText);
+        //     });
+    });
+});
 
 //MAGNIFIC POPUP
 $(document).ready(function ($) {
@@ -230,77 +147,13 @@ $(document).ready(function ($) {
     });
 });
 
-// /* ==============================================
-//  flex slider
-//  =============================================== */
 
-// $(document).ready(function () {
-// $('.main-flex-slider,.testi-slide').flexslider({
-//     slideshowSpeed: 5000,
-//     directionNav: false,
-//     animation: "fade"
-// });
-// });
-// //OWL CAROUSEL
-// $(document).ready(function () {
-// $("#clients-slider").owlCarousel({
-//     autoPlay: 3000,
-//     pagination: false,
-//     items: 4,
-//     itemsDesktop: [1199, 3],
-//     itemsDesktopSmall: [991, 2]
-// });
-// });
+/*========tooltip and popovers====*/
+$(document).ready(function () {
+$("[data-toggle=popover]").popover();
 
-
-// /*========tooltip and popovers====*/
-// $(document).ready(function () {
-// $("[data-toggle=popover]").popover();
-
-// $("[data-toggle=tooltip]").tooltip();
-// });
-
-
-
-// /* ==============================================
-//  mb.YTPlayer
-//  =============================================== */
-// $(document).ready(function () {
-// jQuery(function () {
-//     jQuery(".player").mb_YTPlayer();
-// });
-// });
-
-
-// //transparent header
-
-// $(document).ready(function () {
-//     $(window).scroll(function () {
-//         if ($(this).scrollTop() > 100) {
-//             $('.transparent-header').css("background", "#252525");
-//         } else {
-//             $('.transparent-header').css("background", "transparent");
-//         }
-//     });
-// });
-
-//  //Search         
-//     (function () {
-
-//         $('.top-search').on('click', function() {
-//             $('.search').fadeIn(500, function() {
-//               $(this).toggleClass('search-toggle');
-//             });     
-//         });
-
-//         $('.search-close').on('click', function() {
-//             $('.search').fadeOut(500, function() {
-//                 $(this).removeClass('search-toggle');
-//             }); 
-//         });
-
-//     }());
-
+$("[data-toggle=tooltip]").tooltip();
+});
 
 
 /***********************************************************
@@ -314,5 +167,4 @@ $('.panel-ico a[data-toggle="collapse"]').on('click', function () {
         $(this).closest('.panel-heading').addClass('active');
     }
 });
-    
- 
+

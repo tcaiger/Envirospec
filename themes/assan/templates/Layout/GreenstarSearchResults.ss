@@ -10,7 +10,7 @@
         <div class="col-sm-12">
             <div class="row">
                 <div class="col-sm-8">
-                    <h4>Search Results For: $GetSearchParams</h4>
+                    <h4>Greenstar Search Results</h4>
                 </div>
                 <div class="col-sm-3 col-sm-offset-1" id="OrderByForm">
                     <h4 style="display: inline">Order by: </h4>
@@ -20,7 +20,7 @@
                     </select>
                 </div>
             </div>
-            <span class="results-number">Showing $Results.getTotalItems results</span>
+            <p>Showing $Results.getTotalItems results for $GetSearchParams</p>
             
             <!-- Search Results Table -->
             <div class="results-table">
