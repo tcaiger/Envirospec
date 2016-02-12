@@ -1,28 +1,17 @@
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Manufacturer</th>
-            <th>Product</th>
-            <th>Environmental Management Systems</th>
-            <th>Carbon Offset</th>
-            <th>Performance Based Environmental Certification</th>
-            <th>Life Cycle Based Ecolabel Certification</th>
-            <th>Natural Product</th>
-            <th>NZ Made</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% loop Results %>
-            <tr>
-                <% loop GetManufacturer($ManufacturerID) %>
-                    <td>$Name</td>
-                <% end_loop %>
-                <td><a href="$Link">$Title</a></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+<% loop Results %>
+    <tr>
+        <% loop GetManufacturer($ManufacturerID) %>
+            <td>$Name</td>
         <% end_loop %>
-    </tbody>
-</table>
+        <td><a href="$Link">$Title</a></td>
+        <td class="text-center">$GetCompliance($EnvironmentalManagementSystem)</td>
+        <td class="text-center">$GetCompliance($CarbonOffset)</td>
+        <td class="text-center">$GetCompliance($PerformanceItemEcolabel)</td>
+        <td class="text-center">$GetCompliance($LifeCycleBasedEcolabel)</td>
+        <td class="text-center">$GetCompliance($NaturalProduct)</td>
+        <td class="text-center">$GetCompliance($NewZealandMadeAccreditations)</td>
+        <td class="text-center">$GetCompliance($GreenStarCompatible)</td>
+        <td class="text-center">$GetCompliance($LivingBuildingChallenge)</td>
+        <td class="text-center">$GetCompliance($ProductEnvironmentalIndex)</td>
+    </tr>
+<% end_loop %>
