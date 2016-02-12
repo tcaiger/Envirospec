@@ -28,3 +28,17 @@
 		margin-bottom: 2em;
 	}
 }
+
+#product-tabs{
+	position: absolute; 
+	top: -7px; 
+	right:0px;
+	li.active a{
+		border-left: 1px solid #d2d3d4;
+		border-right: 1px solid #d2d3d4;
+	}
+	a{
+		background: #fff;
+	}
+	
+}
