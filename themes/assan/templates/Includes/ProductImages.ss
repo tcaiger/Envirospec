@@ -1,5 +1,5 @@
 <div style="margin-top: 20px" class="detail-img-col">
-    $Company($ManufacturerID).Logo
+    $Company($ManufacturerID).Logo.SetWidth(250)
     <div class="divide30"></div>
     <% loop ProductImages.Limit(4) %>
         <% if First %>
