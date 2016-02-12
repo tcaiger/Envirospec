@@ -2,15 +2,15 @@
     <div class="breadcrumb-wrap">
         <div class="container">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-4 col-xs-12">
                     <h4><a href="$BackLink"><i class="fa fa-arrow-left"></i> search results</a></h4>
                 </div>
-                <div class="col-sm-8 hidden-xs pull-right">
+                <div class="col-sm-8 pull-right hidden-xs">
 
                     <!-- ================================= -->
                     <!--            Tab Headings           -->
                     <!-- ================================= -->
-                    <ul style="position: absolute; top: -7px; right:0px"class="nav nav-tabs">
+                    <ul id="product-tabs" class="nav nav-tabs">
                         <li class="active">
                             <a href="#ptab1" data-toggle="tab" aria-expanded="true">Product<br>Description</a>
                         </li>
@@ -35,7 +35,7 @@
             <!-- ================================= -->
             <!--             Product Images        -->
             <!-- ================================= -->
-            <div class="col-sm-3 margin60" style="padding-left: 0">
+            <div class="col-sm-3 margin60 hidden-xs">
                 <% include ProductImages %>
 
                 <div class="divide50"></div>
@@ -124,7 +124,7 @@
                         
                         <div class="col-sm-12">
                             <h3 class="title">$Title</h3>
-                            <h3 style="margin-bottom: 0px"><small>$Subheading</small></h3>
+                            <h3 style="margin-bottom: 0px"><small>Product Description</small></h3>
                             <p>$GeneralDescription</p>
 
                             <h4>Technical and Environmental Benefits</h4>
