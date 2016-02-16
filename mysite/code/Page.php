@@ -34,7 +34,7 @@ class Page_Controller extends ContentController {
 		//////////////////////////////////////////////////////////// 
 
 		// Bootstrap CSS
-		Requirements::css("{$this->ThemeDir()}/bootstrap/css/bootstrap.min.css");
+		// Requirements::css("{$this->ThemeDir()}/bootstrap/css/bootstrap.min.css");
 		// Custom CSS
 		Requirements::css("{$this->ThemeDir()}/css/main.min.css");
 		// Font Awesome For Icons

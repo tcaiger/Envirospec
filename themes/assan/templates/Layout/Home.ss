@@ -3,31 +3,26 @@
 <!-- ========================================== -->
 <section id="home-parallax" class="parallax" data-stellar-background-ratio="0.5">
     <div class="container text-center">
-      <h1 class="typed-text">EnviroSpec</h1>
-        <p class="lead">Homestar & Green Star Product Specialists</p>
-        <span class="parallax-buttons">
-            <a href="search-green-star-nz-homestar-compatible" class=" btn btn-theme-bg btn-lg">Search Greenstar Products</a>
-        </span>
-    </div>
-</section>
+        <h1 class="typed-text">EnviroSpec</h1>
+        <p class="main-lead text-uppercase">Green Star And Homestar Rating Product Specialists</p>
 
-<!-- ========================================== -->
-<!--                      Buttons               -->
-<!-- ========================================== -->
-<div class="intro-text-1">
-    <div class="container">
+        <span class="parallax-buttons">
+            <a href="search-green-star-nz-homestar-compatible" class="btn btn-theme-bg btn-lg" style="font-size: 20px;">Search By Green Star &<br>Homestar Rating</a>
+        </span>
+        <div class="divide80"></div>
+        <div class="divide30"></div>
         <div class="row">
             <div class="col-sm-6 text-center">
-                <h4 class="animated slideInDown">Search Products By Category</h4>
-                <a href="navigate-the-interactive-house" class="btn border-white btn-lg">Search Products</a>
+                <p class="lead text-uppercase animated slideInDown">Search By Navigating The Interactive House</p>
+                <a href="navigate-the-interactive-house" class="animated slideInDown btn border-white btn-lg">Search Products</a>
             </div>
             <div class="col-sm-6 text-center">
-                <h4 class="animated slideInDown">Search By Keyword Or Manufacturer</h4>
-                <a href="manufacturer-keyword-search" class="btn border-white btn-lg">Search Products</a>
+                <p class="lead text-uppercase animated slideInDown">Search By Manufacturer Or Keyword</p>
+                <a href="manufacturer-keyword-search" class="animated slideInDown btn border-white btn-lg">Search Products</a>
             </div>
         </div>
     </div>
-</div> 
+</section>
 
 <div class="divide70"></div>
 
