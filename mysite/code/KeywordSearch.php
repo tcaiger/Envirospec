@@ -20,7 +20,7 @@ class KeywordSearch_Controller extends Page_Controller{
 				DropDownField::create(
 					'Manufacturer', 
 					'Use the drop‐down box to select the manufacturer or supplier of your choice.', 
-					Companies::get()->map('ID', 'Name'))
+					Companies::get()->sort('Name', 'ASC')->map('ID', 'Name'))
 						->setEmptyString('Select-One')
 					->setAttribute('placeholder','Search Here...')
 			),
