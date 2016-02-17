@@ -10,6 +10,7 @@ class Certificate extends DataObject{
 		'IsSummary' => 'Boolean',
 		'NoExpiry' => 'Boolean',
 		'Display' => 'Boolean(1)',
+		'Compile' => 'Boolean',
 		'ValidUntil' => 'Date',
 		'MonthWarning' => 'Boolean',
 		'ExpiredWarning' => 'Boolean',
@@ -66,7 +67,8 @@ class Certificate extends DataObject{
 				
 				CheckboxField::create('Is Summary', 'Summary Certificate'),
 				CheckboxField::create('NoExpiry', 'Ignore Valid Date'),
-				CheckboxField::create('Display', 'Display On Website')
+				CheckboxField::create('Display', 'Display On Website'),
+				CheckboxField::create('Compile', 'Include In Submission Pack')
 			)->setTitle('Details'),
 
 			
