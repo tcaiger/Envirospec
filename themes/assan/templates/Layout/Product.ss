@@ -130,8 +130,17 @@
                             <h4>Technical and Environmental Benefits</h4>
                             $BenefitsAdvantages
 
-                            <h4>Manufacturers and Suppliers</h4>
-                            $Company($SupplierID).Description
+                            <% if $Company($SupplierID).title  == $Company($ManufacturerID).title %>
+                                <h4>Manufacturer and Supplier Information - $Company($SupplierID).title</h4>
+                                $Company($SupplierID).Description
+                            <% else %>
+                                <h4>Manufacturer Information - $Company($ManufacturerID).title</h4>
+                                $Company($ManufacturerID).Description
+                                <h4>Supplier Information - $Company($SupplierID).title</h4>
+                                $Company($SupplierID).Description
+                            <% end_if %>
+
+                            
 
                             <h4>Application and Purpose</h4>
                             $ApplicationAndPurpose

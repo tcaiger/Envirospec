@@ -136,7 +136,7 @@ class Product extends Page{
 		// =====================================================
 		$fields->addFieldsToTab('Root.Companies', array (
 
-			DropdownField::create('ManufacturerID', 'Manufactuer', 
+			DropdownField::create('ManufacturerID', 'Manufacturer', 
 				Companies::get()->map('ID', 'Title'))
 					->setEmptyString('(Select One)'
 			),

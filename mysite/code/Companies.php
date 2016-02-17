@@ -39,7 +39,7 @@ class Companies extends DataObject {
 		$fields = FieldList::create(TabSet::create('Root'));
 
 		$fields->addFieldsToTab('Root.Main', array (
-			TextField::create('Name', 'Comapny Name'),
+			TextField::create('Name', 'Company Name'),
 			$upload = UploadField::create('Logo'),
 			HTMLEditorField::create('Description', 'Company Description')
 		));
