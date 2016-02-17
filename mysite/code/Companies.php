@@ -33,6 +33,8 @@ class Companies extends DataObject {
 		'Name' => 'Company Name'
 	);
 
+	private static $default_sort = "Name ASC";
+
 	public function getCMSFields() {
 
 		// ============== Main Tab =====================
