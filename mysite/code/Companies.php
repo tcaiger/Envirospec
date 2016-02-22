@@ -40,21 +40,15 @@ class Companies extends DataObject
 
 	public function getCMSFields($member = null)
 	{
+
 		// ============== Main Tab =====================
-		if(Permission::check('CMS_ACCESS_Admin', 'any', $member))
-		{
-			$fields->addFieldsToTab('Root.Main', array (
-				TextField::create('Name', 'Company Name'),
-				HTMLEditorField::create('Description', 'Company Description')
-			));
-		}
-
 		$fields = FieldList::create(TabSet::create('Root'));
-
-		$fields->addFieldsToTab('Root.Main', array(
+		$fields->addFieldsToTab('Root.Main', array (
+			TextField::create('Name', 'Company Name'),
+			HTMLEditorField::create('Description', 'Company Description'),
 			$upload = UploadField::create('Logo')
 		));
-
+	
 		$upload->getValidator()->setAllowedExtensions(array(
 			'png', 'jpeg', 'jpg', 'gif'
 		));
@@ -75,6 +69,14 @@ class Companies extends DataObject
 		$fields->addFieldsToTab('Root.Certificates', array(
 			TextField::create('Certificates')
 		));
+
+		if(!Permission::check('CMS_ACCESS_PAGES', 'any', $member))
+		{
+			$fields->removebyName(array(
+				'Name',
+				'Description'
+			));
+		}
 
 		return $fields;
 	}
