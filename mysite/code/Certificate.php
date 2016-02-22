@@ -2,6 +2,16 @@
 
 class Certificate extends DataObject{
 
+	public function canView($member = null)
+	{
+        return Permission::check('CMS_ACCESS_MyInfoAdmin', 'any', $member);
+    }
+
+	public function canEdit($member = null)
+	{
+        return Permission::check('CMS_ACCESS_MyInfoAdmin', 'any', $member);
+    }
+
 	private static $db = array (
 		'Name' => 'Varchar',
 		'Type' => 'Varchar',
@@ -19,7 +29,8 @@ class Certificate extends DataObject{
 	private static $has_one = array (
 		'Certificate' => 'File',
 		'FullReport' => 'File',
-		'Product' => 'Product'
+		'Product' => 'Product',
+		'Companies' => 'Companies'
 	);
 
 	private static $summary_fields = array (
