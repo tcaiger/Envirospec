@@ -1,25 +1,26 @@
 <?php
 
-class Product extends Page{
-
-	public function canEdit($member = null) {
+class Product extends Page
+{
+	public function canEdit($member = null)
+	{
         return Permission::check('CMS_ACCESS_MyInfoAdmin', 'any', $member);
     }
 
-	static $defaults = array (
+	static $defaults = array(
 		'ShowInMenus' => false,
 		'ShowInSearch' => false
 	);
 
 	private static $can_be_root = false;
 	
-	private static $has_one = array (
+	private static $has_one = array(
 		'Supplier' => 'Supplier',
 		'Manufacturer' => 'Manufacturer',
 		'ProductCategory' => 'ProductCategory'
 	);
 
-	private static $has_many = array (
+	private static $has_many = array(
 		'ProductImages' => 'Image',
 		'Certificates' => 'Certificate',
 		'Credits' => 'Credit'
@@ -27,7 +28,7 @@ class Product extends Page{
 	
 	static $icon = 'mysite/icons/BlueFile';
 
-	private static $db = array (
+	private static $db = array(
 
 		'Subheading' => 'Varchar',
 		'Status' => 'Varchar',
@@ -63,15 +64,16 @@ class Product extends Page{
 	);
 	
 
-	public function getCMSFields() {
-
+	public function getCMSFields($member = null)
+	{
 		$fields = parent::getCMSFields();
 		$fields->removeByName('Content');
+
 
 		// =====================================================
 		//                  Main Tab 
 		// =====================================================
-		$fields->addFieldsToTab('Root.Main', array (
+		$fields->addFieldsToTab('Root.Main', array(
 
 			TextField::create('Subheading'),
 			
@@ -92,7 +94,7 @@ class Product extends Page{
 		// =====================================================
 		//                Descriptions Tab 
 		// =====================================================
-		$fields->addFieldsToTab('Root.Descriptions', array (
+		$fields->addFieldsToTab('Root.Descriptions', array(
 
 			ToggleCompositeField::create('gd', 'General Description', array (
 				HTMLEditorField::create('GeneralDescription', '')
@@ -114,27 +116,10 @@ class Product extends Page{
 			))
 		));
 
-
-		// =====================================================
-		//                    Images Tab 
-		// =====================================================
-		$fields->addFieldsToTab('Root.Images', array (
-			$upload = UploadField::create('ProductImages', 'Product Images')
-		));
-
-		$upload->getValidator()->setAllowedExtensions(array (
-			'png', 'jpeg', 'jpg', 'gif'
-		));
-		$upload->setFolderName('product-photos');
-		$upload->setAllowedMaxFileNumber(5);
-		$sizeMB = 2; // 2 MB
-    	$size = $sizeMB * 1024 * 1024; // 2 MB in bytes
-    	$upload->getValidator()->setAllowedMaxFileSize($size);
-
 		// =====================================================
 		//                Companies Tab
 		// =====================================================
-		$fields->addFieldsToTab('Root.Companies', array (
+		$fields->addFieldsToTab('Root.Companies', array(
 
 			DropdownField::create('ManufacturerID', 'Manufacturer', 
 				Companies::get()->sort('Name', 'ASC')->map('ID', 'Title'))
@@ -146,6 +131,7 @@ class Product extends Page{
 			)
 		));
 
+
 		// =====================================================
 		//               Certificates Tab  
 		// =====================================================
@@ -155,6 +141,7 @@ class Product extends Page{
 			$this->Certificates(),
 			GridFieldConfig_RecordEditor::create()
 		));
+
 
 		// =====================================================
 		//                     Credits Tab 
@@ -166,10 +153,27 @@ class Product extends Page{
 			GridFieldConfig_RecordEditor::create()
 		));
 
+	
 		// =====================================================
+		//                    Images Tab 
+		// =====================================================
+		$fields->addFieldsToTab('Root.Images', array(
+			$upload = UploadField::create('ProductImages', 'Product Images')
+		));
+
+		$upload->getValidator()->setAllowedExtensions(array(
+			'png', 'jpeg', 'jpg', 'gif'
+		));
+		$upload->setFolderName('product-photos');
+		$upload->setAllowedMaxFileNumber(5);
+		$sizeMB = 2; // 2 MB
+    	$size = $sizeMB * 1024 * 1024; // 2 MB in bytes
+	    	$upload->getValidator()->setAllowedMaxFileSize($size);
+
+    	// =====================================================
 		//                   Links Tab 
 		// =====================================================
-		$fields->addFieldsToTab('Root.Links', array (
+		$fields->addFieldsToTab('Root.Links', array(
 
 			TextField::create('ProductSpecificWebsite', 'Product Website'),
 			TextField::create('ProductDistributor', 'Product Distributor'),
@@ -183,13 +187,26 @@ class Product extends Page{
 			TextField::create('ProductSpecification' , 'Product Specification'),
 			TextField::create('SpecialAchievement' , 'Special Achievement')
 		));
+
+		if(Permission::check('CMS_ACCESS_MyInfoAdmin', 'any', $member))
+		{
+			$fields->removebyName(array(
+				'Main',
+				'Descriptions',
+				'Companies',
+				'Certificates',
+				'Credits'
+			));
+		}
+
 		return $fields;
 	}
 
 	// =====================================================
 	//       Get The Name Of The Manufacturer  
 	// =====================================================
-	public function GetManufacturer($CompanyID){
+	public function GetManufacturer($CompanyID)
+	{
 		return Companies::get()->filter(array(
 			'ID' => $CompanyID
 		));
@@ -198,20 +215,23 @@ class Product extends Page{
 	// =====================================================
 	//                  Get Credit Points 
 	// =====================================================
-	public function GetPoints($ProductID){
-		$credits = Credit::get()->filter( array (
+	public function GetPoints($ProductID)
+	{
+		$credits = Credit::get()->filter(array(
 			'ProductID' => $ProductID 
 		));
 
-		for ($i=0; $i < count($credits); $i++) { 
-
-			if ($credits[$i]->AvailableCreditID == $_GET['Credit']) {
+		for ($i=0; $i < count($credits); $i++)
+		{ 
+			if ($credits[$i]->AvailableCreditID == $_GET['Credit'])
+			{
 				return $credits[$i]->ContributionPotential;
 			}
 		}
 	}
 
-	public function GetCompliance($compliant){
+	public function GetCompliance($compliant)
+	{
 		if($compliant){
 			return '<i class="fa fa-check"></i>';
 		} else {
@@ -221,16 +241,19 @@ class Product extends Page{
 }
 
 
-class Product_Controller extends Page_Controller{
+class Product_Controller extends Page_Controller
+{
 
-	public function ShowGreenStarCertificate($PageID){
+	public function ShowGreenStarCertificate($PageID)
+	{
 		return Certificate::get()->filter(array(
 			'ProductID' => $PageID,
 			'Type' => 'Green Building Rating Compatibility',
 			'Display' => 1
 		));
 	}
-	public function ShowCertificates($PageID){
+	public function ShowCertificates($PageID)
+	{
 		return Certificate::get()->exclude(
 				'Type', 'Green Building Rating Compatibility'
 			)
@@ -239,12 +262,14 @@ class Product_Controller extends Page_Controller{
 				'Display' => 1
 			));
 	}
-	public function ShowCredits($PageID){
+	public function ShowCredits($PageID)
+	{
 		return Credit::get()->filter(array(
 			'ProductID' => $PageID
 		));
 	}
-	public function Company($CompanyID){
+	public function Company($CompanyID)
+	{
 		return dataObject::get_by_id('Companies', $CompanyID);
 	}
 	public function BackLink(){
@@ -254,8 +279,8 @@ class Product_Controller extends Page_Controller{
 	// =====================================================
 	//                   Company Contact Form 
 	// =====================================================
-	public function CompanyContactForm(){
-
+	public function CompanyContactForm()
+	{
 		$form = BootstrapForm::create(
 			$this,
 			__Function__,
