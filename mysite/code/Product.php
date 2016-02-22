@@ -188,7 +188,7 @@ class Product extends Page
 			TextField::create('SpecialAchievement' , 'Special Achievement')
 		));
 
-		if(Permission::check('CMS_ACCESS_MyInfoAdmin', 'any', $member))
+		if(!Permission::check('CMS_ACCESS_PAGES', 'any', $member))
 		{
 			$fields->removebyName(array(
 				'Main',
