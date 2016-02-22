@@ -29,7 +29,8 @@ class Companies extends DataObject
 	);
 
 	private static $has_many = array(
-		'Products' => 'Product'
+		'Products' => 'Product',
+		'Certificates' => 'Certificate'
 	);
 
 	private static $summary_fields = array(
@@ -66,8 +67,11 @@ class Companies extends DataObject
 		));
 
 		// ======== Certificates Tab ============== 
-		$fields->addFieldsToTab('Root.Certificates', array(
-			TextField::create('Certificates')
+		$fields->addFieldsToTab('Root.Certificates', GridField::create(
+			'Certificates',
+			'Certificates for this company',
+			$this->Certificates(),
+			GridFieldConfig_RecordEditor::create()
 		));
 
 		if(!Permission::check('CMS_ACCESS_PAGES', 'any', $member))

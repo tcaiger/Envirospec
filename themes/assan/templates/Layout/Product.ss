@@ -172,8 +172,8 @@
                             <h3 class="title">$Title</h3>
                             <h3 style="margin-bottom: 0px"><small>Certificates</small></h3>
                             <div class="divide30"></div>
-                            <% if ShowCertificates($ID) %>
-                                <% loop ShowCertificates($ID) %>
+                            <% if ShowCertificates($ID, $ManufacturerID, $SupplierID) %>
+                                <% loop ShowCertificates($ID, $ManufacturerID, $SupplierID) %>
                                     <% include Certificate %>
                                 <% end_loop %>
                             <% else %>

@@ -2,6 +2,10 @@
 
 class Product extends Page
 {
+	public function canView($member = null)
+	{
+        return Permission::check('CMS_ACCESS_MyInfoAdmin', 'any', $member);
+    }
 	public function canEdit($member = null)
 	{
         return Permission::check('CMS_ACCESS_MyInfoAdmin', 'any', $member);
@@ -252,14 +256,18 @@ class Product_Controller extends Page_Controller
 			'Display' => 1
 		));
 	}
-	public function ShowCertificates($PageID)
+	public function ShowCertificates($PageID, $ManufacturerID, $SupplierID)
 	{
 		return Certificate::get()->exclude(
 				'Type', 'Green Building Rating Compatibility'
 			)
 			->filter(array(
-				'ProductID' => $PageID,
 				'Display' => 1
+			))
+			->filterAny(array(
+				'ProductID' => $PageID,
+				'CompaniesID' => $ManufacturerID,
+				'CompaniesID' => $SupplierID
 			));
 	}
 	public function ShowCredits($PageID)
