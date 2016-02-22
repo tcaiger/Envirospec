@@ -1,16 +1,19 @@
 <?php
 
-class Companies extends DataObject {
+class Companies extends DataObject
+{
 
-	public function canView($member = null) {
+	public function canView($member = null)
+	{
         return Permission::check('CMS_ACCESS_MyInfoAdmin', 'any', $member);
     }
 
-    public function canEdit($member = null) {
+    public function canEdit($member = null)
+    {
         return Permission::check('CMS_ACCESS_MyInfoAdmin', 'any', $member);
     }
 
-	private static $db = array (
+	private static $db = array(
 		'Name' => 'Varchar',
 		'Description' => 'HTMLText',
 		'Phone' => 'Varchar',
@@ -21,37 +24,45 @@ class Companies extends DataObject {
 		'Post' => 'HTMLText'
 	);
 
-	private static $has_one = array (
+	private static $has_one = array(
 		'Logo' => 'Image'
 	);
 
-	private static $has_many = array (
+	private static $has_many = array(
 		'Products' => 'Product'
 	);
 
-	private static $summary_fields = array (
+	private static $summary_fields = array(
 		'Name' => 'Company Name'
 	);
 
 	private static $default_sort = "Name ASC";
 
-	public function getCMSFields() {
-
+	public function getCMSFields($member = null)
+	{
 		// ============== Main Tab =====================
+		if(Permission::check('CMS_ACCESS_Admin', 'any', $member))
+		{
+			$fields->addFieldsToTab('Root.Main', array (
+				TextField::create('Name', 'Company Name'),
+				HTMLEditorField::create('Description', 'Company Description')
+			));
+		}
+
 		$fields = FieldList::create(TabSet::create('Root'));
 
-		$fields->addFieldsToTab('Root.Main', array (
-			TextField::create('Name', 'Company Name'),
-			$upload = UploadField::create('Logo'),
-			HTMLEditorField::create('Description', 'Company Description')
+		$fields->addFieldsToTab('Root.Main', array(
+			$upload = UploadField::create('Logo')
 		));
-		$upload->getValidator()->setAllowedExtensions(array (
+
+		$upload->getValidator()->setAllowedExtensions(array(
 			'png', 'jpeg', 'jpg', 'gif'
 		));
+
 		$upload->setFolderName('logos');
 
 		// ======== Contact Tab ============== 
-		$fields->addFieldsToTab('Root.Contact', array (
+		$fields->addFieldsToTab('Root.Contact', array(
 			TextField::create('Phone'),
 			TextField::create('Email'),
 			TextField::create('Fax'),
@@ -61,11 +72,10 @@ class Companies extends DataObject {
 		));
 
 		// ======== Certificates Tab ============== 
-		$fields->addFieldsToTab('Root.Certificates', array (
+		$fields->addFieldsToTab('Root.Certificates', array(
 			TextField::create('Certificates')
 		));
 
 		return $fields;
-
 	}
 }
