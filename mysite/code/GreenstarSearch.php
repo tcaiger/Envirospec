@@ -1,37 +1,36 @@
 <?php
 
-class GreenstarSearch extends Page{
+class GreenstarSearch extends Page
+{
 
 
 }
 
-class GreenstarSearch_Controller extends Page_Controller{
-
-
-	public function index(SS_HTTPRequest $request) {
-
-	    if($request->isAjax()) {
-
-	    	if($reportNo = $request->getVar('report')){
-
+class GreenstarSearch_Controller extends Page_Controller
+{
+	public function index(SS_HTTPRequest $request)
+	{
+	    if($request->isAjax())
+	    {
+	    	if($reportNo = $request->getVar('report'))
+	    	{
 	    		$Report = Certificate::Get()->filter(array(
 					'Number' => $reportNo
 				))->first();
 
-				return $this->customise(array (
+				return $this->customise(array(
 		        		'Report' => $Report
 					))->renderWith('ReportResults');
 
-	    	} else {
-		        return $this->customise(array (
+	    	}else {
+		        return $this->customise(array(
 		        		'Tool' => $request->getVar('tool'),
 		        		'Category' => $request->getVar('category'),
 		        		'Credit' => $request->getVar('credit')
 					))->renderWith('SearchOptions');
 		    }
 	    }
-
-	    return array (
+	    return array(
 			'Tool' => null,
 			'Category' => null,
 			'Credit' => null
@@ -41,8 +40,8 @@ class GreenstarSearch_Controller extends Page_Controller{
 	// ========================================
 	// Credit Dropdown Form
 	// ========================================
-	public function CreditSearchForm($tool, $category, $credit){
-
+	public function CreditSearchForm($tool, $category, $credit)
+	{
 		$form = BootstrapForm::create(
 			$this,
 			__Function__,
@@ -75,10 +74,12 @@ class GreenstarSearch_Controller extends Page_Controller{
         	->disableSecurityToken()
         	->loadDataFrom($this->request->getVars());
 
-        if (!$tool){
+        if(!$tool)
+        {
         	$categoryField->setAttribute('disabled', 'disabled');
         }
-        if (!$category){
+        if(!$category)
+        {
         	$creditField->setAttribute('disabled', 'disabled');
         }
 
