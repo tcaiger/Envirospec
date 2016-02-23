@@ -1,60 +1,24 @@
 <% include Breadcrumbs %>
 
-<div class="divide40"></div>
-
 <div class="container">
-    <div class="row">
-        <!-- ========================================== -->
-        <!--        Product Filter Sidebar              -->
-        <!-- ========================================== -->
-        <div class="col-sm-5">
-            <div class="results-sidebar-box">
-                <h4>$Title</h4>
-                <hr>
+	<div class="row">
+    	<div id="house-container" class="col-md-10 col-md-offset-1">
+    		<div class="house"></div>
+	    	
+            <div class="services">
+                <% include HouseLabels Heading="Services", LabelID="14" %>
             </div>
-            <div class="panel-group" id="accordion">
-                <% loop GetCategories() %>
-                    <% if Children %>
-                        <div class="panel panel-default">
-                            <div class="panel-heading panel-ico">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse$ID">
-                                        $Title
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="collapse$ID" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <ul style="padding-left: 20px">
-                                    <!--  -->
-                                        <div id="accordion2">
-                                            <% loop Children %>
-                                                <% if Children %>
-                                                    <li>
-                                                        <a data-toggle="collapse" data-parent="#accordion2" href="#collapse2$ID">
-                                                            $Title
-                                                        </a>
-                                                        <div id="collapse2$ID" class="panel-collapse collapse">
-                                                            <ul style="padding-left: 10px">
-                                                                <% loop Children %>
-                                                                    <li>
-                                                                        <a href="$FilterLink">$Title</a>
-                                                                    </li>
-                                                                <% end_loop %>
-                                                            </ul>
-                                                        </div>
-                                                    </li>
-                                                <% end_if %>
-                                            <% end_loop %>
-                                        </div>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    <% end_if %>
-                <% end_loop %>
+            <div class="fit-out">
+                <% include HouseLabels Heading="Interior Fit-Out Items", LabelID="12" %>
             </div>
-        </div>
+            <div class="paints">
+                <% include HouseLabels Heading="Interior Paints", LabelID="13" %>
+            </div>
+            <div class="build-shell">
+                <% include HouseLabels Heading="Building Shell and Envelope", LabelID="11" %>
+            </div>
+         
+	    </div>
     </div>
 </div>
 
