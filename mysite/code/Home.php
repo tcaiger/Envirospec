@@ -27,5 +27,11 @@ class Home extends Page{
 
 class Home_Controller extends Page_Controller{
 
+	public function init() {
+		parent::init();
+
+		Requirements::css("{$this->ThemeDir()}/css/jquery.flipster.min.css");
+	    Requirements::javascript("{$this->ThemeDir()}/js/jquery.flipster.min.js");
+	}
 
 }

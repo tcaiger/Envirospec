@@ -1,6 +1,7 @@
 #home-parallax{
 	padding-top: 130px;
 	padding-bottom: 100px;
+	background: url(../img/homepage_v1.jpg) no-repeat;
 }
 p.main-lead{
 	font-size: 28px;
@@ -10,4 +11,61 @@ p.main-lead{
 }
 p.lead{
 	font-size: 16px;
+}
+.cover{
+	width: 420px;
+	height: 420px;
+	border: 1px solid #D0D6DF;
+    margin-bottom: 30px;
+    background: #fff;
+    opacity: 0.98;
+    h4{
+    	border-bottom: 1px solid #D0D6DF;
+	    margin: 0px;
+	    color: #666;
+	    padding: 20px;
+	    font-size: 20px;
+	    text-align: center;
+	    font-weight: 600;
+	    text-transform: capitalize;
+    }
+    .circle{
+    	width: 150px;
+	    height: 150px;
+	    padding: 0px 0 0;
+	    margin: 30px auto;
+	    margin-bottom: 0px;
+	    display: table;
+	    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);
+    	border: 5px solid #fff;
+    	border-radius: 50%;
+    	background-color: #f4f4f4;
+    }
+    ul{
+    	padding-top: 30px;
+    	li{
+    		padding: 6px 20px;
+		    border-bottom: 1px solid #f5f5f5;
+		    color: #aeaeae;
+		    i{
+		    	color: $green;
+    			margin-right: 10px;
+		    }
+    	}
+    }
+    p{
+    	color: #777 !important;
+    	margin-bottom: 10px !important;
+	    padding: 15px 20px;
+	    text-align: center;
+	    padding-bottom: 0px;
+    }
+    img{
+    	height: 160px;
+    	margin-top: 20px;
+    }
+    .bottom{
+    	padding: 20px 10px 30px 10px;
+    	text-align: center;
+    }
 }

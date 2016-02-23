@@ -1,25 +1,59 @@
 <!-- ========================================== -->
 <!--        Cover Image & Buttons               -->
 <!-- ========================================== -->
-<section id="home-parallax" class="parallax" data-stellar-background-ratio="0.5">
+<section id="home-parallax" class="parallax">
     <div class="container text-center">
         <h1 class="typed-text">EnviroSpec</h1>
         <p class="main-lead text-uppercase">Green Star And Homestar Rating Product Specialists</p>
-
-        <span class="parallax-buttons">
-            <a href="search-green-star-nz-homestar-compatible" class="btn btn-theme-bg btn-lg" style="font-size: 20px;">Search By Green Star &<br>Homestar Rating</a>
-        </span>
-        <div class="divide80"></div>
-        <div class="divide30"></div>
-        <div class="row">
-            <div class="col-sm-6 text-center">
-                <p class="lead text-uppercase animated slideInDown">Search By Navigating The Interactive House</p>
-                <a href="navigate-the-interactive-house" class="animated slideInDown btn border-white btn-lg">Search Products</a>
-            </div>
-            <div class="col-sm-6 text-center">
-                <p class="lead text-uppercase animated slideInDown">Search By Manufacturer Or Keyword</p>
-                <a href="manufacturer-keyword-search" class="animated slideInDown btn border-white btn-lg">Search Products</a>
-            </div>
+        <div class="divide50"></div>
+        <div id="cover-flow">
+            <ul>
+                <li>
+                    <div class="cover">
+                        <h4>Navigate The Interactive House</h4>
+                        <div >
+                            <img class="center-block" src="$ThemeDir/img/second.jpg">
+                        </div>
+                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>Integer lorem quam.</p>
+                        <div class="bottom">
+                            <a href="navigate-the-interactive-house" class="btn btn-default btn-lg btn-ico">Search Products <i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div> 
+                </li>
+                <li>
+                    <div class="cover popular">
+                        <span class="ribbon">Exclusive</span>
+                        <h4>Greenstar & Homestar Compatible Products</h4>
+                        <div >
+                            <img class="center-block" src="$ThemeDir/img/first.png">
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>Integer lorem quam.</p>
+                        <div class="bottom">
+                            <a href="search-green-star-nz-homestar-compatible" class="btn btn-theme-bg btn-lg btn-ico">Search Products <i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div> 
+                </li>
+                <li>
+                    <div class="cover">
+                        <h4>Manufacturer Or Keyword Search</h4>
+                        <div >
+                            <img class="center-block" src="$ThemeDir/img/third.jpg">
+                        </div>
+                        <!-- <ul class="list-unstyled">
+                            <li><i class="fa fa-check-square"></i> un passage du </li>
+                            <li><i class="fa fa-check-square"></i> sur Internet tendent </li>
+                            <li><i class="fa fa-check-square"></i> un dictionnaire de plus </li>
+                            <li><i class="fa fa-check-square"></i> un passage du </li>
+                            <li><i class="fa fa-check-square"></i> sur Internet tendent </li>
+                            <li><i class="fa fa-check-square"></i> un dictionnaire de plus </li>
+                        </ul> -->
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>Integer lorem quam.</p>
+                        <div class="bottom">
+                            <a href="manufacturer-keyword-search" class="btn btn-default btn-lg btn-ico">Search Products <i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div> 
+                </li>
+            </ul>
         </div>
     </div>
 </section>
@@ -146,4 +180,10 @@
 </section>
 
 
-
+<script>
+    $('#cover-flow').flipster({
+        buttons: true,
+        spacing: -0.5,
+        scrollwheel: false
+    });
+</script>
