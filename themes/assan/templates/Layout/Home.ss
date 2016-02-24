@@ -40,7 +40,7 @@
                         <!-- <ul class="list-unstyled">
                             <li><i class="fa fa-check-square"></i> un passage du </li>
                         </ul> -->
-                     <!--    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>Integer lorem quam.</p> -->
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>Integer lorem quam.</p>
                         <div class="bottom">
                             <a href="manufacturer-keyword-search" class="btn btn-default btn-lg btn-ico">Search Products <i class="fa fa-angle-right"></i></a>
                         </div>

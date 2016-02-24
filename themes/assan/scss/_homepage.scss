@@ -15,15 +15,16 @@ p.lead{
 }
 .cover{
 	width: 420px;
-	height: 420px;
-	border: 1px solid #D0D6DF;
+	height: 360px;
+	border: 2px solid #fff;
     margin-bottom: 30px;
-    background: #fff;
-    opacity: 1;
+    background: transparent;
+    // opacity: 0.4;
     h4{
-    	border-bottom: 1px solid #D0D6DF;
+    	opacity: 1;
+    	border-bottom: 2px solid #fff;
 	    margin: 0px;
-	    color: #666;
+	    color: #fff;
 	    padding: 20px;
 	    font-size: 20px;
 	    text-align: center;
