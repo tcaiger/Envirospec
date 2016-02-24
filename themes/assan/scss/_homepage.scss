@@ -19,7 +19,7 @@ p.lead{
 	border: 1px solid #D0D6DF;
     margin-bottom: 30px;
     background: #fff;
-    opacity: 0.98;
+    opacity: 1;
     h4{
     	border-bottom: 1px solid #D0D6DF;
 	    margin: 0px;
@@ -69,4 +69,40 @@ p.lead{
     	padding: 20px 10px 30px 10px;
     	text-align: center;
     }
+}
+
+.fallback-image{
+	position: absolute;
+	top:0;
+    background-image: url(../img/homepage_v1.jpg);
+    background-attachment: scroll; 
+    height: 480px;
+    width: 100%;
+    transition: all 3s;
+}
+.video-wrapper {
+	position: relative;
+	.player{
+		position: absolute;
+		top:0;
+	}
+	.video-content{
+		position: absolute;
+		width: 100%;
+		top: 35%;
+	}
+	#play-button{
+		margin-top: 0px;
+		font-size: 60px;
+		color: white;
+		opacity: 0.8;
+		transition: all 0.4s;
+		&:hover{
+			cursor: pointer;
+			color: #eee;
+		}
+		&:active{
+			transform: translateY(2px);
+		}
+	}
 }
