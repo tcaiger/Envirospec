@@ -8,7 +8,6 @@
     	<div class="divide20"></div>
         <div class="col-sm-4" style="padding-left: 0">
         	<div class="greenstar-search well">
-            	<h5>Search By Green Star NZ Or Homestar Rating Tool<br>And Credit</h5>
 				<% include SearchOptions %>
 			</div>
 			<div class="well">
