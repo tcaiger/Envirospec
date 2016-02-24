@@ -32,6 +32,8 @@ class Home_Controller extends Page_Controller{
 
 		Requirements::css("{$this->ThemeDir()}/css/jquery.flipster.min.css");
 	    Requirements::javascript("{$this->ThemeDir()}/js/jquery.flipster.min.js");
+	    Requirements::javascript("{$this->ThemeDir()}/js/YTBVideo.js");
+
 	}
 
 }

@@ -7,7 +7,6 @@
     $(".navbar-collapse").css({ maxHeight: $(window).height() - $(".navbar-header").height() + "px" });
 });
 
-
 /* ==============================================
  WOW plugin triggers animate.css on scroll
  =============================================== */

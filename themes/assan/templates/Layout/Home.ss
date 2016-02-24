@@ -14,7 +14,6 @@
                         <div >
                             <img class="center-block" src="$ThemeDir/img/second.jpg">
                         </div>
-                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>Integer lorem quam.</p>
                         <div class="bottom">
                             <a href="navigate-the-interactive-house" class="btn btn-default btn-lg btn-ico">Search Products <i class="fa fa-angle-right"></i></a>
                         </div>
@@ -23,11 +22,10 @@
                 <li>
                     <div class="cover popular">
                         <span class="ribbon">Exclusive</span>
-                        <h4>Greenstar & Homestar Compatible Products</h4>
+                        <h4>Greenstar And Homestar Compatible</h4>
                         <div >
                             <img class="center-block" src="$ThemeDir/img/first.png">
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>Integer lorem quam.</p>
                         <div class="bottom">
                             <a href="search-green-star-nz-homestar-compatible" class="btn btn-theme-bg btn-lg btn-ico">Search Products <i class="fa fa-angle-right"></i></a>
                         </div>
@@ -41,13 +39,8 @@
                         </div>
                         <!-- <ul class="list-unstyled">
                             <li><i class="fa fa-check-square"></i> un passage du </li>
-                            <li><i class="fa fa-check-square"></i> sur Internet tendent </li>
-                            <li><i class="fa fa-check-square"></i> un dictionnaire de plus </li>
-                            <li><i class="fa fa-check-square"></i> un passage du </li>
-                            <li><i class="fa fa-check-square"></i> sur Internet tendent </li>
-                            <li><i class="fa fa-check-square"></i> un dictionnaire de plus </li>
                         </ul> -->
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>Integer lorem quam.</p>
+                     <!--    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>Integer lorem quam.</p> -->
                         <div class="bottom">
                             <a href="manufacturer-keyword-search" class="btn btn-default btn-lg btn-ico">Search Products <i class="fa fa-angle-right"></i></a>
                         </div>
@@ -61,28 +54,54 @@
 <div class="divide70"></div>
 
 <!-- ========================================== -->
-<!--              Welcome Message               -->
+<!--        Welcome Message               -->
 <!-- ========================================== -->
 <div class="container">
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2">
             <div class="center-heading">
-                <h2 class="wow animated fadeIn" data-wow-duration="700ms" data-wow-delay="100ms">Welcome to EnviroSpec</h2>
+                <h2 class="wow animated fadeIn" data-wow-duration="700ms">Welcome to EnviroSpec</h2>
                 <span class="center-line"></span>
-                <p class="sub-text wow animated fadeIn" data-wow-duration="700ms" data-wow-delay="300ms">
-                   EnviroSpec is an independent consultancy providing an online platform where architects, product suppliers and homeowners can compare products in terms of their environmental performance. EnviroSpec works closely together with the New Zealand Green Building Council and also offers different Homestar services which range from HomeCoach assessments to Homestar certifications.
-                </p>
+                <p class="sub-text wow animated fadeIn" data-wow-duration="700ms">EnviroSpec is an independent consultancy providing an online platform where architects, product suppliers and homeowners can compare products in terms of their environmental performance. EnviroSpec works closely together with the New Zealand Green Building Council and also offers different Homestar services which range from HomeCoach assessments to Homestar certifications.</p>
             </div>
         </div>
     </div>
-    <div class="divide70"></div>
+</div>
 
-    <!-- ========================================== -->
-    <!--        Cover Image & Buttons               -->
-    <!-- ========================================== -->
+<div class="divide50"></div>
+
+<!-- ========================================== -->
+<!--            Youtube Video                  -->
+<!-- ========================================== -->
+<section class="video-wrapper">
+    <div class="fallback-image">
+        <div class="video-content text-center">
+            <h4 style="color: #fff">Play Video</h4>
+            <i id="play-button" class="fa fa-youtube-play"></i>
+    </div>
+    </div>
+    <div id="player"></div>
+</section>
+
+<div class="divide70"></div>
+<!-- ========================================== -->
+<!--              About Envirospec               -->
+<!-- ========================================== -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div class="center-heading">
+                <h2 class="wow animated fadeIn" data-wow-duration="700ms">Homestar And Greenstar Product Specialists</h2>
+                <p class="sub-text wow animated fadeIn" data-wow-duration="700ms">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia natus veritatis rem, enim vero animi fuga commodi veniam? Ipsum, minima?</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="divide30"></div>
+
     <div class="row">
         <div class="col-md-4 col-sm-12 margin30">
-            <div class="service-box-4 wow animated fadeIn" data-wow-duration="700ms" data-wow-delay="100ms">
+            <div class="service-box-4 wow animated fadeIn" data-wow-duration="700ms">
                 <div class="service-ico">
                     <i class="pe-7s-search"></i>
                 </div>
@@ -96,7 +115,7 @@
             </div>
         </div>
         <div class="col-md-4 col-sm-12 margin30">
-            <div class="service-box-4 wow animated fadeIn" data-wow-duration="700ms" data-wow-delay="200ms">
+            <div class="service-box-4 wow animated fadeIn" data-wow-duration="700ms">
                 <div class="service-ico">
                     <i class="pe-7s-graph1"></i>
                 </div>
@@ -110,7 +129,7 @@
             </div>
         </div>
         <div class="col-md-4 col-sm-12 margin30">
-            <div class="service-box-4 wow animated fadeIn" data-wow-duration="700ms" data-wow-delay="300ms">
+            <div class="service-box-4 wow animated fadeIn" data-wow-duration="700ms">
                 <div class="service-ico">
                     <i class="pe-7s-pen"></i>
                 </div>
@@ -124,7 +143,7 @@
             </div>
         </div>
         <div class="col-md-4 col-sm-12 margin30">
-            <div class="service-box-4 wow animated fadeIn" data-wow-duration="700ms" data-wow-delay="400ms">
+            <div class="service-box-4 wow animated fadeIn" data-wow-duration="700ms">
                 <div class="service-ico">
                     <i class="pe-7s-help1"></i>
                 </div>
@@ -138,7 +157,7 @@
             </div>
         </div>
         <div class="col-md-4 col-sm-12 margin30">
-            <div class="service-box-4 wow animated fadeIn" data-wow-duration="700ms" data-wow-delay="500ms">
+            <div class="service-box-4 wow animated fadeIn" data-wow-duration="700ms">
                 <div class="service-ico">
                     <i class="pe-7s-mail-open-file"></i>
                 </div>
@@ -152,7 +171,7 @@
             </div>
         </div>
         <div class="col-md-4 col-sm-12 margin30">
-            <div class="service-box-4 wow animated fadeIn" data-wow-duration="700ms" data-wow-delay="600ms">
+            <div class="service-box-4 wow animated fadeIn" data-wow-duration="700ms">
                 <div class="service-ico">
                     <i class="pe-7s-light"></i>
                 </div>
@@ -174,8 +193,8 @@
 <!-- ========================================== -->
 <section id="cta-1">
     <div class="container">
-        <h1>Want To List A Product With Us?</h1>
-        <a href="contact-us" class="btn border-white btn-lg">Contact us today</a>
+        <h1 class="wow animated fadeIn" data-wow-duration="700ms">Want To List A Product With Us?</h1>
+        <a data-wow-duration="700ms" href="contact-us" class="btn border-white btn-lg wow animated fadeIn">Contact us today</a>
     </div>
 </section>
 
