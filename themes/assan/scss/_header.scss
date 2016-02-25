@@ -43,7 +43,9 @@
     width:80px;
     height: auto;
 }
-
+ul.nav.navbar-nav.navbar-right{
+    margin-top: 0px;
+}
 /*============================*/
 /*======dropdowm menu=========*/
 /*============================*/
@@ -89,6 +91,7 @@ TOP BARS
 }
 .top-bar-light{
     background-color:#f3f3f3;
+    padding: 1px 0;
     .top-dark-right li{
         border-color:#ddd;
     }

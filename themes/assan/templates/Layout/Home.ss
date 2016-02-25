@@ -1,11 +1,13 @@
+
 <!-- ========================================== -->
 <!--        Cover Image & Buttons               -->
 <!-- ========================================== -->
 <section id="home-parallax" class="parallax">
     <div class="container text-center">
         <h1 class="typed-text">EnviroSpec</h1>
-        <p class="main-lead text-uppercase">Green Star And Homestar Rating Product Specialists</p>
-        <div class="divide50"></div>
+        <p class="main-lead text-uppercase">Green Star And Homestar Product Rating Specialists</p>
+        <span class="center-line"></span>
+        <div class="divide40"></div>
         <div id="cover-flow">
             <ul>
                 <li>
@@ -40,7 +42,7 @@
                         <!-- <ul class="list-unstyled">
                             <li><i class="fa fa-check-square"></i> un passage du </li>
                         </ul> -->
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>Integer lorem quam.</p>
+  <!--                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>Integer lorem quam.</p> -->
                         <div class="bottom">
                             <a href="manufacturer-keyword-search" class="btn btn-default btn-lg btn-ico">Search Products <i class="fa fa-angle-right"></i></a>
                         </div>
@@ -49,7 +51,11 @@
             </ul>
         </div>
     </div>
+    <div class="text-center">
+        <i  style=" position: absolute; color: white; bottom: 40px; margin: 0 auto" class="text-center fa fa-angle-double-down fa-3x"></i>
+    </div>
 </section>
+
 
 <div class="divide70"></div>
 
@@ -197,12 +203,3 @@
         <a data-wow-duration="700ms" href="contact-us" class="btn border-white btn-lg wow animated fadeIn">Contact us today</a>
     </div>
 </section>
-
-
-<script>
-    $('#cover-flow').flipster({
-        buttons: true,
-        spacing: -0.5,
-        scrollwheel: false
-    });
-</script>

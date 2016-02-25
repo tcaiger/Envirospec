@@ -1,4 +1,13 @@
-<div class="navbar navbar-default navbar-static-top yamm" role="navigation">
+<% if $ClassName == "Home" %>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation" style="top: -70px; background-color: rgba(255,255,255,1)">
+
+<% else %>
+
+    <div class="navbar navbar-default navbar-static-top" role="navigation" style=" background-color: rgba(255,255,255,1)">
+
+<% end_if %>
+
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -7,7 +16,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="$AbsoluteBaseURL"><img style="height: 60px; width: auto; margin-top: -18px; margin-left: -15px;" src="$ThemeDir/img/es-logo.png" alt="ENVIROSPEC"></a>
+            <a class="navbar-brand" href="$AbsoluteBaseURL"><img style="height: 72px; width: auto; margin-top: -25px; margin-left: -15px;" src="$ThemeDir/img/es-logo.png" alt="ENVIROSPEC"></a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">

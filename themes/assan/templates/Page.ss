@@ -1,12 +1,11 @@
 <% include Header %>
 <body>
+
 	<% include Topbar %>
-	<% if $ClassName == "Product" %>
-		<% include ProductPageNavbar %>
-	<% else %>
-		<% include Navbar %>
-	<% end_if %>
+	<% include Navbar %>
+
     $Layout
+    
     <% include Footer %>
 </body>
 </html>

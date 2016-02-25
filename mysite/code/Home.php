@@ -30,9 +30,11 @@ class Home_Controller extends Page_Controller{
 	public function init() {
 		parent::init();
 
+		Requirements::css("https://fonts.googleapis.com/css?family=Raleway:400,500,900");
 		Requirements::css("{$this->ThemeDir()}/css/jquery.flipster.min.css");
 	    Requirements::javascript("{$this->ThemeDir()}/js/jquery.flipster.min.js");
 	    Requirements::javascript("{$this->ThemeDir()}/js/YTBVideo.js");
+	    Requirements::javascript("{$this->ThemeDir()}/js/custom-home.js");
 
 	}
 
