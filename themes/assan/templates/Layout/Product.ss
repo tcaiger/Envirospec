@@ -1,34 +1,35 @@
 <div class="tabs">
-    <div class="breadcrumb-wrap">
+    <% include Breadcrumbs %>
+    <div class="second-nav">
         <div class="container">
             <div class="row">
-                <div class="col-sm-4 col-xs-12">
-                    <h4><a href="$BackLink"><i class="fa fa-arrow-left"></i> search results</a></h4>
+                <div class="col-sm-3" style="padding: 10px">
+                    <a href="$BackLink"><i class="fa fa-arrow-circle-left"></i> Search Results</a>
                 </div>
-                <div class="col-sm-8 pull-right hidden-xs">
+                <div class="col-sm-9 tab-cont hidden-xs">
 
                     <!-- ================================= -->
                     <!--            Tab Headings           -->
                     <!-- ================================= -->
-                    <ul id="product-tabs" class="nav nav-tabs">
+                    <ul id="product-tabs" class="list-inline">
                         <li class="active">
-                            <a href="#ptab1" data-toggle="tab" aria-expanded="true">Product<br>Description</a>
+                            <a href="#ptab1" data-toggle="tab" aria-expanded="true">Product Description</a>
                         </li>
                         <li>
-                            <a href="#ptab2" data-toggle="tab" aria-expanded="false">Green Building<br>Info</a>
+                            <a href="#ptab2" data-toggle="tab" aria-expanded="false">Green Building Info</a>
                         </li>
                         <li>
-                            <a href="#ptab3" data-toggle="tab" aria-expanded="false">Download<br>Certificates</a>
+                            <a href="#ptab3" data-toggle="tab" aria-expanded="false">Download Certificates</a>
                         </li>
                         <li>
-                            <a href="#ptab4" data-toggle="tab" aria-expanded="false">Product<br>Enquiry</a>
+                            <a href="#ptab4" data-toggle="tab" aria-expanded="false">Product Enquiry</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-    <div class="divide60"></div>
+    <div class="divide30"></div>
     <div class="container">
         <div class="row">
 
@@ -116,16 +117,16 @@
             <!-- ================================ -->
             <!--            Tab Content           -->
             <!-- ================================ -->
-            <div class="tab-content">
+            <div class="col-sm-9 tab-content">
 
                 <!-- ========== Product Description ========= -->
                 <div class="tab-pane active" id="ptab1">
                     <div class="tab-desc animated fadeIn">
                         
                         <div class="col-sm-12">
-                            <h3 class="title">$Title</h3>
-                            <h3 style="margin-bottom: 0px"><small>Product Description</small></h3>
-                            <p>$GeneralDescription</p>
+                            <h3 class="title">Product Description</h3>
+
+                            $GeneralDescription
 
                             <h4>Technical and Environmental Benefits</h4>
                             $BenefitsAdvantages
@@ -141,7 +142,6 @@
                             <% end_if %>
 
                             
-
                             <h4>Application and Purpose</h4>
                             $ApplicationAndPurpose
 
@@ -155,8 +155,8 @@
                 <div class="tab-pane" id="ptab2">
                     <div class="tab-desc animated fadeIn">
                         <div class="col-sm-12">
-                            <h3 class="title">$Title</h3>
-                            <h3 style="margin-bottom: 0px"><small>Green Building Info Summary Sheet</small></h3>
+                            <h3 class="title">Green Building Information Summary Sheet</h3>
+                    
                             <div class="divide30"></div>
                             <% loop ShowGreenStarCertificate($ID) %>
                                  <% include Certificate %>
@@ -169,8 +169,8 @@
                 <div class="tab-pane" id="ptab3">
                     <div class="tab-desc animated fadeIn">
                         <div class="col-sm-8">
-                            <h3 class="title">$Title</h3>
-                            <h3 style="margin-bottom: 0px"><small>Certificates</small></h3>
+                            <h3 class="title">Download Certificates</h3>
+                           
                             <div class="divide30"></div>
                             <% if ShowCertificates($ID, $ManufacturerID, $SupplierID) %>
                                 <% loop ShowCertificates($ID, $ManufacturerID, $SupplierID) %>
@@ -189,8 +189,8 @@
 
                         <div class="col-sm-8">
 
-                            <h3 class="title">$Title</h3>
-                            <h3 style="margin-bottom: 0px"><small>Product Enquiry Form</small></h3>
+                            <h3 class="title">Product Enquiry</h3>
+                           
                             <div class="divide30"></div>
                             <div class="comment-form">
                                 <div class="form-contact">

@@ -16,7 +16,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="$AbsoluteBaseURL"><img style="height: 72px; width: auto; margin-top: -25px; margin-left: -15px;" src="$ThemeDir/img/es-logo.png" alt="ENVIROSPEC"></a>
+            <a class="navbar-brand" href="$AbsoluteBaseURL"><img style="height: 68px; width: auto; margin-top: -24px; margin-left: -15px;" src="$ThemeDir/img/es-logo.png" alt="ENVIROSPEC"></a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
