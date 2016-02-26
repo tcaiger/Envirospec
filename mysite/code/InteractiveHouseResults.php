@@ -18,6 +18,7 @@ class InteractiveHouseResults_Controller extends Page_Controller{
 	// ========================================
 	public function init(){
 		parent::init();
+
 		$this->articleList = Product::get();
 	}	
 

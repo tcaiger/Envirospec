@@ -67,3 +67,11 @@
         <a href="#" class="btn border-white btn-lg">Contact us today</a>
     </div>
 </section>
+
+
+<script>
+    /*========tooltip and popovers====*/
+    $(document).ready(function () {
+        $("[data-toggle=tooltip]").tooltip();
+    });
+</script>

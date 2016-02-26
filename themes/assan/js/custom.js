@@ -159,6 +159,7 @@ $(document).ready(function () {
     });
 });
 
+
 //MAGNIFIC POPUP
 $(document).ready(function ($) {
     $('.show-image').magnificPopup({
@@ -168,23 +169,5 @@ $(document).ready(function ($) {
 });
 
 
-/*========tooltip and popovers====*/
-$(document).ready(function () {
-$("[data-toggle=popover]").popover();
 
-$("[data-toggle=tooltip]").tooltip();
-});
-
-
-/***********************************************************
- * ACCORDION
- ***********************************************************/
-$('.panel-ico a[data-toggle="collapse"]').on('click', function () {
-    if ($(this).closest('.panel-heading').hasClass('active')) {
-        $(this).closest('.panel-heading').removeClass('active');
-    } else {
-        $('.panel-heading a[data-toggle="collapse"]').closest('.panel-heading').removeClass('active');
-        $(this).closest('.panel-heading').addClass('active');
-    }
-});
 

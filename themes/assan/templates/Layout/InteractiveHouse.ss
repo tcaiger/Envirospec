@@ -6,7 +6,13 @@
             
     		<% include House %>
 
-            <i id="help" class="fa fa-question-circle fa-3x"></i>
+            <i id="help" 
+                class="fa fa-question-circle fa-3x" 
+                data-toggle="tooltip" 
+                data-placement="top" 
+                title="" 
+                data-original-title="Drag the cursor over an area of interest to search product categories">
+            </i>
 	    	
             <div class="services">
                 <% include HouseLabels Heading="Services", LabelID="14", SVG="Services" %>
@@ -20,7 +26,6 @@
             <div class="build-shell">
                 <% include HouseLabels Heading="Building Shell and Envelope", LabelID="11", SVG="Shell" %>
             </div>
-         
 	    </div>
     </div>
 </div>
@@ -35,3 +40,11 @@
         <a href="#" class="btn border-white btn-lg">Join us today</a>
     </div>
 </section>
+
+<script>
+    /*========tooltip and popovers====*/
+    $(document).ready(function () {
+        $("[data-toggle=tooltip]").tooltip();
+    });
+</script>
+
