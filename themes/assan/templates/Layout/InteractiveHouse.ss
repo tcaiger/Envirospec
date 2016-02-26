@@ -2,27 +2,29 @@
 
 <div class="container">
 	<div class="row">
-    	<div id="house-container" class="col-md-10 col-md-offset-1">
-    		<div class="house"></div>
+    	<div id="house-container" class="col-sm-12">
+            
+    		<% include House %>
+
+            <i id="help" class="fa fa-question-circle fa-3x"></i>
 	    	
             <div class="services">
-                <% include HouseLabels Heading="Services", LabelID="14" %>
+                <% include HouseLabels Heading="Services", LabelID="14", SVG="Services" %>
             </div>
             <div class="fit-out">
-                <% include HouseLabels Heading="Interior Fit-Out Items", LabelID="12" %>
+                <% include HouseLabels Heading="Interior Fit-Out Items", LabelID="12", SVG="Interior" %>
             </div>
             <div class="paints">
-                <% include HouseLabels Heading="Interior Paints", LabelID="13" %>
+                <% include HouseLabels Heading="Interior Paints", LabelID="13", SVG="Paints" %>
             </div>
             <div class="build-shell">
-                <% include HouseLabels Heading="Building Shell and Envelope", LabelID="11" %>
+                <% include HouseLabels Heading="Building Shell and Envelope", LabelID="11", SVG="Shell" %>
             </div>
          
 	    </div>
     </div>
 </div>
 
-<div class="divide80"></div>
 
 <!-- ========================================== -->
 <!--               Banner                       -->

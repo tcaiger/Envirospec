@@ -1,50 +1,53 @@
 #house-container{
 	position: relative;
-	.house-heading{
-		font-size: 1.2em;
-		text-transform: uppercase;
-		color: #666;
-		&:hover{
-			cursor: pointer;
-			color: $green;
-		}
+	height: 550px;
+	width: 1000px;
+	margin: 0 auto;
+	#help{
+		position: absolute;
+		bottom:150px;
+		right: 150px;
 	}
-	i{
-		margin-right: 1em;
+	svg{
+		position: absolute;
+		top: -80px;
+		left: 130px;
+		z-index: -1;
 	}
-	.house{
-		height: 700px; 
-		background-image: url(../img/house.png); 
-		background-size: contain; 
-		background-repeat: no-repeat;
+	
+	#Services,#Paints,#Interior,#Shell,#Structure,#Landscape{
+		display: none;
 	}
 	.services{
 		position: absolute;
-		top: 150px;
-		left: -50px;
+		top: 90px;
+		left: 120px;
 		
 	}
 	.fit-out{
 		position: absolute;
-		top: 300px;
-		left: -50px;
+		top: 180px;
+		left: 120px;
 
 	}
 	.paints{
 		position: absolute;
-		top: 520px;
-		left: -50px;
+		top: 300px;
+		left: 120px;
 
 	}
 	.build-shell{
 		position: absolute;
-		top: 150px;
-		left: 750px;
-
+		top: 100px;
+		left: 790px;
 	}
+	
 	.category-table{
 		border: 1px solid #D0D6DF;
     	margin-bottom: 30px;
+    	i{
+			margin-right: 1em;
+		}
     	h4{
     		color: #666;
 		    padding: 20px;
@@ -75,3 +78,28 @@
 
 	}
 }
+// Interactive House Cards
+.house-card{
+
+	tbody{
+		display: none;
+		border-top: none;
+		border-bottom: 1px solid #ddd;
+		border-left: 1px solid #ddd;
+		border-right: 1px solid #ddd;
+	}
+	.table>thead>tr>th{
+		padding: 10px 20px 10px 15px;
+		border: none;
+	}
+	.table>tbody>tr>td{
+		padding: 5px 20px 5px 15px;
+	}
+	.green{
+		background: $green;
+		color: white;
+	}
+}
+
+
+
