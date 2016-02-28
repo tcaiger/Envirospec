@@ -124,7 +124,7 @@
                     <div class="tab-desc animated fadeIn">
                         
                         <div class="col-sm-12">
-                            <h3 class="title">Product Description</h3>
+                            <h3>Product Description</h3>
 
                             $GeneralDescription
 
@@ -155,7 +155,7 @@
                 <div class="tab-pane" id="ptab2">
                     <div class="tab-desc animated fadeIn">
                         <div class="col-sm-12">
-                            <h3 class="title">Green Building Information Summary Sheet</h3>
+                            <h3>Green Building Information Summary Sheet</h3>
                     
                             <div class="divide30"></div>
                             <% loop ShowGreenStarCertificate($ID) %>
@@ -169,7 +169,7 @@
                 <div class="tab-pane" id="ptab3">
                     <div class="tab-desc animated fadeIn">
                         <div class="col-sm-8">
-                            <h3 class="title">Download Certificates</h3>
+                            <h3>Download Certificates</h3>
                            
                             <div class="divide30"></div>
                             <% if ShowCertificates($ID, $ManufacturerID, $SupplierID) %>
@@ -189,7 +189,7 @@
 
                         <div class="col-sm-8">
 
-                            <h3 class="title">Product Enquiry</h3>
+                            <h3>Product Enquiry</h3>
                            
                             <div class="divide30"></div>
                             <div class="comment-form">

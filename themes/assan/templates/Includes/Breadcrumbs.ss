@@ -42,7 +42,7 @@
                 <!-- Keyword Search Results -->
                 <% else_if $URLSegment == "search-results" %>
                     <div class="col-sm-6">
-                        <h4>Product Search</h4>
+                        <h4>Search Results</h4>
                     </div>
                     <div class="col-sm-6 hidden-xs text-right">
                         <ol class="breadcrumb">
@@ -54,7 +54,7 @@
                 <!-- Inter Active House Search Results -->
                 <% else_if $URLSegment == "compare" %>
                     <div class="col-sm-6">
-                        <h4>Product Search</h4>
+                        <h4>Search Results</h4>
                     </div>
                     <div class="col-sm-6 hidden-xs text-right">
                         <ol class="breadcrumb">
@@ -66,7 +66,7 @@
                 <!-- Greenstar Search Results -->
                 <% else_if $URLSegment == "greenstar-results" %>
                     <div class="col-sm-6">
-                        <h4>Product Search</h4>
+                        <h4>Search Results</h4>
                     </div>
                     <div class="col-sm-6 hidden-xs text-right">
                         <ol class="breadcrumb">

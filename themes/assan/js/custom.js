@@ -88,11 +88,11 @@ $(document).ready(function () {
  =============================================== */
 $(document).ready(function () {
 
-   $('#OrderByForm').on('change','select', function(e){
+   $('#GreenStarOrderForm').on('change','select', function(e){
         console.log('change event');
 
         // Get selected value
-        var sort = $( '#OrderByForm option:selected' )
+        var sort = $( '#GreenStarOrderForm option:selected' )
             .attr('value');
         
         // Send an ajax request
@@ -116,25 +116,25 @@ $(document).ready(function () {
  =============================================== */
 $(document).ready(function () {
 
-   $('.comparison-table').on('click','th', function(e){
-        console.log('change event', e.currentTarget.innerHTML);
+   $('#HouseOrderForm').on('change','select', function(e){
+        console.log('change event');
 
         // Get selected value
-        // var sort = $(  )
-        //     .attr('value');
+        var sort = $( '#HouseOrderForm option:selected' )
+            .attr('value');
         
         // Send an ajax request
-        // var url = window.location.href + '&sort=' + sort;
+        var url = window.location.href + '&sort=' + sort;
 
-        //        $.ajax(url)
-        //     .done(function(response){
-        //         // Update the results table
-        //         $('.results-table').html(response);
-        //         console.log('ajax request complete');
-        //     })
-        //     .fail(function(xhr){
-        //         alert('Error:' + xhr.responseText);
-        //     });
+               $.ajax(url)
+            .done(function(response){
+                // Update the results table
+                $('.comparison-table').html(response);
+                console.log('ajax request complete');
+            })
+            .fail(function(xhr){
+                alert('Error:' + xhr.responseText);
+            });
     });
 });
 

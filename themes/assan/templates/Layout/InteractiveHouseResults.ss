@@ -8,11 +8,27 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-            <h4>Product Comparison Table</h4>
-            
-            <p>Showing $Results.getTotalItems Results For Interior Decorating / Furniture</p>
+             <div class="row">
+                <div class="col-sm-12">
+                    <h3>$GetCategory</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4 style="color: #333; display: inline">Showing results 1 - $Results.getTotalItems</h4>
 
-            <table class="comparison-table table table-striped">
+                    <span class="pull-right" id="HouseOrderForm">
+                        <h4 style="color: #333">Sort:</h4>
+                        <select style="border-bottom-left-radius: 0px">
+                            <option value="0">Product </option>
+                            <option value="1">Manufacturer </option>
+                        </select>
+                    </span>
+                </div>
+            </div>
+            <div class="divide20"></div>
+
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>Manufacturer</th>
@@ -46,7 +62,7 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="comparison-table">
 
                     <% include ComparisonTable %>
 
