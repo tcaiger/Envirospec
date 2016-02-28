@@ -2,10 +2,6 @@
 
 class Product extends Page
 {
-	public function canView($member = null)
-	{
-        return Permission::check('CMS_ACCESS_MyInfoAdmin', 'any', $member);
-    }
 	public function canEdit($member = null)
 	{
         return Permission::check('CMS_ACCESS_MyInfoAdmin', 'any', $member);
