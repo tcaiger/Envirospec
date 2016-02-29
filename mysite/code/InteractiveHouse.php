@@ -19,22 +19,4 @@ class InteractiveHouse_Controller extends Page_Controller
 
 	}
 
-	public function index(SS_HTTPRequest $request)
-	{
-	    if($request->isAjax())
-	    {
-	    	if($category = $request->getVar('category'))
-	    	{
-	    		$Results = ProductCategory::get()->filter('ParentID', $category);
-
-	    		return $this->customise(array(
-		        		'Results' => $Results
-					))->renderWith('ProductCategories');
-	    	}
-	    }
-
-	     return array(
-			'Results' => null
-		);
-	}
 }

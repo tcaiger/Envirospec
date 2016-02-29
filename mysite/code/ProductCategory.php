@@ -8,7 +8,8 @@ class ProductCategory extends Page{
 
 	private static $has_one = array (
 		'ProductSearch' => 'ProductSearch',
-		'ProductHolder' => 'ProductHolder'
+		'ProductHolder' => 'ProductHolder',
+		'CategoryImage' => 'Image'
 	);
 
 	private static $can_be_root = false;
@@ -26,6 +27,15 @@ class ProductCategory extends Page{
 		$fields->removeByName('Content');
 		$fields->removeByName('Metadata');
 
+
+		$fields->addFieldToTab('Root.Main', $image = UploadField::create('CategoryImage'));
+
+		$image->setFolderName('category-images');
+		$image->setAllowedMaxFileNumber(1);
+		$sizeMB = 1; // 1 MB
+    	$size = $sizeMB * 1024 * 1024; // 1 MB in bytes
+	    $image->getValidator()->setAllowedMaxFileSize($size);
+
 		return $fields;
 	}
 
@@ -35,6 +45,13 @@ class ProductCategory extends Page{
 
 	public function FilterLink(){
 		$page = InteractiveHouseResults::get()->first();
+
+		if($page){
+			return $page->Link('category/'.$this->ID);
+		}
+	}
+	public function FilterLink1(){
+		$page = ProductCategoriesPage::get()->first();
 
 		if($page){
 			return $page->Link('category/'.$this->ID);

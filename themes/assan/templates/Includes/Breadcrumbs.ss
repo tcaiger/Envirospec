@@ -51,6 +51,18 @@
                         </ol>
                     </div>
 
+                <!-- Product Categories -->
+                <% else_if $URLSegment == "productcategories" %>
+                    <div class="col-sm-6">
+                        <h4>Product Search</h4>
+                    </div>
+                    <div class="col-sm-6 hidden-xs text-right">
+                        <ol class="breadcrumb">
+                            <a href="navigate-the-interactive-house">Navigate The Interactive House</a>
+                             / Product Categories
+                        </ol>
+                    </div>
+
                 <!-- Inter Active House Search Results -->
                 <% else_if $URLSegment == "compare" %>
                     <div class="col-sm-6">

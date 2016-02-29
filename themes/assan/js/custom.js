@@ -138,27 +138,6 @@ $(document).ready(function () {
     });
 });
 
-/* ==============================================
- AJAX For Interactive House
- =============================================== */
-$(document).ready(function () {
-
-   $('#house-container').on('click','.house-label', function(e){
-
-        var category = $(this).data('cat');
-
-        var url = window.location.href + '?category=' + category;
-
-        $.ajax(url)
-            .done(function(response){
-                $('#house-container').html(response);
-            })
-            .fail(function(xhr){
-                alert('Error:' + xhr.responseText);
-        });
-    });
-});
-
 
 //MAGNIFIC POPUP
 $(document).ready(function ($) {
