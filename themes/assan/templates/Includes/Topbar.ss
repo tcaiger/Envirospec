@@ -1,13 +1,4 @@
-<% if $ClassName == "Home" %>
-
-    <div style="transition: all .4s ease-in-out; position: fixed; right: 0; left: 0; z-index: 1030;top: -97px;" class="top-bar-light"> 
-
-<% else %>
-
-    <div class="top-bar-light"> 
-
-<% end_if %>
-          
+<div class="top-bar-light">           
     <div class="container">
         <div class="row">
             <div class="col-sm-5 hidden-xs">

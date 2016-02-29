@@ -14,7 +14,7 @@ function onYouTubeIframeAPIReady() {
         enablejsapi: 1,
         controls: 1
     },
-    height: '480',
+    height: '620',
     width: '1000',
     videoId: 'wgBqVfRLG78',
     events: {

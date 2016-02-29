@@ -1,13 +1,4 @@
-<% if $ClassName == "Home" %>
-
-    <div class="navbar navbar-default navbar-fixed-top" role="navigation" style="top: -70px; background-color: rgba(255,255,255,1)">
-
-<% else %>
-
-    <div class="navbar navbar-default navbar-static-top" role="navigation" style=" background-color: rgba(255,255,255,1)">
-
-<% end_if %>
-
+<div class="navbar navbar-default navbar-static-top" role="navigation" style=" background-color: rgba(255,255,255,1)">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">

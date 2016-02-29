@@ -13,22 +13,17 @@
                 <li>
                     <div class="cover">
                         <h4>Navigate The Interactive House</h4>
-                        <div >
-                            <img class="center-block" src="$ThemeDir/img/second.jpg">
-                        </div>
                         <div class="bottom">
-                            <a href="navigate-the-interactive-house" class="btn btn-default btn-lg btn-ico">Search Products <i class="fa fa-angle-right"></i></a>
+                            <img class="center-block" src="$ThemeDir/img/Search1.png">
+                            <a href="navigate-the-interactive-house" class="btn btn-theme-bg btn-lg btn-ico">Search Products <i class="fa fa-angle-right"></i></a>
                         </div>
                     </div> 
                 </li>
                 <li>
-                    <div class="cover popular">
-                        <span class="ribbon">Exclusive</span>
+                    <div class="cover">
                         <h4>Greenstar And Homestar Compatible</h4>
-                        <div >
-                            <img class="center-block" src="$ThemeDir/img/first.png">
-                        </div>
-                        <div class="bottom">
+                         <div class="bottom">
+                            <img class="center-block" src="$ThemeDir/img/Search2.png">
                             <a href="search-green-star-nz-homestar-compatible" class="btn btn-theme-bg btn-lg btn-ico">Search Products <i class="fa fa-angle-right"></i></a>
                         </div>
                     </div> 
@@ -36,15 +31,9 @@
                 <li>
                     <div class="cover">
                         <h4>Manufacturer Or Keyword Search</h4>
-                        <div >
-                            <img class="center-block" src="$ThemeDir/img/third.jpg">
-                        </div>
-                        <!-- <ul class="list-unstyled">
-                            <li><i class="fa fa-check-square"></i> un passage du </li>
-                        </ul> -->
-  <!--                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>Integer lorem quam.</p> -->
-                        <div class="bottom">
-                            <a href="manufacturer-keyword-search" class="btn btn-default btn-lg btn-ico">Search Products <i class="fa fa-angle-right"></i></a>
+                         <div class="bottom">
+                            <img class="center-block" src="$ThemeDir/img/Search3.png">
+                            <a href="manufacturer-keyword-search" class="btn btn-theme-bg btn-lg btn-ico">Search Products <i class="fa fa-angle-right"></i></a>
                         </div>
                     </div> 
                 </li>
@@ -52,7 +41,7 @@
         </div>
     </div>
     <div class="text-center">
-        <i  style=" position: absolute; color: white; bottom: 40px; margin: 0 auto" class="text-center fa fa-angle-double-down fa-3x"></i>
+        <i  style=" position: absolute; color: white; bottom: 10px; margin: 0 auto" class="text-center fa fa-angle-double-down fa-3x"></i>
     </div>
 </section>
 
