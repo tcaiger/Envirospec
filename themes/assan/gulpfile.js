@@ -10,33 +10,31 @@ var autoprefix   = require('gulp-autoprefixer')
 var combinemq	 = require('gulp-combine-media-queries')
 
 
+// =================================================================
+//                        CSS Task
+// =================================================================
 gulp.task('css', function(){
 
 	var stream = gulp.src('scss/main.scss')   
-		.pipe(plumber())                              
-		.pipe(sourcemap.init())                      
+		.pipe(plumber())                                                  
 		.pipe(sass())
-		.pipe(combinemq())                              
-		.pipe(sourcemap.write())                      
+		.pipe(combinemq())                                                  
 		.pipe(autoprefix('last 2 versions'))          
 	
-	// make style.css
-	stream.pipe(clone())                              // make a copy of the stream up to autoprefix
-		.pipe(beautify())                             // make css really readable
-		.pipe(gulp.dest('css/'))               // save it into the dist folder
-	
-	// make style.min.css
-	stream.pipe(clone())                              // make a copy of the stream up to autoprefix
-		.pipe(minifycss())                            // minify it (removes the sourcemap)
-		.pipe(sourcemap.write())                      // write the sourcemap
-		.pipe(rename('main.min.css'))                // add .min to the filename
-		.pipe(gulp.dest('css/'))               // save it into the dist folder
+	// make main css file
+	stream.pipe(clone())                             
+		.pipe(minifycss())                                             
+		.pipe(rename('main.min.css'))                
+		.pipe(gulp.dest('css/'))              
 	
 	return stream
 })
 
+// =================================================================
+//                        SCSS Watch
+// =================================================================
 gulp.task('watch', ['css'], function(){
-	gulp.watch(['scss/**/*.scss'], ['css'])   // watch for changes and run the css task
+	gulp.watch(['scss/**/*.scss'], ['css'])  
 })
 
 gulp.task('default', ['css'])

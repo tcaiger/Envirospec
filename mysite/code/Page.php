@@ -47,20 +47,34 @@ class Page_Controller extends ContentController {
 		// JS Includes 
 		//////////////////////////////////////////////////////////// 
 
-		// JQuery
-	    Requirements::javascript("{$this->ThemeDir()}/js/jquery.min.js");
-	    // Bootstrap
-	    Requirements::javascript("{$this->ThemeDir()}/bootstrap/js/bootstrap.min.js");
-	    // Easing Plugin For Smooth Scroll
-	    Requirements::javascript("{$this->ThemeDir()}/js/jquery.easing.min.js");
-	    // On Scroll Animation
-	    Requirements::javascript("{$this->ThemeDir()}/js/wow.min.js");
-	    // image loads plugin
-	    Requirements::javascript("{$this->ThemeDir()}/js/imagesloaded.min.js");
-	    // magnific pop up
-	    Requirements::javascript("{$this->ThemeDir()}/js/jquery.magnific-popup.min.js");
-	    // Custom JS
-	    Requirements::javascript("{$this->ThemeDir()}/js/custom.js");
+		Requirements::combine_files(
+		    'main.js',
+		    array(
+		        "{$this->ThemeDir()}/js/jquery.min.js",
+		        "{$this->ThemeDir()}/bootstrap/js/bootstrap.min.js",
+		        "{$this->ThemeDir()}/js/jquery.easing.min.js",
+		        "{$this->ThemeDir()}/js/wow.min.js",
+		        "{$this->ThemeDir()}/js/imagesloaded.min.js",
+		        "{$this->ThemeDir()}/js/jquery.magnific-popup.min.js",
+		        "{$this->ThemeDir()}/js/custom.js"
+
+		    )
+		);
+
+		// // JQuery
+	 //    Requirements::javascript("{$this->ThemeDir()}/js/jquery.min.js");
+	 //    // Bootstrap
+	 //    Requirements::javascript("{$this->ThemeDir()}/bootstrap/js/bootstrap.min.js");
+	 //    // Easing Plugin For Smooth Scroll
+	 //    Requirements::javascript("{$this->ThemeDir()}/js/jquery.easing.min.js");
+	 //    // On Scroll Animation
+	 //    Requirements::javascript("{$this->ThemeDir()}/js/wow.min.js");
+	 //    // image loads plugin
+	 //    Requirements::javascript("{$this->ThemeDir()}/js/imagesloaded.min.js");
+	 //    // magnific pop up
+	 //    Requirements::javascript("{$this->ThemeDir()}/js/jquery.magnific-popup.min.js");
+	 //    // Custom JS
+	 //    Requirements::javascript("{$this->ThemeDir()}/js/custom.js");
 	}
 
 	public function GetProdCats(){
