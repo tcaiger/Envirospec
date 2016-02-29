@@ -158,9 +158,13 @@
                             <h3>Green Building Information Summary Sheet</h3>
                     
                             <div class="divide30"></div>
-                            <% loop ShowGreenStarCertificate($ID) %>
-                                 <% include Certificate %>
-                            <% end_loop %>
+                            <% if ShowGreenStarCertificate($ID) %>
+                                <% loop ShowGreenStarCertificate($ID) %>
+                                     <% include Certificate %>
+                                <% end_loop %>
+                             <% else %>
+                               <h3><small> -- No Certificate For This Product -- </small></h3>
+                            <% end_if %>
                         </div> 
                     </div>
                 </div>
