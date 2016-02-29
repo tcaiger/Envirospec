@@ -35,22 +35,12 @@ class Page_Controller extends ContentController {
 
 		// Custom CSS
 		Requirements::css("{$this->ThemeDir()}/css/main.min.css");
-
-		Requirements::combine_files(
-		    'main.js',
-		    array(
-		        "{$this->ThemeDir()}/font-awesome/css/font-awesome.min.css",
-		        "{$this->ThemeDir()}/css/animate.css",
-		        "{$this->ThemeDir()}/css/magnific-popup.css"
-
-		    )
-		);
-		// // Font Awesome For Icons
-		// Requirements::css("{$this->ThemeDir()}/font-awesome/css/font-awesome.min.css");
-		// // Animated CSS
-		// Requirements::css("{$this->ThemeDir()}/css/animate.css");
-		// // Popups Css
-		// Requirements::css("{$this->ThemeDir()}/css/magnific-popup.css");
+		// Font Awesome For Icons
+		Requirements::css("{$this->ThemeDir()}/font-awesome/css/font-awesome.min.css");
+		// Animated CSS
+		Requirements::css("{$this->ThemeDir()}/css/animate.css");
+		// Popups Css
+		Requirements::css("{$this->ThemeDir()}/css/magnific-popup.css");
 
 
 		//////////////////////////////////////////////////////////// 
