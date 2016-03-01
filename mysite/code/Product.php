@@ -247,6 +247,9 @@ class Product extends Page
 class Product_Controller extends Page_Controller
 {
 
+	private static $allowed_actions = array(
+		'CompanyContactForm'
+	);
 	// =====================================================
 	//         Show Green Star Certificate
 	// =====================================================
