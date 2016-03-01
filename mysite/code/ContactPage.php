@@ -47,7 +47,7 @@ class ContactPage_Controller extends Page_Controller{
 		$email = new Email();
 		$email
 		    ->setFrom('"Envirospec Contact Form" <envirospec@mail.co.nz>')
-		    ->setTo($this->SiteConfig()->ContactFormEmail)
+		    ->setTo($this->SiteConfig()->ContactEmail)
 		    ->setSubject('Envirosec Contact Form Mesage')
 		    ->setTemplate('ContactFormEmail')
 		    ->populateTemplate(new ArrayData(array(

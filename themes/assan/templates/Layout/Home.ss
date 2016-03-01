@@ -40,9 +40,9 @@
             </ul>
         </div>
     </div>
-    <div class="text-center">
-        <i  style=" position: absolute; color: white; bottom: 10px; margin: 0 auto" class="text-center fa fa-angle-double-down fa-3x"></i>
-    </div>
+   
+    <i  style=" position: absolute; color: white; bottom: 10px; left: 49%" class="text-center fa fa-angle-double-down fa-3x"></i>
+ 
 </section>
 
 
