@@ -7,6 +7,11 @@ class ContactPage extends Page {
 
 class ContactPage_Controller extends Page_Controller{
 
+	private static $allowed_actions = array(
+		'Contactform'
+	);
+
+
 	public function init() {
 		parent::init();
 		// google maps
