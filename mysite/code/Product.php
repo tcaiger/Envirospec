@@ -315,7 +315,7 @@ class Product_Controller extends Page_Controller
 			__Function__,
 			Fieldlist::create(
 				TextField::create('Name'),
-				EmailField::create('Email'),
+				EmailField::create('Email', 'Email Address'),
 				TextAreaField::create('Message')
 			),
 			Fieldlist::create(
