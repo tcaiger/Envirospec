@@ -14,11 +14,10 @@
 @import "base";
 @import "header";
 @import "footers";
-@import "shop";
-@import "style";
+@import "assan-style";
 
 // Custom & Pages
-@import "homepage";
-@import "product";
-@import "house";
+@import "pages/home-page";
+@import "pages/product-page";
+@import "pages/house-page";
 @import "custom";

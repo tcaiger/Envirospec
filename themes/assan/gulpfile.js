@@ -30,26 +30,6 @@ gulp.task('css', function(){
 	return stream
 })
 
-
-// =================================================================
-//               Vendors CSS Task
-// =================================================================
-gulp.task('vendor-css', function(){
-
-	var stream = gulp.src('css/main.scss')   
-		.pipe(plumber())                                                  
-		.pipe(sass())
-		.pipe(combinemq())                                                  
-		.pipe(autoprefix('last 2 versions'))          
-	
-	// make main css file
-	stream.pipe(clone())                             
-		.pipe(minifycss())                                             
-		.pipe(rename('main.min.css'))                
-		.pipe(gulp.dest('css/'))              
-	
-	return stream
-})
 // =================================================================
 //                        SCSS Watch
 // =================================================================
