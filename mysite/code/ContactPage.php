@@ -7,7 +7,7 @@ class ContactPage extends Page {
 
 class ContactPage_Controller extends Page_Controller{
 
-	private static $allowed_actions = array(
+	private static $allowed_actions = array (
 		'ContactForm'
 	);
 
@@ -58,7 +58,7 @@ class ContactPage_Controller extends Page_Controller{
 		    ->populateTemplate(new ArrayData(array(
 		        'Name' => $data['Name'],
 		        'Phone' =>  $data['Phone'],
-		        'Email' =>  $data['EmailAddress'],
+		        'Email' =>  $data['Email'],
 		        'Message' =>  $data['Message'],
 		    )));
 

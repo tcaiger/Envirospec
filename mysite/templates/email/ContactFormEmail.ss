@@ -15,5 +15,5 @@
 	$Email
 </p>
 <p>
-	<strong>Mesage</strong></p>
+	<strong>Message:</strong></p>
 <p>$Message</p>
