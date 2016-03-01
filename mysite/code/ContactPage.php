@@ -53,7 +53,7 @@ class ContactPage_Controller extends Page_Controller{
 		$email
 		    ->setFrom('"Envirospec Contact Form" <envirospec@mail.co.nz>')
 		    ->setTo($this->SiteConfig()->ContactFormEmail)
-		    ->setSubject('Envirosec Contact Form Mesage')
+		    ->setSubject('Envirosec Contact Form Message')
 		    ->setTemplate('ContactFormEmail')
 		    ->populateTemplate(new ArrayData(array(
 		        'Name' => $data['Name'],
@@ -66,6 +66,4 @@ class ContactPage_Controller extends Page_Controller{
 
 		return $this->redirectback();
 	}
-
-
 }

@@ -230,6 +230,9 @@ class Product extends Page
 		}
 	}
 
+	// =====================================================
+	//                  Get Compliance
+	// =====================================================
 	public function GetCompliance($compliant)
 	{
 		if($compliant){
@@ -244,6 +247,9 @@ class Product extends Page
 class Product_Controller extends Page_Controller
 {
 
+	// =====================================================
+	//         Show Green Star Certificate
+	// =====================================================
 	public function ShowGreenStarCertificate($PageID)
 	{
 		return Certificate::get()->filter(array(
@@ -252,6 +258,10 @@ class Product_Controller extends Page_Controller
 			'Display' => 1
 		));
 	}
+
+	// =====================================================
+	//       Show Green Star Certificates 
+	// =====================================================
 	public function ShowCertificates($PageID, $ManufacturerID, $SupplierID)
 	{
 		return Certificate::get()->exclude(
@@ -266,16 +276,28 @@ class Product_Controller extends Page_Controller
 				'CompaniesID' => $SupplierID
 			));
 	}
+
+	// =====================================================
+	//           Show Credits
+	// =====================================================
 	public function ShowCredits($PageID)
 	{
 		return Credit::get()->filter(array(
 			'ProductID' => $PageID
 		));
 	}
+
+	// =====================================================
+	//                  Get Company
+	// =====================================================
 	public function Company($CompanyID)
 	{
 		return dataObject::get_by_id('Companies', $CompanyID);
 	}
+
+	// =====================================================
+	//           Back To Search Results Link
+	// =====================================================
 	public function BackLink(){
 		return $_SERVER['HTTP_REFERER'];
 	}
@@ -299,5 +321,28 @@ class Product_Controller extends Page_Controller
 			)
 		);
 		return $form;
+	}
+
+
+	// ========================================
+	// Submit  Contact Form
+	// ========================================
+	public function submitContactForm($data, $form){
+		$email = new Email();
+		$email
+		    ->setFrom('"Envirospec Contact Form" <envirospec@mail.co.nz>')
+		    // For Testing Only
+		    ->setTo($this->SiteConfig()->ContactFormEmail)
+		    ->setSubject('Envirosec Contact Form Message')
+		    ->setTemplate('ProductFormEmail')
+		    ->populateTemplate(new ArrayData(array(
+		        'Name' => $data['Name'],
+		        'Email' =>  $data['Email'],
+		        'Message' =>  $data['Message'],
+		    )));
+
+		$email->send();
+
+		return $this->redirectback();
 	}
 }
