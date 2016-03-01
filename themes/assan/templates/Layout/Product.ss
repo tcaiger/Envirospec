@@ -29,7 +29,7 @@
             </div>
         </div>
     </div>
-    <div class="divide30"></div>
+    <div class="divide10"></div>
     <div class="container">
         <div class="row">
 
@@ -202,10 +202,8 @@
                             </div>
                             <div class="divide20"></div>
                             <hr>
-                            <div class="divide20"></div>
                         </div>
 
-                        
                          <% if $Company($SupplierID).title  == $Company($ManufacturerID).title %>
 
                                 <div class="col-sm-12" style="position: relative">
@@ -241,7 +239,6 @@
                             <% with $Company($SupplierID) %>
                                 <div class="col-sm-12" style="position: relative">
                                      <hr>
-                                     <div class="divide20"></div>
                                     <h3>Supplier Contact Information</h3>
                                     <h2>$Name</h2>
 

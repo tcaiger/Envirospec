@@ -1,6 +1,6 @@
 <% include Breadcrumbs %>
 
-<div class="divide40"></div>
+<div class="divide20"></div>
 
 <!-- ========================================== -->
 <!--               Results                      -->
@@ -15,11 +15,11 @@
             </div>
             <div class="row">
                 <div class="col-sm-12">
-                    <h4 style="color: #333; display: inline">Showing results 1 - $Results.getTotalItems</h4>
+                    <h4 class="results">Showing results 1 - $Results.getTotalItems</h4>
 
                     <span class="pull-right" id="HouseOrderForm">
-                        <h4 style="color: #333">Sort:</h4>
-                        <select style="border-bottom-left-radius: 0px">
+                        <h4 class="results">Sort:</h4>
+                        <select>
                             <option value="0">Product </option>
                             <option value="1">Manufacturer </option>
                         </select>

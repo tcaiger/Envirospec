@@ -1,6 +1,6 @@
 <% include Breadcrumbs %>
 
-<div class="divide40"></div>
+<div class="divide20"></div>
 
 <!-- ========================================== -->
 <!--               Results                      -->
@@ -8,9 +8,17 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12">   
-            <h4 class="margin30">Products Containing $SearchName</h4>
-            <span class="results-number">Showing $Results.getTotalItems results</span>
-            
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3>Search Results For: $SearchName</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4 class="results">Showing results 1 - $Results.getTotalItems</h4>
+                </div>
+            </div>
+            <div class="divide15"></div>
             <!-- Search Results Table -->
             <table class="table table-striped">
                 <thead>

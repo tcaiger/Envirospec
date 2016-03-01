@@ -1,6 +1,6 @@
 <% include Breadcrumbs %>
 
-<div class="divide40"></div>
+<div class="divide20"></div>
 
 <div class="container">
     <div class="row">

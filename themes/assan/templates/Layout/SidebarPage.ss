@@ -1,11 +1,30 @@
 <% include Breadcrumbs %>
 
-<div class="divide80"></div>
+<div class="divide40 hidden-xs"></div>
 
 <div class="container">
     <div class="row">
+
+        <!-- ========================================== -->
+        <!--           Main Column                      -->
+        <!-- ========================================== -->
+        <div class="col-sm-8 col-sm-push-4">
+            <h3>$Subheading</h3>
+            $Content
+            <div class="divide30"></div>
+            <% loop AllChildren %>
+                <div class="results-box">
+                    <h3><a href="$Link">$Title</a></h3>
+                    $Content.LimitCharacters(300)
+                </div>
+                <p><a href="$Link" class="btn btn-default btn-ico btn-xs">Read More...</a></p>
+                <hr>
+            <% end_loop %>
+            <div class="divide30"></div>
+        </div>
+
     <% if $Logo || $Sources %>
-        <div class="col-sm-4 ">
+        <div class="col-sm-4 col-sm-pull-8">
 
             <!-- ========================================== -->
             <!--               Image                        -->
@@ -33,29 +52,10 @@
                 </div>
             <% end_if %>
         </div>
-        <!-- ========================================== -->
-        <!--           Main Column                      -->
-        <!-- ========================================== -->
-        <div class="col-sm-8">
-    <% else %>
-        <!-- ========================================== -->
-        <!--           Main Column                      -->
-        <!-- ========================================== -->
-        <div class="col-sm-12">
+        
     <% end_if %>
-            <h3>$Subheading</h3>
-            $Content
-            <div class="divide30"></div>
-            <% loop AllChildren %>
-                <div class="results-box">
-                    <h3><a href="$Link">$Title</a></h3>
-                    $Content.LimitCharacters(300)
-                </div>
-                <p><a href="$Link" class="btn btn-default btn-ico btn-xs">Read More...</a></p>
-                <hr>
-            <% end_loop %>
-            <div class="divide30"></div>
-        </div>
+
+
     </div>
 </div>
 <div class="divide60"></div>
