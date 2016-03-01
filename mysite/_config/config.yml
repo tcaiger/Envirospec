@@ -14,6 +14,9 @@ Image:
   extensions:
     - ProductImageExtension
 
+SiteConfig:
+  extensions:
+    - SiteConfigExtension
 
 Member:
   extensions:
