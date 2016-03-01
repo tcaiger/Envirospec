@@ -104,12 +104,7 @@
                                 <i class="fa fa-angle-right"></i>
                             </li>
                         <% end_if %>
-                        <% if $EnvironmentalManagementSystem %>
-                            <li>
-                                <a href="$EnvironmentalManagementSystem" target="_blank">Environmental Management System</a>
-                                <i class="fa fa-angle-right"></i>
-                            </li>
-                        <% end_if %>
+                        
                     </ul>
                 </div>
             </div>
