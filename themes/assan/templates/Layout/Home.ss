@@ -8,7 +8,7 @@
         <p class="main-lead text-uppercase">Green Star And Homestar Product Rating Specialists</p>
         <span class="center-line"></span>
         <div class="divide40"></div>
-        <div id="cover-flow">
+        <div id="cover-flow" class="hidden-xs">
             <ul>
                 <li>
                     <div class="cover">
@@ -39,9 +39,15 @@
                 </li>
             </ul>
         </div>
+        <div class="home-buttons hidden-lg hidden-md hidden-sm">
+             <a href="search-green-star-nz-homestar-compatible" class="btn btn-theme-bg btn-lg btn-ico">Search Green Star NZ And<br>Homestar Compatible Products <i class="fa fa-angle-right"></i></a>
+             <a href="manufacturer-keyword-search" class="btn border-white btn-lg btn-ico">Maufacturer And<br>Keyword Search <i class="fa fa-angle-right"></i></a>
+             <a href="navigate-the-interactive-house" class="btn border-white btn-lg btn-ico">Navigate The Interactive<br>House <i class="fa fa-angle-right"></i></a>
+             <div class="divide30"></div>
+        </div>
     </div>
    
-    <i  style=" position: absolute; color: white; bottom: 10px; left: 49%" class="text-center fa fa-angle-double-down fa-3x"></i>
+    <i  style=" position: absolute; color: white; bottom: 10px; left: 49%" class="text-center fa fa-angle-double-down fa-3x hidden-xs"></i>
  
 </section>
 
@@ -63,12 +69,12 @@
     </div>
 </div>
 
-<div class="divide50"></div>
+<div class="divide50 hidden-xs"></div>
 
 <!-- ========================================== -->
 <!--            Youtube Video                  -->
 <!-- ========================================== -->
-<section class="video-wrapper">
+<section class="video-wrapper hidden-xs">
     <div class="fallback-image">
         <div class="video-content text-center">
             <h4 style="color: #fff">Play Video</h4>
@@ -181,7 +187,7 @@
         </div>
     </div>
 </div>
-<div class="divide80"></div>
+<div class="divide80 hidden-xs"></div>
 
 <!-- ========================================== -->
 <!--               Banner                       -->

@@ -6,6 +6,9 @@
 	padding-bottom: 0px;
 	background: url(../img/homepage_v2.jpg) no-repeat;
 	background-size: cover;
+	@media (max-width: $small) {
+		min-height: 300px;
+	}
 	h1{
 		font-size: 50px;
 		font-weight: 900;
@@ -16,6 +19,13 @@
 	font-weight: 500;
 	margin: 10px 0 0 0;
 	line-height: 1.5;
+	}
+	.home-buttons{
+
+		.btn{
+			margin-bottom: 20px;
+			width: 100%;
+		}
 	}
 }
 .flipster__button{
