@@ -337,9 +337,13 @@ class Product_Controller extends Page_Controller
 		$email = new Email();
 		$email
 		    ->setFrom('"Envirospec Contact Form" <envirospec@mail.co.nz>')
-		    // For Testing Only
+
+		    // For Live Site change this
 		    ->setTo($this->SiteConfig()->ContactFormEmail)
-		    ->setSubject($myCompany->Email)
+		    // ->setTo($myCompany->Email)
+
+
+		    ->setSubject('Envirospec Website Product Enquiry')
 		    ->setTemplate('ProductFormEmail')
 		    ->populateTemplate(new ArrayData(array(
 		        'Name' => $data['Name'],
