@@ -209,6 +209,8 @@
                             <h3>Supplier</h3>
                             <% with $Company($SupplierID) %>
                                 <h4>$Name</h4>
+                                <h5 style="margin-bottom: 0px">Email</h5>
+                                <p>$Email</p>
                                 <h5 style="margin-bottom: 0px">Website</h5>
                                 <p>$Website</p>
                                 <h5 style="margin-bottom: 0px">Address</h5>
@@ -226,6 +228,8 @@
                             <h3>Manufacturer</h3>
                             <% with $Company($ManufacturerID) %>
                                 <h4>$Name</h4>
+                                <h5 style="margin-bottom: 0px">Email</h5>
+                                <p>$Email</p>
                                 <h5 style="margin-bottom: 0px">Website</h5>
                                 <p>$Website</p>
                                 <h5 style="margin-bottom: 0px">Address</h5>

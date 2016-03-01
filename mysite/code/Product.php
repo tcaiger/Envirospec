@@ -331,12 +331,15 @@ class Product_Controller extends Page_Controller
 	// Submit  Contact Form
 	// ========================================
 	public function submitContactForm($data, $form){
+
+		$CompanyID = $this->ManufacturerID;
+
 		$email = new Email();
 		$email
 		    ->setFrom('"Envirospec Contact Form" <envirospec@mail.co.nz>')
 		    // For Testing Only
 		    ->setTo($this->SiteConfig()->ContactFormEmail)
-		    ->setSubject('Envirosec Contact Form Message')
+		    ->setSubject($CompanyID)
 		    ->setTemplate('ProductFormEmail')
 		    ->populateTemplate(new ArrayData(array(
 		        'Name' => $data['Name'],
