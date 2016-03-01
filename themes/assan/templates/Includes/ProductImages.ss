@@ -1,5 +1,8 @@
 <div style="margin-top: 20px" class="detail-img-col">
-    $Company($ManufacturerID).Logo.SetWidth(250)
+    <div class="hidden-xs">
+        $Company($ManufacturerID).Logo.SetWidth(250)
+    </div>
+    
     <div class="divide30"></div>
     <% loop ProductImages.Limit(4) %>
         <% if First %>
@@ -10,7 +13,7 @@
             <div class="divide15"></div>
         <% else %>
             <!-- Small Images -->
-            <a href="$URL" class="show-image detail-img-sm">
+            <a href="$URL" class="show-image detail-img-sm hidden-xs">
                 <img src="$SetWidth(250).URL" class="img-responsive">
             </a>
         <% end_if %>

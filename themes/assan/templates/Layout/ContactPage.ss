@@ -25,7 +25,7 @@
                 $ContactForm
 
             </div>
-            <div class="divide60"></div>
+            <div class="divide60 hidden-xs"></div>
         </div>
         <!-- ===================================== -->
         <!--        Contact Info           -->

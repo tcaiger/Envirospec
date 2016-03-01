@@ -11,7 +11,7 @@
         <div class="col-sm-8 col-sm-push-4">
             <h3>$Subheading</h3>
             $Content
-            <div class="divide30"></div>
+            <div class="divide30 hidden-xs"></div>
             <% loop AllChildren %>
                 <div class="results-box">
                     <h3><a href="$Link">$Title</a></h3>
@@ -20,7 +20,7 @@
                 <p><a href="$Link" class="btn btn-default btn-ico btn-xs">Read More...</a></p>
                 <hr>
             <% end_loop %>
-            <div class="divide30"></div>
+            <div class="divide30 hidden-xs"></div>
         </div>
 
     <% if $Logo || $Sources %>
@@ -34,7 +34,7 @@
                     <img style="max-width: 100%; height: auto; display: block; margin: -0px 0 0 -40px" src="$Logo.SetWidth(300).URL">
                 </div>
             <% end_if %>
-            <div class="divide60"></div>
+            <div class="divide60 hidden-xs"></div>
             <!-- ========================================== -->
             <!--               Sources                       -->
             <!-- ========================================== -->
@@ -54,9 +54,7 @@
         </div>
         
     <% end_if %>
-
-
     </div>
 </div>
-<div class="divide60"></div>
+<div class="divide60 hidden-xs"></div>
 

@@ -3,10 +3,10 @@
     <div class="second-nav">
         <div class="container">
             <div class="row">
-                <div class="col-sm-3" style="padding: 10px">
+                <div class="col-sm-3 hidden-xs" style="padding: 10px">
                     <a href="$BackLink"><i class="fa fa-arrow-circle-left"></i> Search Results</a>
                 </div>
-                <div class="col-sm-9 tab-cont hidden-xs">
+                <div class="col-sm-9 tab-cont">
 
                     <!-- ================================= -->
                     <!--            Tab Headings           -->
@@ -36,12 +36,12 @@
             <!-- ================================= -->
             <!--             Product Images        -->
             <!-- ================================= -->
-            <div class="col-sm-3 margin60 hidden-xs">
+            <div class="col-sm-3 margin60">
                 <% include ProductImages %>
 
-                <div class="divide50"></div>
+                <div class="divide50 hidden-xs"></div>
 
-                <div class="sidebar-box margin40" style="margin-right: 2em">
+                <div class="sidebar-box margin40 hidden-xs" style="margin-right: 2em">
                     <h4>Useful Resources</h4>
                     <ul class="list-unstyled cat-list">
                         <% if $ProductSpecificWebsite %>
@@ -219,7 +219,7 @@
                             <% with $Company($ManufacturerID) %>
                                 <h2>$Name</h2>
 
-                                <div class="first-logo">$Logo.SetWidth(250)</div>
+                                <div class="first-logo hidden-xs">$Logo.SetWidth(250)</div>
                              
                                 <ul class="list-unstyled contact contact-info">
                                      <li><p><strong><i class="fa fa-envelope"></i> Website:</strong> <a href="#">$Website</a></p></li>
@@ -242,7 +242,7 @@
                                     <h3>Supplier Contact Information</h3>
                                     <h2>$Name</h2>
 
-                                    <div class="second-logo">$Logo.SetWidth(250)</div>
+                                    <div class="second-logo hidden-xs">$Logo.SetWidth(250)</div>
                                  
                                     <ul class="list-unstyled contact contact-info">
                                          <li><p><strong><i class="fa fa-envelope"></i> Website:</strong> <a href="#">$Website</a></p></li>
