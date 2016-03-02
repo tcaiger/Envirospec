@@ -217,12 +217,42 @@
                                 <div class="first-logo hidden-xs">$Logo.SetWidth(250)</div>
                              
                                 <ul class="list-unstyled contact contact-info">
-                                     <li><p><strong><i class="fa fa-envelope"></i> Website:</strong> <a href="#">$Website</a></p></li>
-                                    <li><p><strong><i class="fa fa-envelope"></i> Email:</strong> <a href="#">$Email</a></p></li>
-                                    <li><p><strong><i class="fa fa-phone"></i> Phone:</strong> $Phone</p></li>
-                                    <li><p><strong><i class="fa fa-phone"></i> Fax:</strong> $Fax</p></li>
-                                    <li><p><strong><i class="fa fa-map-marker"></i> Address:</strong>$Address</p></li> 
-                                    <li ><p><strong><i class="fa fa-map-marker"></i> Postal Address:</strong> $Post</p></li> 
+                                     <li>
+                                        <p>
+                                            <strong><i class="fa fa-envelope"></i> Website:</strong>
+                                            <a href="#"> $Website</a>
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            <strong><i class="fa fa-envelope"></i> Email:</strong>
+                                             $Email
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            <strong><i class="fa fa-phone"></i> Phone:</strong>
+                                             $Phone
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            <strong><i class="fa fa-phone"></i> Fax:</strong>
+                                             $Fax
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            <strong><i class="fa fa-map-marker"></i> Address:</strong>
+                                             $Address
+                                        </p>
+                                    </li> 
+                                    <li >
+                                        <p>
+                                            <strong><i class="fa fa-map-marker"></i> Postal Address:</strong>
+                                             $Post
+                                        </p>
+                                    </li> 
                                 </ul>
                                 <div class="divide20"></div>
                                
@@ -240,19 +270,46 @@
                                     <div class="second-logo hidden-xs">$Logo.SetWidth(250)</div>
                                  
                                     <ul class="list-unstyled contact contact-info">
-                                         <li><p><strong><i class="fa fa-envelope"></i> Website:</strong> <a href="#">$Website</a></p></li>
-                                        <li><p><strong><i class="fa fa-envelope"></i> Email:</strong> <a href="#">$Email</a></p></li>
-                                        <li><p><strong><i class="fa fa-phone"></i> Phone:</strong> $Phone</p></li>
-                                        <li><p><strong><i class="fa fa-phone"></i> Fax:</strong> $Fax</p></li>
-                                        <li><p><strong><i class="fa fa-map-marker"></i> Address:</strong>$Address</p></li> 
-                                        <li ><p><strong><i class="fa fa-map-marker"></i> Postal Address:</strong> $Post</p></li> 
+                                         <li>
+                                            <p>
+                                                <strong><i class="fa fa-envelope"></i> Website:</strong>
+                                                <a href="#"> $Website</a>
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p>
+                                                <strong><i class="fa fa-envelope"></i> Email:</strong>
+                                                 $Email
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p>
+                                                <strong><i class="fa fa-phone"></i> Phone:</strong>
+                                                 $Phone
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p><strong><i class="fa fa-phone"></i> Fax:</strong>
+                                                 $Fax
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p>
+                                                <strong><i class="fa fa-map-marker"></i> Address:</strong>
+                                                 $Address
+                                            </p>
+                                        </li> 
+                                        <li >
+                                            <p>
+                                                <strong><i class="fa fa-map-marker"></i> Postal Address:</strong>
+                                                 $Post
+                                            </p>
+                                        </li> 
                                     </ul>
                                      <div class="divide20"></div>
                                 </div>
-          
                             <% end_with %>
-                        <% end_if %>
-                             
+                        <% end_if %> 
                     </div> 
                 </div>
             </div>

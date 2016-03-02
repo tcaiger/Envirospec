@@ -74,25 +74,28 @@ class Certificate extends DataObject{
 			  )
 			)->setEmptyString('(Select One)'),
 
+			TextField::create('Number'),
+
+
 			FieldGroup::create(
-				
-				CheckboxField::create('Is Summary', 'Summary Certificate'),
-				CheckboxField::create('NoExpiry', 'Ignore Valid Date'),
+				DateField::create('ValidUntil', '')->setConfig('showcalendar', true)->setAttribute('style', 'display: inline'),
+					CheckboxField::create('NoExpiry', 'Ignore Valid Date')
+			)->setTitle('Expiry'),
+
+			FieldGroup::create(
 				CheckboxField::create('Display', 'Display On Website'),
+				CheckboxField::create('Is Summary', 'Summary Certificate'),
 				CheckboxField::create('Compile', 'Include In Submission Pack')
 			)->setTitle('Details'),
 
 			
-			TextField::create('Number'),
-			
-			
-			DateField::create('ValidUntil', 'Valid Until')->setConfig('showcalendar', true),
-			
 			FieldGroup::create(
-				CheckboxField::create('MonthWarning', 'Month Warning Email Sent'),
-				CheckboxField::create('ExpiredWarning', 'Expired Email Sent'),
-				CheckboxField::create('FinalWarning', 'Final Email Sent')
+				CheckboxField::create('MonthWarning', 'Month Warning Email Sent')->performDisabledTransformation(),
+				CheckboxField::create('ExpiredWarning', 'Expired Email Sent')->performDisabledTransformation(),
+				CheckboxField::create('FinalWarning', 'Final Email Sent')->performDisabledTransformation()
 			)->setTitle('Email Warnings'),
+
+
 
 			$CertLoader = UploadField::create('Certificate'),
 			$ReportLoader = UploadField::create('FullReport', 'Full Report')
