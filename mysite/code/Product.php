@@ -267,6 +267,7 @@ class Product_Controller extends Page_Controller
 	// =====================================================
 	public function ShowCertificates($PageID, $ManufacturerID, $SupplierID)
 	{
+
 		return Certificate::get()->exclude(
 				'Type', 'Green Building Rating Compatibility'
 			)
@@ -278,6 +279,8 @@ class Product_Controller extends Page_Controller
 				'CompaniesID' => $ManufacturerID,
 				'CompaniesID' => $SupplierID
 			));
+
+
 	}
 
 	// =====================================================
@@ -285,9 +288,53 @@ class Product_Controller extends Page_Controller
 	// =====================================================
 	public function ShowCredits($PageID)
 	{
+
 		return Credit::get()->filter(array(
 			'ProductID' => $PageID
 		));
+	}
+
+
+	// =====================================================
+	//           Show Credits
+	// =====================================================
+	public function DisplayLinks()
+	{
+		$items = array(
+			'ProductSpecificWebsite',
+			'ProductDistributor',
+			'ProductApplicators',
+			'InstallationManual',
+			'MaintainanceManual',
+			'ProductBrochure',
+			'CAD',
+			'MaterialSafetyDataSheet',
+			'TechnicalAppraisalDocument',
+			'ProductSpecification',
+			'SpecialAchievement'
+		);
+
+			$output = new ArrayList();
+
+			foreach($items as $item){
+
+				$url = $this->$item;
+
+				if($url && $url != 'http://'){
+
+					// If it doesn't have http add it
+					if(substr($url, 0, 7) != 'http://' || substr($url, 0, 8) != 'https://'){
+						$url = "http://" . $url;
+					}
+
+					$output->push(new ArrayData(array(
+						'Title' => $item,
+						'URL' => $url
+					)));
+				}
+			}
+
+			return $output;
 	}
 
 	// =====================================================

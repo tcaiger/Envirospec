@@ -44,67 +44,14 @@
                 <div class="sidebar-box margin40 hidden-xs" style="margin-right: 2em">
                     <h4>Useful Resources</h4>
                     <ul class="list-unstyled cat-list">
-                        <% if $ProductSpecificWebsite %>
+
+                       <% loop DisplayLinks %>
+                    
                             <li>
-                                <a href="$ProductSpecificWebsite" target="_blank">Product Specific Website</a>
+                                <a href="$URL" target="_blank">$Title</a>
                                 <i class="fa fa-angle-right"></i>
                             </li>
-                        <% end_if %>
-                        <% if $ProductDistributor %>
-                            <li>
-                                <a href="$ProductDistributor" target="_blank">Product Distributor</a>
-                                <i class="fa fa-angle-right"></i>
-                            </li>
-                        <% end_if %>
-                        <% if $ProductApplicators %>
-                            <li>
-                                <a href="$ProductApplicators" target="_blank">Product Applicators</a>
-                                <i class="fa fa-angle-right"></i>
-                            </li>
-                        <% end_if %>
-                        <% if $InstallationManual %>
-                            <li>
-                                <a href="$InstallationManual" target="_blank">Installation Manual</a>
-                                <i class="fa fa-angle-right"></i>
-                            </li>
-                        <% end_if %>
-                        <% if $MaintainanceManual %>
-                            <li>
-                                <a href="$MaintainanceManual" target="_blank">Maintainance Manual</a>
-                                <i class="fa fa-angle-right"></i>
-                            </li>
-                        <% end_if %>
-                        <% if $ProductBrochure %>
-                            <li>
-                                <a href="$ProductBrochure" target="_blank">Product Brochure</a>
-                                <i class="fa fa-angle-right"></i>
-                            </li>
-                        <% end_if %>
-                        <% if $CAD %>
-                            <li>
-                                <a href="$CAD" target="_blank">CAD Drawings</a>
-                                <i class="fa fa-angle-right"></i>
-                            </li>
-                        <% end_if %>
-                        <% if $MaterialSafetyDataSheet %>
-                            <li>
-                                <a href="$MaterialSafetyDataSheet" target="_blank">Material Safety Data Sheet</a>
-                                <i class="fa fa-angle-right"></i>
-                            </li>
-                        <% end_if %>
-                        <% if $TechnicalAppraisalDocument %>
-                            <li>
-                                <a href="$TechnicalAppraisalDocument" target="_blank">Technical Appraisal Document</a>
-                                <i class="fa fa-angle-right"></i>
-                            </li>
-                        <% end_if %>
-                        <% if $ProductSpecification %>
-                            <li>
-                                <a href="$ProductSpecification" target="_blank">Product Specification</a>
-                                <i class="fa fa-angle-right"></i>
-                            </li>
-                        <% end_if %>
-                        
+                       <% end_loop %>
                     </ul>
                 </div>
             </div>
