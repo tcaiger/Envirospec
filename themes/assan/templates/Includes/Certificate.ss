@@ -5,12 +5,8 @@
                 <i class="fa fa-leaf"></i>
             </div>
             <div class="services-box-info">
-                <h4>$Type</h4>
-                <% if $Name %>
-                    <p>$Name</p>
-                <% else %>
-                    <p>Certificate</p>
-                <% end_if %>
+                <h4>$Name</h4>
+                <p>$Type</p>
             </div>
         </a>
     </div>
