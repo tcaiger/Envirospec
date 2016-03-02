@@ -24,10 +24,7 @@
          
         <div class="col-sm-8">
         	<div class="divide20"></div>
-        	<h5>About Envirospec Greenstar | Homestar Search Engine</h5>
         	$Content
-        	<h5>Disclaimer</h5>
-        	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque at fugiat amet aspernatur adipisci vitae nobis illum, accusantium optio eligendi quidem sed, praesentium vel. Accusantium explicabo id, veritatis molestiae facilis.</p>
         </div>
 	</div>
 </div>

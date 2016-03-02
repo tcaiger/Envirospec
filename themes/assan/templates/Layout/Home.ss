@@ -5,7 +5,7 @@
 <section id="home-parallax" class="parallax">
     <div class="container text-center">
         <h1 class="typed-text">EnviroSpec</h1>
-        <p class="main-lead text-uppercase">Green Star And Homestar Product Rating Specialists</p>
+        <p class="main-lead text-uppercase">$Subheading</p>
         <span class="center-line"></span>
         <div class="divide40 hidden-xs"></div>
         <div id="cover-flow" class="hidden-xs">
@@ -68,9 +68,9 @@
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2">
             <div class="center-heading">
-                <h2 class="wow animated fadeIn" data-wow-duration="700ms">Welcome to EnviroSpec</h2>
+                <h2 class="wow animated fadeIn" data-wow-duration="700ms">$WelcomeHeading</h2>
                 <span class="center-line"></span>
-                <p class="sub-text wow animated fadeIn" data-wow-duration="700ms">EnviroSpec is an independent consultancy providing an online platform where architects, product suppliers and homeowners can compare products in terms of their environmental performance. EnviroSpec works closely together with the New Zealand Green Building Council and also offers different Homestar services which range from HomeCoach assessments to Homestar certifications.</p>
+                <p class="sub-text wow animated fadeIn" data-wow-duration="700ms">$WelcomeText</p>
             </div>
         </div>
     </div>
@@ -99,8 +99,8 @@
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2">
             <div class="center-heading">
-                <h2 class="wow animated fadeIn" data-wow-duration="700ms">Homestar And Greenstar Product Specialists</h2>
-                <p class="sub-text wow animated fadeIn" data-wow-duration="700ms">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia natus veritatis rem, enim vero animi fuga commodi veniam? Ipsum, minima?</p>
+                <h2 class="wow animated fadeIn" data-wow-duration="700ms">$SummaryHeading</h2>
+                <p class="sub-text wow animated fadeIn" data-wow-duration="700ms">$SummaryText</p>
             </div>
         </div>
     </div>
@@ -114,10 +114,8 @@
                     <i class="pe-7s-search"></i>
                 </div>
                 <div class="service-text">
-                    <h4>Search Products</h4>
-                    <p>
-                        Find Eco-preferred, Green Star NZ compliant and Homestar compatible products.
-                    </p>
+                    <h4>$KeyPoint1</h4>
+                    <p>$KP1Text</p>
                     <p><a href="search-green-star-nz-homestar-compatible">More info <i class="fa fa-angle-right"></i></a></p>
                 </div>
             </div>
@@ -128,10 +126,8 @@
                     <i class="pe-7s-graph1"></i>
                 </div>
                 <div class="service-text">
-                    <h4>Compare Products</h4>
-                    <p>
-                        Compare Green Star NZ and Homestar products by ecological performance.
-                    </p>
+                    <h4>$KeyPoint2 </h4>
+                    <p>$KP2Text</p>
                     <p><a href="navigate-the-interactive-house">More info <i class="fa fa-angle-right"></i></a></p>
                 </div>
             </div>
@@ -142,10 +138,8 @@
                     <i class="pe-7s-pen"></i>
                 </div>
                 <div class="service-text">
-                    <h4>Review Products</h4>
-                    <p>
-                        Review products for technical and environmental benefits.
-                    </p>
+                    <h4>$KeyPoint3</h4>
+                    <p>$KP3Text</p>
                     <p><a href="search-green-star-nz-homestar-compatible">More info <i class="fa fa-angle-right"></i></a></p>
                 </div>
             </div>
@@ -156,10 +150,8 @@
                     <i class="pe-7s-help1"></i>
                 </div>
                 <div class="service-text">
-                    <h4>Expert Advice</h4>
-                    <p>
-                        Use EnviroSpec to help design your home and provide an official Homestar certification.
-                    </p>
+                    <h4>$KeyPoint4</h4>
+                    <p>$KP4Text</p>
                     <p><a href="our-services/homestar-services/">More info <i class="fa fa-angle-right"></i></a></p>
                 </div>
             </div>
@@ -170,10 +162,8 @@
                     <i class="pe-7s-mail-open-file"></i>
                 </div>
                 <div class="service-text">
-                    <h4>Greenstar Submissions</h4>
-                    <p>
-                        Green Star NZ Accredited Professional and Submission Services to the New Zealand Green Building Council.
-                    </p>
+                    <h4>$KeyPoint5</h4>
+                    <p>$KP5Text</p>
                     <p><a href="our-services/homestar-services/">More info <i class="fa fa-angle-right"></i></a></p>
                 </div>
             </div>
@@ -184,10 +174,8 @@
                     <i class="pe-7s-light"></i>
                 </div>
                 <div class="service-text">
-                    <h4>Marketing</h4>
-                    <p>
-                        Green product design, Life-Cycle thinking, Green marketing and support services towards Environmental Product Certification.
-                    </p>
+                    <h4>$KeyPoint6</h4>
+                    <p>$KP6Text</p>
                     <p><a href="our-services/homestar-services/">More info <i class="fa fa-angle-right"></i></a></p>
                 </div>
             </div>
