@@ -1,7 +1,7 @@
 
     <% loop Results %>
         <tr>
-            <% loop GetManufacturer($ManufacturerID) %>
+            <% loop GetManufacturer($SupplierID) %>
                 <td>$Name</td>
             <% end_loop %>
             <td><a class="show-link" href="$Link">$Title</a></td>

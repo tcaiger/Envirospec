@@ -13,7 +13,7 @@
         <% if Sort == 0 %>
             <% loop Results.Sort('Title', 'ASC') %>
                 <tr>
-                    <% loop GetManufacturer($ManufacturerID) %>
+                    <% loop GetManufacturer($SupplierID) %>
                         <td>$Name</td>
                     <% end_loop %>
                     <td>$Title</td>
