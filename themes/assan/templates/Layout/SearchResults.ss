@@ -37,7 +37,7 @@
                             <% end_loop %>
                             <td>$Title</td>
                             <td>$Parent.Title</td>
-                            <td><a href="$Link">View</a></td>
+                            <td><a class="show-link" href="$Link">View</a></td>
                         </tr>
                     <% end_loop %>
                 </tbody>

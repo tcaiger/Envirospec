@@ -11,31 +11,37 @@
         <div id="cover-flow" class="hidden-xs">
             <ul>
                 <li>
-                    <div class="cover">
-                        <h4>Navigate The Interactive House</h4>
-                        <div class="bottom">
-                            <img class="center-block" src="$ThemeDir/img/Search1.png">
-                            <a href="navigate-the-interactive-house" class="btn btn-theme-bg btn-lg btn-ico">Search Products <i class="fa fa-angle-right"></i></a>
-                        </div>
-                    </div> 
+                    <a href="navigate-the-interactive-house">
+                        <div class="cover">
+                            <h4>Navigate The Interactive House</h4>
+                            <div class="bottom">
+                                <img class="center-block" src="$ThemeDir/img/Search1.png">
+                                <a href="navigate-the-interactive-house" class="btn btn-theme-bg btn-lg btn-ico">Search Products <i class="fa fa-angle-right"></i></a>
+                            </div>
+                        </div> 
+                    </a>
                 </li>
                 <li>
-                    <div class="cover">
-                        <h4>Greenstar And Homestar Compatible</h4>
-                         <div class="bottom">
-                            <img class="center-block" src="$ThemeDir/img/Search2.png">
-                            <a href="search-green-star-nz-homestar-compatible" class="btn btn-theme-bg btn-lg btn-ico">Search Products <i class="fa fa-angle-right"></i></a>
+                    <a href="search-green-star-nz-homestar-compatible">
+                        <div class="cover">
+                            <h4>Greenstar And Homestar Compatible</h4>
+                             <div class="bottom">
+                                <img class="center-block" src="$ThemeDir/img/Search2.png">
+                                <a href="search-green-star-nz-homestar-compatible" class="btn btn-theme-bg btn-lg btn-ico">Search Products <i class="fa fa-angle-right"></i></a>
+                            </div>
                         </div>
-                    </div> 
+                    </a> 
                 </li>
                 <li>
-                    <div class="cover">
-                        <h4>Manufacturer Or Keyword Search</h4>
-                         <div class="bottom">
-                            <img class="center-block" src="$ThemeDir/img/Search3.png">
-                            <a href="manufacturer-keyword-search" class="btn btn-theme-bg btn-lg btn-ico">Search Products <i class="fa fa-angle-right"></i></a>
+                    <a href="manufacturer-keyword-search">
+                        <div class="cover">
+                            <h4>Manufacturer Or Keyword Search</h4>
+                            <div class="bottom">
+                                <img class="center-block" src="$ThemeDir/img/Search3.png">
+                                <a href="manufacturer-keyword-search" class="btn btn-theme-bg btn-lg btn-ico">Search Products <i class="fa fa-angle-right"></i></a>
+                            </div>
                         </div>
-                    </div> 
+                    </a>
                 </li>
             </ul>
         </div>

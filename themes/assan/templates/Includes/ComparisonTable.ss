@@ -4,7 +4,7 @@
             <% loop GetManufacturer($ManufacturerID) %>
                 <td>$Name</td>
             <% end_loop %>
-            <td><a href="$Link">$Title</a></td>
+            <td><a class="show-link" href="$Link">$Title</a></td>
             <td class="text-center">$GetCompliance($EnvironmentalManagementSystem)</td>
             <td class="text-center">$GetCompliance($CarbonOffset)</td>
             <td class="text-center">$GetCompliance($PerformanceItemEcolabel)</td>

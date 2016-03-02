@@ -19,7 +19,7 @@
                     <td>$Title</td>
                     <td>$Parent.Title</td>
                     <td>$GetPoints($ID)</td>
-                    <td><a href="$Link">View</a></td>
+                    <td><a class="show-link" href="$Link">View</a></td>
                 </tr>
             <% end_loop %>
         <!-- Points Sorted List -->
@@ -32,7 +32,7 @@
                     <td>$Product.Title</td>
                     <td>$Product.Parent.Title</td>
                     <td>$ContributionPotential</td>
-                    <td><a href="$Product.Link">View</a></td>
+                    <td><a class="show-link" href="$Product.Link">View</a></td>
                 </tr>
             <% end_loop %>
         <% end_if %>
