@@ -49,9 +49,33 @@ class SiteConfigExtension extends DataExtension {
 			LabelField::create('Label3', 'One Off Email')->addExtraClass('customBold'),
 			LabelField::create('Label4', 'Will be sent to all product suppliers.'),
 			ToggleCompositeField::create('Custom', 'One Off Email', array (
-				HTMLEditorField::create('CustomText', 'Email Message')
+				HTMLEditorField::create('CustomText', 'Email Message'),
+				FormAction::create('sendOneOffEmail', 'Send Email')
 			))->setStartClosed(true),
 		));
+	}
+
+	private static $allowed_actions = array (
+		'sendOneOffEmail'
+	);
+	
+	// ========================================
+	// Send Contact Form
+	// ========================================
+	public function sendOneOffEmail($data, $form){
+		$email = new Email();
+		$email
+		    ->setFrom('"Envirospec Contact Form" <envirospec@mail.co.nz>')
+		    ->setTo($this->SiteConfig()->ContactFormEmail)
+		    ->setSubject('Envirospec Contact Form Message')
+		    ->setTemplate('ContactFormEmail')
+		    ->populateTemplate(new ArrayData(array(
+		        'Name' => 'Bob Jones'
+		    )));
+
+		$email->send();
+
+		return $this->redirectback();
 	}
 }
 
