@@ -7,11 +7,14 @@ silverstripe-cache
 .project
 .settings
 .idea
-vendor/
 /silverstripe-cache/
 /silverstripe-bootstrap-forms/
 mysite/_config.php
-
+vendor/bin/
+vendor/composer/
+vendor/phpunit/
+vendor/symfony/
+vendor/autoload.php
 
 # ignore node modules
 themes/assan/node_modules/
