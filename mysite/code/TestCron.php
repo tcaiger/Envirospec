@@ -19,15 +19,12 @@ class TestCron implements CronTask {
         $email = new Email();
         $email
             ->setFrom('"Envirospec One Month Reminder" <envirospec@mail.co.nz>')
-            ->setTo($this->SiteConfig()->ContactFormEmail)
+            ->setTo('caigertom@gmail.com')
             ->setSubject('Envirospec One Month Reminder')
             ->setTemplate('MonthReminder')
             ->populateTemplate(new ArrayData(array(
                 'Name' => 'Bob Jones'
         )));
-
-
-        $this->MonthReminderDate;
     
         $email->send();
  
