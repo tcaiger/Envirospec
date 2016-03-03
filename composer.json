@@ -7,7 +7,6 @@
 		"silverstripe/framework": "3.2.1",
 		"silverstripe/reports": "3.2.1",
 		"silverstripe/siteconfig": "3.2.1",
-		"silverstripe-themes/simple": "3.1.*",
 		"silverstripe/crontask": "*"
 	},
 	"require-dev": {
