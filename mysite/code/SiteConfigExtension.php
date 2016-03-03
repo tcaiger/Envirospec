@@ -15,7 +15,8 @@ class SiteConfigExtension extends DataExtension {
 		'WeekReminderDate' => 'Date',
 		'WeekReminderText' => 'HTMLText',
 		'FinalReminderDate' => 'Date',
-		'FinalReminderText' => 'HTMLText'
+		'FinalReminderText' => 'HTMLText',
+		'OneOffEmail' => 'HTMLText'
 	);
 
 	public function updateCMSFields(Fieldlist $fields){
