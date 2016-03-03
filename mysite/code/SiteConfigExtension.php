@@ -19,8 +19,7 @@ class SiteConfigExtension extends DataExtension {
 		'WeekReminderDate' => 'Date',
 		'WeekReminderText' => 'HTMLText',
 		'FinalReminderDate' => 'Date',
-		'FinalReminderText' => 'HTMLText',
-		'OneOffEmail' => 'HTMLText'
+		'FinalReminderText' => 'HTMLText'
 	);
 
 	public function updateCMSFields(Fieldlist $fields){
@@ -50,34 +49,31 @@ class SiteConfigExtension extends DataExtension {
 
 				DateField::create('FinalReminderDate', 'Date')->setConfig('showcalendar', true),
 				HTMLEditorField::create('FinalReminderText', 'Email Message')
-			)),
-			LabelField::create('Label3', 'One Off Email')->addExtraClass('customBold'),
-			LabelField::create('Label4', 'Will be sent to all product suppliers.'),
-			ToggleCompositeField::create('Custom', 'One Off Email', array (
-				HTMLEditorField::create('CustomText', 'Email Message'),
-				FormAction::create('sendOneOffEmail', 'Send Email')
-			))->setStartClosed(true)
+			))
 		));
 	}
 
 
 	// ========================================
- 	// Send Contact Form
+ 	// Send One Month Reminder
  	// ========================================
- 	public function sendOneOffEmail($data, $form){
+ 	public function sendMonthReminder(){
  		$email = new Email();
  		$email
- 		    ->setFrom('"Envirospec Contact Form" <envirospec@mail.co.nz>')
+ 		    ->setFrom('"Envirospec One Month Reminder" <envirospec@mail.co.nz>')
  		    ->setTo($this->SiteConfig()->ContactFormEmail)
- 		    ->setSubject('Envirospec Contact Form Message')
- 		    ->setTemplate('ContactFormEmail')
+ 		    ->setSubject('Envirospec One Month Reminder')
+ 		    ->setTemplate('MonthReminder')
  		    ->populateTemplate(new ArrayData(array(
  		        'Name' => 'Bob Jones'
  		)));
+
+
+ 		$this->MonthReminderDate;
 	
  		$email->send();
  
- 		return $this->redirectback();
+ 		return 'Success';
  	}
 }
 
