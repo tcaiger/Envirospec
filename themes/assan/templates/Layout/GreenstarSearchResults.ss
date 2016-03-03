@@ -36,13 +36,3 @@
 </div>
 
 <div class="divide40"></div>
-
-<!-- ========================================== -->
-<!--               Banner                       -->
-<!-- ========================================== -->
-<section id="cta-1">
-    <div class="container">
-        <h1>Do you have a project or idea?</h1>
-        <a href="#" class="btn border-white btn-lg">Contact us today</a>
-    </div>
-</section>
