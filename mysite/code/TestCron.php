@@ -7,7 +7,7 @@ class TestCron implements CronTask {
      * @return string
      */
     public function getSchedule() {
-        return "*/1 * * * *";
+        return "* * * * *";
     }
 
     /**
