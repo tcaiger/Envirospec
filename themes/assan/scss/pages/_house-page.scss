@@ -16,6 +16,12 @@
 	#Services,#Paints,#Interior,#Shell,#Structure,#Landscape{
 		display: none;
 	}
+	#arrow1{
+		position: absolute;
+		top: 100px;
+		left:0;
+		z-index: 99;
+	}
 	.services{
 		position: absolute;
 		top: 70px;
@@ -32,6 +38,9 @@
 		position: absolute;
 		top: 280px;
 		left: 60px;
+		td{
+			width: 240px;
+		}
 
 	}
 	.framing{
@@ -110,6 +119,10 @@
 	.green{
 		background: $green;
 		color: white;
+	}
+
+	.table-striped>tbody>tr:nth-of-type(even) {
+    	background-color: #fff;
 	}
 }
 
