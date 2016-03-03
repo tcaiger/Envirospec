@@ -55,28 +55,28 @@ class SiteConfigExtension extends DataExtension {
 		));
 	}
 
-	private static $allowed_actions = array (
-		'sendOneOffEmail'
-	);
+	// private static $allowed_actions = array (
+	// 	'sendOneOffEmail'
+	// );
 	
-	// ========================================
-	// Send Contact Form
-	// ========================================
-	public function sendOneOffEmail($data, $form){
-		$email = new Email();
-		$email
-		    ->setFrom('"Envirospec Contact Form" <envirospec@mail.co.nz>')
-		    ->setTo($this->SiteConfig()->ContactFormEmail)
-		    ->setSubject('Envirospec Contact Form Message')
-		    ->setTemplate('ContactFormEmail')
-		    ->populateTemplate(new ArrayData(array(
-		        'Name' => 'Bob Jones'
-		    )));
+	// // ========================================
+	// // Send Contact Form
+	// // ========================================
+	// public function sendOneOffEmail($data, $form){
+	// 	$email = new Email();
+	// 	$email
+	// 	    ->setFrom('"Envirospec Contact Form" <envirospec@mail.co.nz>')
+	// 	    ->setTo($this->SiteConfig()->ContactFormEmail)
+	// 	    ->setSubject('Envirospec Contact Form Message')
+	// 	    ->setTemplate('ContactFormEmail')
+	// 	    ->populateTemplate(new ArrayData(array(
+	// 	        'Name' => 'Bob Jones'
+	// 	    )));
 
-		$email->send();
+	// 	$email->send();
 
-		return $this->redirectback();
-	}
+	// 	return $this->redirectback();
+	// }
 }
 
 
