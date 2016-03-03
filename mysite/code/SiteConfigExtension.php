@@ -3,6 +3,10 @@
 
 class SiteConfigExtension extends DataExtension {
 
+	private static $allowed_actions = array (
+ 		'sendOneOffEmail'
+ 	);
+
 
 	private static $db = array(
 		'ESSummary' => 'Text',
