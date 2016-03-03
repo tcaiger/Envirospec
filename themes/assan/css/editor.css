@@ -1,0 +1,12 @@
+.customBold{
+	display: block;
+	font-size: 14px;
+	font-weight: 600;
+	margin-bottom: 10px;
+}
+#Form_EditForm_Month{
+	margin-top: 20px;
+}
+#Form_EditForm_Final{
+	margin-bottom: 20px;
+}
