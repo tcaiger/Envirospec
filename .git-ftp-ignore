@@ -8,8 +8,6 @@ siteconfig/*
 themes/assan/node_modules/*
 .editorconfig
 .htaccess
-composer.json
-composer.lock
 index.php
 *.config
 sftp-config.json
