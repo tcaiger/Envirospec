@@ -15,8 +15,7 @@ class SiteConfigExtension extends DataExtension {
 		'WeekReminderDate' => 'Date',
 		'WeekReminderText' => 'HTMLText',
 		'FinalReminderDate' => 'Date',
-		'FinalReminderText' => 'HTMLText',
-		'OneOffEmail' => 'HTMLText'
+		'FinalReminderText' => 'HTMLText'
 	);
 
 	public function updateCMSFields(Fieldlist $fields){
@@ -50,7 +49,7 @@ class SiteConfigExtension extends DataExtension {
 			LabelField::create('Label4', 'Will be sent to all product suppliers.'),
 			ToggleCompositeField::create('Custom', 'One Off Email', array (
 				HTMLEditorField::create('CustomText', 'Email Message')
-			))->setStartClosed(true),
+			))->setStartClosed(true)
 		));
 	}
 }
