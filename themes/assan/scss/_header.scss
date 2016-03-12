@@ -91,9 +91,11 @@ TOP BARS
 }
 .top-bar-light{
     background-color:#f3f3f3;
-    padding: 1px 0;
     .top-dark-right li{
         border-color:#ddd;
+    }
+    ul{
+        padding: 5px 0;
     }
 
 }
@@ -150,9 +152,9 @@ TOP BARS
     height: 100%;
     position: absolute;
     top: 0;
-    width: 99%;
+    width: 300px;
     right: 0;
-    border: 0px;
+    border: 1px solid #ddd;
     background-color: #fff;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
@@ -169,6 +171,15 @@ TOP BARS
     right: 9px;
     top: 5px;
     cursor: pointer;
+}
+
+#Form_SearchForm_action_doSearch{
+    position: absolute; 
+    top: 0; 
+    right: 300px;
+    border-radius: 0;
+    border: none;
+    padding: 7px 12px 8px;
 }
 /* Mega MENU */
 
