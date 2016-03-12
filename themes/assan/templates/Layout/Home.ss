@@ -2,7 +2,7 @@
 <!-- ========================================== -->
 <!--        Cover Image & Buttons               -->
 <!-- ========================================== -->
-<section id="home-parallax" class="parallax">
+<section id="home-parallax" class="parallax" style="background-image: url($CoverImage.URL);">
     <div class="container text-center">
         <h1 class="typed-text">EnviroSpec</h1>
         <p class="main-lead text-uppercase">$Subheading</p>
@@ -13,10 +13,10 @@
                 <li>
                     <a href="navigate-the-interactive-house">
                         <div class="cover">
-                            <h4>Navigate The Interactive House</h4>
+                            <h4>$Btn1Heading</h4>
                             <div class="bottom">
-                                <img class="center-block" src="$ThemeDir/img/Search1.png">
-                                <a href="navigate-the-interactive-house" class="btn btn-theme-bg btn-lg btn-ico">Search Products <i class="fa fa-angle-right"></i></a>
+                                <img class="center-block" src="$Btn1Image.URL">
+                                <a href="navigate-the-interactive-house" class="btn btn-theme-bg btn-lg btn-ico">$Btn1Text <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div> 
                     </a>
@@ -24,10 +24,10 @@
                 <li>
                     <a href="search-green-star-nz-homestar-compatible">
                         <div class="cover">
-                            <h4>Greenstar And Homestar Compatible</h4>
+                            <h4>$Btn2Heading</h4>
                              <div class="bottom">
-                                <img class="center-block" src="$ThemeDir/img/Search2.png">
-                                <a href="search-green-star-nz-homestar-compatible" class="btn btn-theme-bg btn-lg btn-ico">Search Products <i class="fa fa-angle-right"></i></a>
+                                <img class="center-block" src="$Btn2Image.URL">
+                                <a href="search-green-star-nz-homestar-compatible" class="btn btn-theme-bg btn-lg btn-ico">$Btn2Text <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
                     </a> 
@@ -35,10 +35,10 @@
                 <li>
                     <a href="manufacturer-keyword-search">
                         <div class="cover">
-                            <h4>Manufacturer Or Keyword Search</h4>
+                            <h4>$Btn3Heading</h4>
                             <div class="bottom">
-                                <img class="center-block" src="$ThemeDir/img/Search3.png">
-                                <a href="manufacturer-keyword-search" class="btn btn-theme-bg btn-lg btn-ico">Search Products <i class="fa fa-angle-right"></i></a>
+                                <img class="center-block" src="$Btn3Image.URL">
+                                <a href="manufacturer-keyword-search" class="btn btn-theme-bg btn-lg btn-ico">$Btn3Text <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
                     </a>
@@ -47,9 +47,9 @@
         </div>
         <div class="home-buttons hidden-lg hidden-md hidden-sm">
             <div class="divide20"></div>
-             <a href="search-green-star-nz-homestar-compatible" class="btn btn-theme-bg btn-lg btn-ico">Search Green Star NZ And<br>Homestar Compatible Products <i class="fa fa-angle-right"></i></a>
-             <a href="manufacturer-keyword-search" class="btn border-white btn-lg btn-ico">Maufacturer And<br>Keyword Search <i class="fa fa-angle-right"></i></a>
-             <a href="navigate-the-interactive-house" class="btn border-white btn-lg btn-ico">Navigate The Interactive<br>House <i class="fa fa-angle-right"></i></a>
+             <a href="search-green-star-nz-homestar-compatible" class="btn btn-theme-bg btn-lg btn-ico">$Btn1Heading <i class="fa fa-angle-right"></i></a>
+             <a href="manufacturer-keyword-search" class="btn border-white btn-lg btn-ico">$Btn2Heading <i class="fa fa-angle-right"></i></a>
+             <a href="navigate-the-interactive-house" class="btn border-white btn-lg btn-ico">$Btn3Heading <i class="fa fa-angle-right"></i></a>
              <div class="divide30"></div>
         </div>
     </div>
@@ -82,7 +82,7 @@
 <!--            Youtube Video                  -->
 <!-- ========================================== -->
 <section class="video-wrapper hidden-xs">
-    <div class="fallback-image">
+    <div class="fallback-image" style="background-image: url($VideoImage.URL);">
         <div class="video-content text-center">
             <h4 style="color: #fff">Play Video</h4>
             <i id="play-button" class="fa fa-youtube-play"></i>

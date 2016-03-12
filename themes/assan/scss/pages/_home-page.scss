@@ -4,8 +4,8 @@
 	min-height: 600px;
 	padding-top: 60px;
 	padding-bottom: 0px;
-	background: url(../img/homepage_v2.jpg) no-repeat;
 	background-size: cover;
+	background-repeat: no-repeat;
 	@media (max-width: $small) {
 		min-height: 300px;
 	}
@@ -67,7 +67,6 @@
 .fallback-image{
 	position: absolute;
 	top:0;
-    background-image: url(../img/homepage_v3.jpg);
     background-attachment: scroll; 
     height: 100%;
     width: 100%;
