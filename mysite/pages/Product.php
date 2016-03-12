@@ -349,7 +349,12 @@ class Product_Controller extends Page_Controller
 	//           Back To Search Results Link
 	// =====================================================
 	public function BackLink(){
-		return $_SERVER['HTTP_REFERER'];
+		if(isset($_SERVER['HTTP_REFERER'])){
+			return $_SERVER['HTTP_REFERER'];
+		} else {
+			return '/';
+		}
+		
 	}
 
 	// =====================================================

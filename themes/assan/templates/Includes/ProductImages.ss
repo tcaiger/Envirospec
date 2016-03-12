@@ -1,6 +1,10 @@
 <div style="margin-top: 20px" class="detail-img-col">
     <div class="hidden-xs">
-        $Company($ManufacturerID).Logo.SetWidth(250)
+        <% if $SupplierID %>
+            $Company($SupplierID).Logo.SetWidth(250)
+        <% else_if $ManufacturerID %>
+            $Company($ManufacturerID).Logo.SetWidth(250)
+        <% end_if %>
     </div>
     
     <div class="divide30"></div>

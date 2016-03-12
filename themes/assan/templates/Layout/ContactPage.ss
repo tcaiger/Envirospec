@@ -13,9 +13,7 @@
     <div class="row">
         <div class="col-md-7 margin30">
             <h3 class="heading">Contact us</h3>
-            <p>
-                Duis vitae imperdiet ipsum. Vestibulum ullamcorper lorem at orci vulputate, volutpat tempus magna elementum. Nam in odio sem. Morbi in justo interdum massa tristique lobortis in quis diam. Etiam erat urna, cursus eu ante quis, aliquam venenatis augue. Cras turpis justo, pellentesque eu hendrerit et, euismod vitae leo. Ut in lorem lobortis, gravida quam eget, pulvinar quam. Nam ut leo leo.
-            </p>
+            $Content
             <div class="divide30"></div>
             <!-- ===================================== -->
             <!--        Contact Form                   -->

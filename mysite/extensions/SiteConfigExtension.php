@@ -7,6 +7,10 @@ class SiteConfigExtension extends DataExtension {
  		'sendOneOffEmail'
  	);
 
+ 	private static $has_one = array(
+		'UsefulPage1' => 'Page'
+	);
+
 
 	private static $db = array(
 		'ESSummary' => 'Text',
@@ -24,6 +28,9 @@ class SiteConfigExtension extends DataExtension {
 
 	public function updateCMSFields(Fieldlist $fields){
 
+		// ============================================================ 
+		// Main
+		// ============================================================ 
 		$fields->addFieldsToTab('Root.Main', array(
 			TextAreaField::create('ESSummary', 'Envirospec Summary'),
 			TextAreaField::create('ContactAddress', 'Contact Address'),
@@ -32,6 +39,18 @@ class SiteConfigExtension extends DataExtension {
 			TextField::create('ContactPhone', 'Contact Phone')
 		));
 
+
+		// ============================================================ 
+		// Footer
+		// ============================================================ 
+		$fields->addFieldsToTab('Root.Footer', array(
+			TreeDropdownField::create('UsefulPage1', 'Useful Page 1', 'SiteTree')
+		));
+
+
+		// ============================================================ 
+		// Emails
+		// ============================================================ 
 		$fields->addFieldsToTab('Root.Emails', array(
 			LabelField::create('Label1', 'Automated Reminder Emails')->addExtraClass('customBold'),
 			LabelField::create('Label2', 'Will be sent to all product suppliers to inform them that they need to review and sign off theit products.'),
