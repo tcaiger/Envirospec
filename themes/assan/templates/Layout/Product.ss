@@ -12,7 +12,7 @@
                     <!--            Tab Headings           -->
                     <!-- ================================= -->
                     <ul id="product-tabs" class="list-inline">
-                        <li class="active">
+                        <li class="first active">
                             <a href="#ptab1" data-toggle="tab" aria-expanded="true">Product Description</a>
                         </li>
                         <li>
