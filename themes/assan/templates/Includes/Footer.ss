@@ -1,42 +1,44 @@
 <footer id="footer-option">
     <div class="container">
         <div class="row">
-            <!-- ===================================== -->
-            <!--        Envirospec Summary             -->
-            <!-- ===================================== -->
-            <div class="col-md-3 margin20">
-                <div class="footer-col">
-                    <h3>EnviroSpec Ltd</h3>
-                    <p>$SiteConfig.ESSummary</p>
-                </div>                        
-            </div>
-            <!-- ===================================== -->
-            <!--        Contact Details                -->
-            <!-- ===================================== -->
-            <div class="col-md-3 margin20">
-                <div class="footer-col">
-                    <h3>Contact</h3>
-                    <ul class="list-unstyled contact">
-                        <li><p><strong><i class="fa fa-phone"></i> Phone:</strong><a href="#">$SiteConfig.ContactPhone</a></p></li>
-                        <li><p><strong><i class="fa fa-envelope"></i> Mail Us:</strong><a href="#">$SiteConfig.ContactEmail</a></p></li>
-                        <li><p><strong><i class="fa fa-map-marker"></i> Address:</strong><a href="#">$SiteConfig.ContactAddress</a></p></li>
-                    </ul>
-                </div>                        
-            </div>
-            <!-- ===================================== -->
-            <!--        Useful Pages                   -->
-            <!-- ===================================== -->
-            <div class="col-md-3 margin20">
-                <div class="footer-col">
-                    <h3>Useful Pages</h3>
-                    <ul class="list-unstyled latest-f-news">
-                        <li><a href="/">Homepage <i class="fa fa-angle-right"></i></a></li>
-                        <li><a href="product-search/search-green-star-nz-homestar-compatible/">Searh Green Star NZ | Homestar Compatible <i class="fa fa-angle-right"></i></a></li>
-                        <li><a href="product-search/manufacturer-keyword-search/">Manufacturer | Keyword Search <i class="fa fa-angle-right"></i></a></li>
-                        <li><a href="product-search/navigate-the-interactive-house/">Navigate The Interactive House <i class="fa fa-angle-right"></i></a></li>
-                    </ul>
-                </div>                        
-            </div>
+            <% with $SiteConfig %>
+                <!-- ===================================== -->
+                <!--        Envirospec Summary             -->
+                <!-- ===================================== -->
+                <div class="col-md-3 margin20">
+                    <div class="footer-col">
+                        <h3>EnviroSpec Ltd</h3>
+                        <p>$ESSummary</p>
+                    </div>                        
+                </div>
+                <!-- ===================================== -->
+                <!--        Contact Details                -->
+                <!-- ===================================== -->
+                <div class="col-md-3 margin20">
+                    <div class="footer-col">
+                        <h3>Contact</h3>
+                        <ul class="list-unstyled contact">
+                            <li><p><strong><i class="fa fa-phone"></i> Phone:</strong><a href="#">$ContactPhone</a></p></li>
+                            <li><p><strong><i class="fa fa-envelope"></i> Mail Us:</strong><a href="#">$ContactEmail</a></p></li>
+                            <li><p><strong><i class="fa fa-map-marker"></i> Address:</strong><a href="#">$ContactAddress</a></p></li>
+                        </ul>
+                    </div>                        
+                </div>
+                <!-- ===================================== -->
+                <!--        Useful Pages                   -->
+                <!-- ===================================== -->
+                <div class="col-md-3 margin20">
+                    <div class="footer-col">
+                        <h3>Useful Pages</h3>
+                        <ul class="list-unstyled latest-f-news">
+                            <li><a href="$Page1.Link">$Page1.Title <i class="fa fa-angle-right"></i></a></li>
+                            <li><a href="$Page2.Link">$Page2.Title <i class="fa fa-angle-right"></i></a></li>
+                            <li><a href="$Page3.Link">$Page3.Title <i class="fa fa-angle-right"></i></a></li>
+                            <li><a href="$Page4.Link">$Page4.Title <i class="fa fa-angle-right"></i></a></li>
+                        </ul>
+                    </div>                        
+                </div>
+            <% end_with %>
             <!-- ===================================== -->
             <!--        Latest News                    -->
             <!-- ===================================== -->

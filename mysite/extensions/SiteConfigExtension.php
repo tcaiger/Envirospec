@@ -8,7 +8,10 @@ class SiteConfigExtension extends DataExtension {
  	);
 
  	private static $has_one = array(
-		'UsefulPage1' => 'Page'
+		'Page1' => 'SiteTree',
+		'Page2' => 'SiteTree',
+		'Page3' => 'SiteTree',
+		'Page4' => 'SiteTree'
 	);
 
 
@@ -41,14 +44,6 @@ class SiteConfigExtension extends DataExtension {
 
 
 		// ============================================================ 
-		// Footer
-		// ============================================================ 
-		$fields->addFieldsToTab('Root.Footer', array(
-			TreeDropdownField::create('UsefulPage1', 'Useful Page 1', 'SiteTree')
-		));
-
-
-		// ============================================================ 
 		// Emails
 		// ============================================================ 
 		$fields->addFieldsToTab('Root.Emails', array(
@@ -69,6 +64,17 @@ class SiteConfigExtension extends DataExtension {
 				DateField::create('FinalReminderDate', 'Date')->setConfig('showcalendar', true),
 				HTMLEditorField::create('FinalReminderText', 'Email Message')
 			))
+		));
+
+
+		// ============================================================ 
+		// Footer
+		// ============================================================ 
+		$fields->addFieldsToTab('Root.Footer', array(
+			TreeDropdownField::create('Page1ID', 'Useful Page 1', 'SiteTree'),
+			TreeDropdownField::create('Page2ID', 'Useful Page 2', 'SiteTree'),
+			TreeDropdownField::create('Page3ID', 'Useful Page 3', 'SiteTree'),
+			TreeDropdownField::create('Page4ID', 'Useful Page 4', 'SiteTree')
 		));
 	}
 
