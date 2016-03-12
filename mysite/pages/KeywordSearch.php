@@ -7,11 +7,16 @@ class KeywordSearch extends Page{
 
 class KeywordSearch_Controller extends Page_Controller{
 
-
 	// ========================================
 	// Manufacturer Dropdown Form
 	// ========================================
 	public function ManufacturerSearchForm(){
+
+		$companies = Companies::get()->filterByCallback(function($item, $list){
+			if($item->Products()->count() > 0){
+				return $item;
+			}
+		});
 
 		$form = BootstrapForm::create(
 			$this,
@@ -20,9 +25,10 @@ class KeywordSearch_Controller extends Page_Controller{
 				DropDownField::create(
 					'Manufacturer', 
 					'Use the drop‐down box to select the manufacturer or supplier of your choice.', 
-					Companies::get()->sort('Name', 'ASC')->map('ID', 'Name'))
+						$companies
+						->sort('Name', 'ASC')
+						->map('ID', 'Name'))
 						->setEmptyString('Select-One')
-					->setAttribute('placeholder','Search Here...')
 			),
 			Fieldlist::create(
 				FormAction::create('Go','Go')

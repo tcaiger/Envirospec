@@ -15,8 +15,8 @@ class Product extends Page
 	private static $can_be_root = false;
 	
 	private static $has_one = array(
-		'Supplier' => 'Supplier',
-		'Manufacturer' => 'Manufacturer',
+		'Supplier' => 'Companies',
+		'Manufacturer' => 'Companies',
 		'ProductCategory' => 'ProductCategory'
 	);
 

@@ -13,6 +13,7 @@
             $KeywordSearchForm
         </div>
     </div>
+    $Test
 </div>
 
 <div class="divide60"></div>
