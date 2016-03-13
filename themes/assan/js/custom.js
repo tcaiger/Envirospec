@@ -3,57 +3,6 @@
  * 
  */
 
- $( window ).resize(function() {
-    $(".navbar-collapse").css({ maxHeight: $(window).height() - $(".navbar-header").height() + "px" });
-});
-
-/* ==============================================
- WOW plugin triggers animate.css on scroll
- =============================================== */
-$(document).ready(function () {
-    var wow = new WOW(
-            {
-                boxClass: 'wow', // animated element css class (default is wow)
-                animateClass: 'animated', // animation css class (default is animated)
-                offset: 100, // distance to the element when triggering the animation (default is 0)
-                mobile: false        // trigger animations on mobile devices (true is default)
-            }
-    );
-    wow.init();
-});
-
-/* ==============================================
- AJAX For Greenstar Search Page
- =============================================== */
-$(document).ready(function () {
-
-   $('.greenstar-search').on('change','select', function(e){
-
-        // Get Selected Values
-        var tool = $( '#BootstrapForm_CreditSearchForm_Tool option:selected' )
-            .attr('value');
-        
-        var category = $( '#BootstrapForm_CreditSearchForm_Category option:selected' )
-            .attr('value');
-
-         var credit = $( '#BootstrapForm_CreditSearchForm_Credit option:selected' )
-            .attr('value');
-        
-        // Send the ajax request
-        var url = window.location.href + '?tool=' + tool + '&category=' + category + '&credit=' + credit;
-
-        $.ajax(url)
-            .done(function(response){
-                // Update the HTML for the form
-                $('.greenstar-search').html(response);
-                console.log('ajax request done');
-            })
-            .fail(function(xhr){
-                alert('Error:' + xhr.responseText);
-        });
-    });
-});
-
 /* ==============================================
  AJAX For Report Search
  =============================================== */
@@ -139,14 +88,146 @@ $(document).ready(function () {
 });
 
 
-//MAGNIFIC POPUP
+
+var ESpec = ESpec || {};
+
 $(document).ready(function ($) {
-    $('.show-image').magnificPopup({
-        type: 'image',
-        gallery: {enabled:true}
-    });
+
+    ESpec = {
+        settings: {
+            isIe8: false,
+            isIphone: (/iPhone|iPod/gi).test(navigator.appVersion),
+            isIpad: (/iPad/gi).test(navigator.appVersion),
+            isAndroid: (/Android/gi).test(navigator.appVersion),
+            isTouch: false,
+            easing: 'cubic-bezier(0.77, 0, 0.175, 1)'
+        },
+        init: function () {
+
+            if (!$.support.transition) {
+                $.fn.transition = $.fn.animate;
+            }
+            if (this.settings.isIphone || this.settings.isIpad || this.settings.isAndroid) {
+                this.settings.isTouch = true;
+            }
+            if (!$.support.leadingWhitespace) {
+                this.settings.isIe8 = true;
+            }
+
+            //this.page.init();
+            this.coverFlow.init();
+            this.navSearch.init();
+            this.wow.init();
+            this.greenstarSearch.init();
+            this.showImage.init();
+        },
+        navSearch: {
+            searchIcon: $('.top-search'),
+            searchField: $('.search'),
+            searchClose: $('.search-close'),
+            init: function(){
+
+                this.searchIcon.on('click', function() {
+                    ESpec.navSearch.searchField.fadeIn(300, function() {
+                      $(this).toggleClass('search-toggle');
+                    });     
+                });
+
+                this.searchClose.on('click', function() {
+                    ESpec.navSearch.searchField.fadeOut(300, function() {
+                        $(this).removeClass('search-toggle');
+                    }); 
+                });
+            }
+        },
+        page: {
+            //init: function () {
+            //}
+        },
+        coverFlow: {
+            cover: $('#cover-flow'),
+            settings: {
+                buttons: true,
+                spacing: -0.5,
+                scrollwheel: false
+            },
+            init: function(){
+                if(this.cover.length){
+                     this.cover.flipster(this.settings);
+                }
+            }
+        },
+        showImage: {
+            image:$('.show-image'),
+            settings: {
+                type: 'image',
+                gallery: {enabled:true}
+            },
+            init: function(){
+                this.image.magnificPopup(this.settings);
+            }
+        },
+        wow: {
+            settings: {
+                boxClass: 'wow', // animated element css class (default is wow)
+                animateClass: 'animated', // animation css class (default is animated)
+                offset: 100, // distance to the element when triggering the animation (default is 0)
+                mobile: false        // trigger animations on mobile devices (true is default)
+            },
+            init: function(){
+                
+                var wow = new WOW(this.settings);
+                wow.init();
+            }
+        },
+        greenstarSearch: {
+            form: $('.greenstar-search'),
+            init: function(){
+
+                this.form.on('change','select', function(e){
+
+                    // Get Selected Values
+                    var tool = $( '#BootstrapForm_CreditSearchForm_Tool option:selected' )
+                        .attr('value');
+                    
+                    var category = $( '#BootstrapForm_CreditSearchForm_Category option:selected' )
+                        .attr('value');
+
+                     var credit = $( '#BootstrapForm_CreditSearchForm_Credit option:selected' )
+                        .attr('value');
+        
+                    // Send the ajax request
+                    var url = window.location.href+'?tool='+tool+'&category='+category+'&credit='+credit;
+                    $.ajax(url)
+                        .done(function(response){
+                            $('.greenstar-search').html(response);
+                        })
+                        .fail(function(xhr){
+                            alert('Error:' + xhr.responseText);
+                    });
+                });
+            }
+        },
+        ReportSearch: {
+            init: function(){
+                this.image.magnificPopup(this.settings);
+            }
+        },
+        SearchResults: {
+            init: function(){
+                this.image.magnificPopup(this.settings);
+            }
+        },
+        SearchResults: {
+            init: function(){
+                this.image.magnificPopup(this.settings);
+            }
+        },
+    }
+    ESpec.init();
 });
 
 
 
+   
 
