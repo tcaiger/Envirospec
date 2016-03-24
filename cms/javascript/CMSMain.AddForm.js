@@ -7,7 +7,7 @@
 		$(".cms-add-form .parent-mode :input").entwine({
 			onclick: function(e) {
 				if(this.val() == 'top') {
-					var parentField = this.closest('form').find('#Form_AddForm_ParentID_Holder .TreeDropdownField')
+					var parentField = this.closest('form').find('#ParentID .TreeDropdownField')
 					parentField.setValue('');
 					parentField.setTitle('');
 				}
@@ -19,7 +19,7 @@
 			ParentCache: {}, // Cache allowed children for each selected page
 			onadd: function() {
 				var self = this;
-				this.find('#Form_AddForm_ParentID_Holder .TreeDropdownField').bind('change', function() {
+				this.find('#ParentID .TreeDropdownField').bind('change', function() {
 					self.updateTypeList();
 				});
 				this.find(".SelectionGroup.parent-mode").bind('change',  function() {
@@ -45,7 +45,7 @@
 			 */
 			updateTypeList: function() {
 				var hints = this.data('hints'), 
-					parentTree = this.find('#Form_AddForm_ParentID_Holder .TreeDropdownField'),
+					parentTree = this.find('#ParentID .TreeDropdownField'),
 					parentMode = this.find("input[name=ParentModeField]:checked").val(),
 					metadata = parentTree.data('metadata'),
 					id = (metadata && parentMode === 'child')
@@ -108,7 +108,7 @@
 			updateSelectionFilter: function(disallowedChildren, defaultChildClass) {
 				// Limit selection
 				var allAllowed = null; // troolian
-				this.find('#Form_AddForm_PageType li').each(function() {
+				this.find('#PageType li').each(function() {
 					var className = $(this).find('input').val(), 
 						isAllowed = ($.inArray(className, disallowedChildren) === -1);
 					
@@ -120,26 +120,22 @@
 				
 				// Set default child selection, or fall back to first available option
 				if(defaultChildClass) {
-					var selectedEl = this
-						.find('#Form_AddForm_PageType li input[value=' + defaultChildClass + ']')
-						.parents('li:first');
+					var selectedEl = this.find('#PageType li input[value=' + defaultChildClass + ']').parents('li:first');
 				} else {
-					var selectedEl = this.find('#Form_AddForm_PageType li:not(.disabled):first');
+					var selectedEl = this.find('#PageType li:not(.disabled):first');
 				}
 				selectedEl.setSelected(true);
 				selectedEl.siblings().setSelected(false);
 
 				// Disable the "Create" button if none of the pagetypes are available
-				var buttonState = this.find('#Form_AddForm_PageType li:not(.disabled)').length
-					? 'enable'
-					: 'disable';
+				var buttonState = (this.find('#PageType li:not(.disabled)').length) ? 'enable' : 'disable';
 				this.find('button[name=action_doAdd]').button(buttonState);
 
 				this.find('.message-restricted')[allAllowed ? 'hide' : 'show']();
 			}
 		});
 		
-		$(".cms-add-form #Form_AddForm_PageType li").entwine({
+		$(".cms-add-form #PageType li").entwine({
 			onclick: function(e) {
 				this.setSelected(true);
 			},

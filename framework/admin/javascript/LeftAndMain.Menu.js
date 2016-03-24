@@ -204,6 +204,10 @@
 			fromContainingPanel: {
 				ontoggle: function(e){
 					this.toggleClass('collapsed', $(e.target).hasClass('collapsed'));
+
+					// Trigger synthetic resize event. Avoid native window.resize event
+					// since it causes other behaviour which should be reserved for actual window dimension changes.
+					$('.cms-container').trigger('windowresize');
 				}
 			},
 

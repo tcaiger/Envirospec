@@ -378,7 +378,7 @@ class Member extends DataObject implements TemplateGlobalProvider {
 	 * quirky problems (such as using the Windmill 0.3.6 proxy).
 	 */
 	public static function session_regenerate_id() {
-		if(!self::$session_regenerate_id) return;
+		if(!self::config()->session_regenerate_id) return;
 
 		// This can be called via CLI during testing.
 		if(Director::is_cli()) return;
@@ -1560,7 +1560,7 @@ class Member extends DataObject implements TemplateGlobalProvider {
 	/**
 	 * Validate this member object.
 	 */
-	protected function validate() {
+	public function validate() {
 		$valid = parent::validate();
 
 		if(!$this->ID || $this->isChanged('Password')) {

@@ -17,10 +17,10 @@ class CMSPagesController extends CMSMain {
 	}
 
 	/**
-	 * @return string
+	 * @return String
 	 */
 	public function ViewState() {
-		return $this->getRequest()->getVar('view');
+		return $this->request->getVar('view');
 	}
 
 	public function isCurrentPage(DataObject $record) {
@@ -31,7 +31,7 @@ class CMSPagesController extends CMSMain {
 		$items = parent::Breadcrumbs($unlinked);
 
 		//special case for building the breadcrumbs when calling the listchildren Pages ListView action
-		if($parentID = $this->getRequest()->getVar('ParentID')) {
+		if($parentID = $this->request->getVar('ParentID')) {
 			$page = DataObject::get_by_id('SiteTree', $parentID);
 
 			//build a reversed list of the parent tree
@@ -43,8 +43,8 @@ class CMSPagesController extends CMSMain {
 
 			//turns the title and link of the breadcrumbs into template-friendly variables
 			$params = array_filter(array(
-				'view' => $this->getRequest()->getVar('view'),
-				'q' => $this->getRequest()->getVar('q')
+				'view' => $this->request->getVar('view'),
+				'q' => $this->request->getVar('q')
 			));
 			foreach($pages as $page) {
 				$params['ParentID'] = $page->ID;

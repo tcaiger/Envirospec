@@ -667,12 +667,13 @@ ss.editorWrappers['default'] = ss.editorWrappers.tinyMCE;
 
 			resetFileField: function() {
 				// If there's an attached item, remove it
-				var fileField = this.find('#file'),
+				var fileField = this.find('.ss-uploadfield[id$="file_Holder"]'),
 					fileUpload = fileField.data('fileupload'),
 					currentItem = fileField.find('.ss-uploadfield-item[data-fileid]');
 
 				if(currentItem.length) {
-					fileUpload._trigger('destroy', null, {content: currentItem});
+					fileUpload._trigger('destroy', null, {context: currentItem});
+					fileField.find('.ss-uploadfield-addfile').removeClass('borderTop');
 				}
 			},
 
@@ -716,10 +717,11 @@ ss.editorWrappers['default'] = ss.editorWrappers.tinyMCE;
 						// http://www.w3.org/TR/1999/REC-html401-19991224/struct/links.html#h-12.2
 
 						if(ed) {
-							var raw = ed.getContent().match(/name="([^"]+?)"|name='([^']+?)'/gim);
+							var raw = ed.getContent().match(/\s(name|id)="([^"]+?)"|\s(name|id)='([^']+?)'/gim);
 							if (raw && raw.length) {
 								for(var i = 0; i < raw.length; i++) {
-									collectedAnchors.push(raw[i].substr(6).replace(/"$/, ''));
+									var indexStart = (raw[i].indexOf('id=') == -1) ? 7 : 5;
+									collectedAnchors.push(raw[i].substr(indexStart).replace(/"$/, ''));
 								}
 							}
 						}
@@ -886,10 +888,11 @@ ss.editorWrappers['default'] = ss.editorWrappers.tinyMCE;
 					action = "update";
 				}
 
-				if(href.match(/^mailto:(.*)$/)) {
+				if(href.match(/^mailto:([^?]*)(\?subject=(.*))?$/)) {
 					return {
 						LinkType: 'email',
 						email: RegExp.$1,
+						Subject: decodeURIComponent(RegExp.$3),
 						Description: title
 					};
 				} else if(href.match(/^(assets\/.*)$/) || href.match(/^\[file_link\s*(?:\s*|%20|,)?id=([0-9]+)\]?(#.*)?$/)) {

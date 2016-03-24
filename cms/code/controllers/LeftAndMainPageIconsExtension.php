@@ -15,7 +15,7 @@ class LeftAndMainPageIconsExtension extends Extension {
 	 * Include CSS for page icons. We're not using the JSTree 'types' option
 	 * because it causes too much performance overhead just to add some icons.
 	 * 
-	 * @return string CSS 
+	 * @return String CSS 
 	 */
 	public function generatePageIconsCss() {
 		$css = ''; 

@@ -93,7 +93,7 @@ class CMSSiteTreeFilterTest extends SapphireTest {
 		$deletedPage = Versioned::get_one_by_stage(
 			'SiteTree', 
 			'Live', 
-			array('"SiteTree_Live"."ID"' => $deletedPageID)
+			sprintf('"SiteTree_Live"."ID" = %d', $deletedPageID)
 		);
 
 		$f = new CMSSiteTreeFilter_DeletedPages(array('Term' => 'Page'));

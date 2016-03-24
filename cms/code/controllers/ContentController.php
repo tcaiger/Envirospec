@@ -71,7 +71,7 @@ class ContentController extends Controller {
 		$parent = SiteTree::get_by_link($parentRef);
 		
 		if(!$parent && is_numeric($parentRef)) {
-			$parent = DataObject::get_by_id('SiteTree', $parentRef);
+			$parent = DataObject::get_by_id('SiteTree', Convert::raw2sql($parentRef));
 		}
 		
 		if($parent) return $parent->Children();
@@ -119,7 +119,7 @@ class ContentController extends Controller {
 				|| (Versioned::current_stage() && Versioned::current_stage() != 'Live')
 			)
 		) {
-			if(!$this->dataRecord->canView()) {
+			if(!$this->dataRecord->canViewStage(Versioned::current_archived_date() ? 'Stage' : Versioned::current_stage())) {
 				Session::clear('currentStage');
 				Session::clear('archiveDate');
 				
@@ -215,10 +215,10 @@ class ContentController extends Controller {
 	 */
 	public function httpError($code, $message = null) {
 		// Don't use the HTML response for media requests
-		$response = $this->getRequest()->isMedia() ? null : ErrorPage::response_for($code);
+		$response = $this->request->isMedia() ? null : ErrorPage::response_for($code);
 		// Failover to $message if the HTML response is unavailable / inappropriate
 		parent::httpError($code, $response ? $response : $message);
-	}
+		}
 
 	/**
 	 * Get the project name
@@ -379,42 +379,7 @@ HTML;
 		}
 		
 		return i18n::convert_rfc1766($locale);
-	}	
-
-
-	/**
-	 * Return an SSViewer object to render the template for the current page.
-	 *
-	 * @param $action string
-	 *
-	 * @return SSViewer
-	 */
-	public function getViewer($action) {
-		// Manually set templates should be dealt with by Controller::getViewer()
-		if(isset($this->templates[$action]) && $this->templates[$action]
-			|| (isset($this->templates['index']) && $this->templates['index'])
-			|| $this->template
-		) {
-			return parent::getViewer($action);
-		}
-
-		// Prepare action for template search
-		if($action == "index") $action = "";
-		else $action = '_' . $action;
-
-		$templates = array_merge(
-			// Find templates by dataRecord
-			SSViewer::get_templates_by_class(get_class($this->dataRecord), $action, "SiteTree"),
-			// Next, we need to add templates for all controllers
-			SSViewer::get_templates_by_class(get_class($this), $action, "Controller"),
-			// Fail-over to the same for the "index" action
-			SSViewer::get_templates_by_class(get_class($this->dataRecord), "", "SiteTree"),
-			SSViewer::get_templates_by_class(get_class($this), "", "Controller")
-		);
-
-		return new SSViewer($templates);
 	}
-
 
 	/**
 	 * This action is called by the installation system

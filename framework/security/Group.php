@@ -183,7 +183,7 @@ class Group extends DataObject {
 
 			// Add roles (and disable all checkboxes for inherited roles)
 			$allRoles = PermissionRole::get();
-			if(Permission::check('ADMIN')) {
+			if(!Permission::check('ADMIN')) {
 				$allRoles = $allRoles->filter("OnlyAdminCanApply", 0);
 			}
 			if($this->ID) {
@@ -263,6 +263,10 @@ class Group extends DataObject {
 
 		// First get direct members as a base result
 		$result = $this->DirectMembers();
+
+		// Unsaved group cannot have child groups because its ID is still 0.
+		if(!$this->exists()) return $result;
+
 		// Remove the default foreign key filter in prep for re-applying a filter containing all children groups.
 		// Filters are conjunctive in DataQuery by default, so this filter would otherwise overrule any less specific
 		// ones.
@@ -288,9 +292,14 @@ class Group extends DataObject {
 	/**
 	 * Return a set of this record's "family" of IDs - the IDs of
 	 * this record and all its descendants.
+	 *
 	 * @return array
 	 */
 	public function collateFamilyIDs() {
+		if (!$this->exists()) {
+			throw new \InvalidArgumentException("Cannot call collateFamilyIDs on unsaved Group.");
+		}
+
 		$familyIDs = array();
 		$chunkToAdd = array($this->ID);
 

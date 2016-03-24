@@ -4,10 +4,6 @@
  * @subpackage filesystem
  */
 class Folder_UnusedAssetsField extends CompositeField {
-	
-	/**
-	 * @var Folder
-	 */
 	protected $folder;
 	
 	public function __construct($folder) {
@@ -43,10 +39,10 @@ class Folder_UnusedAssetsField extends CompositeField {
 
 
 	/**
-	 * Creates table for displaying unused files.
-	 *
-	 * @return GridField
-	 */
+     * Creates table for displaying unused files.
+     *
+     * @return GridField
+     */
 	protected function getAssetList() {
 		$where = $this->folder->getUnusedFilesListFilter();
 		$files = File::get()->where($where);

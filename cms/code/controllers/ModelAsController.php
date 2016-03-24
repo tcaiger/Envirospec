@@ -47,7 +47,7 @@ class ModelAsController extends Controller implements NestedController {
 	 * @return SS_HTTPResponse
 	 */
 	public function handleRequest(SS_HTTPRequest $request, DataModel $model) {
-		$this->setRequest($request);
+		$this->request = $request;
 		$this->setDataModel($model);
 		
 		$this->pushCurrent();
@@ -64,7 +64,7 @@ class ModelAsController extends Controller implements NestedController {
 		}
 
 		// If the database has not yet been created, redirect to the build page.
-		if(!DB::is_active() || !ClassInfo::hasTable('SiteTree')) {
+		if(!DB::isActive() || !ClassInfo::hasTable('SiteTree')) {
 			$this->response->redirect(Director::absoluteBaseURL() . 'dev/build?returnURL=' . (isset($_GET['url']) ? urlencode($_GET['url']) : null));
 			$this->popCurrent();
 			
@@ -75,7 +75,7 @@ class ModelAsController extends Controller implements NestedController {
 			$result = $this->getNestedController();
 			
 			if($result instanceof RequestHandler) {
-				$result = $result->handleRequest($this->getRequest(), $model);
+				$result = $result->handleRequest($this->request, $model);
 			} else if(!($result instanceof SS_HTTPResponse)) {
 				user_error("ModelAsController::getNestedController() returned bad object type '" . 
 					get_class($result)."'", E_USER_WARNING);
@@ -93,7 +93,7 @@ class ModelAsController extends Controller implements NestedController {
 	 * @throws Exception If URLSegment not passed in as a request parameter.
 	 */
 	public function getNestedController() {
-		$request = $this->getRequest();
+		$request = $this->request;
 		
 		if(!$URLSegment = $request->param('URLSegment')) {
 			throw new Exception('ModelAsController->getNestedController(): was not passed a URLSegment value.');
@@ -101,16 +101,14 @@ class ModelAsController extends Controller implements NestedController {
 		
 		// Find page by link, regardless of current locale settings
 		if(class_exists('Translatable')) Translatable::disable_locale_filter();
-		
-		// Select child page
-		$conditions = array('"SiteTree"."URLSegment"' => rawurlencode($URLSegment));
-		if(SiteTree::config()->nested_urls) {
-			$conditions[] = array('"SiteTree"."ParentID"' => 0);
-		}
-		$sitetree = DataObject::get_one('SiteTree', $conditions);
-		
-		// Check translation module
-		// @todo Refactor out module specific code
+		$sitetree = DataObject::get_one(
+			'SiteTree', 
+			sprintf(
+				'"SiteTree"."URLSegment" = \'%s\' %s', 
+				Convert::raw2sql(rawurlencode($URLSegment)), 
+				(SiteTree::config()->nested_urls ? 'AND "SiteTree"."ParentID" = 0' : null)
+			)
+		);
 		if(class_exists('Translatable')) Translatable::enable_locale_filter();
 		
 		if(!$sitetree) {
@@ -125,11 +123,11 @@ class ModelAsController extends Controller implements NestedController {
 			Debug::message("Using record #$sitetree->ID of type $sitetree->class with link {$sitetree->Link()}");
 		}
 		
-		return self::controller_for($sitetree, $this->getRequest()->param('Action'));
+		return self::controller_for($sitetree, $this->request->param('Action'));
 	}
 
 	/**
-	 * @deprecated 4.0 Use OldPageRedirector::find_old_page instead
+	 * @deprecated 3.2 Use OldPageRedirector::find_old_page instead
 	 *
 	 * @param string $URLSegment A subset of the url. i.e in /home/contact/ home and contact are URLSegment.
 	 * @param int $parent The ID of the parent of the page the URLSegment belongs to.
@@ -137,7 +135,7 @@ class ModelAsController extends Controller implements NestedController {
 	 * @return SiteTree
 	 */
 	static public function find_old_page($URLSegment, $parent = null, $ignoreNestedURLs = false) {
-		Deprecation::notice('4.0', 'Use OldPageRedirector::find_old_page instead');
+		Deprecation::notice('3.2', 'Use OldPageRedirector::find_old_page instead');
 		if ($parent) {
 			$parent = SiteTree::get()->byId($parent);	
 		}

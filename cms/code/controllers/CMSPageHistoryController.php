@@ -80,7 +80,7 @@ class CMSPageHistoryController extends CMSMain {
 	}
 
 	public function getSilverStripeNavigator() {
-		$record = $this->getRecord($this->currentPageID(), $this->getRequest()->param('VersionID'));
+		$record = $this->getRecord($this->currentPageID(), $this->request->param('VersionID'));
 		if($record) {
 			$navigator = new SilverStripeNavigator($record);
 			return $navigator->renderWith($this->getTemplatesWithSuffix('_SilverStripeNavigator'));
@@ -194,9 +194,9 @@ class CMSPageHistoryController extends CMSMain {
 		$page = $this->getRecord($id);
 		$versionsHtml = '';
 
-		$action = $this->getRequest()->param('Action');
-		$versionID = $this->getRequest()->param('VersionID');
-		$otherVersionID = $this->getRequest()->param('OtherVersionID');
+		$action = $this->request->param('Action');
+		$versionID = $this->request->param('VersionID');
+		$otherVersionID = $this->request->param('OtherVersionID');
 		
 		$showUnpublishedChecked = 0;
 		$compareModeChecked = ($action == "compare");
@@ -260,7 +260,7 @@ class CMSPageHistoryController extends CMSMain {
 			$actions
 		)->setHTMLID('Form_VersionsForm');
 		$form->setResponseNegotiator($this->getResponseNegotiator());
-		$form->loadDataFrom($this->getRequest()->requestVars());
+		$form->loadDataFrom($this->request->requestVars());
 		$hiddenID->setValue($id);
 		$form->unsetValidator();
 		
@@ -291,7 +291,7 @@ class CMSPageHistoryController extends CMSMain {
 		$form = $this->CompareVersionsForm($version1, $version2);
 
 		// javascript solution, render into template
-		if($this->getRequest()->isAjax()) {
+		if($this->request->isAjax()) {
 			return $this->customise(array(
 				"EditForm" => $form
 			))->renderWith(array(

@@ -210,46 +210,46 @@ class VirtualPageTest extends SapphireTest {
 		$vp->write();
 
 		// VP is oragne
-		$this->assertTrue($vp->getIsAddedToStage());
+		$this->assertTrue($vp->IsAddedToStage);
 
 		// VP is still orange after we publish
 		$p->doPublish();
 		$this->fixVersionNumberCache($vp);
-		$this->assertTrue($vp->getIsAddedToStage());
+		$this->assertTrue($vp->IsAddedToStage);
 		
 		// A new VP created after P's initial construction
 		$vp2 = new VirtualPage();
 		$vp2->CopyContentFromID = $p->ID;
 		$vp2->write();
-		$this->assertTrue($vp2->getIsAddedToStage());
+		$this->assertTrue($vp2->IsAddedToStage);
 		
 		// Also remains orange after a republish
 		$p->Content = "new content";
 		$p->write();
 		$p->doPublish();
 		$this->fixVersionNumberCache($vp2);
-		$this->assertTrue($vp2->getIsAddedToStage());
+		$this->assertTrue($vp2->IsAddedToStage);
 		
 		// VP is now published
 		$vp->doPublish();
 
 		$this->fixVersionNumberCache($vp);
-		$this->assertTrue($vp->getExistsOnLive());
-		$this->assertFalse($vp->getIsModifiedOnStage());
+		$this->assertTrue($vp->ExistsOnLive);
+		$this->assertFalse($vp->IsModifiedOnStage);
 		
 		// P edited, VP and P both go green
 		$p->Content = "third content";
 		$p->write();
 
 		$this->fixVersionNumberCache($vp, $p);
-		$this->assertTrue($p->getIsModifiedOnStage());
-		$this->assertTrue($vp->getIsModifiedOnStage());
+		$this->assertTrue($p->IsModifiedOnStage);
+		$this->assertTrue($vp->IsModifiedOnStage);
 
 		// Publish, VP goes black
 		$p->doPublish();
 		$this->fixVersionNumberCache($vp);
-		$this->assertTrue($vp->getExistsOnLive());
-		$this->assertFalse($vp->getIsModifiedOnStage());
+		$this->assertTrue($vp->ExistsOnLive);
+		$this->assertFalse($vp->IsModifiedOnStage);
 	}
 	
 	public function testVirtualPagesCreateVersionRecords() {
@@ -315,7 +315,7 @@ class VirtualPageTest extends SapphireTest {
 		// Unpublish the source page, confirm that the virtual page has also been unpublished
 		$p->doUnpublish();
 
-		// The draft VP still has the CopyContentFromID link
+        // The draft VP still has the CopyContentFromID link
 		$vp->flushCache();
 		$vp = DataObject::get_by_id('SiteTree', $vp->ID);
 		$this->assertEquals($p->ID, $vp->CopyContentFromID);
@@ -382,11 +382,11 @@ class VirtualPageTest extends SapphireTest {
 		$classCVirtual->write();
 		
 		$classBVirtual->ParentID = $classA->ID;
-		$valid = $classBVirtual->doValidate();
+		$valid = $classBVirtual->validate();
 		$this->assertTrue($valid->valid(), "Does allow child linked to virtual page type allowed by parent");
 		
 		$classCVirtual->ParentID = $classA->ID;
-		$valid = $classCVirtual->doValidate();
+		$valid = $classCVirtual->validate();
 		$this->assertFalse($valid->valid(), "Doesn't allow child linked to virtual page type disallowed by parent");
 	}
 	

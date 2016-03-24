@@ -76,7 +76,8 @@
 
 		.cms-tree {
 			// Hide badges and drag icons to save space
-			.badge {
+			.badge,
+			a > .jstree-icon {
 				display: none;
 			}
 

@@ -29,7 +29,7 @@ class SiteTreeTest extends SapphireTest {
 	}
 	
 	public function testCreateDefaultpages() {
-			$remove = SiteTree::get();
+			$remove = DataObject::get('SiteTree');
 			if($remove) foreach($remove as $page) $page->delete();
 			// Make sure the table is empty
 			$this->assertEquals(DB::query('SELECT COUNT("ID") FROM "SiteTree"')->value(), 0);
@@ -111,9 +111,9 @@ class SiteTreeTest extends SapphireTest {
 
 	public function testParentNodeCachedInMemory() {
 		$parent = new SiteTree();
-		$parent->Title = 'Section Title';
-		$child = new SiteTree();
-		$child->Title = 'Page Title';
+	     	$parent->Title = 'Section Title';
+	     	$child = new SiteTree();
+	     	$child->Title = 'Page Title';
 		$child->setParent($parent);
 
 		$this->assertInstanceOf("SiteTree", $child->Parent);
@@ -143,16 +143,14 @@ class SiteTreeTest extends SapphireTest {
 		$oldMode = Versioned::get_reading_mode();
 		Versioned::reading_stage('Live');
 
-		$checkSiteTree = DataObject::get_one("SiteTree", array(
-			'"SiteTree"."URLSegment"' => 'get-one-test-page'
-		));
+		$checkSiteTree = DataObject::get_one("SiteTree", "\"SiteTree\".\"URLSegment\" = 'get-one-test-page'");
 		$this->assertEquals("V1", $checkSiteTree->Title);
 
 		Versioned::set_reading_mode($oldMode);
 	}
 
 	public function testChidrenOfRootAreTopLevelPages() {
-		$pages = SiteTree::get();
+		$pages = DataObject::get("SiteTree");
 		foreach($pages as $page) $page->publish('Stage', 'Live');
 		unset($pages);
 
@@ -194,17 +192,17 @@ class SiteTreeTest extends SapphireTest {
 		// newly created page
 		$createdPage = new SiteTree();
 		$createdPage->write();
-		$this->assertFalse($createdPage->getIsDeletedFromStage());
-		$this->assertTrue($createdPage->getIsAddedToStage());
-		$this->assertTrue($createdPage->getIsModifiedOnStage());
+		$this->assertFalse($createdPage->IsDeletedFromStage);
+		$this->assertTrue($createdPage->IsAddedToStage);
+		$this->assertTrue($createdPage->IsModifiedOnStage);
 
 		// published page
 		$publishedPage = new SiteTree();
 		$publishedPage->write();
 		$publishedPage->publish('Stage','Live');
-		$this->assertFalse($publishedPage->getIsDeletedFromStage());
-		$this->assertFalse($publishedPage->getIsAddedToStage());
-		$this->assertFalse($publishedPage->getIsModifiedOnStage());
+		$this->assertFalse($publishedPage->IsDeletedFromStage);
+		$this->assertFalse($publishedPage->IsAddedToStage);
+		$this->assertFalse($publishedPage->IsModifiedOnStage);
 
 		// published page, deleted from stage
 		$deletedFromDraftPage = new SiteTree();
@@ -212,9 +210,9 @@ class SiteTreeTest extends SapphireTest {
 		$deletedFromDraftPageID = $deletedFromDraftPage->ID;
 		$deletedFromDraftPage->publish('Stage','Live');
 		$deletedFromDraftPage->deleteFromStage('Stage');
-		$this->assertTrue($deletedFromDraftPage->getIsDeletedFromStage());
-		$this->assertFalse($deletedFromDraftPage->getIsAddedToStage());
-		$this->assertFalse($deletedFromDraftPage->getIsModifiedOnStage());
+		$this->assertTrue($deletedFromDraftPage->IsDeletedFromStage);
+		$this->assertFalse($deletedFromDraftPage->IsAddedToStage);
+		$this->assertFalse($deletedFromDraftPage->IsModifiedOnStage);
 
 		// published page, deleted from live
 		$deletedFromLivePage = new SiteTree();
@@ -222,9 +220,9 @@ class SiteTreeTest extends SapphireTest {
 		$deletedFromLivePage->publish('Stage','Live');
 		$deletedFromLivePage->deleteFromStage('Stage');
 		$deletedFromLivePage->deleteFromStage('Live');
-		$this->assertTrue($deletedFromLivePage->getIsDeletedFromStage());
-		$this->assertFalse($deletedFromLivePage->getIsAddedToStage());
-		$this->assertFalse($deletedFromLivePage->getIsModifiedOnStage());
+		$this->assertTrue($deletedFromLivePage->IsDeletedFromStage);
+		$this->assertFalse($deletedFromLivePage->IsAddedToStage);
+		$this->assertFalse($deletedFromLivePage->IsModifiedOnStage);
 
 		// published page, modified
 		$modifiedOnDraftPage = new SiteTree();
@@ -232,9 +230,9 @@ class SiteTreeTest extends SapphireTest {
 		$modifiedOnDraftPage->publish('Stage','Live');
 		$modifiedOnDraftPage->Content = 'modified';
 		$modifiedOnDraftPage->write();
-		$this->assertFalse($modifiedOnDraftPage->getIsDeletedFromStage());
-		$this->assertFalse($modifiedOnDraftPage->getIsAddedToStage());
-		$this->assertTrue($modifiedOnDraftPage->getIsModifiedOnStage());
+		$this->assertFalse($modifiedOnDraftPage->IsDeletedFromStage);
+		$this->assertFalse($modifiedOnDraftPage->IsAddedToStage);
+		$this->assertTrue($modifiedOnDraftPage->IsModifiedOnStage);
 	}
 
 	/**
@@ -316,13 +314,6 @@ class SiteTreeTest extends SapphireTest {
 		$this->assertEquals('about-us/my-staff/', $staff->RelativeLink(), 'Matches URLSegment plus parent on second level without parameters');
 		$this->assertEquals('about-us/edit', $about->RelativeLink('edit'), 'Matches URLSegment plus parameter on top level');
 		$this->assertEquals('about-us/tom&jerry', $about->RelativeLink('tom&jerry'), 'Doesnt url encode parameter');
-	}
-
-	public function testPageLevel() {
-		$about = $this->objFromFixture('Page', 'about');
-		$staff = $this->objFromFixture('Page', 'staff');
-		$this->assertEquals(1, $about->getPageLevel());
-		$this->assertEquals(2, $staff->getPageLevel());
 	}
 
 	public function testAbsoluteLiveLink() {
@@ -413,7 +404,8 @@ class SiteTreeTest extends SapphireTest {
 		Versioned::reading_stage('Stage');
 		Config::inst()->update('SiteTree', 'enforce_strict_hierarchy', true);
 	}
-    
+
+
 	public function testDeleteFromLiveOperatesRecursivelyStrict() {
 		$this->logInWithPermission('ADMIN');
 
@@ -441,9 +433,7 @@ class SiteTreeTest extends SapphireTest {
 	public function testReadArchiveDate() {
 		$date = '2009-07-02 14:05:07';
 		Versioned::reading_archived_date($date);
-		SiteTree::get()->where(array(
-			'"SiteTree"."ParentID"' => 0
-		));
+		DataObject::get('SiteTree', "\"SiteTree\".\"ParentID\" = 0");
 		Versioned::reading_archived_date(null);
 		$this->assertEquals(
 			Versioned::get_reading_mode(),
@@ -551,7 +541,7 @@ class SiteTreeTest extends SapphireTest {
 		// Confirm that Member.editor can still edit the page
 		$this->objFromFixture('Member','editor')->logIn();
 		$this->assertTrue($page->canEdit());
-    }
+}
 
 	public function testCompareVersions() {
 		// Necessary to avoid
@@ -668,9 +658,7 @@ class SiteTreeTest extends SapphireTest {
 
 		Director::set_current_page($aboutPage);
 		$this->assertTrue (
-			DataObject::get_one('SiteTree', array(
-				'"SiteTree"."Title"' => 'About Us'
-			))->isCurrent(),
+			DataObject::get_one('SiteTree', '"Title" = \'About Us\'')->isCurrent(),
 			'Assert that isCurrent works on another instance with the same ID.'
 		);
 
@@ -697,59 +685,6 @@ class SiteTreeTest extends SapphireTest {
 		$this->assertTrue($about->isSection());
 		$this->assertTrue($staff->isSection());
 		$this->assertTrue($ceo->isSection());
-	}
-
-	public function testURLSegmentAutoUpdate() {
-		$sitetree = new SiteTree();
-		$sitetree->Title = _t(
-			'CMSMain.NEWPAGE',
-			array('pagetype' => $sitetree->i18n_singular_name())
-		);
-		$sitetree->write();
-		$this->assertEquals($sitetree->URLSegment, 'new-page',
-			'Sets based on default title on first save'
-		);
-		
-		$sitetree->Title = 'Changed';
-		$sitetree->write();
-		$this->assertEquals($sitetree->URLSegment, 'changed',
-			'Auto-updates when set to default title'
-		);
-
-		$sitetree->Title = 'Changed again';
-		$sitetree->write();
-		$this->assertEquals($sitetree->URLSegment, 'changed',
-			'Does not auto-update once title has been changed'
-		);
-	}
-
-	public function testURLSegmentAutoUpdateLocalized() {
-		$oldLocale = i18n::get_locale();
-		i18n::set_locale('de_DE');
-
-		$sitetree = new SiteTree();
-		$sitetree->Title = _t(
-			'CMSMain.NEWPAGE',
-			array('pagetype' => $sitetree->i18n_singular_name())
-		);
-		$sitetree->write();
-		$this->assertEquals($sitetree->URLSegment, 'neue-seite',
-			'Sets based on default title on first save'
-		);
-
-		$sitetree->Title = 'Changed';
-		$sitetree->write();
-		$this->assertEquals($sitetree->URLSegment, 'changed',
-			'Auto-updates when set to default title'
-		);
-
-		$sitetree->Title = 'Changed again';
-		$sitetree->write();
-		$this->assertEquals($sitetree->URLSegment, 'changed',
-			'Does not auto-update once title has been changed'
-		);
-
-		i18n::set_locale($oldLocale);
 	}
 
 	/**
@@ -932,27 +867,27 @@ class SiteTreeTest extends SapphireTest {
 		$classCext->write();
 
 		$classB->ParentID = $page->ID;
-		$valid = $classB->doValidate();
+		$valid = $classB->validate();
 		$this->assertTrue($valid->valid(), "Does allow children on unrestricted parent");
 
 		$classB->ParentID = $classA->ID;
-		$valid = $classB->doValidate();
+		$valid = $classB->validate();
 		$this->assertTrue($valid->valid(), "Does allow child specifically allowed by parent");
 
 		$classC->ParentID = $classA->ID;
-		$valid = $classC->doValidate();
+		$valid = $classC->validate();
 		$this->assertFalse($valid->valid(), "Doesnt allow child on parents specifically restricting children");
 
 		$classB->ParentID = $classC->ID;
-		$valid = $classB->doValidate();
+		$valid = $classB->validate();
 		$this->assertFalse($valid->valid(), "Doesnt allow child on parents disallowing all children");
 
 		$classB->ParentID = $classC->ID;
-		$valid = $classB->doValidate();
+		$valid = $classB->validate();
 		$this->assertFalse($valid->valid(), "Doesnt allow child on parents disallowing all children");
 
 		$classCext->ParentID = $classD->ID;
-		$valid = $classCext->doValidate();
+		$valid = $classCext->validate();
 		$this->assertFalse($valid->valid(), "Doesnt allow child where only parent class is allowed on parent node, and asterisk prefixing is used");
 	}
 
@@ -1048,25 +983,6 @@ class SiteTreeTest extends SapphireTest {
 		Config::inst()->update('SiteTree', 'meta_generator', $generator);
 	}
 
-
-	public function testGetBreadcrumbItems() {
-		$page = $this->objFromFixture("Page", "breadcrumbs");
-		$this->assertEquals($page->getBreadcrumbItems()->count(), 1, "Only display current page.");
-
-		// Test breadcrumb order
-		$page = $this->objFromFixture("Page", "breadcrumbs5");
-		$breadcrumbs = $page->getBreadcrumbItems();
-		$this->assertEquals($breadcrumbs->count(), 5, "Display all breadcrumbs");
-		$this->assertEquals($breadcrumbs->first()->Title, "Breadcrumbs", "Breadcrumbs should be the first item.");
-		$this->assertEquals($breadcrumbs->last()->Title, "Breadcrumbs 5", "Breadcrumbs 5 should be last item.");
-
-		// Test breadcrumb max depth
-		$breadcrumbs = $page->getBreadcrumbItems(2);
-		$this->assertEquals($breadcrumbs->count(), 2, "Max depth should limit the breadcrumbs to 2 items.");
-		$this->assertEquals($breadcrumbs->first()->Title, "Breadcrumbs 4", "First item should be Breadrcumbs 4.");
-		$this->assertEquals($breadcrumbs->last()->Title, "Breadcrumbs 5", "Breadcrumbs 5 should be last.");
-	}
-	
 	/**
 	 * Tests SiteTree::MetaTags
 	 * Note that this test makes no assumption on the closing of tags (other than <title></title>)
@@ -1146,30 +1062,6 @@ class SiteTreeTest extends SapphireTest {
 		// Cleanup
 		Versioned::set_reading_mode($origStage);
 
-	}
-
-	/**
-	 * Test archived page behaviour
-	 */
-	public function testArchivedPages() {
-		$this->logInWithPermission('ADMIN');
-
-		$page = $this->objFromFixture('Page', 'home');
-		$this->assertTrue($page->canAddChildren());
-		$this->assertFalse($page->getIsDeletedFromStage());
-		$this->assertFalse($page->isPublished());
-
-		// Publish
-		$page->doPublish();
-		$this->assertTrue($page->canAddChildren());
-		$this->assertFalse($page->getIsDeletedFromStage());
-		$this->assertTrue($page->isPublished());
-
-		// Archive
-		$page->doArchive();
-		$this->assertFalse($page->canAddChildren());
-		$this->assertTrue($page->getIsDeletedFromStage());
-		$this->assertFalse($page->isPublished());
 	}
 
 }

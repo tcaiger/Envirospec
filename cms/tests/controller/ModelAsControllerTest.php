@@ -267,9 +267,8 @@ class ModelAsControllerTest extends FunctionalTest {
 		$page->write();
 		$page->publish('Stage', 'Live');
 		
-		$url = OldPageRedirector::find_old_page('oldurl');
-		$matchedPage = SiteTree::get_by_link($url);
-		$this->assertEquals('First Level',$matchedPage->Title);
+		$response = ModelAsController::find_old_page('oldurl');
+		$this->assertEquals('First Level',$response->Title);
 		
 		$page2 = new Page();
 		$page2->Title      = 'Second Level Page';
@@ -282,13 +281,11 @@ class ModelAsControllerTest extends FunctionalTest {
 		$page2->write();
 		$page2->publish('Stage', 'Live');
 		
-		$url = OldPageRedirector::find_old_page('oldpage2',$page2->ParentID);
-		$matchedPage = SiteTree::get_by_link($url);
-		$this->assertEquals('Second Level Page',$matchedPage->Title);
+		$response = ModelAsController::find_old_page('oldpage2',$page2->ParentID);
+		$this->assertEquals('Second Level Page',$response->Title);
 		
-		$url = OldPageRedirector::find_old_page('oldpage2',$page2->ID);
-		$matchedPage = SiteTree::get_by_link($url);
-		$this->assertEquals(false, $matchedPage);
+		$response = ModelAsController::find_old_page('oldpage2',$page2->ID);
+		$this->assertEquals(false, $response );
 	}
 
 	/**

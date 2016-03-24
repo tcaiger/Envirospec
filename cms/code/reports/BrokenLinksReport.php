@@ -29,16 +29,8 @@ class BrokenLinksReport extends SS_Report {
 				$sort = '';
 			}
 		}
-		$brokenFilter = array(
-			'"SiteTree"."HasBrokenLink" = ? OR "SiteTree"."HasBrokenFile" = ?' => array(true, true)
-		);
-		$isLive = !isset($params['CheckSite']) || $params['CheckSite'] == 'Published';
-		if ($isLive) {
-			$ret = Versioned::get_by_stage('SiteTree', 'Live', $brokenFilter, $sort, $join, $limit);
-		} else {
-			$ret = DataObject::get('SiteTree', $brokenFilter, $sort, $join, $limit);
-		}
-		
+		$ret = Versioned::get_by_stage('SiteTree', ((!isset($params['CheckSite']) || ($params['CheckSite'] == 'Published')) ? 'Live' : 'Stage'), '("SiteTree"."HasBrokenLink" = 1 OR "SiteTree"."HasBrokenFile" = 1)', $sort, $join, $limit);
+
 		$returnSet = new ArrayList();
 		if ($ret) foreach($ret as $record) {
 			$reason = false;
@@ -139,16 +131,5 @@ class BrokenLinksReport extends SS_Report {
 				)
 			)
 		);
-	}
-}
-
-
-/**
- * @deprecated 3.2..4.0
- */
-class SideReport_BrokenLinks extends BrokenLinksReport {
-	public function __construct() {
-		Deprecation::notice('4.0', 'Use BrokenLinksReport instead');
-		parent::__construct();
 	}
 }
