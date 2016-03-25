@@ -2,409 +2,413 @@
 
 class Product extends Page
 {
-	public function canEdit($member = null)
-	{
+    public function canEdit($member = null)
+    {
         return Permission::check('CMS_ACCESS_MyInfoAdmin', 'any', $member);
     }
 
-	static $defaults = array(
-		'ShowInMenus' => false,
-		'ShowInSearch' => false
-	);
+    static $defaults = array(
+        'ShowInMenus'  => false,
+        'ShowInSearch' => false
+    );
 
-	private static $can_be_root = false;
-	
-	private static $has_one = array(
-		'Supplier' => 'Companies',
-		'Manufacturer' => 'Companies',
-		'ProductCategory' => 'ProductCategory'
-	);
+    private static $can_be_root = false;
 
-	private static $has_many = array(
-		'ProductImages' => 'Image',
-		'Certificates' => 'Certificate',
-		'Credits' => 'Credit'
-	);
-	
-	static $icon = 'mysite/icons/BlueFile';
+    private static $has_one = array(
+        'Supplier'        => 'Companies',
+        'Manufacturer'    => 'Companies',
+        'ProductCategory' => 'ProductCategory'
+    );
 
-	private static $db = array(
+    private static $has_many = array(
+        'ProductImages' => 'Image',
+        'Certificates'  => 'Certificate',
+        'Credits'       => 'Credit'
+    );
 
-		'Subheading' => 'Varchar',
-		'Status' => 'Varchar',
-		'ParentID' => 'Int',
-		'ManufacturerID' => 'Int',
-		'SupplierID' => 'Int',
-		'GeneralDescription' => 'HTMLText',
-		'BenefitsAdvantages' => 'HTMLText',
-		'ApplicationAndPurpose' => 'HTMLText',
-		'InstallationAndMaintainance' => 'HTMLText',
-		'KeyProperties' => 'HTMLText',
-		'ProductSpecificWebsite' => 'Varchar(255)',
-		'ProductDistributor' => 'Varchar(255)',
-		'ProductApplicators' => 'Varchar(255)',
-		'InstallationManual' => 'Varchar(255)',
-		'MaintainanceManual' => 'Varchar(255)',
-		'ProductBrochure' => 'Varchar(255)',
-		'CAD' => 'Varchar(255)',
-		'MaterialSafetyDataSheet' => 'Varchar(255)',
-		'TechnicalAppraisalDocument' => 'Varchar(255)',
-		'ProductSpecification' => 'Varchar(255)',
-		'SpecialAchievement' => 'Varchar(255)',
-		'AdditionalInformation' => 'HTMLText',
-		'EnvironmentalManagementSystem' => 'Boolean',
-		'CarbonOffset' => 'Boolean',
-		'PerformanceItemEcolabel' => 'Boolean',
-		'LifeCycleBasedEcolabel' => 'Boolean',
-		'NaturalProduct' => 'Boolean',
-		'NewZealandMadeAccreditations' => 'Boolean',
-		'GreenStarCompatible' => 'Varchar',
-		'LivingBuildingChallenge' => 'Boolean',
-		'ProductEnvironmentalIndex' => 'Boolean'
-	);
-	
+    static $icon = 'mysite/icons/BlueFile';
 
-	public function getCMSFields($member = null)
-	{
-		$fields = parent::getCMSFields();
-		$fields->removeByName('Content');
+    private static $db = array(
+
+        'Subheading'                    => 'Varchar',
+        'Status'                        => 'Varchar',
+        'ParentID'                      => 'Int',
+        'ManufacturerID'                => 'Int',
+        'SupplierID'                    => 'Int',
+        'GeneralDescription'            => 'HTMLText',
+        'BenefitsAdvantages'            => 'HTMLText',
+        'ApplicationAndPurpose'         => 'HTMLText',
+        'InstallationAndMaintainance'   => 'HTMLText',
+        'KeyProperties'                 => 'HTMLText',
+        'ProductSpecificWebsite'        => 'Varchar(255)',
+        'ProductDistributor'            => 'Varchar(255)',
+        'ProductApplicators'            => 'Varchar(255)',
+        'InstallationManual'            => 'Varchar(255)',
+        'MaintainanceManual'            => 'Varchar(255)',
+        'ProductBrochure'               => 'Varchar(255)',
+        'CAD'                           => 'Varchar(255)',
+        'MaterialSafetyDataSheet'       => 'Varchar(255)',
+        'TechnicalAppraisalDocument'    => 'Varchar(255)',
+        'ProductSpecification'          => 'Varchar(255)',
+        'SpecialAchievement'            => 'Varchar(255)',
+        'AdditionalInformation'         => 'HTMLText',
+        'EnvironmentalManagementSystem' => 'Boolean',
+        'CarbonOffset'                  => 'Boolean',
+        'PerformanceItemEcolabel'       => 'Boolean',
+        'LifeCycleBasedEcolabel'        => 'Boolean',
+        'NaturalProduct'                => 'Boolean',
+        'NewZealandMadeAccreditations'  => 'Boolean',
+        'GreenStarCompatible'           => 'Varchar',
+        'LivingBuildingChallenge'       => 'Boolean',
+        'ProductEnvironmentalIndex'     => 'Boolean'
+    );
 
 
-		// =====================================================
-		//                  Main Tab 
-		// =====================================================
-		$fields->addFieldsToTab('Root.Main', array(
-
-			TextField::create('Subheading'),
-			
-			ToggleCompositeField::create('pa', 'Product Attributes', array (
-				CheckboxField::create('EnvironmentalManagementSystem', 'Environmental Management System'),
-				CheckboxField::create('CarbonOffset', 'Carbon Offset'),
-				CheckboxField::create('PerformanceItemEcolabel', 'PerformanceItemEcolabel'),
-				CheckboxField::create('LifeCycleBasedEcolabel', 'LifeCycleBasedEcolabel'),
-				CheckboxField::create('NaturalProduct', 'Natural Product'),
-				CheckboxField::create('NewZealandMadeAccreditations', 'NewZealand Made Accreditations'),
-				CheckboxField::create('GreenStarCompatible', 'Green Star Compatible'),
-				CheckboxField::create('LivingBuildingChallenge', 'Living Building Challenge'),
-				CheckboxField::create('ProductEnvironmentalIndex', 'Product  Environmental Index')
-			)),
-		), 'Metadata');
+    public function getCMSFields($member = null)
+    {
+        $fields = parent::getCMSFields();
+        $fields->removeByName('Content');
 
 
-		// =====================================================
-		//                Descriptions Tab 
-		// =====================================================
-		$fields->addFieldsToTab('Root.Descriptions', array(
+        // =====================================================
+        //                  Main Tab
+        // =====================================================
+        $fields->addFieldsToTab('Root.Main', array(
 
-			ToggleCompositeField::create('gd', 'General Description', array (
-				HTMLEditorField::create('GeneralDescription', '')
-			)),
-			ToggleCompositeField::create('ba', 'Benefits & Advantages', array (
-				HTMLEditorField::create('BenefitsAdvantages', '')
-			)),
-			ToggleCompositeField::create('ap', 'Application & Purpose', array (
-				HTMLEditorField::create('ApplicationAndPurpose', '')
-			)),
-			ToggleCompositeField::create('im', 'Installation & Maintainance', array (
-				HTMLEditorField::create('InstallationAndMaintainance', '')
-			)),
-			ToggleCompositeField::create('kp', 'Key Properties', array (
-				HTMLEditorField::create('KeyProperties', '')
-			)),
-			ToggleCompositeField::create('ap', 'Additional Information', array (
-				HTMLEditorField::create('AdditionalInformation', '')
-			))
-		));
+            TextField::create('Subheading'),
 
-		// =====================================================
-		//                Companies Tab
-		// =====================================================
-		$fields->addFieldsToTab('Root.Companies', array(
-
-			DropdownField::create('ManufacturerID', 'Manufacturer', 
-				Companies::get()->sort('Name', 'ASC')->map('ID', 'Title'))
-					->setEmptyString('(Select One)'
-			),
-			DropdownField::create('SupplierID', 'Supplier', 
-				Companies::get()->sort('Name', 'ASC')->map('ID', 'Title'))
-					->setEmptyString('(Select One)'
-			)
-		));
+            ToggleCompositeField::create('pa', 'Product Attributes', array(
+                CheckboxField::create('EnvironmentalManagementSystem', 'Environmental Management System'),
+                CheckboxField::create('CarbonOffset', 'Carbon Offset'),
+                CheckboxField::create('PerformanceItemEcolabel', 'PerformanceItemEcolabel'),
+                CheckboxField::create('LifeCycleBasedEcolabel', 'LifeCycleBasedEcolabel'),
+                CheckboxField::create('NaturalProduct', 'Natural Product'),
+                CheckboxField::create('NewZealandMadeAccreditations', 'NewZealand Made Accreditations'),
+                CheckboxField::create('GreenStarCompatible', 'Green Star Compatible'),
+                CheckboxField::create('LivingBuildingChallenge', 'Living Building Challenge'),
+                CheckboxField::create('ProductEnvironmentalIndex', 'Product  Environmental Index')
+            )),
+        ), 'Metadata');
 
 
-		// =====================================================
-		//               Certificates Tab  
-		// =====================================================
-		$fields->addFieldsToTab('Root.Certificates', GridField::create(
-			'Certificates',
-			'Certificates for this product',
-			$this->Certificates(),
-			GridFieldConfig_RecordEditor::create()
-		));
+        // =====================================================
+        //                Descriptions Tab
+        // =====================================================
+        $fields->addFieldsToTab('Root.Descriptions', array(
+
+            ToggleCompositeField::create('gd', 'General Description', array(
+                HTMLEditorField::create('GeneralDescription', '')
+            )),
+            ToggleCompositeField::create('ba', 'Benefits & Advantages', array(
+                HTMLEditorField::create('BenefitsAdvantages', '')
+            )),
+            ToggleCompositeField::create('ap', 'Application & Purpose', array(
+                HTMLEditorField::create('ApplicationAndPurpose', '')
+            )),
+            ToggleCompositeField::create('im', 'Installation & Maintainance', array(
+                HTMLEditorField::create('InstallationAndMaintainance', '')
+            )),
+            ToggleCompositeField::create('kp', 'Key Properties', array(
+                HTMLEditorField::create('KeyProperties', '')
+            )),
+            ToggleCompositeField::create('ap', 'Additional Information', array(
+                HTMLEditorField::create('AdditionalInformation', '')
+            ))
+        ));
+
+        // =====================================================
+        //                Companies Tab
+        // =====================================================
+        $fields->addFieldsToTab('Root.Companies', array(
+
+            DropdownField::create('ManufacturerID', 'Manufacturer',
+                Companies::get()->sort('Name', 'ASC')->map('ID', 'Title'))
+                ->setEmptyString('(Select One)'
+                ),
+            DropdownField::create('SupplierID', 'Supplier',
+                Companies::get()->sort('Name', 'ASC')->map('ID', 'Title'))
+                ->setEmptyString('(Select One)'
+                )
+        ));
 
 
-		// =====================================================
-		//                     Credits Tab 
-		// =====================================================
-		$fields->addFieldsToTab('Root.Credits',  GridField::create(
-			'Credits',
-			'Credits for this product',
-			$this->Credits(),
-			GridFieldConfig_RecordEditor::create()
-		));
+        // =====================================================
+        //               Certificates Tab
+        // =====================================================
+        $fields->addFieldsToTab('Root.Certificates', GridField::create(
+            'Certificates',
+            'Certificates for this product',
+            $this->Certificates(),
+            GridFieldConfig_RecordEditor::create()
+                ->addComponents(new GridFieldOrderableRows('SortOrder'))
+        ));
 
-	
-		// =====================================================
-		//                    Images Tab 
-		// =====================================================
-		$fields->addFieldsToTab('Root.Images', array(
-			$upload = UploadField::create('ProductImages', 'Product Images')
-		));
 
-		$upload->getValidator()->setAllowedExtensions(array(
-			'png', 'jpeg', 'jpg', 'gif'
-		));
-		$upload->setFolderName('product-photos');
-		$upload->setAllowedMaxFileNumber(5);
-		$sizeMB = 2; // 2 MB
-    	$size = $sizeMB * 1024 * 1024; // 2 MB in bytes
-	    	$upload->getValidator()->setAllowedMaxFileSize($size);
+        // =====================================================
+        //                     Credits Tab
+        // =====================================================
+        $fields->addFieldsToTab('Root.Credits', GridField::create(
+            'Credits',
+            'Credits for this product',
+            $this->Credits(),
+            GridFieldConfig_RecordEditor::create()
+        ));
 
-    	// =====================================================
-		//                   Links Tab 
-		// =====================================================
-		$fields->addFieldsToTab('Root.Links', array(
 
-			TextField::create('ProductSpecificWebsite', 'Product Website'),
-			TextField::create('ProductDistributor', 'Product Distributor'),
-			TextField::create('ProductApplicators', 'Product Applicators'),
-			TextField::create('InstallationManual', 'Installation Manual'),
-			TextField::create('MaintainanceManual', 'Maintainance Manual'),
-			TextField::create('ProductBrochure', 'Product Brochure'),
-			TextField::create('CAD', 'CAD'),
-			TextField::create('MaterialSafetyDataSheet', 'Material Safety DataSheet'),
-			TextField::create('TechnicalAppraisalDocument', 'Technical Appraisal Document'),
-			TextField::create('ProductSpecification' , 'Product Specification'),
-			TextField::create('SpecialAchievement' , 'Special Achievement')
-		));
+        // =====================================================
+        //                    Images Tab
+        // =====================================================
+        $fields->addFieldsToTab('Root.Images', array(
+            $upload = UploadField::create('ProductImages', 'Product Images')
+        ));
 
-		if(!Permission::check('CMS_ACCESS_PAGES', 'any', $member))
-		{
-			$fields->removebyName(array(
-				'Main',
-				'Descriptions',
-				'Companies',
-				'Certificates',
-				'Credits'
-			));
-		}
+        $upload->getValidator()->setAllowedExtensions(array(
+            'png', 'jpeg', 'jpg', 'gif'
+        ));
+        $upload->setFolderName('product-photos');
+        $upload->setAllowedMaxFileNumber(5);
+        $sizeMB = 2; // 2 MB
+        $size = $sizeMB * 1024 * 1024; // 2 MB in bytes
+        $upload->getValidator()->setAllowedMaxFileSize($size);
 
-		return $fields;
-	}
+        // =====================================================
+        //                   Links Tab
+        // =====================================================
+        $fields->addFieldsToTab('Root.Links', array(
 
-	// =====================================================
-	//       Get The Name Of The Manufacturer  
-	// =====================================================
-	public function GetManufacturer($CompanyID)
-	{
-		return Companies::get()->filter(array(
-			'ID' => $CompanyID
-		));
-	}
-	
-	// =====================================================
-	//                  Get Credit Points 
-	// =====================================================
-	public function GetPoints($ProductID)
-	{
-		$credits = Credit::get()->filter(array(
-			'ProductID' => $ProductID 
-		));
+            TextField::create('ProductSpecificWebsite', 'Product Website'),
+            TextField::create('ProductDistributor', 'Product Distributor'),
+            TextField::create('ProductApplicators', 'Product Applicators'),
+            TextField::create('InstallationManual', 'Installation Manual'),
+            TextField::create('MaintainanceManual', 'Maintainance Manual'),
+            TextField::create('ProductBrochure', 'Product Brochure'),
+            TextField::create('CAD', 'CAD'),
+            TextField::create('MaterialSafetyDataSheet', 'Material Safety DataSheet'),
+            TextField::create('TechnicalAppraisalDocument', 'Technical Appraisal Document'),
+            TextField::create('ProductSpecification', 'Product Specification'),
+            TextField::create('SpecialAchievement', 'Special Achievement')
+        ));
 
-		for ($i=0; $i < count($credits); $i++)
-		{ 
-			if ($credits[$i]->AvailableCreditID == $_GET['Credit'])
-			{
-				return $credits[$i]->ContributionPotential;
-			}
-		}
-	}
+        if ( ! Permission::check('CMS_ACCESS_PAGES', 'any', $member)) {
+            $fields->removebyName(array(
+                'Main',
+                'Descriptions',
+                'Companies',
+                'Certificates',
+                'Credits'
+            ));
+        }
 
-	// =====================================================
-	//                  Get Compliance
-	// =====================================================
-	public function GetCompliance($compliant)
-	{
-		if($compliant){
-			return '<i class="fa fa-check"></i>';
-		} else {
-			return '';
-		}
-	}
+        return $fields;
+    }
+
+    // =====================================================
+    //       Get The Name Of The Manufacturer
+    // =====================================================
+    public function GetManufacturer($CompanyID)
+    {
+        return Companies::get()->filter(array(
+            'ID' => $CompanyID
+        ));
+    }
+
+    // =====================================================
+    //                  Get Credit Points
+    // =====================================================
+    public function GetPoints($ProductID)
+    {
+        $credits = Credit::get()->filter(array(
+            'ProductID' => $ProductID
+        ));
+
+        for ($i = 0; $i < count($credits); $i++) {
+            if ($credits[$i]->AvailableCreditID == $_GET['Credit']) {
+                return $credits[$i]->ContributionPotential;
+            }
+        }
+    }
+
+    // =====================================================
+    //                  Get Compliance
+    // =====================================================
+    public function GetCompliance($compliant)
+    {
+        if ($compliant) {
+            return '<i class="fa fa-check"></i>';
+        } else {
+            return '';
+        }
+    }
 }
 
 
 class Product_Controller extends Page_Controller
 {
 
-	private static $allowed_actions = array(
-		'CompanyContactForm'
-	);
-	// =====================================================
-	//         Show Green Star Certificate
-	// =====================================================
-	public function ShowGreenStarCertificate($PageID)
-	{
-		return Certificate::get()->filter(array(
-			'ProductID' => $PageID,
-			'Type' => 'Green Building Rating Compatibility',
-			'Display' => 1
-		));
-	}
+    private static $allowed_actions = array(
+        'CompanyContactForm'
+    );
+    // =====================================================
+    //         Show Green Star Certificate
+    // =====================================================
+    public function ShowGreenStarCertificate($PageID)
+    {
+        return Certificate::get()->filter(array(
+            'ProductID' => $PageID,
+            'Type'      => 'Green Building Rating Compatibility',
+            'Display'   => 1
+        ));
+    }
 
-	// =====================================================
-	//       Show Green Star Certificates 
-	// =====================================================
-	public function ShowCertificates($PageID, $ManufacturerID, $SupplierID)
-	{
+    // =====================================================
+    //       Show Green Star Certificates
+    // =====================================================
+    public function ShowCertificates($PageID, $ManufacturerID, $SupplierID)
+    {
 
-		return Certificate::get()->exclude(
-				'Type', 'Green Building Rating Compatibility'
-			)
-			->filter(array(
-				'Display' => 1
-			))
-			->filterAny(array(
-				'ProductID' => $PageID,
-				'CompaniesID' => $ManufacturerID,
-				'CompaniesID' => $SupplierID
-			));
-
-
-	}
-
-	// =====================================================
-	//           Show Credits
-	// =====================================================
-	public function ShowCredits($PageID)
-	{
-
-		return Credit::get()->filter(array(
-			'ProductID' => $PageID
-		));
-	}
+        return Certificate::get()->exclude(
+            'Type', 'Green Building Rating Compatibility'
+        )
+            ->filter(array(
+                'Display' => 1
+            ))
+            ->filterAny(array(
+                'ProductID'   => $PageID,
+                'CompaniesID' => $ManufacturerID,
+                'CompaniesID' => $SupplierID
+            ))
+            ->sort('SortOrder', 'ASC');
 
 
-	// =====================================================
-	//           Show Credits
-	// =====================================================
-	public function DisplayLinks()
-	{
-		$items = array(
-			'ProductSpecificWebsite',
-			'ProductDistributor',
-			'ProductApplicators',
-			'InstallationManual',
-			'MaintainanceManual',
-			'ProductBrochure',
-			'CAD',
-			'MaterialSafetyDataSheet',
-			'TechnicalAppraisalDocument',
-			'ProductSpecification',
-			'SpecialAchievement'
-		);
+    }
 
-			$output = new ArrayList();
+    // =====================================================
+    //           Show Credits
+    // =====================================================
+    public function ShowCredits($PageID)
+    {
 
-			foreach($items as $item){
-
-				$url = $this->$item;
-
-				if($url && $url != 'http://'){
-
-					// If it doesn't have http add it
-					if(substr($url, 0, 7) != 'http://' || substr($url, 0, 8) != 'https://'){
-						$url = "http://" . $url;
-					}
-
-					$output->push(new ArrayData(array(
-						'Title' => $item,
-						'URL' => $url
-					)));
-				}
-			}
-
-			return $output;
-	}
-
-	// =====================================================
-	//                  Get Company
-	// =====================================================
-	public function Company($CompanyID)
-	{
-		return dataObject::get_by_id('Companies', $CompanyID);
-	}
-
-	// =====================================================
-	//           Back To Search Results Link
-	// =====================================================
-	public function BackLink(){
-		if(isset($_SERVER['HTTP_REFERER'])){
-			return $_SERVER['HTTP_REFERER'];
-		} else {
-			return '/';
-		}
-		
-	}
-
-	// =====================================================
-	//                   Company Contact Form 
-	// =====================================================
-	public function CompanyContactForm()
-	{
-		$form = BootstrapForm::create(
-			$this,
-			__Function__,
-			Fieldlist::create(
-				TextField::create('Name'),
-				EmailField::create('Email', 'Email Address'),
-				TextAreaField::create('Message')
-			),
-			Fieldlist::create(
-				FormAction::create('SubmitContactForm','Send')
-					->addExtraClass('btn-lg btn-theme-bg')
-			)
-		);
-		return $form;
-	}
+        return Credit::get()->filter(array(
+            'ProductID' => $PageID
+        ));
+    }
 
 
-	// ========================================
-	// Submit  Contact Form
-	// ========================================
-	public function submitContactForm($data, $form){
+    // =====================================================
+    //           Show Credits
+    // =====================================================
+    public function DisplayLinks()
+    {
+        $items = array(
+            'ProductSpecificWebsite',
+            'ProductDistributor',
+            'ProductApplicators',
+            'InstallationManual',
+            'MaintainanceManual',
+            'ProductBrochure',
+            'CAD',
+            'MaterialSafetyDataSheet',
+            'TechnicalAppraisalDocument',
+            'ProductSpecification',
+            'SpecialAchievement'
+        );
 
-		$myCompany = $this->Company($this->ManufacturerID);
+        $output = new ArrayList();
 
-		$email = new Email();
-		$email
-		    ->setFrom('"Envirospec Contact Form" <envirospec@mail.co.nz>')
+        foreach ($items as $item) {
 
-		    // For Live Site change this
-		    ->setTo($this->SiteConfig()->ContactFormEmail)
-		    // ->setTo($myCompany->Email)
+            $url = $this->$item;
+
+            //add spaces to the text
+            $title = preg_replace('/([a-z])([A-Z])/s','$1 $2', $item);
+
+            if ($url && $url != 'http://') {
+
+                // If it doesn't have http add it
+                if (substr($url, 0, 7) != 'http://' || substr($url, 0, 8) != 'https://') {
+                    $url = "http://" . $url;
+                }
+
+                $output->push(new ArrayData(array(
+                    'Title' => $title,
+                    'URL'   => $url
+                )));
+            }
+        }
+
+        return $output;
+    }
+
+    // =====================================================
+    //                  Get Company
+    // =====================================================
+    public function Company($CompanyID)
+    {
+        return dataObject::get_by_id('Companies', $CompanyID);
+    }
+
+    // =====================================================
+    //           Back To Search Results Link
+    // =====================================================
+    public function BackLink()
+    {
+        if (isset($_SERVER['HTTP_REFERER'])) {
+            return $_SERVER['HTTP_REFERER'];
+        } else {
+            return '/';
+        }
+
+    }
+
+    // =====================================================
+    //                   Company Contact Form
+    // =====================================================
+    public function CompanyContactForm()
+    {
+        $form = BootstrapForm::create(
+            $this,
+            __Function__,
+            Fieldlist::create(
+                TextField::create('Name'),
+                EmailField::create('Email', 'Email Address'),
+                TextAreaField::create('Message')
+            ),
+            Fieldlist::create(
+                FormAction::create('SubmitContactForm', 'Send')
+                    ->addExtraClass('btn-lg btn-theme-bg')
+            )
+        );
+
+        return $form;
+    }
 
 
-		    ->setSubject('Envirospec Website Product Enquiry')
-		    ->setTemplate('ProductFormEmail')
-		    ->populateTemplate(new ArrayData(array(
-		        'Name' => $data['Name'],
-		        'Email' =>  $data['Email'],
-		        'Message' =>  $data['Message'],
-		    )));
+    // ========================================
+    // Submit  Contact Form
+    // ========================================
+    public function submitContactForm($data, $form)
+    {
 
-		$email->send();
+        $myCompany = $this->Company($this->ManufacturerID);
 
-		return $this->redirectback();
-	}
+        $email = new Email();
+        $email
+            ->setFrom('"Envirospec Contact Form" <envirospec@mail.co.nz>')
+            // For Live Site change this
+            ->setTo($this->SiteConfig()->ContactFormEmail)
+            // ->setTo($myCompany->Email)
+
+
+            ->setSubject('Envirospec Website Product Enquiry')
+            ->setTemplate('ProductFormEmail')
+            ->populateTemplate(new ArrayData(array(
+                'Name'    => $data['Name'],
+                'Email'   => $data['Email'],
+                'Message' => $data['Message'],
+            )));
+
+        $email->send();
+
+        return $this->redirectback();
+    }
 }
