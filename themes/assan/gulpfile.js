@@ -15,17 +15,12 @@ var combinemq	 = require('gulp-combine-media-queries')
 // =================================================================
 gulp.task('css', function(){
 
-	var stream = gulp.src('scss/main.scss')   
-		.pipe(plumber())                                                  
+	var stream = gulp.src('styles/main.scss')
 		.pipe(sass())
-		.pipe(combinemq())                                                  
-		.pipe(autoprefix('last 2 versions'))          
-	
-	// make main css file
-	stream.pipe(clone())                             
-		.pipe(minifycss())                                             
-		.pipe(rename('main.min.css'))                
-		.pipe(gulp.dest('css/'))              
+		.pipe(autoprefix('last 2 versions'))
+		.pipe(minifycss())
+		.pipe(rename('main.min.css'))
+		.pipe(gulp.dest('css/'));
 	
 	return stream
 })
@@ -34,7 +29,7 @@ gulp.task('css', function(){
 //                        SCSS Watch
 // =================================================================
 gulp.task('watch', ['css'], function(){
-	gulp.watch(['scss/**/*.scss'], ['css'])  
+	gulp.watch(['styles/**/*.scss'], ['css'])
 })
 
 gulp.task('default', ['css'])

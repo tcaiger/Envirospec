@@ -15,7 +15,7 @@ class InteractiveHouse_Controller extends Page_Controller
 	{
 		parent::init();
 
-	    Requirements::javascript("{$this->ThemeDir()}/js/custom.interactive-house.js");
+	    Requirements::javascript("{$this->ThemeDir()}/js/interactive-house.js");
 
 	}
 
