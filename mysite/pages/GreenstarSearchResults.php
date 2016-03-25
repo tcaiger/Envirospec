@@ -28,9 +28,9 @@ class GreenstarSearchResults_Controller extends Page_Controller
         // ========================================
         if ($request->isAjax()) {
 
-            $sortID = $this->getRequest()->getVar('sort');
+            $sort = $this->getRequest()->getVar('sort');
 
-            if ($sortID == 0) {
+            if ($sort == 'Product') {
                 $results = $this->GetFilteredProducts($creditID);
             } else {
                 $results = $this->GetFilteredCredits($creditID);
@@ -38,13 +38,13 @@ class GreenstarSearchResults_Controller extends Page_Controller
 
             return $this->customise(array(
                 'Results' => $results,
-                'Sort'    => $sortID
+                'Sort'    => $sort
             ))->renderWith('ResultsTable');
         }
 
         return array(
             'Results' => $results,
-            'Sort'    => 0
+            'Sort'    => 'Product'
         );
     }
 

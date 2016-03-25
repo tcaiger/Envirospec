@@ -60,7 +60,8 @@ class Product extends Page
         'NewZealandMadeAccreditations'  => 'Boolean',
         'GreenStarCompatible'           => 'Varchar',
         'LivingBuildingChallenge'       => 'Boolean',
-        'ProductEnvironmentalIndex'     => 'Boolean'
+        'ProductEnvironmentalIndex'     => 'Boolean',
+        'SearchLabels'                  => 'Varchar(100)'
     );
 
 
@@ -76,6 +77,7 @@ class Product extends Page
         $fields->addFieldsToTab('Root.Main', array(
 
             TextField::create('Subheading'),
+            TextField::create('SearchLabels')->setDescription('These are the tags the navigation search will look at.'),
 
             ToggleCompositeField::create('pa', 'Product Attributes', array(
                 CheckboxField::create('EnvironmentalManagementSystem', 'Environmental Management System'),
@@ -320,7 +322,7 @@ class Product_Controller extends Page_Controller
             $url = $this->$item;
 
             //add spaces to the text
-            $title = preg_replace('/([a-z])([A-Z])/s','$1 $2', $item);
+            $title = preg_replace('/([a-z])([A-Z])/s', '$1 $2', $item);
 
             if ($url && $url != 'http://') {
 

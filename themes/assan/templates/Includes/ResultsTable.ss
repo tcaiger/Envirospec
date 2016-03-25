@@ -10,7 +10,7 @@
     </thead>
     <tbody>
         <!-- Product Sorted Results -->
-        <% if Sort == 0 %>
+        <% if Sort == 'Product' %>
             <% loop Results.Sort('Title', 'ASC') %>
                 <tr>
                     <% loop GetManufacturer($SupplierID) %>

@@ -1,7 +1,7 @@
 <div class="top-bar-light">           
     <div class="container">
         <div class="row">
-            <div class="col-sm-5 hidden-xs">
+            <div class="pull-left hidden-xs">
                 <ul style="margin-left: -0px;"class="list-inline top-dark-right">                      
                     <li>
                         <a href="https://www.facebook.com/EnviroSpec" target="_blank">
@@ -31,16 +31,16 @@
                 </ul>
 
             </div>
-            <div class="col-sm-7 text-right">
-                <ul class="list-inline top-dark-right">                      
+            <div class="pull-right text-right">
+                <ul class="list-inline top-dark-right">
+
                     <li class="hidden-sm hidden-xs"><i class="fa fa-envelope"></i>  $SiteConfig.ContactEmail</li>
                     <li class="hidden-sm hidden-xs"><i class="fa fa-phone"></i> $SiteConfig.ContactPhone</li>
                     <li><a href="admin"><i class="fa fa-lock"></i> Login</a></li>
-                    <li><a class="topbar-icons" href="#"><span><i class="fa fa-search top-search"></i></span></a></li>
+                    <li>
+                        $NavSearch
+                    </li>
                 </ul>
-                <div class="search">
-                    $SearchForm
-                </div>
             </div>
         </div>
     </div>

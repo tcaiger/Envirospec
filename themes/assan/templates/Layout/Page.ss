@@ -11,9 +11,11 @@
             <div class="row">
                 <div class="col-sm-12">
                     <h3>$Subheading</h3>
+                    <h3>$Title</h3>
+                    <br>
                     $Content
                     <!-- ============================== -->
-                    <!-- Form For Adming Login Page     -->
+                    <!-- Form For Admin Login Page     -->
                     <!-- ============================== -->
                     <div class="col-md-6">
                         <% if $Form %>

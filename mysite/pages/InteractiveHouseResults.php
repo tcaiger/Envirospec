@@ -29,11 +29,6 @@ class InteractiveHouseResults_Controller extends Page_Controller
         $this->articleList = Product::get();
     }
 
-    public function index(SS_HTTPRequest $request)
-    {
-
-
-    }
 
     // ========================================
     // Category Filter
@@ -59,35 +54,34 @@ class InteractiveHouseResults_Controller extends Page_Controller
         // ========================================
         if ($r->isAjax()) {
 
-            $sortID = $this->getRequest()->getVar('sort');
+            $sort = $this->getRequest()->getVar('sort');
+            $order = $this->getRequest()->getVar('order');
 
-            if ($sortID == 0) {
-                $results = $this->articleList->sort('Title', 'ASC');
-            } else {
-                $results = $this->articleList->sort('ManufacturerID', 'ASC');
-            }
+
+            $this->articleList = $this->articleList->sort($sort, $order);
+
+            $paginatedList = PaginatedList::create(
+                $this->articleList,
+                $r
+            )->setPageLength(25);
 
 
             return $this->customise(array(
-                'Results' => $results
+                'Results' => $paginatedList
             ))->renderWith('ComparisonTable');
 
         }
 
+        $paginatedList = PaginatedList::create(
+            $this->articleList,
+            $r
+        )->setPageLength(25);
 
         return array(
-            'SelectedCategory' => $category
+            'Results' => $paginatedList
         );
     }
 
-    public function Results()
-    {
-
-        return PaginatedList::create(
-            $this->articleList,
-            $this->getRequest()
-        );
-    }
 
     // ========================================
     // Get Search Paramaters
@@ -98,7 +92,7 @@ class InteractiveHouseResults_Controller extends Page_Controller
         $categoryNumber = $this->getRequest()->param('ID');
         $category = dataObject::get_by_id('ProductCategory', $categoryNumber);
 
-        return ' ... / ' . $category->Parent->Title . ' / ' . $category->Title;
+        return $category->Parent->parent->Title . ' / ' . $category->Parent->Title . ' / ' . $category->Title;
 
     }
 }

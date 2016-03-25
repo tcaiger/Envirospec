@@ -1,72 +1,96 @@
-.search-area form{
-
-	fieldset,
-	.form-actions{
-		display: inline-block !important;
-	}
-	input{
-		width: 200px !important;
-	
-	}
-	button{
-		border-radius: 0 2px 2px 0 !important;
-		margin-top: -1px;
-		margin-left: -5px;
-	}
+#BootstrapForm_NavSearch {
+  display : inline;
+  fieldset, .form-actions, #Keyword, label {
+    display : inline;
+  }
+  .form-control{
+    height: 26px;
+  }
+  input{
+    font-size: 11px;
+    padding: 5px 10px;
+  }
+  .btn{
+    font-size: 10px;
+    margin: -1px 0 0 -3px;
+    padding: 5px 10px;
+    border-radius: 0;
+  }
 }
 
-
 #BootstrapForm_ContactForm .form-control {
-    min-height: 45px;
-    background-color: #fff;
-    margin-bottom: 2em; 
+  min-height       : 45px;
+  background-color : #fff;
+  margin-bottom    : 2em;
 }
 
 // Add margin on the first search button on mobile view
-@media(max-width:767px){
-	.intro-text-1 .row div:first-child{
-		margin-bottom: 2em;
-	}
+@media(max-width : 767px) {
+  .intro-text-1 .row div:first-child {
+    margin-bottom : 2em;
+  }
 }
-
-
 
 #GreenStarOrderForm,
-#HouseOrderForm{
-	select{
-		display: inline-block; 
-		position: relative;
-		top: -1px;
-		width: 120px; 
-		font-size: 16px;
-		margin: 0 15px 0 10px;	
-		color: #666;
-		border: 1px solid #bbb;	
-		text-align: center;
-	}
+#HouseOrderForm {
+  select {
+    display    : inline-block;
+    position   : relative;
+    top        : -1px;
+    width      : 120px;
+    font-size  : 16px;
+    margin     : 0 15px 0 10px;
+    color      : #666;
+    border     : 1px solid #bbb;
+    text-align : center;
+  }
 }
-.results{
-	display: inline;
-	font-weight: 500;
-	margin-left: 7px;
+
+.results {
+  display:inline;
+  font-weight: 500;
+  color: #666;
+  margin-left : 6px;
 }
-.contact-info br{
-	display: none;
+
+.contact-info br {
+  display : none;
 }
-.contact-info p{
-	display: inline;
+
+.contact-info p {
+  display : inline;
 }
-.first-logo{
-	position: absolute;
-	top: 0px;
-	right: 50px;
+
+.first-logo {
+  position : absolute;
+  top      : 0px;
+  right    : 50px;
 }
-.second-logo{
-	position: absolute;
-	top: 60px;
-	right: 50px;
+
+.second-logo {
+  position : absolute;
+  top      : 60px;
+  right    : 50px;
 }
-.show-link{
-	color: $green;
-	text-decoration: underline;
+
+.show-link {
+  color           : $green;
+  text-decoration : underline;
 }
+
+.sort-dropdown{
+  margin-right: 25px;
+
+  li {
+    display     : block;
+    padding     : 3px 20px;
+    line-height : 1.5;
+    white-space : nowrap;
+    transition  : all 0.2s ease-in;
+    &:hover {
+      cursor     : pointer;
+      background : #eee;
+    }
+  }
+}
+

@@ -9,23 +9,33 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="row">
+                <div class="divide20"></div>
                 <div class="col-sm-12">
-                    <h3>$GetSearchParams</h3>
+
+                    <h4 class="pull-left">Results for "$GetSearchParams"</h4>
+
+                    <div class="dropdown sort-dropdown pull-right" id="HouseOrderForm">
+
+                        <button  class="btn border-black btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-hashopopup="true" aria-expanded="false">
+                            Sort Results <span class="caret"> </span>
+                        </button>
+                        <ul id="GreenstarSort" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li data-sort="Title" data-order="ASC">Products ASC</li>
+                            <li data-sort="Title" data-order="DESC">Products DESC</li>
+                            <li data-sort="Points" data-order="ASC">Points ASC</li>
+                            <li data-sort="Points" data-order="DESC">Points DESC</li>
+                        </ul>
+
+                    </div>
+
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-12">
-                    <h4 class="results">Showing results 1 - $Results.getTotalItems</h4>
-
-                    <span class="pull-right" id="GreenStarOrderForm">
-                        <h4 class="results">Sort:</h4>
-                        <select style="border-bottom-left-radius: 0px">
-                            <option value="0">Product </option>
-                            <option value="1">Points </option>
-                        </select>
-                    </span>
+                    <h5 class="results">Showing results 1 - $Results.getTotalItems</h5>
                 </div>
             </div>
+
             <div class="divide20"></div>
             <!-- Search Results Table -->
             <div class="results-table">
@@ -35,4 +45,4 @@
     </div>
 </div>
 
-<div class="divide40"></div>
+<div class="divide50"></div>

@@ -37,8 +37,9 @@ class SearchResults_Controller extends Page_Controller
         // Keyword Filter
         // ========================================
         if ($search = $request->getVar('Keyword')) {
-            $this->articleList = $this->articleList->filter(array(
-                'Title:PartialMatch' => $search
+            $this->articleList = $this->articleList->filterAny(array(
+                'Title:PartialMatch' => $search,
+                'SearchLabels:PartialMatch' => $search
             ));
         }
 

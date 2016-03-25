@@ -25,14 +25,16 @@ function onYouTubeIframeAPIReady() {
 var playButton = document.querySelector('#play-button');
 var fallbackImage = document.querySelector('.fallback-image');
 
-playButton.addEventListener('click', function(){
+if(playButton){
+    playButton.addEventListener('click', function(){
 
-    player.playVideo();
-    setTimeout(function(){
-        fallbackImage.style.opacity = 0;
-       
-    }, 500);
-    setTimeout(function(){
-         fallbackImage.style.zIndex = -99;
-     }, 3000);
-})
+        player.playVideo();
+        setTimeout(function(){
+            fallbackImage.style.opacity = 0;
+
+        }, 500);
+        setTimeout(function(){
+            fallbackImage.style.zIndex = -99;
+        }, 3000);
+    })
+}

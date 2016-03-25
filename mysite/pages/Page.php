@@ -26,8 +26,6 @@ class Page_Controller extends ContentController
         Requirements::css("{$this->ThemeDir()}/css/jquery.flipster.min.css");
 
 
-
-
         ////////////////////////////////////////////////////////////
         // JS Includes
         ////////////////////////////////////////////////////////////
@@ -37,7 +35,7 @@ class Page_Controller extends ContentController
 
                 "{$this->ThemeDir()}/js/third-party/jquery.min.js",
                 "{$this->ThemeDir()}/js/third-party/jquery.flipster.min.js",
-                "{$this->ThemeDir()}/js/third-party/YTBVideo.js",
+                "{$this->ThemeDir()}/js/YTBVideo.js",
                 "{$this->ThemeDir()}/bootstrap/js/bootstrap.min.js",
                 "{$this->ThemeDir()}/js/third-party/jquery.easing.min.js",
                 "{$this->ThemeDir()}/js/third-party/wow.min.js",
@@ -46,27 +44,38 @@ class Page_Controller extends ContentController
                 "http://maps.google.com/maps/api/js",
                 "{$this->ThemeDir()}/js/custom.js",
 
-		    )
-		);
-	}
+            )
+        );
+    }
+
 
     // ========================================
-    // Top Bar Search Form
+    // Nav Search Form
     // ========================================
-    public function SearchForm()
+    public function NavSearch()
     {
 
-        $fields = new FieldList();
-
-        $actions = new FieldList(
-            FormAction::create('doSearch', 'Search')
+        $form = BootstrapForm::create(
+            $this,
+            __Function__,
+            Fieldlist::create(
+                TextField::create('Keyword', '')
+                    ->setSize("mini")
+                    ->setAttribute('placeholder', 'Search products...')
+            ),
+            Fieldlist::create(
+                FormAction::create('Go', 'Go')
+                    ->setStyle('btn-lg btn-theme-bg')
+            )
         );
-
-        $form = new Form($this, 'SearchForm', $fields, $actions);
-        $form->setTemplate('SearchForm');
+        $form->setFormMethod('GET')
+            ->setFormAction('product-search/search-results')
+            ->disableSecurityToken()
+            ->loadDataFrom($this->request->getVars());
 
         return $form;
     }
+
 
     public function GetProdCats()
     {

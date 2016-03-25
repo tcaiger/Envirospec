@@ -35,7 +35,8 @@ $(document).ready(function ($) {
              *
              * */
 
-            this.navSearch.init();
+            //this.navSearch.init();
+            this.toolTips.init();
             this.coverFlow.init();
             this.showImage.init();
             this.wow.init();
@@ -65,6 +66,15 @@ $(document).ready(function ($) {
                         $(this).removeClass('search-toggle');
                     });
                 });
+            }
+        },
+
+        toolTips: {
+            tip: $("[data-toggle=tooltip]"),
+            init: function(){
+                if(this.tip.length){
+                    this.tip.tooltip();
+                }
             }
         },
 
@@ -135,24 +145,17 @@ $(document).ready(function ($) {
             }
         },
         sortGreenstarResults: {
-            dropdown: $('#GreenStarOrderForm'),
+            button: $('#GreenstarSort'),
             init    : function () {
 
-                this.dropdown.on('change', 'select', function (e) {
-                    console.log('change event');
+                this.button.on('click', 'a', function (e) {
 
-                    // Get selected value
-                    var sort = $('#GreenStarOrderForm option:selected')
-                        .attr('value');
-
-                    // Send an ajax request
+                    var sort = this.innerHTML;
                     var url = window.location.href + '&sort=' + sort;
 
                     $.ajax(url)
                         .done(function (response) {
-                            // Update the results table
                             $('.results-table').html(response);
-                            console.log('ajax request complete');
                         })
                         .fail(function (xhr) {
                             alert('Error:' + xhr.responseText);
@@ -161,23 +164,16 @@ $(document).ready(function ($) {
             }
         },
         sortHouseResults    : {
-            dropdown: $('#HouseOrderForm'),
+            button: $('#HouseSort'),
             init    : function () {
-                this.dropdown.on('change', 'select', function (e) {
-                    console.log('change event');
-
-                    // Get selected value
-                    var sort = $('#HouseOrderForm option:selected')
-                        .attr('value');
-
-                    // Send an ajax request
-                    var url = window.location.href + '&sort=' + sort;
-
+                this.button.on('click', 'li', function (e) {
+                    var sort = $(this).data('sort');
+                    var order = $(this).data('order');
+                    var url = window.location.href + '&sort=' + sort+ '&order=' + order;
+                    console.log(url);
                     $.ajax(url)
                         .done(function (response) {
-                            // Update the results table
                             $('.comparison-table').html(response);
-                            console.log('ajax request complete');
                         })
                         .fail(function (xhr) {
                             alert('Error:' + xhr.responseText);
