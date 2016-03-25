@@ -1,57 +1,68 @@
 <?php
-class ProductCategoriesPage extends Page {
-	private static $can_be_root = false;
-	private static $allowed_children = array (
 
-	);
+class ProductCategoriesPage extends Page
+{
+    private static $can_be_root = false;
+
+    public function getCMSFields()
+    {
+
+        $fields = parent::getCMSFields();
+        $fields->removeByName('Content');
+
+        return $fields;
+    }
 
 }
 
 
-class ProductCategoriesPage_Controller extends Page_Controller{
+class ProductCategoriesPage_Controller extends Page_Controller
+{
 
-	private static $allowed_actions = array (
-		'category'
-	);
+    private static $allowed_actions = array(
+        'category'
+    );
 
-	protected $articleList;
+    protected $articleList;
 
-	public function init(){
-		parent::init();
+    public function init()
+    {
+        parent::init();
 
-		$this->articleList = ProductCategory::get();
-	}
+        $this->articleList = ProductCategory::get();
+    }
 
-	// ========================================
-	// Category Filter
-	// =======================================	
-	public function category (SS_HTTPRequest $r){
-		$category = ProductCategory::get()->byID(
-			$r->param('ID')
-		);
+    // ========================================
+    // Category Filter
+    // =======================================
+    public function category(SS_HTTPRequest $r)
+    {
+        $category = ProductCategory::get()->byID(
+            $r->param('ID')
+        );
 
-		if(!$category){
-			return $this->httpError(404,'That category was not found');
-		}
+        if ( ! $category) {
+            return $this->httpError(404, 'That category was not found');
+        }
 
-		$this->articleList = $this->articleList
-			->filter(array(
-				'ParentID' => $category->ID
-			))->sort('Title','ASC');
+        $this->articleList = $this->articleList
+            ->filter(array(
+                'ParentID' => $category->ID
+            ))->sort('Title', 'ASC');
 
 
+        return array(
+            'SelectedCategory' => $category
+        );
+    }
 
-		return array(
-			'SelectedCategory' => $category
-		);
-	}
+    public function Results()
+    {
 
-	public function Results(){
-
-		return PaginatedList::create(
-			$this->articleList,
-			$this->getRequest()
-		);
-	}
+        return PaginatedList::create(
+            $this->articleList,
+            $this->getRequest()
+        );
+    }
 
 }

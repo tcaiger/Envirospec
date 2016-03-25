@@ -49,7 +49,7 @@ class Home extends Page{
 			TextField::create('SummaryHeading', 'Envirospec Summary Heading'),
 			TextAreaField::create('SummaryText', 'Envirospec Summary Text'),
 			UploadField::create('VideoImage', 'Video Image')
-			
+
 
 		), 'Metadata');
 
