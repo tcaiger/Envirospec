@@ -7,8 +7,7 @@ class MyInfoAdmin extends ModelAdmin
     private static $url_segment = 'my-info';
 
     private static $managed_models = array(
-        'Companies',
-        'Product'
+        'Companies'
     );
 
     private static $menu_icon = 'mysite/icons/man-file.gif';
@@ -20,14 +19,6 @@ class MyInfoAdmin extends ModelAdmin
         if ($this->modelClass == 'Companies') {
             $list = $list->filter(array(
                 'ID' => Member::currentUser()->CompaniesID
-            ));
-
-            return $list;
-        }
-
-        if ($this->modelClass == 'Product') {
-            $list = $list->filter(array(
-                'ManufacturerID' => Member::currentUser()->CompaniesID
             ));
 
             return $list;

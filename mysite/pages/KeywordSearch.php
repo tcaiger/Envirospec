@@ -24,8 +24,8 @@ class KeywordSearch_Controller extends Page_Controller
     public function ManufacturerSearchForm()
     {
 
-        $companies = Companies::get()->filterByCallback(function ($item, $list) {
-            if ($item->Products()->count() > 0) {
+        $companies = Companies::get()->filterByCallback(function ($item) {
+            if ( $item->SupplierProducts()->count() > 0  OR  $item->ManufacturerProducts()->count() > 0 ) {
                 return $item;
             }
         });

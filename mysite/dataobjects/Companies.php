@@ -29,7 +29,8 @@ class Companies extends DataObject
     );
 
     private static $has_many = array(
-        'Products'     => 'Product',
+        'ManufacturerProducts'     => 'Product.Manufacturer',
+        'SupplierProducts'     => 'Product.Supplier',
         'Certificates' => 'Certificate'
     );
 
@@ -69,6 +70,23 @@ class Companies extends DataObject
             TextField::create('Website'),
             HTMLEditorField::create('Address'),
             HTMLEditorField::create('Post', 'Postal Address')
+        ));
+
+        //======== Products.Supplier Tab ==============
+        $fields->addFieldsToTab('Root.Products.Supplier', GridField::create(
+            'ManufacturerProducts',
+            'Products supplied by this company',
+            $this->SupplierProducts(),
+            GridFieldConfig_RecordViewer::create()
+        ));
+
+
+         //======== Products.Manufacturer Tab ==============
+        $fields->addFieldsToTab('Root.Products.Manufacturer', GridField::create(
+            'SupplierProducts',
+            'Products manufactured by this company',
+            $this->ManufacturerProducts(),
+            GridFieldConfig_RecordViewer::create()
         ));
 
         // ======== Certificates Tab ==============
