@@ -132,8 +132,11 @@ $(document).ready(function ($) {
                     var credit = $('#BootstrapForm_CreditSearchForm_Credit option:selected')
                         .attr('value');
 
+                    var subCredit = $('#BootstrapForm_CreditSearchForm_SubCredit option:selected')
+                        .attr('value');
+
                     // Send the ajax request
-                    var url = window.location.href + '?tool=' + tool + '&category=' + category + '&credit=' + credit;
+                    var url = window.location.href + '?tool=' + tool + '&category=' + category + '&credit=' + credit + '&subCredit=' + subCredit;
                     $.ajax(url)
                         .done(function (response) {
                             $('.greenstar-search').html(response);
