@@ -154,6 +154,7 @@ class Product extends Page
             'Credits for this product',
             $this->Credits(),
             GridFieldConfig_RecordEditor::create()
+                ->addComponents(new GridFieldOrderableRows('SortOrder'))
         ));
 
 
