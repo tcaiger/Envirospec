@@ -57,19 +57,19 @@ class GreenstarSearch_Controller extends Page_Controller
                     'Category',
                     ImpactCategory::get()->filter('ParentID', $tool)
                         ->map('ID', 'Title'), $category)
-                    ->setEmptyString('Select-One'),
+                        ->setEmptyString('Select-One'),
                 $creditField = DropDownField::create(
                     'Credit',
                     'Credit',
                     AvailableCredit::get()->filter('ParentID', $category)
                         ->map('ID', 'Title'), $credit)
-                    ->setEmptyString('Select-One'),
+                        ->setEmptyString('Select-One'),
                 $subCreditField = DropDownField::create(
                     'SubCredit',
-                    'SubCredit',
+                    'SubCredit (optional)',
                     AvailableCredit::get()->filter('ParentID', $credit)
                         ->map('ID', 'Title'), $subCredit)
-                    ->setEmptyString('Select-One')
+                        ->setEmptyString('Select-One')
             ),
             Fieldlist::create(
                 FormAction::create('Go', 'Go')

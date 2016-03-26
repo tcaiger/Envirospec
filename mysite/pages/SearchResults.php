@@ -28,10 +28,7 @@ class SearchResults_Controller extends Page_Controller
     public function index(SS_HTTPRequest $request)
     {
 
-        $this->articleList = new PaginatedList(
-            Product::get()->sort('ID', 'ASC'),
-            $this->request
-        );
+        $this->articleList = Product::get()->sort('ID', 'ASC');
 
         // ========================================
         // Keyword Filter
@@ -54,7 +51,7 @@ class SearchResults_Controller extends Page_Controller
 
         $this->articleList = PaginatedList::create(
             $this->articleList,
-            $this->getRequest()
+            $this->request
         );
 
         return array(

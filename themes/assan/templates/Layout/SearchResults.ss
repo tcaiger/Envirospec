@@ -14,6 +14,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <h4>Search Results for "$SearchName"</h4>
+                        <h5 class="results">Showing results 1 - $Results.getTotalItems</h5>
                     </div>
                 </div>
 

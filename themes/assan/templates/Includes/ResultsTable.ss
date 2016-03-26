@@ -9,32 +9,18 @@
         </tr>
     </thead>
     <tbody>
-        <!-- Product Sorted Results -->
-        <% if Sort == 'Product' %>
-            <% loop Results.Sort('Title', 'ASC') %>
-                <tr>
-                    <% loop GetManufacturer($SupplierID) %>
-                        <td>$Name</td>
-                    <% end_loop %>
-                    <td>$Title</td>
-                    <td>$Parent.Title</td>
-                    <td>$GetPoints($ID)</td>
-                    <td><a class="show-link" href="$Link">View</a></td>
-                </tr>
-            <% end_loop %>
-        <!-- Points Sorted List -->
-        <% else %>
-            <% loop Results.Sort('ContributionPotential','DESC') %>
-                <tr>
-                    <% loop Product.GetManufacturer($Product.ManufacturerID) %>
-                        <td>$Name</td>
-                    <% end_loop %>
-                    <td>$Product.Title</td>
-                    <td>$Product.Parent.Title</td>
-                    <td>$ContributionPotential</td>
-                    <td><a class="show-link" href="$Product.Link">View</a></td>
-                </tr>
-            <% end_loop %>
-        <% end_if %>
+
+        <% loop $Results %>
+            <tr>
+                <% loop $Manufacturer($SupplierID) %>
+                    <td>$Name</td>
+                <% end_loop %>
+                <td>$Title $GetCreditID</td>
+                <td>$Parent.Title</td>
+                <td>$Points</td>
+                <td><a class="show-link" href="$Link">View</a></td>
+            </tr>
+        <% end_loop %>
+
     </tbody>
 </table>

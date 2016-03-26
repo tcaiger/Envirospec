@@ -20,10 +20,8 @@
                             Sort Results <span class="caret"> </span>
                         </button>
                         <ul id="GreenstarSort" class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li data-sort="Title" data-order="ASC">Products ASC</li>
-                            <li data-sort="Title" data-order="DESC">Products DESC</li>
-                            <li data-sort="Points" data-order="ASC">Points ASC</li>
-                            <li data-sort="Points" data-order="DESC">Points DESC</li>
+                            <li data-sort="Title" data-order="DESC">Products</li>
+                            <li data-sort="Points" data-order="DESC">Points</li>
                         </ul>
 
                     </div>

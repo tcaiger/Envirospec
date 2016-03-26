@@ -208,7 +208,7 @@ class Product extends Page
     // =====================================================
     //       Get The Name Of The Manufacturer
     // =====================================================
-    public function GetManufacturer($CompanyID)
+    public function getManufacturer($CompanyID)
     {
         return Companies::get()->filter(array(
             'ID' => $CompanyID
@@ -218,23 +218,33 @@ class Product extends Page
     // =====================================================
     //                  Get Credit Points
     // =====================================================
-    public function GetPoints($ProductID)
+    public function getPoints()
     {
-        $credits = Credit::get()->filter(array(
-            'ProductID' => $ProductID
-        ));
 
-        for ($i = 0; $i < count($credits); $i++) {
-            if ($credits[$i]->AvailableCreditID == $_GET['Credit']) {
-                return $credits[$i]->ContributionPotential;
+        if($_GET['SubCredit']){
+            $creditID = $_GET['SubCredit'];
+        }else{
+            $creditID = $_GET['Credit'];
+        }
+
+        $credits = $this->Credits();
+        $sum = null;
+
+        foreach($credits as $credit){
+            $availableCredit = $credit->AvailableCredit();
+
+            if($availableCredit->ID == $creditID || $availableCredit->parent()->ID == $creditID){
+                $sum+=$credit->ContributionPotential;
             }
         }
+
+        return $sum;
     }
 
     // =====================================================
     //                  Get Compliance
     // =====================================================
-    public function GetCompliance($compliant)
+    public function getCompliance($compliant)
     {
         if ($compliant) {
             return '<i class="fa fa-check"></i>';

@@ -15,13 +15,33 @@ class GreenstarSearchResults extends Page
 
 class GreenstarSearchResults_Controller extends Page_Controller
 {
-
+    protected $articleList;
 
     public function index(SS_HTTPRequest $request)
     {
+        $this->articleList = Product::get()->sort('ID', 'ASC');
 
-        $creditID = $request->getVar('Credit');
-        $results = $this->GetFilteredProducts($creditID);
+
+
+        $this->articleList = $this->articleList->filterByCallback(function($item){
+
+            if($this->getRequest()->getVar('SubCredit')){
+                $creditID = $this->getRequest()->getVar('SubCredit');
+            }else{
+                $creditID = $this->getRequest()->getVar('Credit');
+            }
+
+            $credits = $item->Credits();
+
+            foreach($credits as $credit){
+                $availableCredit = $credit->AvailableCredit();
+                if($availableCredit->ID == $creditID || $availableCredit->parent()->ID == $creditID){
+                    return $item;
+                }else{
+                    return null;
+                }
+            }
+        });
 
         // ========================================
         // Ajax Rendering
@@ -29,73 +49,40 @@ class GreenstarSearchResults_Controller extends Page_Controller
         if ($request->isAjax()) {
 
             $sort = $this->getRequest()->getVar('sort');
+            $order = $this->getRequest()->getVar('order');
 
-            if ($sort == 'Product') {
-                $results = $this->GetFilteredProducts($creditID);
-            } else {
-                $results = $this->GetFilteredCredits($creditID);
-            }
+
+            $this->articleList = $this->articleList->sort($sort, $order);
+
+            $paginatedList = PaginatedList::create(
+                $this->articleList,
+                $request
+            )->setPageLength(25);
+
 
             return $this->customise(array(
-                'Results' => $results,
-                'Sort'    => $sort
+                'Results' => $paginatedList
             ))->renderWith('ResultsTable');
+
         }
+
+
+
+        $this->articleList = PaginatedList::create(
+            $this->articleList,
+            $this->request
+        )->setPageLength(25);
 
         return array(
-            'Results' => $results,
-            'Sort'    => 'Product'
+            'Results' => $this->articleList
         );
+
     }
 
-    // ========================================
-    // Get Filtered Credits
-    // ========================================
-    public function GetFilteredCredits($creditID)
-    {
 
-        //1. Look Up Credits
-        $credits = AvailableCredit::get()
-            ->byID($creditID)
-            ->Credits();
-
-        // 2. Return Paginated Results
-        return PaginatedList::create(
-            $credits,
-            $this->getRequest()
-        );
-    }
 
     // ========================================
-    // Get Filtered Products
-    // ========================================
-    public function GetFilteredProducts($creditID)
-    {
-
-        //1. Look Up Credits
-        $credits = AvailableCredit::get()
-            ->byID($creditID)
-            ->Credits();
-
-        // 2. Get Filtered Results
-        $productIDs = array();
-        foreach ($credits as $credit) {
-            array_push($productIDs, $credit->ProductID);
-        }
-
-        $products = Product::Get()->filter(array(
-            'ID' => $productIDs
-        ));
-
-        // 3. Return Paginated Results
-        return PaginatedList::create(
-            $products,
-            $this->getRequest()
-        );
-    }
-
-    // ========================================
-    // Get Search Paramaters
+    // Get Search Parameters
     // ========================================
     public function GetSearchParams()
     {
@@ -109,35 +96,16 @@ class GreenstarSearchResults_Controller extends Page_Controller
         $credit = $this->getRequest()->getVar('Credit');
         $creditname = dataObject::get_by_id('AvailableCredit', $credit)->Title;
 
-        return $toolname . ' / ' . $categoryname . ' / ' . $creditname;
+        if($this->getRequest()->getVar('SubCredit')){
+            $subcredit = $this->getRequest()->getVar('SubCredit');
+            $subcreditname = dataObject::get_by_id('AvailableCredit', $subcredit)->Title;
+        }else{
+            $subcreditname = null;
+        }
 
-    }
 
-    // ========================================
-    // Results Filter
-    // ========================================
-    public function ResultsFilterForm()
-    {
 
-        $form = BootstrapForm::create(
-            $this,
-            __Function__,
-            Fieldlist::create(
-                DropDownField::create(
-                    'ResultsFilter',
-                    '',
-                    array(
-                        'Product' => 'Product',
-                        'Points'  => 'Points'
-                    )
-                )),
-            Fieldlist::create()
-        );
-        $form->setFormMethod('GET')
-            ->setFormAction($this->Link())
-            ->disableSecurityToken()
-            ->loadDataFrom($this->request->getVars());
+        return $toolname . ' / ' . $categoryname . ' / ' . $creditname . ' / ' . $subcreditname;
 
-        return $form;
     }
 }

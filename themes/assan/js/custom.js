@@ -151,10 +151,10 @@ $(document).ready(function ($) {
             button: $('#GreenstarSort'),
             init    : function () {
 
-                this.button.on('click', 'a', function (e) {
-
-                    var sort = this.innerHTML;
-                    var url = window.location.href + '&sort=' + sort;
+                this.button.on('click', 'li', function (e) {
+                    var sort = $(this).data('sort');
+                    var order = $(this).data('order');
+                    var url = window.location.href + '&sort=' + sort+ '&order=' + order;
 
                     $.ajax(url)
                         .done(function (response) {
@@ -169,11 +169,12 @@ $(document).ready(function ($) {
         sortHouseResults    : {
             button: $('#HouseSort'),
             init    : function () {
+
                 this.button.on('click', 'li', function (e) {
                     var sort = $(this).data('sort');
                     var order = $(this).data('order');
                     var url = window.location.href + '&sort=' + sort+ '&order=' + order;
-                    console.log(url);
+
                     $.ajax(url)
                         .done(function (response) {
                             $('.comparison-table').html(response);

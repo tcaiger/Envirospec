@@ -18,10 +18,8 @@
                     Sort Results <span class="caret"> </span>
                 </button>
                 <ul id="HouseSort" class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li data-sort="Title" data-order="ASC">Products ASC</li>
-                    <li data-sort="Title" data-order="DESC">Products DESC</li>
-                    <li data-sort="ManufacturerID" data-order="ASC">Manufacturer ASC</li>
-                    <li data-sort="ManufacturerID" data-order="DESC">Manufacturer DESC</li>
+                    <li data-sort="Title" data-order="DESC">Products</li>
+                    <li data-sort="ManufacturerID" data-order="DESC">Manufacturer</li>
                 </ul>
 
             </div>
