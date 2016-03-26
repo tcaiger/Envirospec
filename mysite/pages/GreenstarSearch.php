@@ -76,7 +76,14 @@ class GreenstarSearch_Controller extends Page_Controller
                     ->addExtraClass('btn-lg btn-theme-bg')
             )
         );
+
+        $required = new RequiredFields(array(
+            'Tool', 'Category', 'Credit'
+        ));
+
+
         $form->setFormMethod('GET')
+            ->setValidator($required)
             ->setFormAction('product-search/greenstar-results')
             ->disableSecurityToken()
             ->loadDataFrom($this->request->getVars());
