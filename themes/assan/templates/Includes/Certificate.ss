@@ -33,34 +33,3 @@
     </div>
 </div>
 <hr>
-
-
-<%--
-
-<th class="text-center">
-    <img src="$ThemeDir/img/ems-icon.png" data-toggle="tooltip" data-placement="top" title="" data-original-title="Environmental Management Systems">
-</th>
-<th class="text-center">
-    <img src="$ThemeDir/img/co-icon.png" data-toggle="tooltip" data-placement="top" title="" data-original-title="Carbon Offset">
-</th>
-<th class="text-center">
-    <img src="$ThemeDir/img/pb-icon.png" data-toggle="tooltip" data-placement="top" title="" data-original-title="Performance Based Environmental Certification">
-</th>
-<th class="text-center">
-    <img src="$ThemeDir/img/lbc-icon.png" data-toggle="tooltip" data-placement="top" title="" data-original-title="Life Cycle Based Ecolabel Certification">
-</th>
-<th class="text-center">
-    <img src="$ThemeDir/img/np-icon.png" data-toggle="tooltip" data-placement="top" title="" data-original-title="Natural Product">
-</th>
-<th class="text-center">
-    <img src="$ThemeDir/img/nzmade-icon.png" data-toggle="tooltip" data-placement="top" title="" data-original-title="NZ Made">
-</th>
-<th class="text-center">
-    <img src="$ThemeDir/img/greenstar-icon.png" data-toggle="tooltip" data-placement="top" title="" data-original-title="Greenstar">
-</th>
-<th class="text-center">
-    <img src="$ThemeDir/img/lbc-icon.png" data-toggle="tooltip" data-placement="top" title="" data-original-title="Living Building Challenge">
-</th>
-<th class="text-center">
-    <img src="$ThemeDir/img/pei-icon.png" data-toggle="tooltip" data-placement="top" title="" data-original-title="Product Environmental Index">
-</th>--%>

@@ -103,6 +103,8 @@
                             <% if ShowGreenStarCertificate($ID) %>
                                 <% loop ShowGreenStarCertificate($ID) %>
                                      <% include Certificate %>
+                                    <h5>Preview</h5>
+                                    <embed src="$Certificate.URL" type="application/pdf" width="600" height="700"/>
                                 <% end_loop %>
                              <% else %>
                                <h3><small> -- No Certificate For This Product -- </small></h3>
