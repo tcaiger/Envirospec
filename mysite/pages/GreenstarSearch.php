@@ -90,7 +90,7 @@ class GreenstarSearch_Controller extends Page_Controller
                         ->setEmptyString('Select-One'),
                 $subCreditField = DropDownField::create(
                     'SubCredit',
-                    'SubCredit (optional)',
+                    'SubCredit',
                     AvailableCredit::get()->filter('ParentID', $credit)
                         ->map('ID', 'Title'), $subCredit)
                         ->setEmptyString('Select-One')
@@ -119,7 +119,7 @@ class GreenstarSearch_Controller extends Page_Controller
             $creditField->setAttribute('disabled', 'disabled');
         }
         if ( ! $credit || ! AvailableCredit::get()->filter('ParentID', $credit)->exists()) {
-            $subCreditField->setAttribute('disabled', 'disabled');
+            $subCreditField->addExtraClass('hidden');
         }
 
         return $form;

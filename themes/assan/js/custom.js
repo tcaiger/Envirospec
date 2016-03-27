@@ -36,6 +36,7 @@ $(document).ready(function ($) {
              * */
 
             //this.navSearch.init();
+            this.showLabel.init();
             this.toolTips.init();
             this.coverFlow.init();
             this.showImage.init();
@@ -67,6 +68,27 @@ $(document).ready(function ($) {
                     });
                 });
             }
+        },
+
+        showLabel: {
+            form: $('#BootstrapForm_CreditSearchForm'),
+            subCredit: $("#SubCredit select"),
+            label: $("#SubCredit label"),
+            init: function(){
+                this.watchForm();
+
+            },
+            watchForm: function(){
+                console.log();
+                this.form.on('click', function(){
+                    if( this.subCredit.hasClass('hidden') ){
+                        this.label.hide();
+                        console.log('hidden');
+                    }
+                });
+            }
+
+
         },
 
         toolTips: {
