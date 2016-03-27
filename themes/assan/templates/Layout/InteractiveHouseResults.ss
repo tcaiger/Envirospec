@@ -51,7 +51,7 @@
                         <img src="$ThemeDir/img/pb-icon.png" data-toggle="tooltip" data-placement="top" title="" data-original-title="Performance Based Environmental Certification">
                     </th>
                     <th class="text-center">
-                        <img src="$ThemeDir/img/lbc-icon.png" data-toggle="tooltip" data-placement="top" title="" data-original-title="Life Cycle Based Ecolabel Certification">
+                        <img src="$ThemeDir/img/full-lca-icon.png" data-toggle="tooltip" data-placement="top" title="" data-original-title="Life Cycle Based Ecolabel Certification">
                     </th>
                     <th class="text-center">
                         <img src="$ThemeDir/img/np-icon.png" data-toggle="tooltip" data-placement="top" title="" data-original-title="Natural Product">
@@ -66,7 +66,7 @@
                         <img src="$ThemeDir/img/lbc-icon.png" data-toggle="tooltip" data-placement="top" title="" data-original-title="Living Building Challenge">
                     </th>
                     <th class="text-center">
-                        <img src="$ThemeDir/img/pei-icon.png" data-toggle="tooltip" data-placement="top" title="" data-original-title="Product Environmental Index">
+                        <img src="$ThemeDir/img/cemo-icon.png" data-toggle="tooltip" data-placement="top" title="" data-original-title="Circular Economy Model Office">
                     </th>
                 </tr>
                 </thead>

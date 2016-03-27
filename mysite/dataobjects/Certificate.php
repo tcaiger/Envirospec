@@ -13,6 +13,21 @@ class Certificate extends DataObject
         return Permission::check('CMS_ACCESS_MyInfoAdmin', 'any', $member);
     }
 
+
+    private static $has_one = array(
+        'Certificate' => 'File',
+        'FullReport'  => 'File',
+        'Product'     => 'Product',
+        'Companies'   => 'Companies'
+    );
+
+    private static $summary_fields = array(
+        'Name'    => 'Name',
+        'Status'  => 'Status',
+        'Type'    => 'Type',
+        'Display' => 'Displaying On Website'
+    );
+
     private static $db = array(
         'Name'           => 'Varchar',
         'Type'           => 'Varchar',
@@ -27,19 +42,6 @@ class Certificate extends DataObject
         'ExpiredWarning' => 'Boolean',
         'FinalWarning'   => 'Boolean',
         'SortOrder'      => 'Int'
-    );
-    private static $has_one = array(
-        'Certificate' => 'File',
-        'FullReport'  => 'File',
-        'Product'     => 'Product',
-        'Companies'   => 'Companies'
-    );
-
-    private static $summary_fields = array(
-        'Name'    => 'Name',
-        'Status'  => 'Status',
-        'Type'    => 'Type',
-        'Display' => 'Displaying On Website'
     );
 
     public function getCMSFields()
@@ -72,7 +74,6 @@ class Certificate extends DataObject
                     'Full Building Product Appraisal'     => 'Full Building Product Appraisal',
                     'Product Technical Performance'       => 'Product Technical Performance',
                     'Carbon Offset'                       => 'Carbon Offset',
-                    'Green Building Rating Compatibility' => 'Green Building Rating Compatibility',
                     'Responsible Sourcing'                => 'Responsible Sourcing'
                 )
             )->setEmptyString('(Select One)'),

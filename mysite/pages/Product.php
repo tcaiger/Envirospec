@@ -60,7 +60,7 @@ class Product extends Page
         'NewZealandMadeAccreditations'  => 'Boolean',
         'GreenStarCompatible'           => 'Varchar',
         'LivingBuildingChallenge'       => 'Boolean',
-        'ProductEnvironmentalIndex'     => 'Boolean',
+        'CircularEconomyModelOffice'     => 'Boolean',
         'SearchLabels'                  => 'Varchar(100)'
     );
 
@@ -88,7 +88,7 @@ class Product extends Page
                 CheckboxField::create('NewZealandMadeAccreditations', 'NewZealand Made Accreditations'),
                 CheckboxField::create('GreenStarCompatible', 'Green Star Compatible'),
                 CheckboxField::create('LivingBuildingChallenge', 'Living Building Challenge'),
-                CheckboxField::create('ProductEnvironmentalIndex', 'Product  Environmental Index')
+                CheckboxField::create('CircularEconomyModelOffice', 'Circular Economy Model Office')
             )),
         ), 'Metadata');
 

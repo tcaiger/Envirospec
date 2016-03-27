@@ -44,8 +44,9 @@ class SearchResults_Controller extends Page_Controller
         // Manufacturer Filter
         // ========================================
         if ($search = $request->getVar('Manufacturer')) {
-            $this->articleList = $this->articleList->filter(array(
-                'ManufacturerID' => $search
+            $this->articleList = $this->articleList->filterAny(array(
+                'ManufacturerID' => $search,
+                'SupplierID' => $search
             ));
         }
 
