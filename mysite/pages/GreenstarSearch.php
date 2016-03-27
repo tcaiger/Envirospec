@@ -3,7 +3,31 @@
 class GreenstarSearch extends Page
 {
 
+    private static $has_many = array(
+        'CompanyLogos' => 'Image'
+    );
 
+
+    public function getCMSFields($member = null)
+    {
+        $fields = parent::getCMSFields();
+
+        $fields->addFieldsToTab('Root.Main', array(
+            $upload = UploadField::create('CompanyLogos', 'Company Logos')
+        ));
+
+        $upload->getValidator()->setAllowedExtensions(array(
+            'png', 'jpeg', 'jpg', 'gif'
+        ));
+        $upload->setFolderName('company-logos');
+        $upload->setAllowedMaxFileNumber(8);
+        $sizeMB = 2; // 2 MB
+        $size = $sizeMB * 1024 * 1024; // 2 MB in bytes
+        $upload->getValidator()->setAllowedMaxFileSize($size);
+
+
+        return $fields;
+    }
 }
 
 class GreenstarSearch_Controller extends Page_Controller
