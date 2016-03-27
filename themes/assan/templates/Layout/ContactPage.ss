@@ -13,15 +13,10 @@
     <div class="row">
         <div class="col-md-7 margin30">
             <h3 class="heading">Contact us</h3>
-            $Content
-            <div class="divide30"></div>
-            <!-- ===================================== -->
-            <!--        Contact Form                   -->
-            <!-- ===================================== -->
+            <%--$Content--%>
+            <%--<div class="divide30"></div>--%>
             <div class="form-contact">
-
                 $ContactForm
-
             </div>
             <div class="divide60 hidden-xs"></div>
         </div>

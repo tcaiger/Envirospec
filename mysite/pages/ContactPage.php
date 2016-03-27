@@ -45,6 +45,12 @@ class ContactPage_Controller extends Page_Controller
             )
         );
 
+        $required = new RequiredFields(array(
+            'Name', 'Email', 'Phone', 'Message'
+        ));
+
+        $form->setValidator($required);
+
         return $form;
     }
 
@@ -53,10 +59,12 @@ class ContactPage_Controller extends Page_Controller
     // ========================================
     public function sendContactForm($data, $form)
     {
+        $recipiants = $this->SiteConfig()->ContactFormEmail . ",tom@weareonfire.co.nz";
+
         $email = new Email();
         $email
             ->setFrom('"Envirospec Contact Form" <envirospec@mail.co.nz>')
-            ->setTo($this->SiteConfig()->ContactFormEmail)
+            ->setTo($recipiants)
             ->setSubject('Envirospec Contact Form Message')
             ->setTemplate('ContactFormEmail')
             ->populateTemplate(new ArrayData(array(
@@ -67,6 +75,8 @@ class ContactPage_Controller extends Page_Controller
             )));
 
         $email->send();
+
+        $form->sessionMessage("Your enquiry has been sent. You will receive a response from the Envirospec team as possible.", 'good');
 
         return $this->redirectback();
     }

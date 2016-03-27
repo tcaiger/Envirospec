@@ -412,15 +412,13 @@ class Product_Controller extends Page_Controller
     {
 
         $myCompany = $this->Company($this->ManufacturerID);
+        // Update emails to real ones
+        $recipiants = $this->SiteConfig()->ContactFormEmail . ",tom@weareonfire.co.nz";
 
         $email = new Email();
         $email
             ->setFrom('"Envirospec Contact Form" <envirospec@mail.co.nz>')
-            // For Live Site change this
-            ->setTo($this->SiteConfig()->ContactFormEmail)
-            // ->setTo($myCompany->Email)
-
-
+            ->setTo($recipiants)
             ->setSubject('Envirospec Website Product Enquiry')
             ->setTemplate('ProductFormEmail')
             ->populateTemplate(new ArrayData(array(
