@@ -60,7 +60,7 @@ class Product extends Page
         'NewZealandMadeAccreditations'  => 'Boolean',
         'GreenStarCompatible'           => 'Varchar',
         'LivingBuildingChallenge'       => 'Boolean',
-        'CircularEconomyModelOffice'     => 'Boolean',
+        'CircularEconomyModelOffice'    => 'Boolean',
         'SearchLabels'                  => 'Varchar(100)'
     );
 
@@ -221,20 +221,20 @@ class Product extends Page
     public function getPoints()
     {
 
-        if($_GET['SubCredit']){
+        if ($_GET['SubCredit']) {
             $creditID = $_GET['SubCredit'];
-        }else{
+        } else {
             $creditID = $_GET['Credit'];
         }
 
         $credits = $this->Credits();
         $sum = null;
 
-        foreach($credits as $credit){
+        foreach ($credits as $credit) {
             $availableCredit = $credit->AvailableCredit();
 
-            if($availableCredit->ID == $creditID || $availableCredit->parent()->ID == $creditID){
-                $sum+=$credit->ContributionPotential;
+            if ($availableCredit->ID == $creditID || $availableCredit->parent()->ID == $creditID) {
+                $sum += $credit->ContributionPotential;
             }
         }
 
@@ -384,13 +384,22 @@ class Product_Controller extends Page_Controller
             Fieldlist::create(
                 TextField::create('Name'),
                 EmailField::create('Email', 'Email Address'),
-                TextAreaField::create('Message')
+                TextAreaField::create('Message'),
+                LiteralField::create('Terms', '<h5>Terms & Conditions</h5>'),
+                CheckboxField::create('CheckTerms', 'I agree to the terms '),
+                LiteralField::create('TermsText', '<p>By clicking the Submit button, you agree to receive further information from the product supplier.</p>')
             ),
             Fieldlist::create(
                 FormAction::create('SubmitContactForm', 'Send')
                     ->addExtraClass('btn-lg btn-theme-bg')
             )
         );
+
+        $required = new RequiredFields(array(
+            'Name', 'Email', 'Message', 'CheckTerms'
+        ));
+
+        $form->setValidator($required);
 
         return $form;
     }
@@ -421,6 +430,8 @@ class Product_Controller extends Page_Controller
             )));
 
         $email->send();
+
+        $form->sessionMessage("Your enquiry has been sent. You will receive a response from the product manufacturer / supplier as soon as possible.", 'good');
 
         return $this->redirectback();
     }

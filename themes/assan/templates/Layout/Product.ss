@@ -12,7 +12,7 @@
                     <!--            Tab Headings           -->
                     <!-- ================================= -->
                     <ul id="product-tabs" class="list-inline">
-                        <li class="first active">
+                        <li class="first">
                             <a href="#ptab1" data-toggle="tab" aria-expanded="true">Product Description</a>
                         </li>
                         <li>
@@ -21,7 +21,7 @@
                         <li>
                             <a href="#ptab3" data-toggle="tab" aria-expanded="false">Download Certificates</a>
                         </li>
-                        <li>
+                        <li class="active">
                             <a href="#ptab4" data-toggle="tab" aria-expanded="false">Product Enquiry</a>
                         </li>
                     </ul>
@@ -45,13 +45,13 @@
                     <h4>Useful Resources</h4>
                     <ul class="list-unstyled cat-list">
 
-                       <% loop DisplayLinks %>
-                    
+                        <% loop DisplayLinks %>
+
                             <li>
                                 <a href="$URL" target="_blank">$Title</a>
                                 <i class="fa fa-angle-right"></i>
                             </li>
-                       <% end_loop %>
+                        <% end_loop %>
                     </ul>
                 </div>
             </div>
@@ -62,9 +62,9 @@
             <div class="col-sm-9 tab-content">
 
                 <!-- ========== Product Description ========= -->
-                <div class="tab-pane active" id="ptab1">
+                <div class="tab-pane" id="ptab1">
                     <div class="tab-desc animated fadeIn">
-                        
+
                         <div class="col-sm-12">
                             <h3>Product Description</h3>
 
@@ -83,7 +83,7 @@
                                 $Company($SupplierID).Description
                             <% end_if %>
 
-                            
+
                             <h4>Application and Purpose</h4>
                             $ApplicationAndPurpose
 
@@ -92,24 +92,26 @@
                         </div>
                     </div>
                 </div>
-             
+
                 <!-- ========== View Green Building Info ========= -->
                 <div class="tab-pane" id="ptab2">
                     <div class="tab-desc animated fadeIn">
                         <div class="col-sm-12">
                             <h3>Green Building Information Summary Sheet</h3>
-                    
+
                             <div class="divide30"></div>
                             <% if ShowGreenStarCertificate($ID) %>
                                 <% loop ShowGreenStarCertificate($ID) %>
-                                     <% include Certificate %>
+                                    <% include Certificate %>
                                     <h5>Preview</h5>
                                     <embed src="$Certificate.URL" type="application/pdf" width="600" height="700"/>
                                 <% end_loop %>
-                             <% else %>
-                               <h3><small> -- No Certificate For This Product -- </small></h3>
+                            <% else %>
+                                <h3>
+                                    <small> -- No Certificate For This Product --</small>
+                                </h3>
                             <% end_if %>
-                        </div> 
+                        </div>
                     </div>
                 </div>
 
@@ -118,148 +120,63 @@
                     <div class="tab-desc animated fadeIn">
                         <div class="col-sm-8">
                             <h3>Download Certificates</h3>
-                           
+
                             <div class="divide30"></div>
                             <% if ShowCertificates($ID, $ManufacturerID, $SupplierID) %>
                                 <% loop ShowCertificates($ID, $ManufacturerID, $SupplierID) %>
                                     <% include Certificate %>
                                 <% end_loop %>
                             <% else %>
-                               <h3><small> -- No Certificates For This Product -- </small></h3>
+                                <h3>
+                                    <small> -- No Certificates For This Product --</small>
+                                </h3>
                             <% end_if %>
                         </div>
                     </div>
                 </div>
 
                 <!-- ========== Product Enquiry ==========  -->
-                <div class="tab-pane" id="ptab4">
+                <div class="tab-pane active" id="ptab4">
                     <div class="tab-desc animated fadeIn">
                         <div class="col-sm-8">
 
                             <h3>Product Enquiry</h3>
-                            <p>Please Enter in your contact information below.</p>
                             <div class="comment-form">
                                 <div class="form-contact">
                                     <!-- Contact Form -->
                                     $CompanyContactForm
+                                    <div id="test"></div>
                                 </div>
                             </div>
                             <div class="divide20"></div>
                             <hr>
                         </div>
 
-                         <% if $Company($SupplierID).title  == $Company($ManufacturerID).title %>
+                        <div class="col-sm-12" style="position: relative">
+                            <% if $Company($SupplierID).title  == $Company($ManufacturerID).title %>
+                                <h3>Manufacturer And Supplier Contact Information</h3>
+                            <% else %>
+                                <h3>Supplier Contact Information</h3>
+                            <% end_if %>
+                            <% with $Company($SupplierID) %>
+                                <% include Contact %>
+                            <% end_with %>
+                        </div>
 
-                                <div class="col-sm-12" style="position: relative">
-                                    <h3>Manufacturer And Supplier Contact Information</h3>
-                        <% else %>
+                        <div class="divide30"></div>
 
-                           
+                        <% if $Company($SupplierID).title  != $Company($ManufacturerID).title %>
                             <div class="col-sm-12" style="position: relative">
+                                <hr>
+                                <div class="divide20"></div>
                                 <h3>Manufacturer Contact Information</h3>
-
+                                <% with $Company($ManufacturerID) %>
+                                    <% include Contact %>
+                                <% end_with %>
+                            </div>
                         <% end_if %>
 
-                            <% with $Company($ManufacturerID) %>
-                                <h2>$Name</h2>
-
-                                <div class="first-logo hidden-xs">$Logo.SetWidth(250)</div>
-                             
-                                <ul class="list-unstyled contact contact-info">
-                                     <li>
-                                        <p>
-                                            <strong><i class="fa fa-envelope"></i> Website:</strong>
-                                            <a href="#"> $Website</a>
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <p>
-                                            <strong><i class="fa fa-envelope"></i> Email:</strong>
-                                             $Email
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <p>
-                                            <strong><i class="fa fa-phone"></i> Phone:</strong>
-                                             $Phone
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <p>
-                                            <strong><i class="fa fa-phone"></i> Fax:</strong>
-                                             $Fax
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <p>
-                                            <strong><i class="fa fa-map-marker"></i> Address:</strong>
-                                             $Address
-                                        </p>
-                                    </li> 
-                                    <li >
-                                        <p>
-                                            <strong><i class="fa fa-map-marker"></i> Postal Address:</strong>
-                                             $Post
-                                        </p>
-                                    </li> 
-                                </ul>
-                                <div class="divide20"></div>
-                               
-                            </div>
-      
-                        <% end_with %>
-                        
-                        <% if $Company($SupplierID).title  != $Company($ManufacturerID).title %>
-                            <% with $Company($SupplierID) %>
-                                <div class="col-sm-12" style="position: relative">
-                                     <hr>
-                                    <h3>Supplier Contact Information</h3>
-                                    <h2>$Name</h2>
-
-                                    <div class="second-logo hidden-xs">$Logo.SetWidth(250)</div>
-                                 
-                                    <ul class="list-unstyled contact contact-info">
-                                         <li>
-                                            <p>
-                                                <strong><i class="fa fa-envelope"></i> Website:</strong>
-                                                <a href="#"> $Website</a>
-                                            </p>
-                                        </li>
-                                        <li>
-                                            <p>
-                                                <strong><i class="fa fa-envelope"></i> Email:</strong>
-                                                 $Email
-                                            </p>
-                                        </li>
-                                        <li>
-                                            <p>
-                                                <strong><i class="fa fa-phone"></i> Phone:</strong>
-                                                 $Phone
-                                            </p>
-                                        </li>
-                                        <li>
-                                            <p><strong><i class="fa fa-phone"></i> Fax:</strong>
-                                                 $Fax
-                                            </p>
-                                        </li>
-                                        <li>
-                                            <p>
-                                                <strong><i class="fa fa-map-marker"></i> Address:</strong>
-                                                 $Address
-                                            </p>
-                                        </li> 
-                                        <li >
-                                            <p>
-                                                <strong><i class="fa fa-map-marker"></i> Postal Address:</strong>
-                                                 $Post
-                                            </p>
-                                        </li> 
-                                    </ul>
-                                     <div class="divide20"></div>
-                                </div>
-                            <% end_with %>
-                        <% end_if %> 
-                    </div> 
+                    </div>
                 </div>
             </div>
         </div>

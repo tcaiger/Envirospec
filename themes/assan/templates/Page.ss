@@ -1,5 +1,5 @@
 <% include Header %>
-<body>
+<body class="$ClassName">
 
 	<% include Topbar %>
 	<% include Navbar %>

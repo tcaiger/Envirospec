@@ -61,18 +61,6 @@
   display : inline;
 }
 
-.first-logo {
-  position : absolute;
-  top      : 0px;
-  right    : 50px;
-}
-
-.second-logo {
-  position : absolute;
-  top      : 60px;
-  right    : 50px;
-}
-
 .show-link {
   color           : $green;
   text-decoration : underline;
@@ -94,8 +82,16 @@
   }
 }
 
+//Greenstar Search Page
 .company-logos{
   img{
     padding-bottom: 40px;
+  }
+}
+
+
+#BootstrapForm_CompanyContactForm{
+  input[type=checkbox]{
+    margin-top: 6px;
   }
 }

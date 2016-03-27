@@ -4,12 +4,15 @@
 
 <div class="container">
     <div class="row">
+
         <h3>Search Green Star NZ / Homestar Products</h3>
+
         <div class="divide20"></div>
         <div class="col-sm-4" style="padding-left: 0">
             <div class="greenstar-search well">
                 <% include SearchOptions %>
             </div>
+
             <div class="well">
                 <h5>Search By Report Number</h5>
                 <p>Download a report detailing a product’s compliance level with Green Star NZ and Homestar requirements.</p>
@@ -20,6 +23,7 @@
                 <div class="report-results"></div>
                 <button class="report-search-btn btn btn-theme-bg btn-lg">Find Report</button>
             </div>
+
         </div>
 
         <div class="col-sm-8">
