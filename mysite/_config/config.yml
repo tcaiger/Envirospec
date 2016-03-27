@@ -13,9 +13,6 @@ SSViewer:
 Image:
   extensions:
     - ProductImageExtension
-
-Image:
-  extensions:
     - LogoImageExtension
 
 SiteConfig:
