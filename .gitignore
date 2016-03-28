@@ -1,5 +1,5 @@
 # ignore unecessary silverstripe files 
-assets/*
+
 _ss_environment.php
 tools/phing-metadata
 silverstripe-cache
