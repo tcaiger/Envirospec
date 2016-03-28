@@ -2,6 +2,20 @@
 framework/*
 cms/*
 
+# Serverfiles
+GridFieldBulkEditingTools/*
+mssql/*
+reports/*
+silverstripe-bootstrap-forms/*
+silverstripe-gridfieldextensions/*
+siteconfig/*
+sqlite3/*
+vendor/*
+.editorconfig
+composer.json
+composer.lock
+web.config
+
 # ignore unecessary silverstripe files
 assets/*
 _ss_environment.php
