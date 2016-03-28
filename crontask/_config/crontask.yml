@@ -1,6 +1,0 @@
----
-Name: crontask
----
-Director:
-  rules:
-    'dev/cron/$Action': 'CronTaskController'
