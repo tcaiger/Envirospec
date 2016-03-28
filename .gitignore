@@ -1,4 +1,8 @@
-# ignore unecessary silverstripe files 
+#ignore Silverstripe core modules
+framework/*
+cms/*
+
+# ignore unecessary silverstripe files
 assets/*
 _ss_environment.php
 tools/phing-metadata
