@@ -12,7 +12,7 @@
                     <!--            Tab Headings           -->
                     <!-- ================================= -->
                     <ul id="product-tabs" class="list-inline">
-                        <li class="first">
+                        <li class="first active">
                             <a href="#ptab1" data-toggle="tab" aria-expanded="true">Product Description</a>
                         </li>
                         <li>
@@ -21,7 +21,7 @@
                         <li>
                             <a href="#ptab3" data-toggle="tab" aria-expanded="false">Download Certificates</a>
                         </li>
-                        <li class="active">
+                        <li>
                             <a href="#ptab4" data-toggle="tab" aria-expanded="false">Product Enquiry</a>
                         </li>
                     </ul>
@@ -62,7 +62,7 @@
             <div class="col-sm-9 tab-content">
 
                 <!-- ========== Product Description ========= -->
-                <div class="tab-pane" id="ptab1">
+                <div class="tab-pane active" id="ptab1">
                     <div class="tab-desc animated fadeIn">
 
                         <div class="col-sm-12">
@@ -136,7 +136,7 @@
                 </div>
 
                 <!-- ========== Product Enquiry ==========  -->
-                <div class="tab-pane active" id="ptab4">
+                <div class="tab-pane" id="ptab4">
                     <div class="tab-desc animated fadeIn">
                         <div class="col-sm-8">
 
