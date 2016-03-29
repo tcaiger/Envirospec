@@ -47,8 +47,8 @@
         </div>
         <div class="home-buttons hidden-lg hidden-md hidden-sm">
             <div class="divide20"></div>
-             <a href="search-green-star-nz-homestar-compatible" class="btn btn-theme-bg btn-lg btn-ico">$Btn1Heading <i class="fa fa-angle-right"></i></a>
-             <a href="manufacturer-keyword-search" class="btn border-white btn-lg btn-ico">$Btn2Heading <i class="fa fa-angle-right"></i></a>
+             <a href="search-green-star-nz-homestar-compatible" class="btn btn-theme-bg btn-lg btn-ico">$Btn2Heading <i class="fa fa-angle-right"></i></a>
+             <a href="manufacturer-keyword-search" class="btn border-white btn-lg btn-ico">$Btn1Heading <i class="fa fa-angle-right"></i></a>
              <a href="navigate-the-interactive-house" class="btn border-white btn-lg btn-ico">$Btn3Heading <i class="fa fa-angle-right"></i></a>
              <div class="divide30"></div>
         </div>
