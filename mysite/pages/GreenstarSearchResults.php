@@ -23,7 +23,7 @@ class GreenstarSearchResults_Controller extends Page_Controller
 
 
 
-        $this->articleList = $this->articleList->filterByCallback(function($item){
+        $this->articleList = $this->articleList->filterByCallback(function($product){
 
             if($this->getRequest()->getVar('SubCredit')){
                 $creditID = $this->getRequest()->getVar('SubCredit');
@@ -31,16 +31,17 @@ class GreenstarSearchResults_Controller extends Page_Controller
                 $creditID = $this->getRequest()->getVar('Credit');
             }
 
-            $credits = $item->Credits();
+            $credits = $product->Credits();
+
+            $match = null;
 
             foreach($credits as $credit){
                 $availableCredit = $credit->AvailableCredit();
                 if($availableCredit->ID == $creditID || $availableCredit->parent()->ID == $creditID){
-                    return $item;
-                }else{
-                    return null;
+                    $match = $product;
                 }
             }
+            return $match;
         });
 
         // ========================================

@@ -234,7 +234,9 @@ class Product extends Page
             $availableCredit = $credit->AvailableCredit();
 
             if ($availableCredit->ID == $creditID || $availableCredit->parent()->ID == $creditID) {
-                $sum += $credit->ContributionPotential;
+                //$sum += $credit->ContributionPotential;
+                // How to deal with contribution potential
+                $sum = $credit->ContributionPotential;
             }
         }
 
