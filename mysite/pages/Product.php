@@ -261,6 +261,8 @@ class Product_Controller extends Page_Controller
     private static $allowed_actions = array(
         'CompanyContactForm'
     );
+
+
     // =====================================================
     //         Show Green Star Certificate
     // =====================================================
@@ -286,7 +288,7 @@ class Product_Controller extends Page_Controller
                 'Display' => 1
             ))
             ->filterAny(array(
-                'ProductID'   => $PageID
+                'ProductID' => $PageID
             ))
             ->sort('SortOrder', 'ASC');
 

@@ -3,6 +3,33 @@
 class Page extends SiteTree
 {
 
+    /**
+     * Duplicate this page, and its DataObjects.
+     *
+     * @return Page
+     */
+    public function duplicate($doWrite = true)
+    {
+        $page = parent::duplicate();
+
+        if ($this->Certificates()) {
+            foreach ($this->Certificates() as $certificate) {
+                $newField = $certificate->duplicate();
+                $newField->ProductID = $page->ID; // Important that this is the ID of the relation to the DO's parent page!
+                $newField->write();
+            }
+        }
+
+        if ($this->Credits()) {
+            foreach ($this->Credits() as $certificate) {
+                $newField = $certificate->duplicate();
+                $newField->ProductID = $page->ID; // Important that this is the ID of the relation to the DO's parent page!
+                $newField->write();
+            }
+        }
+
+        return $page;
+    }
 
 }
 
@@ -47,6 +74,9 @@ class Page_Controller extends ContentController
             )
         );
     }
+
+
+
 
 
     // ========================================
