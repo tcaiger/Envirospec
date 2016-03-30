@@ -1,9 +1,19 @@
 
 <% loop Results %>
     <tr>
-        <% loop GetManufacturer($SupplierID) %>
-            <td>$Name</td>
-        <% end_loop %>
+        <% if $SupplierID %>
+            <% loop GetManufacturer($SupplierID) %>
+                <td>$Name</td>
+            <% end_loop %>
+        <% else_if $ManufacturerID %>
+            <% loop GetManufacturer($ManufacturerID) %>
+                <td>$Name</td>
+            <% end_loop %>
+        <% else %>
+            <td>No Manufacturer / Supplier</td>
+        <% end_if %>
+
+
         <td><a class="show-link" href="$Link">$Title</a></td>
         <td class="text-center">$GetCompliance($EnvironmentalManagementSystem)</td>
         <td class="text-center">$GetCompliance($CarbonOffset)</td>

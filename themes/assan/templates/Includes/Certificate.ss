@@ -4,13 +4,13 @@
             <div class="services-box-icon">
                 <%--<i class="fa fa-leaf"></i>--%>
                 <% if $Type == 'Green Building Rating Compatibility' %>
-                    <img src="$ThemeDir/img/greenstar-icon.png">
+                    <img src="$ThemeDir/img/np-icon.png">
                 <% else_if $Type == 'Indoor Air Quality Certification' %>
-                    <img src="$ThemeDir/img/full-ica-icon.png">
+                    <img src="$ThemeDir/img/np-icon.png">
                 <% else_if $Type == 'Energy Efficiency Rating' %>
                     <img src="$ThemeDir/img/co-icon.png">
                 <% else_if $Type == 'Lifecycle Based Ecolabel' %>
-                    <img src="$ThemeDir/img/full-lca.png">
+                    <img src="$ThemeDir/img/np-icon.png">
                 <% else_if $Type == 'Environmental Management System' %>
                     <img src="$ThemeDir/img/np-icon.png">
                 <% else_if $Type == 'Quality Management Systems' %>

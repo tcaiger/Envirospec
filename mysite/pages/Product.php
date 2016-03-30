@@ -274,7 +274,7 @@ class Product_Controller extends Page_Controller
     }
 
     // =====================================================
-    //       Show Green Star Certificates
+    //       Show Certificates
     // =====================================================
     public function ShowCertificates($PageID, $ManufacturerID, $SupplierID)
     {
@@ -286,9 +286,7 @@ class Product_Controller extends Page_Controller
                 'Display' => 1
             ))
             ->filterAny(array(
-                'ProductID'   => $PageID,
-                'CompaniesID' => $ManufacturerID,
-                'CompaniesID' => $SupplierID
+                'ProductID'   => $PageID
             ))
             ->sort('SortOrder', 'ASC');
 
