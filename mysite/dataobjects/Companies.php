@@ -73,20 +73,20 @@ class Companies extends DataObject
         ));
 
         //======== Products.Supplier Tab ==============
-        $fields->addFieldsToTab('Root.Products.Supplier', GridField::create(
+        $fields->addFieldsToTab('Root.Products.AsSupplier', GridField::create(
             'ManufacturerProducts',
             'Products supplied by this company',
             $this->SupplierProducts(),
-            GridFieldConfig_RecordViewer::create()
+            GridFieldConfig_RecordEditor::create()
         ));
 
 
          //======== Products.Manufacturer Tab ==============
-        $fields->addFieldsToTab('Root.Products.Manufacturer', GridField::create(
+        $fields->addFieldsToTab('Root.Products.AsManufacturer', GridField::create(
             'SupplierProducts',
             'Products manufactured by this company',
             $this->ManufacturerProducts(),
-            GridFieldConfig_RecordViewer::create()
+            GridFieldConfig_RecordEditor::create()
         ));
 
         // ======== Certificates Tab ==============
@@ -97,6 +97,7 @@ class Companies extends DataObject
             GridFieldConfig_RecordEditor::create()
         ));
 
+        // Remove the ability to view name and description
         if ( ! Permission::check('CMS_ACCESS_PAGES', 'any', $member)) {
             $fields->removebyName(array(
                 'Name',

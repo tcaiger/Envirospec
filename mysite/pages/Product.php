@@ -197,7 +197,6 @@ class Product extends Page
                 'Main',
                 'Descriptions',
                 'Companies',
-                'Certificates',
                 'Credits'
             ));
         }

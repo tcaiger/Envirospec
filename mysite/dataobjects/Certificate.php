@@ -44,7 +44,7 @@ class Certificate extends DataObject
         'SortOrder'      => 'Int'
     );
 
-    public function getCMSFields()
+    public function getCMSFields($member = null)
     {
 
         $fields = FieldList::create(
@@ -109,7 +109,22 @@ class Certificate extends DataObject
         $CertLoader->setAllowedFileCategories('image', 'doc');
         $ReportLoader->setAllowedFileCategories('image', 'doc');
 
+
+
+
+        if ( ! Permission::check('CMS_ACCESS_PAGES', 'any', $member)) {
+            $fields->removebyName(array(
+                'Type',
+                'Number',
+                'Expiry',
+                'Details',
+                'Status'
+            ));
+        }
+
         return $fields;
     }
+
+
 
 }
