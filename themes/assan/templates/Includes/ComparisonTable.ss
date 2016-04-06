@@ -23,7 +23,7 @@
         <td class="text-center">$GetCompliance($NewZealandMadeAccreditations)</td>
         <td class="text-center">$GetCompliance($GreenStarCompatible)</td>
         <td class="text-center">$GetCompliance($LivingBuildingChallenge)</td>
-        <td class="text-center">$GetCompliance($ProductEnvironmentalIndex)</td>
+        <td class="text-center">$GetCompliance($CircularEconomyModelOffice)</td>
     </tr>
 <% end_loop %>
 
