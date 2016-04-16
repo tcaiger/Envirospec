@@ -188,10 +188,10 @@ $(document).ready(function ($) {
         reportSearch        : {
             button: $('.report-search-btn'),
             init  : function () {
-                this.button.click(function (e) {
+                this.button.click(function () {
 
                     // Get Search Value
-                    var reportNumber = $('.report-search').attr('value');
+                    var reportNumber = $('.report-search').val();
 
                     if (reportNumber == '') {
                         reportNumber = 'blank';

@@ -1,7 +1,7 @@
 <% if $Report %>
 	<div class="alert alert-success">
 		<button class="close" data-dismiss="alert">x</button>
-		<a class="text-success" href="$Report.Certificate.URL" target="_blank">
+		<a class="text-success" href="$Report" target="_blank">
 			<i style="margin-right: 0.5em" class="fa fa-desktop"></i>
 			View Report.
 		</a>

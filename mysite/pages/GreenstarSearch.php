@@ -41,7 +41,7 @@ class GreenstarSearch_Controller extends Page_Controller
                 ))->first();
 
                 return $this->customise(array(
-                    'Report' => $Report
+                    'Report' => $Report->Certificate()->Filename
                 ))->renderWith('ReportResults');
 
             } else {
