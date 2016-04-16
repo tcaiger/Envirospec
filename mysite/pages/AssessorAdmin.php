@@ -22,58 +22,80 @@ class AssessorAdminPage_Controller extends Page_Controller {
     public function index(SS_HTTPRequest $request) {
 
         if ($request->isAjax()) {
+
+            // Get the summary certificate
+            //----------------------------------------------------
             if ($reportNo = $request->getVar('report')) {
                 $summary = Certificate::Get()->filter(array(
                     'Number' => $reportNo
                 ))->first();
             }
 
+            // Generate PDF (if the certificate is a summary document)
+            //----------------------------------------------------
             if ($summary && $summary->IsSummary == 1) {
 
-
-                //----------------------------------------------------
                 // Set Up
                 //----------------------------------------------------
                 $summaryFile = '../' . $summary->Certificate()->Filename;
                 $certificates = $summary->Product()->Certificates()->exclude('ID', $summary->ID);
+                $date = date("j F Y");
+                $dateStamp = date("d.m.Y");
 
-                //----------------------------------------------------
                 // Build Header Page
                 //----------------------------------------------------
                 $pdf = new PDF();
-                $pdf->SetLeftMargin(20);
                 $pdf->AddPage();
-                $pdf->SetFont('Arial','',16);
-                $pdf->cell(0, 80, 'Table Of Contents', 0, 2);
+                $pdf->SetFont('Arial','',32);
+                $pdf->setY(70);
+                $pdf->cell(0, 15, 'Green Star', 0, 1, 'C');
+                $pdf->cell(0, 15, 'Submission Pack', 0, 2, 'C');
+                $pdf->ln(20);
+                $pdf->Image('../assets/submission-packs/templates/cover-img.png', 25, null, 160);
+                $pdf->SetFontSize(16);
+                $pdf->ln(20);
+                $pdf->cell(0, 10, 'Created by: Envirospec.nz', 0, 2, 'C');
+                $pdf->cell(0, 10, 'Report No: '.$reportNo, 0, 2, 'C');
+                $pdf->cell(0, 10, 'Date: '.$date, 0, 2, 'C');
 
-                $pdf->SetFontSize(12);
+                // Build Table Of Contents
+                //----------------------------------------------------
+                $pdf->AddPage();
+                $pdf->setXY(30 ,50);
+                $pdf->SetFontSize(24);
+                $pdf->cell(0, 40, 'Table of Contents', 0, 2);
+                $pdf->SetFontSize(16);
 
+                $i = 1;
                 foreach ($certificates as $certificate) {
-                    $pdf->cell(0, 0, '- '.$certificate->Name, 0, 2);
-                    $pdf->Ln(1);
+                    $pdf->setX(30);
+                    $pdf->cell(0, 0, $i.'. '.$certificate->Name, 0, 2);
+                    $pdf->Ln(10);
+                    $i++;
                 }
 
-                $pdf->Output('F', '../assets/submission-packs/templates/test.pdf');
-
-                //$m->addFromFile('../assets/submission-packs/templates/header.pdf');
+                $headerPath = '../assets/submission-packs/templates/header.pdf';
+                $pdf->Output('F', $headerPath);
 
                 //----------------------------------------------------
                 // Merge Files
                 //----------------------------------------------------
                 $m = new Merger();
+                $m->addFromFile($headerPath);
                 $m->addFromFile($summaryFile);
 
+
                 foreach ($certificates as $certificate) {
-                    $m->addFromFile('../assets/submission-packs/templates/blank-page.pdf');
+                    //$m->addFromFile('../assets/submission-packs/templates/blank-page.pdf');
                     $file = '../' . $certificate->Certificate()->Filename;
                     $m->addFromFile($file);
                 }
 
-                $output = '../assets/submission-packs/submission-pack.pdf';
+                $outputPath = '../assets/submission-packs/generated-pdfs/SubmissionPack-'.$reportNo.'-'.$dateStamp.'.pdf';
 
-                file_put_contents($output, $m->merge());
+                file_put_contents($outputPath, $m->merge());
 
-                $Results = $output;
+                $Results = $outputPath;
 
             } else {
                 $Results = null;
@@ -92,25 +114,10 @@ class AssessorAdminPage_Controller extends Page_Controller {
 }
 
 class PDF extends FPDF {
-// Page header
+
     function Header() {
         // Logo
-        $this->Image('../assets/submission-packs/templates/es-logo.png', 15, 15, 50);
-        // Arial bold 15
-        $this->SetFont('Arial', '', 28);
-        // Title
-        $this->text(25, 50, 'Green Star Submission Pack');
-        // Line break
-        $this->Ln(20);
-    }
+        $this->Image('../assets/submission-packs/templates/es-logo.png', 20, 25, 50);
 
-// Page footer
-    function Footer() {
-        // Position at 1.5 cm from bottom
-        $this->SetY(-15);
-        // Arial italic 8
-        $this->SetFont('Arial', 'I', 8);
-        // Page number
-        $this->Cell(0, 10, 'Page ' . $this->PageNo() . '/{nb}', 0, 0, 'C');
     }
 }
