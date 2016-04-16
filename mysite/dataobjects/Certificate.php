@@ -88,7 +88,7 @@ class Certificate extends DataObject
 
             FieldGroup::create(
                 CheckboxField::create('Display', 'Display On Website'),
-                CheckboxField::create('Is Summary', 'Summary Certificate'),
+                CheckboxField::create('IsSummary', 'Summary Certificate'),
                 CheckboxField::create('Compile', 'Include In Submission Pack')
             )->setTitle('Details'),
 
