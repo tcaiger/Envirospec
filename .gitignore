@@ -10,7 +10,6 @@ silverstripe-bootstrap-forms/*
 silverstripe-gridfieldextensions/*
 siteconfig/*
 sqlite3/*
-vendor/*
 .editorconfig
 composer.json
 composer.lock
