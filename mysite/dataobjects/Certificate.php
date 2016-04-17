@@ -1,15 +1,12 @@
 <?php
 
-class Certificate extends DataObject
-{
+class Certificate extends DataObject {
 
-    public function canView($member = null)
-    {
+    public function canView($member = null) {
         return Permission::check('CMS_ACCESS_MyInfoAdmin', 'any', $member);
     }
 
-    public function canEdit($member = null)
-    {
+    public function canEdit($member = null) {
         return Permission::check('CMS_ACCESS_MyInfoAdmin', 'any', $member);
     }
 
@@ -22,10 +19,13 @@ class Certificate extends DataObject
     );
 
     private static $summary_fields = array(
-        'Name'    => 'Name',
-        'Status'  => 'Status',
-        'Type'    => 'Type',
-        'Display' => 'Displaying On Website'
+        'Name'      => 'Name',
+        'Type'      => 'Type',
+        'Number'    => 'Number',
+        'IsSummary' => 'Summary Sheet',
+        'Compile'   => 'Include in Submission Pack',
+        'Display'   => 'Display On Site',
+        'Status'    => 'Status'
     );
 
     private static $db = array(
@@ -44,8 +44,19 @@ class Certificate extends DataObject
         'SortOrder'      => 'Int'
     );
 
-    public function getCMSFields($member = null)
-    {
+    public function IsSummary() {
+        return ($this->IsSummary == true ? 'Yes' : 'No');
+    }
+
+    public function Compile() {
+        return ($this->Compile == true ? 'Yes' : 'No');
+    }
+
+    public function Display() {
+        return ($this->Display == true ? 'Yes' : 'No');
+    }
+
+    public function getCMSFields($member = null) {
 
         $fields = FieldList::create(
 
@@ -110,8 +121,6 @@ class Certificate extends DataObject
         $ReportLoader->setAllowedFileCategories('image', 'doc');
 
 
-
-
         if ( ! Permission::check('CMS_ACCESS_PAGES', 'any', $member)) {
             $fields->removebyName(array(
                 'Type',
@@ -124,7 +133,6 @@ class Certificate extends DataObject
 
         return $fields;
     }
-
 
 
 }
