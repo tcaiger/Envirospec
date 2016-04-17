@@ -88,7 +88,7 @@
                             $ApplicationAndPurpose
 
                             <h4>Installation and Maintenance</h4>
-                            $InstallationAndMaintainance
+                            $InstallationAndMaintenance
                         </div>
                     </div>
                 </div>

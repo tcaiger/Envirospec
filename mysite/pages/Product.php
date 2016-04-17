@@ -39,14 +39,14 @@ class Product extends Page
         'GeneralDescription'            => 'HTMLText',
         'BenefitsAdvantages'            => 'HTMLText',
         'ApplicationAndPurpose'         => 'HTMLText',
-        'InstallationAndMaintainance'   => 'HTMLText',
+        'InstallationAndMaintenance'   => 'HTMLText',
         'KeyProperties'                 => 'HTMLText',
         // Useful links
         'ProductSpecificWebsite'        => 'Varchar(255)',
         'ProductDistributor'            => 'Varchar(255)',
         'ProductApplicators'            => 'Varchar(255)',
         'InstallationManual'            => 'Varchar(255)',
-        'MaintainanceManual'            => 'Varchar(255)',
+        'MaintenanceManual'            => 'Varchar(255)',
         'ProductBrochure'               => 'Varchar(255)',
         'CAD'                           => 'Varchar(255)',
         'MaterialSafetyDataSheet'       => 'Varchar(255)',
@@ -85,10 +85,10 @@ class Product extends Page
             ToggleCompositeField::create('pa', 'Product Attributes', array(
                 CheckboxField::create('EnvironmentalManagementSystem', 'Environmental Management System'),
                 CheckboxField::create('CarbonOffset', 'Carbon Offset'),
-                CheckboxField::create('PerformanceItemEcolabel', 'PerformanceItemEcolabel'),
-                CheckboxField::create('LifeCycleBasedEcolabel', 'LifeCycleBasedEcolabel'),
+                CheckboxField::create('PerformanceItemEcolabel', 'Performance Item Ecolabel'),
+                CheckboxField::create('LifeCycleBasedEcolabel', 'Life Cycle Based Ecolabel'),
                 CheckboxField::create('NaturalProduct', 'Natural Product'),
-                CheckboxField::create('NewZealandMadeAccreditations', 'NewZealand Made Accreditations'),
+                CheckboxField::create('NewZealandMadeAccreditations', 'New Zealand Made Accreditations'),
                 CheckboxField::create('GreenStarCompatible', 'Green Star Compatible'),
                 CheckboxField::create('LivingBuildingChallenge', 'Living Building Challenge'),
                 CheckboxField::create('CircularEconomyModelOffice', 'Circular Economy Model Office')
@@ -110,8 +110,8 @@ class Product extends Page
             ToggleCompositeField::create('ap', 'Application & Purpose', array(
                 HTMLEditorField::create('ApplicationAndPurpose', '')
             )),
-            ToggleCompositeField::create('im', 'Installation & Maintainance', array(
-                HTMLEditorField::create('InstallationAndMaintainance', '')
+            ToggleCompositeField::create('im', 'Installation & Maintenance', array(
+                HTMLEditorField::create('InstallationAndMaintenance', '')
             )),
             ToggleCompositeField::create('kp', 'Key Properties', array(
                 HTMLEditorField::create('KeyProperties', '')
@@ -186,7 +186,7 @@ class Product extends Page
             TextField::create('ProductDistributor', 'Product Distributor'),
             TextField::create('ProductApplicators', 'Product Applicators'),
             TextField::create('InstallationManual', 'Installation Manual'),
-            TextField::create('MaintainanceManual', 'Maintainance Manual'),
+            TextField::create('MaintenanceManual', 'Maintenance Manual'),
             TextField::create('ProductBrochure', 'Product Brochure'),
             TextField::create('CAD', 'CAD'),
             TextField::create('MaterialSafetyDataSheet', 'Material Safety DataSheet'),
@@ -340,7 +340,7 @@ class Product_Controller extends Page_Controller
             'ProductDistributor',
             'ProductApplicators',
             'InstallationManual',
-            'MaintainanceManual',
+            'MaintenanceManual',
             'ProductBrochure',
             'CAD',
             'MaterialSafetyDataSheet',
