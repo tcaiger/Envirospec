@@ -30,6 +30,7 @@ mysite/_config.php
 vendor/bin/
 vendor/phpunit/
 vendor/symfony/
+vendor/composer/
 
 
 # ignore node modules
