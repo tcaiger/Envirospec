@@ -51,7 +51,7 @@ class AssessorAdminPage_Controller extends Page_Controller {
                 $pdf->cell(0, 15, 'Green Star', 0, 1, 'C');
                 $pdf->cell(0, 15, 'Submission Pack', 0, 2, 'C');
                 $pdf->ln(20);
-                $pdf->Image('../assets/submission-packs/templates/cover-img.png', 25, null, 160);
+                $pdf->Image('../mysite/templates/submission-packs/cover-img.png', 25, null, 160);
                 $pdf->SetFontSize(16);
                 $pdf->ln(20);
                 $pdf->cell(0, 10, 'Created by: Envirospec.nz', 0, 2, 'C');
@@ -74,7 +74,7 @@ class AssessorAdminPage_Controller extends Page_Controller {
                     $i++;
                 }
 
-                $headerPath = '../assets/submission-packs/templates/header.pdf';
+                $headerPath = '../mysite/templates/submission-packs/header.pdf';
                 $pdf->Output('F', $headerPath);
 
                 //----------------------------------------------------
@@ -91,7 +91,7 @@ class AssessorAdminPage_Controller extends Page_Controller {
                     $m->addFromFile($file);
                 }
 
-                $outputPath = '../assets/submission-packs/generated-pdfs/SubmissionPack-'.$reportNo.'-'.$dateStamp.'.pdf';
+                $outputPath = '../assets/submission-packs/SubmissionPack-'.$reportNo.'-'.$dateStamp.'.pdf';
 
                 file_put_contents($outputPath, $m->merge());
 
