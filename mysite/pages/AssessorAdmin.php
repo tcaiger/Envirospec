@@ -38,24 +38,30 @@ class AssessorAdminPage_Controller extends Page_Controller {
                 // Set Up
                 //----------------------------------------------------
                 $summaryFile = '../' . $summary->Certificate()->Filename;
-                $certificates = $summary->Product()->Certificates()->exclude('ID', $summary->ID);
+                $product = $summary->Product();
+                $certificates = $product->Certificates()->filter(array(
+                    'Compile' => 1
+                ))->exclude('ID', $summary->ID);
                 $date = date("j F Y");
                 $dateStamp = date("d.m.Y");
+
 
                 // Build Header Page
                 //----------------------------------------------------
                 $pdf = new PDF();
                 $pdf->AddPage();
                 $pdf->SetFont('Arial','',32);
-                $pdf->setY(70);
+                $pdf->setTextColor(45,45,45);
+                $pdf->setY(60);
                 $pdf->cell(0, 15, 'Green Star', 0, 1, 'C');
                 $pdf->cell(0, 15, 'Submission Pack', 0, 2, 'C');
                 $pdf->ln(20);
                 $pdf->Image('../mysite/templates/submission-packs/cover-img.png', 25, null, 160);
                 $pdf->SetFontSize(16);
                 $pdf->ln(20);
-                $pdf->cell(0, 10, 'Created by: Envirospec.nz', 0, 2, 'C');
+                $pdf->cell(0, 10, 'Product: '.$product->Title, 0, 2, 'C');
                 $pdf->cell(0, 10, 'Report No: '.$reportNo, 0, 2, 'C');
+                $pdf->cell(0, 10, 'Created by: Envirospec.nz', 0, 2, 'C');
                 $pdf->cell(0, 10, 'Date: '.$date, 0, 2, 'C');
 
                 // Build Table Of Contents
@@ -67,9 +73,28 @@ class AssessorAdminPage_Controller extends Page_Controller {
                 $pdf->SetFontSize(16);
 
                 $i = 1;
+                $pdf->setX(30);
+                $pdf->cell(0, 0, $i.'. '.$summary->Name, 0, 2);
+                $pdf->Ln(10);
+                $i++;
+
                 foreach ($certificates as $certificate) {
                     $pdf->setX(30);
-                    $pdf->cell(0, 0, $i.'. '.$certificate->Name, 0, 2);
+                    if(substr($certificate->Certificate()->Filename, -3) == 'pdf') {
+                        $pdf->cell(0, 0, $i . '. ' . $certificate->Name, 0, 2);
+                    } else {
+                        $pdf->setTextColor(231, 76, 60);
+                        $pdf->cell(0, 0, $i . '. ' . $certificate->Name, 0, 2);
+                        $pdf->Ln(8);
+                        $pdf->setX(35);
+                        $pdf->SetFontSize(10);
+                        $pdf->cell(0, 0, 'This file is not a valid pdf and cannot be included.', 0, 2);
+                        $pdf->Ln(4);
+                        $pdf->setX(35);
+                        $pdf->cell(0, 0, 'Please contact Envirospec directly for the file.', 0, 2);
+                        $pdf->setTextColor(45,45,45);
+                        $pdf->SetFontSize(16);
+                    }
                     $pdf->Ln(10);
                     $i++;
                 }
@@ -86,9 +111,12 @@ class AssessorAdminPage_Controller extends Page_Controller {
 
 
                 foreach ($certificates as $certificate) {
-                    //$m->addFromFile('../assets/submission-packs/templates/blank-page.pdf');
-                    $file = '../' . $certificate->Certificate()->Filename;
-                    $m->addFromFile($file);
+
+                    if(substr($certificate->Certificate()->Filename, -3) == 'pdf') {
+                        //$m->addFromFile('../assets/submission-packs/templates/blank-page.pdf');
+                        $file = '../' . $certificate->Certificate()->Filename;
+                        $m->addFromFile($file);
+                    }
                 }
 
                 $outputPath = '../assets/submission-packs/SubmissionPack-'.$reportNo.'-'.$dateStamp.'.pdf';

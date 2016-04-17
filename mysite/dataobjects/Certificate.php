@@ -117,8 +117,8 @@ class Certificate extends DataObject {
 
         $CertLoader->setFolderName('certificates');
         $ReportLoader->setFolderName('certificates');
-        $CertLoader->setAllowedFileCategories('image', 'doc');
-        $ReportLoader->setAllowedFileCategories('image', 'doc');
+        $CertLoader->setAllowedExtensions(array('pdf'));
+        $ReportLoader->setAllowedExtensions(array('pdf'));
 
 
         if ( ! Permission::check('CMS_ACCESS_PAGES', 'any', $member)) {
