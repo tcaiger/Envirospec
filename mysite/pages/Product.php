@@ -432,8 +432,11 @@ class Product_Controller extends Page_Controller
     {
 
         //$myCompany = $this->Company($this->ManufacturerID);
+        $companyID = $this->ManufacturerID;
+        $companyEmail = Companies::get()->byID($companyID)->Email;
+        $testEmail = 'tom@weareonfire.co.nz';
         // Update emails to real ones
-        $recipiants = $this->SiteConfig()->ContactFormEmail . ",tom@weareonfire.co.nz";
+        $recipiants = $this->SiteConfig()->ContactFormEmail . "," . $testEmail;
 
         $email = new Email();
         $email
