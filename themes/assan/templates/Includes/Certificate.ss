@@ -31,8 +31,13 @@
 
             </div>
             <div class="services-box-info">
-                <h4>$Name</h4>
-                <p>$Type</p>
+                <% if $Type == 'Green Building Rating Compatibility' %>
+                    <h4><i class="fa fa-download" aria-hidden="true"></i> Click To Download PDF Summary Sheet</h4>
+                    <p>$Name</p>
+                <% else %>
+                    <h4>$Name</h4>
+                    <p>$Type</p>
+                <% end_if %>
             </div>
         </a>
     </div>

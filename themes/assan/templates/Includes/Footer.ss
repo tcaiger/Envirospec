@@ -47,7 +47,7 @@
                     <h3>Latest News</h3>
                     <ul class="list-unstyled latest-f-news">
                         <% loop GetNews %>
-                            <li><a href="$Title">$Title <i class="fa fa-angle-right"></i></a></li>
+                            <li><a href="$Link">$Title <i class="fa fa-angle-right"></i></a></li>
                         <% end_loop %> 
                     </ul>
                 </div>                        

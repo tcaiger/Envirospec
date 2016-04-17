@@ -70,3 +70,10 @@
     }
   }
 }
+
+.services-box-info h4{
+  transition: color 0.2s linear;
+  &:hover{
+    color: $green;
+  }
+}

@@ -17,7 +17,7 @@
                     <h3><a href="$Link">$Title</a></h3>
                     $Content.LimitCharacters(300)
                 </div>
-                <p><a href="$Link" class="btn btn-default btn-ico btn-xs">Read More...</a></p>
+                <a href="$Link">Read More <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
                 <hr>
             <% end_loop %>
             <div class="divide30 hidden-xs"></div>

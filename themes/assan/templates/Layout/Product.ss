@@ -12,7 +12,7 @@
                     <!--            Tab Headings           -->
                     <!-- ================================= -->
                     <ul id="product-tabs" class="list-inline">
-                        <li class="first active">
+                        <li class="first $DefaultTabState">
                             <a href="#ptab1" data-toggle="tab" aria-expanded="true">Product Description</a>
                         </li>
                         <li>
@@ -21,7 +21,7 @@
                         <li>
                             <a href="#ptab3" data-toggle="tab" aria-expanded="false">Download Certificates</a>
                         </li>
-                        <li>
+                        <li class="$EnquiryTabState">
                             <a href="#ptab4" data-toggle="tab" aria-expanded="false">Product Enquiry</a>
                         </li>
                     </ul>
@@ -62,7 +62,7 @@
             <div class="col-sm-9 tab-content">
 
                 <!-- ========== Product Description ========= -->
-                <div class="tab-pane active" id="ptab1">
+                <div class="tab-pane $DefaultTabState" id="ptab1">
                     <div class="tab-desc animated fadeIn">
 
                         <div class="col-sm-12">
@@ -103,7 +103,7 @@
                             <% if ShowGreenStarCertificate($ID) %>
                                 <% loop ShowGreenStarCertificate($ID) %>
                                     <% include Certificate %>
-                                    <h5>Preview</h5>
+                                    <h5>Summary Sheet Preview</h5>
                                     <embed src="$Certificate.URL" type="application/pdf" width="600" height="700"/>
                                 <% end_loop %>
                             <% else %>
@@ -136,11 +136,12 @@
                 </div>
 
                 <!-- ========== Product Enquiry ==========  -->
-                <div class="tab-pane" id="ptab4">
+                <div class="tab-pane $EnquiryTabState" id="ptab4">
                     <div class="tab-desc animated fadeIn">
                         <div class="col-sm-8">
 
                             <h3>Product Enquiry</h3>
+                            <p>Fill out the form below to send an enquiry to xxx.</p>
                             <div class="comment-form">
                                 <div class="form-contact">
                                     <!-- Contact Form -->

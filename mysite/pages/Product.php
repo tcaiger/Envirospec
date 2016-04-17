@@ -263,6 +263,25 @@ class Product_Controller extends Page_Controller
         'CompanyContactForm'
     );
 
+    public function index(SS_HTTPRequest $request) {
+
+        $formSent = $request->getVar('Form');
+
+        if($formSent){
+            // Enquiry tab hss active state
+            return array(
+                'DefaultTabState'  => '',
+                'EnquiryTabState'  => 'active'
+            );
+        }else{
+            // Default tab hss active state
+            return array(
+                'DefaultTabState'  => 'active',
+                'EnquiryTabState'  => ''
+            );
+        }
+
+    }
 
     // =====================================================
     //         Show Green Star Certificate
@@ -392,7 +411,7 @@ class Product_Controller extends Page_Controller
             ),
             Fieldlist::create(
                 FormAction::create('SubmitContactForm', 'Send')
-                    ->addExtraClass('btn-lg btn-theme-bg')
+                    ->addExtraClass('btn btn-lg btn-theme-bg')
             )
         );
 
@@ -412,7 +431,7 @@ class Product_Controller extends Page_Controller
     public function submitContactForm($data, $form)
     {
 
-        $myCompany = $this->Company($this->ManufacturerID);
+        //$myCompany = $this->Company($this->ManufacturerID);
         // Update emails to real ones
         $recipiants = $this->SiteConfig()->ContactFormEmail . ",tom@weareonfire.co.nz";
 
@@ -432,6 +451,8 @@ class Product_Controller extends Page_Controller
 
         $form->sessionMessage("Your enquiry has been sent. You will receive a response from the product manufacturer / supplier as soon as possible.", 'good');
 
-        return $this->redirectback();
+        $url = $this->getRequest()->getHeader('Referer') . '?Form="success"';
+
+        return $this->redirect($url);
     }
 }
