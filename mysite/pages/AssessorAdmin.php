@@ -117,7 +117,7 @@ class PDF extends FPDF {
 
     function Header() {
         // Logo
-        $this->Image('../assets/submission-packs/templates/es-logo.png', 20, 25, 50);
+        $this->Image('../mysite/templates/submission-packs/es-logo.png', 20, 25, 50);
 
     }
 }
