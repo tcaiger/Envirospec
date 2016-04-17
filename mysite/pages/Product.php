@@ -35,11 +35,13 @@ class Product extends Page
         'ParentID'                      => 'Int',
         'ManufacturerID'                => 'Int',
         'SupplierID'                    => 'Int',
+        // General descriptions
         'GeneralDescription'            => 'HTMLText',
         'BenefitsAdvantages'            => 'HTMLText',
         'ApplicationAndPurpose'         => 'HTMLText',
         'InstallationAndMaintainance'   => 'HTMLText',
         'KeyProperties'                 => 'HTMLText',
+        // Useful links
         'ProductSpecificWebsite'        => 'Varchar(255)',
         'ProductDistributor'            => 'Varchar(255)',
         'ProductApplicators'            => 'Varchar(255)',
@@ -52,6 +54,7 @@ class Product extends Page
         'ProductSpecification'          => 'Varchar(255)',
         'SpecialAchievement'            => 'Varchar(255)',
         'AdditionalInformation'         => 'HTMLText',
+        // Product details
         'EnvironmentalManagementSystem' => 'Boolean',
         'CarbonOffset'                  => 'Boolean',
         'PerformanceItemEcolabel'       => 'Boolean',

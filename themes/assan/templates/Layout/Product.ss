@@ -141,7 +141,7 @@
                         <div class="col-sm-8">
 
                             <h3>Product Enquiry</h3>
-                            <p>Fill out the form below to send an enquiry to <% if $Company($SupplierID) %>$Company($SupplierID).Name<% else %>$Company($MAnufacturerID).Name<% end_if %> .</p>
+                            <p>Fill out the form below to send an enquiry to <% if $Company($SupplierID) %>$Company($SupplierID).Name<% else %>$Company($ManufacturerID).Name<% end_if %> .</p>
                             <div class="comment-form">
                                 <div class="form-contact">
                                     <!-- Contact Form -->
