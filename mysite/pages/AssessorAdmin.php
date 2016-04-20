@@ -12,6 +12,21 @@ class AssessorAdminPage extends Page implements PermissionProvider {
     public function canView($member = null) {
         return Permission::check('VIEW_ASSESSOR_ADMIN', 'any', $member);
     }
+
+    private static $db = array (
+        'Subheading' => 'Varchar(100)',
+    );
+
+    public function getCMSFields()
+    {
+
+        $fields = parent::getCMSFields();
+        $fields->addFieldsToTab('Root.Main', array(
+            TextField::create('Subheading', 'Sub Headeing')
+        ), 'Content');
+
+        return $fields;
+    }
 }
 
 use iio\libmergepdf\Merger;
@@ -138,6 +153,8 @@ class AssessorAdminPage_Controller extends Page_Controller {
             'Report' => null,
         );
     }
+
+
 
 }
 

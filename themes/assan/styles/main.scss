@@ -3,21 +3,28 @@
 @import url('../pe-icons/Pe-icon-7-stroke.css');
 
 // Mixins & Variables
-@import "mixins";
-@import "variables";
+@import "abstracts/mixins";
+@import "abstracts/variables";
 
-// Bootstrap
-@import "bootstrap/bootstrap";
-@import "bootstrap/bootstrap_theme";
+// Vendor
+@import "vendor/bootstrap/bootstrap";
+@import "vendor/bootstrap/bootstrap_theme";
+@import "vendor/assan/assan-style";
 
-// Assan Theme Styles
-@import "base";
-@import "header";
-@import "footers";
-@import "assan-style";
+// Core
+@import "core/base";
 
-// Custom & Pages
+// Layout
+@import "layout/header";
+@import "layout/footers";
+
+// Components
+@import "components/forms";
+@import "components/breadcrumbs";
+
+// Pages
 @import "pages/home-page";
 @import "pages/product-page";
 @import "pages/house-page";
-@import "custom";
+
+@import "temp";

@@ -3,31 +3,18 @@
 <div class="divide15"></div>
 
 <div class="container">
+
+    <!-- ============================== -->
+    <!-- Form For Admin Login Page     -->
+    <!-- ============================== -->
     <div class="row">
-        <div class="col-sm-3 ">
-             <!-- Placeholder Column -->
-        </div>
-        <div class="col-sm-9">
-            <div class="row">
-                <div class="col-sm-12">
-                    <h3>$Subheading</h3>
-                    <h3>$Title</h3>
-                    <br>
-                    $Content
-                    <!-- ============================== -->
-                    <!-- Form For Admin Login Page     -->
-                    <!-- ============================== -->
-                    <div class="col-md-6">
-                        <% if $Form %>
-                            <h3>Envirospec Admin Login</h3>
-                        <% end_if %>
-                        $Form
-                    </div>
-                </div>
-            </div>
-            <div class="divide30"></div>
+        <div class="col-lg-offset-4 col-lg-4 col-md-offset-3 col-md-5 col-sm-offset-3 col-sm-6">
+            <h3>$Title</h3>
+            $Content
+            $Form
         </div>
     </div>
+
 </div>
 
 <div class="divide60"></div>

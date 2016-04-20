@@ -37,6 +37,9 @@ class Page extends SiteTree
 class Page_Controller extends ContentController
 {
 
+    private static $allowed_actions = array (
+        'logout'
+    );
 
     public function init()
     {
@@ -119,6 +122,17 @@ class Page_Controller extends ContentController
             ->filter(array(
                 'ParentID' => 107
             ));
+    }
+
+
+    /*
+    * Simple logout method
+    * */
+    public function logout($redirect = true) {
+        $member = Member::currentUser();
+        if($member) $member->logOut();
+
+        $this->redirect('/');
     }
 
 }
