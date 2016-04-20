@@ -25,21 +25,13 @@ class MyInfoAdmin extends ModelAdmin
         }
     }
 
-    public function getEditForm($id = null, $fields = null)
+    public function index($request)
     {
-        $form = parent::getEditForm($id, $fields);
 
-        $gridFieldName = $this->sanitiseClassName($this->modelClass);
-        $gridField = $form->Fields()->fieldByName($gridFieldName)->getConfig();
+        $companyPage = 'admin/my-info/Companies/EditForm/field/Companies/item/' . Member::currentUser()->CompaniesID . '/edit';
+        $this->redirect($companyPage);
 
-        $gridField->removeComponentsByType('GridFieldPrintButton');
-        $gridField->removeComponentsByType('GridFieldExportButton');
-
-        if ($this->modelClass == 'Companies') {
-            $gridField->removeComponentsByType('GridFieldSortableHeader');
-
-        }
-
-        return $form;
     }
+
+
 }

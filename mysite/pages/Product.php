@@ -122,6 +122,23 @@ class Product extends Page
         ));
 
         // =====================================================
+        //                    Images Tab
+        // =====================================================
+        $fields->addFieldsToTab('Root.Images', array(
+            $upload = UploadField::create('ProductImages', 'Product Images')
+        ));
+
+        $upload->getValidator()->setAllowedExtensions(array(
+            'png', 'jpeg', 'jpg', 'gif'
+        ));
+        $upload->setFolderName('product-photos');
+        $upload->setAllowedMaxFileNumber(5);
+        $sizeMB = 2; // 2 MB
+        $size = $sizeMB * 1024 * 1024; // 2 MB in bytes
+        $upload->getValidator()->setAllowedMaxFileSize($size);
+
+
+        // =====================================================
         //                Companies Tab
         // =====================================================
         $fields->addFieldsToTab('Root.Companies', array(
@@ -161,27 +178,14 @@ class Product extends Page
         ));
 
 
-        // =====================================================
-        //                    Images Tab
-        // =====================================================
-        $fields->addFieldsToTab('Root.Images', array(
-            $upload = UploadField::create('ProductImages', 'Product Images')
-        ));
 
-        $upload->getValidator()->setAllowedExtensions(array(
-            'png', 'jpeg', 'jpg', 'gif'
-        ));
-        $upload->setFolderName('product-photos');
-        $upload->setAllowedMaxFileNumber(5);
-        $sizeMB = 2; // 2 MB
-        $size = $sizeMB * 1024 * 1024; // 2 MB in bytes
-        $upload->getValidator()->setAllowedMaxFileSize($size);
 
         // =====================================================
         //                   Links Tab
         // =====================================================
         $fields->addFieldsToTab('Root.Links', array(
-
+            HeaderField::create('External Links', 3),
+            LiteralField::create('links','<p>Please include <strong>http://</strong> or <strong>https://</strong> in your link</p>'),
             TextField::create('ProductSpecificWebsite', 'Product Website'),
             TextField::create('ProductDistributor', 'Product Distributor'),
             TextField::create('ProductApplicators', 'Product Applicators'),

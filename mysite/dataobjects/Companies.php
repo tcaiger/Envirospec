@@ -49,21 +49,9 @@ class Companies extends DataObject
         $fields->addFieldsToTab('Root.Main', array(
             TextField::create('Name', 'Company Name'),
             HTMLEditorField::create('Description', 'Company Description'),
-            HeaderField::create('LogoHeader', 'Upload Company Logo', '2'),
-            LabelField::create('LogoLabel', 'Best aspect ratio is 2 x 1', '2')->addExtraClass('margin-bottom'),
-            $upload = UploadField::create('Logo', '')
-        ));
-
-        $upload->getValidator()->setAllowedExtensions(array(
-            'png', 'jpeg', 'jpg', 'gif'
-        ));
-
-        $upload->setFolderName('logos');
-
-        // ======== Contact Tab ==============
-        $fields->addFieldsToTab('Root.Contact', array(
-            HeaderField::create('CompanyHeader', 'Company Contact Details', '2'),
-            LabelField::create('CompanyLabel', 'Edit Company Contact Details Here')->addExtraClass('margin-bottom'),
+            HeaderField::create('LogoHeader', 'Logo', '2'),
+            $upload = UploadField::create('Logo', '')->setDescription('Best aspect ratio is 2 x 1'),
+            HeaderField::create('ContactHeader', 'Contact Details', '2'),
             TextField::create('Phone'),
             TextField::create('Email'),
             TextField::create('Fax'),
@@ -72,25 +60,34 @@ class Companies extends DataObject
             HTMLEditorField::create('Post', 'Postal Address')
         ));
 
-        //======== Products.Supplier Tab ==============
-        $fields->addFieldsToTab('Root.Products.AsSupplier', GridField::create(
-            'ManufacturerProducts',
-            'Products supplied by this company',
-            $this->SupplierProducts(),
-            GridFieldConfig_RecordEditor::create()
+        $upload->getValidator()->setAllowedExtensions(array(
+            'png', 'jpeg', 'jpg', 'gif'
+        ));
+
+        $upload->setFolderName('logos');
+
+
+        //======== Products Tab ==============
+        $fields->addFieldsToTab('Root.Products', array(
+
+            GridField::create(
+                'ManufacturerProducts',
+                'Products as Supplier',
+                $this->SupplierProducts(),
+                GridFieldConfig_RecordEditor::create()
+            ),
+            GridField::create(
+                'SupplierProducts',
+                'Products as Manufacturer',
+                $this->ManufacturerProducts(),
+                GridFieldConfig_RecordEditor::create()
+            )
         ));
 
 
-         //======== Products.Manufacturer Tab ==============
-        $fields->addFieldsToTab('Root.Products.AsManufacturer', GridField::create(
-            'SupplierProducts',
-            'Products manufactured by this company',
-            $this->ManufacturerProducts(),
-            GridFieldConfig_RecordEditor::create()
-        ));
 
         // ======== Certificates Tab ==============
-        $fields->addFieldsToTab('Root.Certificates', GridField::create(
+        $fields->addFieldsToTab('Root.CompanyCertificates', GridField::create(
             'Certificates',
             'Certificates for this company',
             $this->Certificates(),
