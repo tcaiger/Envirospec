@@ -154,6 +154,14 @@ class AssessorAdminPage_Controller extends Page_Controller {
         );
     }
 
+    /*
+     * Print Certificates
+     * */
+    public function printCertificates(){
+        $certificates = Certificate::get();
+
+        return $certificates;
+    }
 
 
 }
