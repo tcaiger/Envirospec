@@ -11,8 +11,7 @@ silverstripe-gridfieldextensions/*
 siteconfig/*
 sqlite3/*
 .editorconfig
-composer.json
-composer.lock
+
 web.config
 
 # ignore unecessary silverstripe files
