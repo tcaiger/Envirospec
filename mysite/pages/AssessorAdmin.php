@@ -22,7 +22,7 @@ class AssessorAdminPage extends Page implements PermissionProvider {
 
         $fields = parent::getCMSFields();
         $fields->addFieldsToTab('Root.Main', array(
-            TextField::create('Subheading', 'Sub Headeing')
+            TextField::create('Subheading', 'Sub Heading')
         ), 'Content');
 
         return $fields;
