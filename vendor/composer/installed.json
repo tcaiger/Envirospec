@@ -1,192 +1,396 @@
 [
     {
-        "name": "setasign/fpdi",
-        "version": "1.6.1",
-        "version_normalized": "1.6.1.0",
+        "name": "composer/installers",
+        "version": "v1.0.25",
+        "version_normalized": "1.0.25.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/Setasign/FPDI.git",
-            "reference": "5b899b2b41463bf261aa69840fd30b50950a500c"
+            "url": "https://github.com/composer/installers.git",
+            "reference": "36e5b5843203d7f1cf6ffb0305a97e014387bd8e"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/Setasign/FPDI/zipball/5b899b2b41463bf261aa69840fd30b50950a500c",
-            "reference": "5b899b2b41463bf261aa69840fd30b50950a500c",
-            "shasum": ""
-        },
-        "suggest": {
-            "setasign/fpdf": "FPDI will extend this class but as it is also possible to use \"tecnickcom/tcpdf\" as an alternative there's no fixed dependency configured.",
-            "setasign/fpdi-fpdf": "Use this package to automatically evaluate dependencies to FPDF.",
-            "setasign/fpdi-tcpdf": "Use this package to automatically evaluate dependencies to TCPDF."
-        },
-        "time": "2015-11-30 10:53:14",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "classmap": [
-                "filters/",
-                "fpdi.php",
-                "fpdf_tpl.php",
-                "fpdi_pdf_parser.php",
-                "pdf_context.php"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Jan Slabon",
-                "email": "jan.slabon@setasign.com",
-                "homepage": "https://www.setasign.com"
-            }
-        ],
-        "description": "FPDI is a collection of PHP classes facilitating developers to read pages from existing PDF documents and use them as templates in FPDF. Because it is also possible to use FPDI with TCPDF, there are no fixed dependencies defined. Please see suggestions for packages which evaluates the dependencies automatically.",
-        "homepage": "https://www.setasign.com/fpdi",
-        "keywords": [
-            "fpdf",
-            "fpdi",
-            "pdf"
-        ]
-    },
-    {
-        "name": "setasign/fpdf",
-        "version": "1.8.1",
-        "version_normalized": "1.8.1.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/Setasign/FPDF.git",
-            "reference": "2c68c9e6c034ac3187d25968790139a73184cdb1"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/Setasign/FPDF/zipball/2c68c9e6c034ac3187d25968790139a73184cdb1",
-            "reference": "2c68c9e6c034ac3187d25968790139a73184cdb1",
-            "shasum": ""
-        },
-        "time": "2016-01-01 17:47:15",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "classmap": [
-                "fpdf.php"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "no usage restriction"
-        ],
-        "authors": [
-            {
-                "name": "Olivier Plathey",
-                "email": "oliver@fpdf.org",
-                "homepage": "http://fpdf.org/"
-            }
-        ],
-        "description": "FPDF is a PHP class which allows to generate PDF files with pure PHP. F from FPDF stands for Free: you may use it for any kind of usage and modify it to suit your needs.",
-        "homepage": "http://www.fpdf.org",
-        "keywords": [
-            "fpdf",
-            "pdf"
-        ]
-    },
-    {
-        "name": "setasign/fpdi-fpdf",
-        "version": "1.6.1",
-        "version_normalized": "1.6.1.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/Setasign/FPDI-FPDF.git",
-            "reference": "212a0d58c656b56925fd44669619a69dac85ac2c"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/Setasign/FPDI-FPDF/zipball/212a0d58c656b56925fd44669619a69dac85ac2c",
-            "reference": "212a0d58c656b56925fd44669619a69dac85ac2c",
+            "url": "https://api.github.com/repos/composer/installers/zipball/36e5b5843203d7f1cf6ffb0305a97e014387bd8e",
+            "reference": "36e5b5843203d7f1cf6ffb0305a97e014387bd8e",
             "shasum": ""
         },
         "require": {
-            "setasign/fpdf": "1.8.*",
-            "setasign/fpdi": "1.6.*"
+            "composer-plugin-api": "^1.0"
         },
-        "time": "2015-11-30 11:10:35",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "classmap": [
-                "fpdi_bridge.php"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Jan Slabon",
-                "email": "jan.slabon@setasign.com",
-                "homepage": "https://www.setasign.com"
-            }
-        ],
-        "description": "Kind of metadata package for dependencies of the latest versions of FPDI and FPDF.",
-        "homepage": "https://www.setasign.com/fpdi",
-        "keywords": [
-            "fpdf",
-            "fpdi",
-            "pdf"
-        ]
-    },
-    {
-        "name": "iio/libmergepdf",
-        "version": "3.0.0",
-        "version_normalized": "3.0.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/hanneskod/libmergepdf.git",
-            "reference": "b6042db24d66a49f3ecd261395ec918f00763e9c"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/hanneskod/libmergepdf/zipball/b6042db24d66a49f3ecd261395ec918f00763e9c",
-            "reference": "b6042db24d66a49f3ecd261395ec918f00763e9c",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.0",
-            "setasign/fpdi-fpdf": "^1.6"
+        "replace": {
+            "roundcube/plugin-installer": "*",
+            "shama/baton": "*"
         },
         "require-dev": {
-            "hanneskod/readme-tester": "dev-master",
-            "symfony/finder": "2.*"
+            "composer/composer": "1.0.*@dev",
+            "phpunit/phpunit": "4.1.*"
         },
-        "suggest": {
-            "symfony/finder": "Bulk add files using finder."
+        "time": "2016-04-13 19:46:30",
+        "type": "composer-plugin",
+        "extra": {
+            "class": "Composer\\Installers\\Plugin",
+            "branch-alias": {
+                "dev-master": "1.0-dev"
+            }
         },
-        "time": "2016-03-02 20:38:15",
-        "type": "library",
         "installation-source": "dist",
         "autoload": {
             "psr-4": {
-                "iio\\libmergepdf\\": "src/"
+                "Composer\\Installers\\": "src/Composer/Installers"
             }
         },
         "notification-url": "https://packagist.org/downloads/",
         "license": [
-            "WTFPL"
+            "MIT"
         ],
         "authors": [
             {
-                "name": "Hannes Forsgård",
-                "email": "hannes.forsgard@gmail.com"
+                "name": "Kyle Robinson Young",
+                "email": "kyle@dontkry.com",
+                "homepage": "https://github.com/shama"
             }
         ],
-        "description": "Library for merging multiple PDFs",
-        "homepage": "https://github.com/hanneskod/libmergepdf",
+        "description": "A multi-framework Composer library installer",
+        "homepage": "https://composer.github.io/installers/",
         "keywords": [
-            "concatenate",
-            "merge",
-            "pdf"
+            "Craft",
+            "Dolibarr",
+            "Hurad",
+            "ImageCMS",
+            "MODX Evo",
+            "Mautic",
+            "OXID",
+            "SMF",
+            "Thelia",
+            "WolfCMS",
+            "agl",
+            "aimeos",
+            "annotatecms",
+            "bitrix",
+            "cakephp",
+            "chef",
+            "codeigniter",
+            "concrete5",
+            "croogo",
+            "dokuwiki",
+            "drupal",
+            "elgg",
+            "fuelphp",
+            "grav",
+            "installer",
+            "joomla",
+            "kohana",
+            "laravel",
+            "lithium",
+            "magento",
+            "mako",
+            "mediawiki",
+            "modulework",
+            "moodle",
+            "phpbb",
+            "piwik",
+            "ppi",
+            "puppet",
+            "roundcube",
+            "shopware",
+            "silverstripe",
+            "symfony",
+            "typo3",
+            "wordpress",
+            "zend",
+            "zikula"
         ]
+    },
+    {
+        "name": "silverstripe/framework",
+        "version": "3.2.0",
+        "version_normalized": "3.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/silverstripe/silverstripe-framework.git",
+            "reference": "0092792568fb8a33674669aa200c7c81b163a365"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/silverstripe/silverstripe-framework/zipball/0092792568fb8a33674669aa200c7c81b163a365",
+            "reference": "0092792568fb8a33674669aa200c7c81b163a365",
+            "shasum": ""
+        },
+        "require": {
+            "composer/installers": "~1.0",
+            "php": ">=5.3.3,<7"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~3.7"
+        },
+        "time": "2015-10-11 19:44:34",
+        "type": "silverstripe-module",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "tests/behat/features/bootstrap"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "SilverStripe",
+                "homepage": "http://silverstripe.com"
+            },
+            {
+                "name": "The SilverStripe Community",
+                "homepage": "http://silverstripe.org"
+            }
+        ],
+        "description": "The SilverStripe framework",
+        "homepage": "http://silverstripe.org",
+        "keywords": [
+            "framework",
+            "silverstripe"
+        ]
+    },
+    {
+        "name": "silverstripe/siteconfig",
+        "version": "3.3.1",
+        "version_normalized": "3.3.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/silverstripe/silverstripe-siteconfig.git",
+            "reference": "3c41aaa7de144022e267df3c2b0c6c928d362ae2"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/silverstripe/silverstripe-siteconfig/zipball/3c41aaa7de144022e267df3c2b0c6c928d362ae2",
+            "reference": "3c41aaa7de144022e267df3c2b0c6c928d362ae2",
+            "shasum": ""
+        },
+        "require": {
+            "silverstripe/framework": "*"
+        },
+        "time": "2016-02-24 03:06:04",
+        "type": "silverstripe-module",
+        "extra": {
+            "branch-alias": {
+                "3.x-dev": "3.3.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "tests/behat/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "authors": [
+            {
+                "name": "Will Rossiter",
+                "email": "will@fullscreen.io"
+            }
+        ],
+        "description": "Site wide settings administration.",
+        "keywords": [
+            "silverstripe",
+            "siteconfig"
+        ]
+    },
+    {
+        "name": "silverstripe/reports",
+        "version": "3.2.3",
+        "version_normalized": "3.2.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/silverstripe-labs/silverstripe-reports.git",
+            "reference": "af2d51125c4651f27d8fb279e44e8ceb5f2996f9"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/silverstripe-labs/silverstripe-reports/zipball/af2d51125c4651f27d8fb279e44e8ceb5f2996f9",
+            "reference": "af2d51125c4651f27d8fb279e44e8ceb5f2996f9",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3",
+            "silverstripe/framework": "~3.2"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~3.7"
+        },
+        "time": "2015-12-16 21:00:39",
+        "type": "silverstripe-module",
+        "installation-source": "dist",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "SilverStripe",
+                "homepage": "http://silverstripe.com"
+            },
+            {
+                "name": "The SilverStripe Community",
+                "homepage": "http://silverstripe.org"
+            }
+        ],
+        "homepage": "http://silverstripe.org",
+        "keywords": [
+            "cms",
+            "reports",
+            "silverstripe"
+        ]
+    },
+    {
+        "name": "silverstripe/cms",
+        "version": "3.2.0",
+        "version_normalized": "3.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/silverstripe/silverstripe-cms.git",
+            "reference": "d8915115f837633fb9183bbd66b05a2238606e19"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/silverstripe/silverstripe-cms/zipball/d8915115f837633fb9183bbd66b05a2238606e19",
+            "reference": "d8915115f837633fb9183bbd66b05a2238606e19",
+            "shasum": ""
+        },
+        "require": {
+            "composer/installers": "*",
+            "php": ">=5.3.3",
+            "silverstripe/framework": "~3.2",
+            "silverstripe/reports": "~3.2",
+            "silverstripe/siteconfig": "~3.2"
+        },
+        "time": "2015-10-06 05:33:16",
+        "type": "silverstripe-module",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "tests/behat/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "SilverStripe",
+                "homepage": "http://silverstripe.com"
+            },
+            {
+                "name": "The SilverStripe Community",
+                "homepage": "http://silverstripe.org"
+            }
+        ],
+        "description": "The SilverStripe Content Management System",
+        "homepage": "http://silverstripe.org",
+        "keywords": [
+            "cms",
+            "silverstripe"
+        ]
+    },
+    {
+        "name": "silverstripe-australia/gridfieldextensions",
+        "version": "1.3.0",
+        "version_normalized": "1.3.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/silverstripe-australia/silverstripe-gridfieldextensions.git",
+            "reference": "ef57799a6898f4eeb1fe3ee2ab1eb2e0f58e5f9f"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/silverstripe-australia/silverstripe-gridfieldextensions/zipball/ef57799a6898f4eeb1fe3ee2ab1eb2e0f58e5f9f",
+            "reference": "ef57799a6898f4eeb1fe3ee2ab1eb2e0f58e5f9f",
+            "shasum": ""
+        },
+        "require": {
+            "silverstripe/framework": "~3.1"
+        },
+        "replace": {
+            "ajshort/silverstripe-gridfieldextensions": "self.version"
+        },
+        "time": "2015-11-17 15:02:18",
+        "type": "silverstripe-module",
+        "extra": {
+            "installer-name": "gridfieldextensions",
+            "branch-alias": {
+                "dev-master": "1.2.x-dev"
+            },
+            "screenshots": [
+                "docs/en/_images/editable-rows.png",
+                "docs/en/_images/add-existing-search.png"
+            ]
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Marcus Nyeholt",
+                "email": "marcus@silverstripe.com.au"
+            },
+            {
+                "name": "Andrew Short",
+                "email": "andrewjshort@gmail.com"
+            }
+        ],
+        "description": "A collection of useful grid field components",
+        "homepage": "http://github.com/silverstripe-australia/silverstripe-gridfieldextensions",
+        "keywords": [
+            "gridfield",
+            "silverstripe"
+        ]
+    },
+    {
+        "name": "setasign/eval/fpdi_pdf-parser/ioncube",
+        "version": "1.0.110749",
+        "version_normalized": "1.0.110749.0",
+        "dist": {
+            "type": "zip",
+            "url": "https://www.setasign.com/downloads/eval/93188/FPDI-PDF-Parser-License.zip",
+            "reference": null,
+            "shasum": null
+        },
+        "type": "library",
+        "installation-source": "dist",
+        "license": [
+            "proprietary"
+        ]
+    },
+    {
+        "name": "setasign/eval/fpdi_pdf-parser/ioncube/php5.4",
+        "version": "1.1.2",
+        "version_normalized": "1.1.2.0",
+        "dist": {
+            "type": "zip",
+            "url": "https://www.setasign.com/downloads/93188/FPDI_PDF-Parser_1.1.2_Ioncubed-PHP5.4.zip",
+            "reference": null,
+            "shasum": null
+        },
+        "require": {
+            "setasign/eval/fpdi_pdf-parser/ioncube": "*"
+        },
+        "time": "2015-05-08 00:00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "filters/FilterPredictor.php",
+                "pdf_parser.php"
+            ]
+        },
+        "license": [
+            "proprietary"
+        ],
+        "support": {
+            "email": "support@setasign.com"
+        }
     }
 ]
