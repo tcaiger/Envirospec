@@ -114,7 +114,7 @@ class AssessorAdminPage_Controller extends Page_Controller {
                     $i++;
                 }
 
-                $headerPath = '../mysite/templates/submission-packs/header.pdf';
+                $headerPath = '../assets/submission-packs/header.pdf';
                 $pdf->Output('F', $headerPath);
 
                 //----------------------------------------------------
