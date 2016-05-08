@@ -36,10 +36,10 @@ $(document).ready(function ($) {
              * */
 
             //this.navSearch.init();
+            this.wow.init();
             this.toolTips.init();
             this.coverFlow.init();
             this.showImage.init();
-            this.wow.init();
             this.greenstarSearch.init();
             this.sortGreenstarResults.init();
             this.sortHouseResults.init();
@@ -69,6 +69,20 @@ $(document).ready(function ($) {
             }
         },
 
+        wow                 : {
+            settings: {
+                boxClass    : 'wow', // animated element css class (default is wow)
+                animateClass: 'animated', // animation css class (default is animated)
+                offset      : 100, // distance to the element when triggering the animation (default is 0)
+                mobile      : false        // trigger animations on mobile devices (true is default)
+            },
+            init    : function () {
+
+                var wow = new WOW(this.settings);
+                wow.init();
+            }
+        },
+
         toolTips: {
             tip: $("[data-toggle=tooltip]"),
             init: function(){
@@ -87,6 +101,7 @@ $(document).ready(function ($) {
             },
             init    : function () {
                 if (this.cover.length) {
+                    this.cover.css('display', 'block');
                     this.cover.flipster(this.settings);
                 }
             }
@@ -103,19 +118,6 @@ $(document).ready(function ($) {
             }
         },
 
-        wow                 : {
-            settings: {
-                boxClass    : 'wow', // animated element css class (default is wow)
-                animateClass: 'animated', // animation css class (default is animated)
-                offset      : 100, // distance to the element when triggering the animation (default is 0)
-                mobile      : false        // trigger animations on mobile devices (true is default)
-            },
-            init    : function () {
-
-                var wow = new WOW(this.settings);
-                wow.init();
-            }
-        },
         greenstarSearch     : {
             form: $('.greenstar-search'),
             init: function () {

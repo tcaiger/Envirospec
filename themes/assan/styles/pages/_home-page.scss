@@ -1,7 +1,7 @@
 #home-parallax{
 	position: relative;
 	font-family: 'Raleway';
-	min-height: 600px;
+	min-height: 620px;
 	padding-top: 60px;
 	padding-bottom: 0px;
 	background-size: cover;
@@ -37,6 +37,10 @@
 }
 .flipster__button{
 	color: #fff;
+}
+
+#cover-flow{
+	display: none;
 }
 .cover{
 	width: 400px;
