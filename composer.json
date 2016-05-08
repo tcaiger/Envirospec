@@ -3,7 +3,8 @@
     "silverstripe/cms": "3.2.0",
     "silverstripe/framework": "3.2.0",
     "silverstripe-australia/gridfieldextensions": "^1.3",
-    "setasign/eval/fpdi_pdf-parser/ioncube/php5.4": "1.1.2"
+    "setasign/fpdi_pdf-parser": "1.1.2",
+    "iio/libmergepdf": "^3.0"
   },
   "repositories": [
     {

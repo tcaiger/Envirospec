@@ -31,7 +31,6 @@ vendor/bin/
 vendor/phpunit/
 vendor/symfony/
 vendor/composer/
-vendor/setasign/
 
 
 # ignore node modules
