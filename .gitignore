@@ -31,6 +31,8 @@ vendor/bin/
 vendor/phpunit/
 vendor/symfony/
 vendor/composer/
+vendor/setasign/
+vendor\setasign\
 
 
 # ignore node modules
@@ -81,5 +83,7 @@ ehthumbs.db
 Thumbs.db
 
 GridFieldBulkEditingTools/
+gridifeldextensions/
 
 gridfieldextensions/
+auth.json
