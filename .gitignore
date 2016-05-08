@@ -11,6 +11,7 @@ silverstripe-gridfieldextensions/*
 siteconfig/*
 sqlite3/*
 .editorconfig
+*/*/*/composer.json
 
 web.config
 
@@ -30,6 +31,7 @@ vendor/bin/
 vendor/phpunit/
 vendor/symfony/
 vendor/composer/
+vendor/setasign/
 
 
 # ignore node modules
@@ -81,4 +83,4 @@ Thumbs.db
 
 GridFieldBulkEditingTools/
 
-silverstripe-gridfieldextensions/
+gridfieldextensions/
