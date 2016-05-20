@@ -5,13 +5,14 @@
 
 // Mouseenter Event Listeners
 var theads = document.querySelectorAll('.house-card thead');
+var arrows = document.getElementById('arrows');
 
 for (var i = 0; i < theads.length; i++) {
 
     theads[i].addEventListener('mouseenter', function (e) {
 
         var targetText = this.innerHTML;
-
+        arrows.style.display = "none";
         for (var j = 0; j < theads.length; j++) {
 
             var thisText = theads[j].innerHTML;
@@ -44,7 +45,7 @@ var tables = document.querySelectorAll('.house-card table');
 for (var i = 0; i < tables.length; i++) {
 
     tables[i].addEventListener('mouseleave', function (e) {
-
+        arrows.style.display = "block";
         // Make all the bodies invisible
         var body           = this.lastElementChild;
         body.style.display = 'none';

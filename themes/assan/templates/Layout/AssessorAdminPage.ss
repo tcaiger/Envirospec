@@ -24,7 +24,7 @@
             $Disclaimer
         </div>
 
-        <div class="col-md-5 hiddenxs hidden-sm">
+        <div class="col-md-5 hidden-xs hidden-sm">
 
             <div class="divide20"></div>
 
