@@ -1,15 +1,12 @@
 <?php
 
-class Companies extends DataObject
-{
+class Companies extends DataObject {
 
-    public function canView($member = null)
-    {
+    public function canView($member = null) {
         return Permission::check('CMS_ACCESS_MyInfoAdmin', 'any', $member);
     }
 
-    public function canEdit($member = null)
-    {
+    public function canEdit($member = null) {
         return Permission::check('CMS_ACCESS_MyInfoAdmin', 'any', $member);
     }
 
@@ -29,9 +26,9 @@ class Companies extends DataObject
     );
 
     private static $has_many = array(
-        'ManufacturerProducts'     => 'Product.Manufacturer',
+        'ManufacturerProducts' => 'Product.Manufacturer',
         'SupplierProducts'     => 'Product.Supplier',
-        'Certificates' => 'Certificate'
+        'Certificates'         => 'Certificate'
     );
 
     private static $summary_fields = array(
@@ -40,8 +37,7 @@ class Companies extends DataObject
 
     private static $default_sort = "Name ASC";
 
-    public function getCMSFields($member = null)
-    {
+    public function getCMSFields($member = null) {
 
         // ============== Main Tab =====================
         $fields = FieldList::create(TabSet::create('Root'));
@@ -83,7 +79,6 @@ class Companies extends DataObject
                 GridFieldConfig_RecordEditor::create()
             )
         ));
-
 
 
         // ======== Certificates Tab ==============

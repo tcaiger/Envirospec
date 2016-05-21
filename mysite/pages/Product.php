@@ -1,9 +1,7 @@
 <?php
 
-class Product extends Page
-{
-    public function canEdit($member = null)
-    {
+class Product extends Page {
+    public function canEdit($member = null) {
         return Permission::check('CMS_ACCESS_MyInfoAdmin', 'any', $member);
     }
 
@@ -39,14 +37,14 @@ class Product extends Page
         'GeneralDescription'            => 'HTMLText',
         'BenefitsAdvantages'            => 'HTMLText',
         'ApplicationAndPurpose'         => 'HTMLText',
-        'InstallationAndMaintenance'   => 'HTMLText',
+        'InstallationAndMaintenance'    => 'HTMLText',
         'KeyProperties'                 => 'HTMLText',
         // Useful links
         'ProductSpecificWebsite'        => 'Varchar(255)',
         'ProductDistributor'            => 'Varchar(255)',
         'ProductApplicators'            => 'Varchar(255)',
         'InstallationManual'            => 'Varchar(255)',
-        'MaintenanceManual'            => 'Varchar(255)',
+        'MaintenanceManual'             => 'Varchar(255)',
         'ProductBrochure'               => 'Varchar(255)',
         'CAD'                           => 'Varchar(255)',
         'MaterialSafetyDataSheet'       => 'Varchar(255)',
@@ -68,8 +66,7 @@ class Product extends Page
     );
 
 
-    public function getCMSFields($member = null)
-    {
+    public function getCMSFields($member = null) {
         $fields = parent::getCMSFields();
         $fields->removeByName('Content');
 
@@ -178,14 +175,12 @@ class Product extends Page
         ));
 
 
-
-
         // =====================================================
         //                   Links Tab
         // =====================================================
         $fields->addFieldsToTab('Root.Links', array(
             HeaderField::create('External Links', 3),
-            LiteralField::create('links','<p>Please include <strong>http://</strong> or <strong>https://</strong> in your link</p>'),
+            LiteralField::create('links', '<p>Please include <strong>http://</strong> or <strong>https://</strong> in your link</p>'),
             TextField::create('ProductSpecificWebsite', 'Product Website'),
             TextField::create('ProductDistributor', 'Product Distributor'),
             TextField::create('ProductApplicators', 'Product Applicators'),
@@ -214,8 +209,7 @@ class Product extends Page
     // =====================================================
     //       Get The Name Of The Manufacturer
     // =====================================================
-    public function getManufacturer($CompanyID)
-    {
+    public function getManufacturer($CompanyID) {
         return Companies::get()->filter(array(
             'ID' => $CompanyID
         ));
@@ -224,8 +218,7 @@ class Product extends Page
     // =====================================================
     //                  Get Credit Points
     // =====================================================
-    public function getPoints()
-    {
+    public function getPoints() {
 
         if ($_GET['SubCredit']) {
             $creditID = $_GET['SubCredit'];
@@ -252,8 +245,7 @@ class Product extends Page
     // =====================================================
     //                  Get Compliance
     // =====================================================
-    public function getCompliance($compliant)
-    {
+    public function getCompliance($compliant) {
         if ($compliant) {
             return '<i class="fa fa-check"></i>';
         } else {
@@ -263,8 +255,7 @@ class Product extends Page
 }
 
 
-class Product_Controller extends Page_Controller
-{
+class Product_Controller extends Page_Controller {
 
     private static $allowed_actions = array(
         'CompanyContactForm'
@@ -274,17 +265,17 @@ class Product_Controller extends Page_Controller
 
         $formSent = $request->getVar('Form');
 
-        if($formSent){
+        if ($formSent) {
             // Enquiry tab hss active state
             return array(
-                'DefaultTabState'  => '',
-                'EnquiryTabState'  => 'active'
+                'DefaultTabState' => '',
+                'EnquiryTabState' => 'active'
             );
-        }else{
+        } else {
             // Default tab hss active state
             return array(
-                'DefaultTabState'  => 'active',
-                'EnquiryTabState'  => ''
+                'DefaultTabState' => 'active',
+                'EnquiryTabState' => ''
             );
         }
 
@@ -293,8 +284,7 @@ class Product_Controller extends Page_Controller
     // =====================================================
     //         Show Green Star Certificate
     // =====================================================
-    public function ShowGreenStarCertificate($PageID)
-    {
+    public function ShowGreenStarCertificate($PageID) {
         return Certificate::get()->filter(array(
             'ProductID' => $PageID,
             'Type'      => 'Green Building Rating Compatibility',
@@ -305,8 +295,7 @@ class Product_Controller extends Page_Controller
     // =====================================================
     //       Show Certificates
     // =====================================================
-    public function ShowCertificates($PageID, $ManufacturerID, $SupplierID)
-    {
+    public function ShowCertificates($PageID, $ManufacturerID, $SupplierID) {
 
         return Certificate::get()->exclude(
             'Type', 'Green Building Rating Compatibility'
@@ -325,8 +314,7 @@ class Product_Controller extends Page_Controller
     // =====================================================
     //           Show Credits
     // =====================================================
-    public function ShowCredits($PageID)
-    {
+    public function ShowCredits($PageID) {
 
         return Credit::get()->filter(array(
             'ProductID' => $PageID
@@ -337,8 +325,7 @@ class Product_Controller extends Page_Controller
     // =====================================================
     //           Show Credits
     // =====================================================
-    public function DisplayLinks()
-    {
+    public function DisplayLinks() {
         $items = array(
             'ProductSpecificWebsite',
             'ProductDistributor',
@@ -382,16 +369,14 @@ class Product_Controller extends Page_Controller
     // =====================================================
     //                  Get Company
     // =====================================================
-    public function Company($CompanyID)
-    {
+    public function Company($CompanyID) {
         return dataObject::get_by_id('Companies', $CompanyID);
     }
 
     // =====================================================
     //           Back To Search Results Link
     // =====================================================
-    public function BackLink()
-    {
+    public function BackLink() {
         if (isset($_SERVER['HTTP_REFERER'])) {
             return $_SERVER['HTTP_REFERER'];
         } else {
@@ -403,8 +388,7 @@ class Product_Controller extends Page_Controller
     // =====================================================
     //                   Company Contact Form
     // =====================================================
-    public function CompanyContactForm()
-    {
+    public function CompanyContactForm() {
         $form = BootstrapForm::create(
             $this,
             __Function__,
@@ -435,8 +419,7 @@ class Product_Controller extends Page_Controller
     // ========================================
     // Submit  Contact Form
     // ========================================
-    public function submitContactForm($data, $form)
-    {
+    public function submitContactForm($data, $form) {
 
         //$myCompany = $this->Company($this->ManufacturerID);
         $companyID = $this->ManufacturerID;

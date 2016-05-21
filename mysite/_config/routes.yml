@@ -1,0 +1,7 @@
+---
+Name: mysiteroutes
+After: framework/routes#coreroutes
+---
+Director:
+  rules:
+    'expiry//$Action/$ID/$Name': 'ExpiryController'
