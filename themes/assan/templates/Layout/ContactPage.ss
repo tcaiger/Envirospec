@@ -34,23 +34,19 @@
             <!-- Social Media -->
             <h4>Get social</h4>
              <div class=" margin10">
-                <a href="#" class="social-icon si-dark si-colored-facebook">
+                <a href="https://www.facebook.com/EnviroSpec" target="_blank" class="social-icon si-dark si-colored-facebook">
                     <i class="fa fa-facebook"></i>
                     <i class="fa fa-facebook"></i>
                 </a>
-                <a href="#" class="social-icon si-dark si-colored-twitter">
+                <a href="https://twitter.com/envirospecnz" target="_blank" class="social-icon si-dark si-colored-twitter">
                     <i class="fa fa-twitter"></i>
                     <i class="fa fa-twitter"></i>
                 </a>
-                <a href="#" class="social-icon si-dark si-colored-google-plus">
-                    <i class="fa fa-google-plus"></i>
-                    <i class="fa fa-google-plus"></i>
-                </a>
-                <a href="#" class="social-icon si-dark si-colored-linkedin">
+                <a href="https://www.linkedin.com/company/envirospec-nz-ltd" target="_blank" class="social-icon si-dark si-colored-linkedin">
                     <i class="fa fa-linkedin"></i>
                     <i class="fa fa-linkedin"></i>
                 </a>
-                <a href="#" class="social-icon si-dark si-colored-google-plus">
+                <a href="https://www.youtube.com/watch?v=wgBqVfRLG78&feature=youtu.be" target="_blank" class="social-icon si-dark si-colored-google-plus">
                     <i class="fa fa-youtube"></i>
                     <i class="fa fa-youtube"></i>
                 </a>

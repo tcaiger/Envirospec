@@ -10,7 +10,14 @@ class GridFieldOrderableRows extends RequestHandler implements
 	GridField_ColumnProvider,
 	GridField_DataManipulator,
 	GridField_HTMLProvider,
-	GridField_URLHandler {
+	GridField_URLHandler,
+	GridField_SaveHandler {
+
+	/**
+	 * @see $immediateUpdate
+	 * @var boolean
+	 */
+	private static $default_immediate_update = true;
 
 	private static $allowed_actions = array(
 		'handleReorder',
@@ -24,6 +31,15 @@ class GridFieldOrderableRows extends RequestHandler implements
 	 * @var string
 	 */
 	protected $sortField;
+
+	/**
+	 * If set to true, when an item is re-ordered, it will update on the 
+	 * database and refresh the gridfield. When set to false, it will only
+	 * update the sort order when the record is saved. 
+	 *
+	 * @var boolean
+	 */
+	protected $immediateUpdate;
 
 	/**
 	 * Extra sort fields to apply before the sort field.
@@ -47,6 +63,7 @@ class GridFieldOrderableRows extends RequestHandler implements
 	public function __construct($sortField = 'Sort') {
 		parent::__construct();
 		$this->sortField = $sortField;
+		$this->immediateUpdate = $this->config()->default_immediate_update;
 	}
 
 	/**
@@ -64,6 +81,23 @@ class GridFieldOrderableRows extends RequestHandler implements
 	 */
 	public function setSortField($field) {
 		$this->sortField = $field;
+		return $this;
+	}
+
+	/**
+	 * @return boolean
+	 */
+	public function getImmediateUpdate() {
+		return $this->immediateUpdate;
+	}
+
+	/**
+	 * @see $immediateUpdate
+	 * @param boolean $immediateUpdate
+	 * @return GridFieldOrderableRows $this
+	 */
+	public function setImmediateUpdate($bool) {
+		$this->immediateUpdate = $bool;
 		return $this;
 	}
 
@@ -146,6 +180,7 @@ class GridFieldOrderableRows extends RequestHandler implements
 		GridFieldExtensions::include_requirements();
 
 		$field->addExtraClass('ss-gridfield-orderable');
+		$field->setAttribute('data-immediate-update', (string)(int)$this->immediateUpdate);
 		$field->setAttribute('data-url-reorder', $field->Link('reorder'));
 		$field->setAttribute('data-url-movetopage', $field->Link('movetopage'));
 	}
@@ -206,6 +241,10 @@ class GridFieldOrderableRows extends RequestHandler implements
 	 * @return SS_HTTPResponse
 	 */
 	public function handleReorder($grid, $request) {
+		if (!$this->immediateUpdate)
+		{
+			$this->httpError(400);
+		}
 		$list = $grid->getList();
 		$modelClass = $grid->getModelClass();
 		if ($list instanceof ManyManyList && !singleton($modelClass)->canView()) {
@@ -214,63 +253,17 @@ class GridFieldOrderableRows extends RequestHandler implements
 			$this->httpError(403);
 		}
 
-		$ids   = $request->postVar('order');
-		$field = $this->getSortField();
-
-		if(!is_array($ids)) {
-			$this->httpError(400);
-		}
-
-		$sortterm = '';
-		if ($this->extraSortFields) {
-			if (is_array($this->extraSortFields)) {
-				foreach($this->extraSortFields as $col => $dir) {
-					$sortterm .= "$col $dir, ";
-				}
-			} else {
-				$sortterm = $this->extraSortFields.', ';
-			}
-		}
-		$sortterm .= '"'.$this->getSortTable($list).'"."'.$field.'"';
-		$items = $list->filter('ID', $ids)->sort($sortterm);
-
-		// Ensure that each provided ID corresponded to an actual object.
-		if(count($items) != count($ids)) {
-			$this->httpError(404);
-		}
-
 		// Save any un-comitted changes to the gridfield
 		if(($form = $grid->getForm()) && ($record = $form->getRecord()) ) {
 			$form->loadDataFrom($request->requestVars(), true);
 			$grid->saveInto($record);
 		}
 
-		// Populate each object we are sorting with a sort value.
-		$this->populateSortValues($items);
-
-		// Generate the current sort values.
-		if ($items instanceof ManyManyList)
+		$ids   = $request->postVar('order');
+		if (!$this->executeReorder($grid, $ids))
 		{
-			$current = array();
-			foreach ($items->toArray() as $record)
-			{
-				// NOTE: _SortColumn0 is the first ->sort() field
-				//		 used by SS when functions are detected in a SELECT
-				//	     or CASE WHEN.
-				if (isset($record->_SortColumn0)) {
-					$current[$record->ID] = $record->_SortColumn0;
-				} else {
-					$current[$record->ID] = $record->$field;
-				}
-			}
+			$this->httpError(400);
 		}
-		else
-		{
-			$current = $items->map('ID', $field)->toArray();
-		}
-
-		// Perform the actual re-ordering.
-		$this->reorderItems($list, $current, $ids);
 
 		return $grid->FieldHolder();
 	}
@@ -334,22 +327,122 @@ class GridFieldOrderableRows extends RequestHandler implements
 		return $grid->FieldHolder();
 	}
 
+	/**
+	 * Handle saving when 'immediateUpdate' is disabled, otherwise this isn't
+	 * necessary for the default sort mode.
+	 */
+	public function handleSave(GridField $grid, DataObjectInterface $record) {
+		if (!$this->immediateUpdate)
+		{
+			$list  = $grid->getList();
+			$value = $grid->Value();
+			if (isset($value['GridFieldEditableColumns']) && $value['GridFieldEditableColumns'])
+			{
+				$rows = $value['GridFieldEditableColumns'];
+				$ids = array();
+				foreach ($rows as $id => $data)
+				{
+					$ids[] = $id;
+				}
+				$this->executeReorder($grid, $ids);
+			}
+		}
+	}
+
+	protected function executeReorder(GridField $grid, $ids) {
+		if(!is_array($ids)) {
+			return false;
+		}
+		$field = $this->getSortField();
+
+		$sortterm = '';
+		if ($this->extraSortFields) {
+			if (is_array($this->extraSortFields)) {
+				foreach($this->extraSortFields as $col => $dir) {
+					$sortterm .= "$col $dir, ";
+				}
+			} else {
+				$sortterm = $this->extraSortFields.', ';
+			}
+		}
+		$list = $grid->getList();
+		$sortterm .= '"'.$this->getSortTable($list).'"."'.$field.'"';
+		$items = $list->filter('ID', $ids)->sort($sortterm);
+
+		// Ensure that each provided ID corresponded to an actual object.
+		if(count($items) != count($ids)) {
+			return false;
+		}
+
+		// Populate each object we are sorting with a sort value.
+		$this->populateSortValues($items);
+
+		// Generate the current sort values.
+		if ($items instanceof ManyManyList)
+		{
+			$current = array();
+			foreach ($items->toArray() as $record)
+			{
+				// NOTE: _SortColumn0 is the first ->sort() field
+				//		 used by SS when functions are detected in a SELECT
+				//	     or CASE WHEN.
+				if (isset($record->_SortColumn0)) {
+					$current[$record->ID] = $record->_SortColumn0;
+				} else {
+					$current[$record->ID] = $record->$field;
+				}
+			}
+		}
+		else
+		{
+			$current = $items->map('ID', $field)->toArray();
+		}
+
+		// Perform the actual re-ordering.
+		$this->reorderItems($list, $current, $ids);
+		return true;
+	}
+
 	protected function reorderItems($list, array $values, array $order) {
 		// Get a list of sort values that can be used.
 		$pool = array_values($values);
 		sort($pool);
 
+		// If not a ManyManyList and using versioning, detect it.
+		$isVersioned = false;
+		$class = $list->dataClass();
+		if ($class == $this->getSortTable($list)) {
+			$isVersioned = $class::has_extension('Versioned');
+		}
+
 		// Loop through each item, and update the sort values which do not
 		// match to order the objects.
-		foreach(array_values($order) as $pos => $id) {
-			if($values[$id] != $pool[$pos]) {
-				DB::query(sprintf(
-					'UPDATE "%s" SET "%s" = %d WHERE %s',
-					$this->getSortTable($list),
-					$this->getSortField(),
-					$pool[$pos],
-					$this->getSortTableClauseForIds($list, $id)
-				));
+		if (!$isVersioned) {
+			$additionalSQL = (!$list instanceof ManyManyList) ? ', "LastEdited" = NOW()' : '';
+			foreach(array_values($order) as $pos => $id) {
+				if($values[$id] != $pool[$pos]) {
+					DB::query(sprintf(
+						'UPDATE "%s" SET "%s" = %d%s WHERE %s',
+						$this->getSortTable($list),
+						$this->getSortField(),
+						$pool[$pos],
+						$additionalSQL,
+						$this->getSortTableClauseForIds($list, $id)
+					));
+				}
+			}
+		} else {
+			// For versioned objects, modify them with the ORM so that the
+			// *_versions table is updated. This ensures re-ordering works
+			// similar to the SiteTree where you change the position, and then
+			// you go into the record and publish it.
+			$sortField = $this->getSortField();
+			foreach(array_values($order) as $pos => $id) {
+				if($values[$id] != $pool[$pos]) {
+					$record = $class::get()->byID($id);
+					$record->$sortField = $pool[$pos];
+					$record->write();
+				}
 			}
 		}
 
@@ -361,16 +454,18 @@ class GridFieldOrderableRows extends RequestHandler implements
 		$field  = $this->getSortField();
 		$table  = $this->getSortTable($list);
 		$clause = sprintf('"%s"."%s" = 0', $table, $this->getSortField());
+		$additionalSQL = (!$list instanceof ManyManyList) ? ', "LastEdited" = NOW()' : '';
 
 		foreach($list->where($clause)->column('ID') as $id) {
 			$max = DB::query(sprintf('SELECT MAX("%s") + 1 FROM "%s"', $field, $table));
 			$max = $max->value();
 
 			DB::query(sprintf(
-				'UPDATE "%s" SET "%s" = %d WHERE %s',
+				'UPDATE "%s" SET "%s" = %d%s WHERE %s',
 				$table,
 				$field,
 				$max,
+				$additionalSQL,
 				$this->getSortTableClauseForIds($list, $id)
 			));
 		}

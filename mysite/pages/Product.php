@@ -297,18 +297,19 @@ class Product_Controller extends Page_Controller {
     // =====================================================
     public function ShowCertificates($PageID, $ManufacturerID, $SupplierID) {
 
-        return Certificate::get()->exclude(
-            'Type', 'Green Building Rating Compatibility'
-        )
+        $certificates = Certificate::get()
+            ->exclude('Type', 'Green Building Rating Compatibility')
             ->filter(array(
-                'Display' => 1
+                'Display' => 1,
             ))
             ->filterAny(array(
-                'ProductID' => $PageID
+                'ProductID' => $PageID,
+                'CompaniesID' => $ManufacturerID,
+                'CompaniesID' => $SupplierID
             ))
             ->sort('SortOrder', 'ASC');
 
-
+        return $certificates;
     }
 
     // =====================================================

@@ -122,13 +122,13 @@
                             <h3>Download Certificates</h3>
 
                             <div class="divide30"></div>
-                            <% if ShowCertificates($ID, $ManufacturerID, $SupplierID) %>
-                                <% loop ShowCertificates($ID, $ManufacturerID, $SupplierID) %>
+                            <% if $ShowCertificates($ID, $ManufacturerID, $SupplierID) %>
+                                <% loop $ShowCertificates($ID, $ManufacturerID, $SupplierID) %>
                                     <% include Certificate %>
                                 <% end_loop %>
                             <% else %>
                                 <h3>
-                                    <small> -- No Certificates For This Product --</small>
+                                    <small> -- No Certificates For This Product -- $ManufacturerID $SupplierID</small>
                                 </h3>
                             <% end_if %>
                         </div>
