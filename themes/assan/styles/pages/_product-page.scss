@@ -48,6 +48,7 @@
 
   .detail-img-col{
     text-align: center;
+    margin-top: 20px
   }
   .detail-img-col img{
     display: block;
@@ -76,4 +77,10 @@
   &:hover{
     color: $green;
   }
+}
+
+
+.Product .detail-img-sm img{
+  height : 60px;
+  width :auto!important;
 }

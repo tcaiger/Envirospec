@@ -94,8 +94,6 @@
                     <a class="logout btn btn-theme-dark btn-ico" href="home/logout">Logout <span class="fa fa-sign-out"></span></a>
                 </div>
 
-
-
             <% else %>
 
                 <!-- ===================================== -->

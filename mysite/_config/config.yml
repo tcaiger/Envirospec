@@ -22,3 +22,8 @@ SiteConfig:
 Member:
   extensions:
     - MemberExtension
+
+Injector:
+  MemberLoginForm:
+    class: CustomLoginForm
+    priority: 2
