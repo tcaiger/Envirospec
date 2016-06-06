@@ -15,18 +15,32 @@ class AssessorAdminPage extends Page implements PermissionProvider {
 
     private static $db = array(
         'Subheading'   => 'Varchar(100)',
+        'Caption'      => 'Text',
         'Instructions' => 'HTMLText',
-        'Disclaimer'   => 'HTMLText'
+        'Disclaimer'   => 'HTMLText',
+        'PDFHeading'   => 'Varchar'
+    );
+
+    private static $has_one = array(
+        'CoverImage'        => 'Image'
     );
 
     public function getCMSFields() {
 
         $fields = parent::getCMSFields();
+        $fields->removeByName('Content');
+
         $fields->addFieldsToTab('Root.Main', array(
             TextField::create('Subheading', 'Sub Heading'),
+            TextareaField::create('Caption'),
             HTMLEditorField::create('Instructions'),
-            HTMLEditorField::create('Disclaimer')
-        ), 'Content');
+            HTMLEditorField::create('Disclaimer'),
+            HeaderField::create('PDF', 'PDF Cover Page', 4),
+            TextField::create('PDFHeading'),
+            $upload = UploadField::create('CoverImage')
+        ), 'Metadata');
+
+        $upload->setFolderName('pdf-cover-images');
 
         return $fields;
     }
