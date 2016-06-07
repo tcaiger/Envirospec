@@ -9,7 +9,10 @@ class ExpiryController extends Controller {
     function index() {
         echo "\n Expiry Controller \n -------------------------\n\n";
 
-        $certificates = Certificate::get();
+        $certificates = Certificate::get()->exclude(array(
+            'NoExpiry' => true,
+            'Type' => 'Green Building Rating Compatibility'
+        ));
 
         echo 'There are ' . count($certificates) . ' certificates in total' . "\n";
 
@@ -19,7 +22,7 @@ class ExpiryController extends Controller {
         // Loop through all the certificates and check the expiry date
         foreach ($certificates as $certificate) {
 
-            if ($certificate->ValidUntil <= $todays_date && $certificate->NoExpiry != true) {
+            if ($certificate->ValidUntil <= $todays_date) {
                 $expired->push($certificate);
             }
         }
