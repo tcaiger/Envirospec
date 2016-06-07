@@ -9,10 +9,12 @@ class ExpiryController extends Controller {
     function index() {
         echo "\n Expiry Controller \n -------------------------\n\n";
 
-        $certificates = Certificate::get()->exclude(array(
-            'NoExpiry' => true,
-            'Type' => 'Green Building Rating Compatibility'
-        ));
+        $certificates = Certificate::get()
+            ->exclude(array(
+                'NoExpiry' => true
+            ))->exclude(array(
+                'Type' => 'Green Building Rating Compatibility'
+            ));
 
         echo 'There are ' . count($certificates) . ' certificates in total' . "\n";
 
