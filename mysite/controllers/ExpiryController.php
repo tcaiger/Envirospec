@@ -15,7 +15,7 @@ class ExpiryController extends Controller {
             ))->exclude(array(
                 'Type' => 'Green Building Rating Compatibility'
             ))->exclude(array(
-                'Product.Name' => ''
+                'Product.Title' => ''
             ));
 
         echo 'There are ' . count($certificates) . ' certificates in total' . "\n";
