@@ -41,20 +41,29 @@ class ExpiryController extends Controller {
             if ($certificate->ValidUntil - 28 <= $this->TodaysDate) {
 
                 $WarningList->push($certificate);
-                $member = $this->GetMember($certificate);
-                $this->WarningEmail($certificate, $member);
+                if($member = $this->GetMember($certificate)){
+                    $this->WarningEmail($certificate, $member);
+                }else{
+                    $this->ErrorMessage();
+                }
 
             } else if ($certificate->ValidUntil <= $this->TodaysDate) {
 
                 $ExpiredList->push($certificate);
-                $member = $this->GetMember($certificate);
-                $this->ExpiredEmail($certificate, $member);
+                if($member = $this->GetMember($certificate)){
+                    $this->ExpiredEmail($certificate, $member);
+                }else{
+                    $this->ErrorMessage();
+                }
 
             } else if ($certificate->ValidUntil + 31 <= $this->TodaysDate) {
 
                 $FinalList->push($certificate);
-                $member = $this->GetMember($certificate);
-                $this->FinalEmail($certificate, $member);
+                if($member = $this->GetMember($certificate)){
+                    $this->FinalEmail($certificate, $member);
+                }else{
+                    $this->ErrorMessage();
+                }
             }
         }
 
@@ -71,12 +80,14 @@ class ExpiryController extends Controller {
 
         $member = null;
         if ($ID = $certificate->CompaniesID) {
-            $member = $member->get()->byID($ID);
+            $member = Member::get()->filter('CompaniesID', $ID)->first();
         } else {
             if ($ID = $certificate->Product()->ManufacturerID) {
-                $member = $member->get()->byID($ID);
+
+                $member = Member::get()->filter('CompaniesID', $ID)->first();
+
             } else if ($ID = $certificate->Product()->SupplierID) {
-                $member = $member->get()->byID($ID);
+                $member = Member::get()->filter('CompaniesID', $ID)->first();
             }
         }
 
@@ -101,7 +112,6 @@ class ExpiryController extends Controller {
             )));
 
         $email->send();
-        echo 'success';
     }
 
     /*
@@ -144,6 +154,18 @@ class ExpiryController extends Controller {
             )));
 
         $email->send();
+    }
+
+    /*
+    * Sends Error Message
+   */
+    public function ErrorMessage() {
+
+        Email::create(
+            '<envirospec@mail.co.nz>',
+            'caigertom@gmail.com',
+            'No company could be found for the expired certificate.'
+       )->send();
     }
 
     public function SummaryEmail($warning, $expired, $final) {
