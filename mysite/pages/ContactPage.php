@@ -56,9 +56,6 @@ class ContactPage_Controller extends Page_Controller {
     // ========================================
     public function sendContactForm($data, $form) {
 
-        ini_set('SMTP', 'envirospec.nz');
-        ini_set('sendmail_from', 'envirospec@mail.co.nz');
-
         $recipiants = $this->SiteConfig()->ContactFormEmail . ",tom@weareonfire.co.nz";
 
         $email = new Email();
