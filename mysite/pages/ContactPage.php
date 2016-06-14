@@ -1,7 +1,6 @@
 <?php
 
-class ContactPage extends Page
-{
+class ContactPage extends Page {
     public function getCMSFields() {
 
         $fields = parent::getCMSFields();
@@ -13,8 +12,7 @@ class ContactPage extends Page
 }
 
 
-class ContactPage_Controller extends Page_Controller
-{
+class ContactPage_Controller extends Page_Controller {
 
     private static $allowed_actions = array(
         'ContactForm'
@@ -23,8 +21,7 @@ class ContactPage_Controller extends Page_Controller
     // ========================================
     // Contact Form
     // ========================================
-    public function ContactForm()
-    {
+    public function ContactForm() {
 
         $form = BootstrapForm::create(
             $this,
@@ -57,8 +54,11 @@ class ContactPage_Controller extends Page_Controller
     // ========================================
     // Send Contact Form
     // ========================================
-    public function sendContactForm($data, $form)
-    {
+    public function sendContactForm($data, $form) {
+
+        ini_set('SMTP', 'envirospec.nz');
+        ini_set('sendmail_from', 'envirospec@mail.co.nz');
+
         $recipiants = $this->SiteConfig()->ContactFormEmail . ",tom@weareonfire.co.nz";
 
         $email = new Email();
