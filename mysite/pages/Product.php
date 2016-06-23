@@ -264,20 +264,23 @@ class Product_Controller extends Page_Controller {
     public function index(SS_HTTPRequest $request) {
 
         $formSent = $request->getVar('Form');
+        $active = $request->getvar('tab');
 
-        if ($formSent) {
-            // Enquiry tab hss active state
-            return array(
-                'DefaultTabState' => '',
-                'EnquiryTabState' => 'active'
-            );
-        } else {
-            // Default tab hss active state
-            return array(
-                'DefaultTabState' => 'active',
-                'EnquiryTabState' => ''
-            );
+        if($active){
+            if($active == 'tab1'){
+                return array('Tab1' => 'active');
+            }elseif($active == 'tab2'){
+                return array('Tab2' => 'active');
+            }elseif($active == 'tab3'){
+                return array('Tab3' => 'active');
+            }elseif($active == 'tab4'){
+                return array('Tab4' => 'active');
+            }
         }
+
+        return array('Tab1' => 'active');
+
+
 
     }
 
@@ -445,7 +448,7 @@ class Product_Controller extends Page_Controller {
 
         $form->sessionMessage("Your enquiry has been sent. You will receive a response from the product manufacturer / supplier as soon as possible.", 'good');
 
-        $url = $this->getRequest()->getHeader('Referer') . '?Form="success"';
+        $url = $this->getRequest()->getHeader('Referer') . '?tab="tab4"';
 
         return $this->redirect($url);
     }

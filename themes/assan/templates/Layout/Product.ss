@@ -12,17 +12,17 @@
                     <!--            Tab Headings           -->
                     <!-- ================================= -->
                     <ul id="product-tabs" class="list-inline">
-                        <li class="first $DefaultTabState">
-                            <a href="#ptab1" data-toggle="tab" aria-expanded="true">Product Description</a>
+                        <li class="first $Tab1 $DefaultTabState">
+                            <a href="#ptab1" data-toggle="tab" data-tab="tab1" aria-expanded="true">Product Description</a>
                         </li>
-                        <li>
-                            <a href="#ptab2" data-toggle="tab" aria-expanded="false">Green Building Info</a>
+                        <li class="$Tab2">
+                            <a href="#ptab2" data-toggle="tab" data-tab="tab2" aria-expanded="false">Green Building Info</a>
                         </li>
-                        <li>
-                            <a href="#ptab3" data-toggle="tab" aria-expanded="false">Download Certificates</a>
+                        <li class="$Tab3">
+                            <a href="#ptab3" data-toggle="tab" data-tab="tab3" aria-expanded="false">Download Certificates</a>
                         </li>
-                        <li class="$EnquiryTabState">
-                            <a href="#ptab4" data-toggle="tab" aria-expanded="false">Product Enquiry</a>
+                        <li class="$Tab4 $EnquiryTabState">
+                            <a href="#ptab4" data-toggle="tab" data-tab="tab4" aria-expanded="false">Product Enquiry</a>
                         </li>
                     </ul>
                 </div>
@@ -62,7 +62,7 @@
             <div class="col-sm-9 tab-content">
 
                 <!-- ========== Product Description ========= -->
-                <div class="tab-pane $DefaultTabState" id="ptab1">
+                <div class="tab-pane $Tab1" id="ptab1">
                     <div class="tab-desc animated fadeIn">
 
                         <div class="col-sm-12">
@@ -94,7 +94,7 @@
                 </div>
 
                 <!-- ========== View Green Building Info ========= -->
-                <div class="tab-pane" id="ptab2">
+                <div class="tab-pane $Tab2" id="ptab2">
                     <div class="tab-desc animated fadeIn">
                         <div class="col-sm-12">
                             <h3>Green Building Information Summary Sheet</h3>
@@ -116,7 +116,7 @@
                 </div>
 
                 <!-- ========== Download Certificates ========== -->
-                <div class="tab-pane" id="ptab3">
+                <div class="tab-pane $Tab3" id="ptab3">
                     <div class="tab-desc animated fadeIn">
                         <div class="col-sm-8">
                             <h3>Download Certificates</h3>
@@ -136,7 +136,7 @@
                 </div>
 
                 <!-- ========== Product Enquiry ==========  -->
-                <div class="tab-pane $EnquiryTabState" id="ptab4">
+                <div class="tab-pane $EnquiryTabState $Tab4" id="ptab4">
                     <div class="tab-desc animated fadeIn">
                         <div class="col-sm-8">
 

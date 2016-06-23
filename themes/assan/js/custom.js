@@ -8,35 +8,15 @@ var ESpec = ESpec || {};
 $(document).ready(function ($) {
 
     ESpec = {
-        settings: {
-            isIe8    : false,
-            isIphone : (/iPhone|iPod/gi).test(navigator.appVersion),
-            isIpad   : (/iPad/gi).test(navigator.appVersion),
-            isAndroid: (/Android/gi).test(navigator.appVersion),
-            isTouch  : false,
-            easing   : 'cubic-bezier(0.77, 0, 0.175, 1)'
-        },
-        init    : function () {
 
-            if (!$.support.transition) {
-                $.fn.transition = $.fn.animate;
-            }
-            if (this.settings.isIphone || this.settings.isIpad || this.settings.isAndroid) {
-                this.settings.isTouch = true;
-            }
-            if (!$.support.leadingWhitespace) {
-                this.settings.isIe8 = true;
-            }
+        init: function () {
 
 
-            /*
-             *
-             * Contents
-             *
-             * */
-
-            //this.navSearch.init();
+            // ----------------------
+            // Contents
+            // ----------------------
             this.wow.init();
+            this.productTabs.init();
             this.toolTips.init();
             this.coverFlow.init();
             this.showImage.init();
@@ -45,31 +25,25 @@ $(document).ready(function ($) {
             this.sortHouseResults.init();
             this.reportSearch.init();
             this.contactMap.init();
-
-
         },
 
-        navSearch: {
-            searchIcon : $('.top-search'),
-            searchField: $('.search'),
-            searchClose: $('.search-close'),
-            init       : function () {
+        productTabs: {
+            tabs: $('#product-tabs'),
+            init: function () {
+                if(this.tabs.width){
+                    _this = this;
+                    this.tabs.on('click', 'a', function(){
+                        var tabNum = $(this).data('tab');
+                        var cur = window.location;
+                        var tabs = {active : '1'};
 
-                this.searchIcon.on('click', function () {
-                    ESpec.navSearch.searchField.fadeIn(300, function () {
-                        $(this).toggleClass('search-toggle');
-                    });
-                });
-
-                this.searchClose.on('click', function () {
-                    ESpec.navSearch.searchField.fadeOut(300, function () {
-                        $(this).removeClass('search-toggle');
-                    });
-                });
+                        window.history.pushState(tabs, '', cur.origin + cur.pathname + '?tab=' + tabNum);
+                    })
+                }
             }
         },
 
-        wow                 : {
+        wow: {
             settings: {
                 boxClass    : 'wow', // animated element css class (default is wow)
                 animateClass: 'animated', // animation css class (default is animated)
@@ -84,9 +58,9 @@ $(document).ready(function ($) {
         },
 
         toolTips: {
-            tip: $("[data-toggle=tooltip]"),
-            init: function(){
-                if(this.tip.length){
+            tip : $("[data-toggle=tooltip]"),
+            init: function () {
+                if (this.tip.length) {
                     this.tip.tooltip();
                 }
             }
@@ -151,12 +125,12 @@ $(document).ready(function ($) {
         },
         sortGreenstarResults: {
             button: $('#GreenstarSort'),
-            init    : function () {
+            init  : function () {
 
                 this.button.on('click', 'li', function (e) {
-                    var sort = $(this).data('sort');
+                    var sort  = $(this).data('sort');
                     var order = $(this).data('order');
-                    var url = window.location.href + '&sort=' + sort+ '&order=' + order;
+                    var url   = window.location.href + '&sort=' + sort + '&order=' + order;
 
                     $.ajax(url)
                         .done(function (response) {
@@ -170,12 +144,12 @@ $(document).ready(function ($) {
         },
         sortHouseResults    : {
             button: $('#HouseSort'),
-            init    : function () {
+            init  : function () {
 
                 this.button.on('click', 'li', function (e) {
-                    var sort = $(this).data('sort');
+                    var sort  = $(this).data('sort');
                     var order = $(this).data('order');
-                    var url = window.location.href + '&sort=' + sort+ '&order=' + order;
+                    var url   = window.location.href + '&sort=' + sort + '&order=' + order;
 
                     $.ajax(url)
                         .done(function (response) {

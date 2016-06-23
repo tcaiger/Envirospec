@@ -36,7 +36,7 @@
 
                     <li class="hidden-sm hidden-xs"><i class="fa fa-envelope"></i>  $SiteConfig.ContactEmail</li>
                     <li class="hidden-sm hidden-xs"><i class="fa fa-phone"></i> $SiteConfig.ContactPhone</li>
-                    <li><a href="admin"><i class="fa fa-lock"></i> Admin</a></li>
+                    <li><a href="admin"><i class="fa fa-lock"></i> Login</a></li>
                     <li>
                         $NavSearch
                     </li>
