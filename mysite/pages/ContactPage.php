@@ -1,5 +1,7 @@
 <?php
 
+//require_once 'vendor/autoload.php';
+
 class ContactPage extends Page {
     public function getCMSFields() {
 
@@ -56,28 +58,29 @@ class ContactPage_Controller extends Page_Controller {
     // ========================================
     public function sendContactForm($data, $form) {
 
-        $recipiants = $this->SiteConfig()->ContactFormEmail . ",tom@weareonfire.co.nz";
+        $mail = new PHPMailer;
 
-        $email = new Email();
-        $email
-            ->setFrom('"Envirospec Contact Form" <envirospec@mail.co.nz>')
-            ->setTo($recipiants)
-            ->setSubject('Envirospec Contact Form Message')
-            ->setTemplate('ContactFormEmail')
-            ->populateTemplate(new ArrayData(array(
-                'Name'    => $data['Name'],
-                'Phone'   => $data['Phone'],
-                'Email'   => $data['Email'],
-                'Message' => $data['Message'],
-            )));
+        $mail->From = 'admin@envirospec.com';
+        $mail->FromName = "Envirospec Admin";
 
-        $email->send();
+        $mail->addAddress('caigertom@gmail.com');
+        $mail->addReplyTo('reply@envirospec.com');
+        $mail->addCC('tom@weareonfire.co.nz');
 
-        $form->sessionMessage("Your enquiry has been sent. You will receive a response from the Envirospec team as soon as possible.", 'good');
+        $mail->isHTML(true);
+
+        $mail->Subject ='Envirospec Contact Form';
+        $mail->Body = '<h1>Envirospec Contact Form Message.</h1><p>This is the body text</p>';
+        $mail->AltBody = 'This is the plain text version of the email body';
+
+        if(!$mail->send()){
+            //echo 'Mailer Error:'. $mail->ErrorInfo;
+            $form->sessionMessage("There has been a problem with the form.", 'bad');
+        }else{
+            //echo 'Message has been sent successfully';
+            $form->sessionMessage("Your enquiry has been sent. You will receive a response from the Envirospec team as soon as possible.", 'good');
+        }
 
         return $this->redirectback();
     }
 }
-
-//http://vps1113.win.vps.isx.net.nz/
-//111.65.228.76
