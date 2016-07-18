@@ -73,8 +73,11 @@ class ContactPage_Controller extends Page_Controller {
 
         $email->send();
 
-        $form->sessionMessage("Your enquiry has been sent. You will receive a response from the Envirospec team as possible.", 'good');
+        $form->sessionMessage("Your enquiry has been sent. You will receive a response from the Envirospec team as soon as possible.", 'good');
 
         return $this->redirectback();
     }
 }
+
+//http://vps1113.win.vps.isx.net.nz/
+//111.65.228.76

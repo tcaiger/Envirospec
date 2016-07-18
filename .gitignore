@@ -32,7 +32,7 @@ vendor/phpunit/
 vendor/symfony/
 vendor/composer/
 vendor/setasign/
-vendor\setasign\
+vendor/phpmailer/
 
 
 # ignore node modules
