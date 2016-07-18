@@ -74,13 +74,13 @@ class ContactPage_Controller extends Page_Controller {
         $mail->AltBody = 'This is the plain text version of the email body';
 
         if(!$mail->send()){
-            //echo 'Mailer Error:'. $mail->ErrorInfo;
-            $form->sessionMessage("There has been a problem with the form.", 'bad');
+            echo 'Mailer Error:'. $mail->ErrorInfo;
+            //$form->sessionMessage("There has been a problem with the form.", 'bad');
         }else{
             //echo 'Message has been sent successfully';
             $form->sessionMessage("Your enquiry has been sent. You will receive a response from the Envirospec team as soon as possible.", 'good');
+            return $this->redirectback();
         }
 
-        return $this->redirectback();
     }
 }
