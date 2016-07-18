@@ -60,6 +60,15 @@ class ContactPage_Controller extends Page_Controller {
 
         $mail = new PHPMailer;
 
+        //$mail->SMTPDebug = 3;
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'caigertom@gmail.com';
+        $mail->Password = 'quetza1!';
+        $mail->SMTPSecure = 'ssl';
+        $mail->Port = 465;
+
         $mail->From = 'admin@envirospec.com';
         $mail->FromName = "Envirospec Admin";
 
