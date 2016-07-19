@@ -425,31 +425,19 @@ class Product_Controller extends Page_Controller {
     // ========================================
     public function submitContactForm($data, $form) {
 
-        //$myCompany = $this->Company($this->ManufacturerID);
-        $companyID = $this->ManufacturerID;
-        $companyEmail = Companies::get()->byID($companyID)->Email;
-        $testEmail = 'tom@weareonfire.co.nz';
-        // Update emails to real ones
-        $recipiants = $this->SiteConfig()->ContactFormEmail . "," . $testEmail;
+        //$companyID = $this->ManufacturerID;
+        //$company = Companies::get()->byID($companyID)->Email;
+        $company = 'caigertom@gmail.com';
 
-        $email = new Email();
-        $email
-            ->setFrom('"Envirospec Contact Form" <envirospec@mail.co.nz>')
-            ->setTo($recipiants)
-            ->setSubject('Envirospec Website Product Enquiry')
-            ->setTemplate('ProductFormEmail')
-            ->populateTemplate(new ArrayData(array(
-                'Name'    => $data['Name'],
-                'Email'   => $data['Email'],
-                'Message' => $data['Message'],
-            )));
+        $mail = new MailController;
 
-        $email->send();
+        if(!$mail->ProductFormEmail($data, $company)){
+            $form->sessionMessage("There has been a problem with the form.", 'bad');
+        }else{
+            $form->sessionMessage("Your enquiry has been sent. You will receive a response from the Envirospec team as soon as possible.", 'good');
+        }
 
-        $form->sessionMessage("Your enquiry has been sent. You will receive a response from the product manufacturer / supplier as soon as possible.", 'good');
+        return $this->redirectback();
 
-        $url = $this->getRequest()->getHeader('Referer') . '?tab="tab4"';
-
-        return $this->redirect($url);
     }
 }
