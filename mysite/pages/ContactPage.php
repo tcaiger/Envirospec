@@ -16,9 +16,12 @@ class ContactPage extends Page {
 
 class ContactPage_Controller extends Page_Controller {
 
+
     private static $allowed_actions = array(
         'ContactForm'
     );
+
+
 
     // ========================================
     // Contact Form
@@ -53,6 +56,8 @@ class ContactPage_Controller extends Page_Controller {
         return $form;
     }
 
+
+
     // ========================================
     // Send Contact Form
     // ========================================
@@ -67,4 +72,5 @@ class ContactPage_Controller extends Page_Controller {
         }
         return $this->redirectback();
     }
+
 }

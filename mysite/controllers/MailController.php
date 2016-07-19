@@ -3,7 +3,7 @@
 class MailController extends Controller {
 
 
-    Public Function init(){
+    Public Function init() {
         parent::init();
 
     }
@@ -12,7 +12,7 @@ class MailController extends Controller {
     // ========================================
     // Setup
     // ========================================
-    public function setup(){
+    public function setup() {
         $mail = new PHPMailer;
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
@@ -41,7 +41,7 @@ class MailController extends Controller {
         $mail->addReplyTo('reply@envirospec.com');
         $mail->addCC('tom@weareonfire.co.nz');
 
-        $mail->Subject ='Envirospec Contact Form';
+        $mail->Subject = 'Envirospec Contact Form';
 
         $arraydata = new ArrayData(array(
             'Name'    => $data['Name'],
@@ -53,9 +53,9 @@ class MailController extends Controller {
 
         $mail->MsgHTML($body);
 
-        if(!$mail->send()){
+        if ( ! $mail->send()) {
             return false;
-        }else{
+        } else {
             return true;
         }
     }
@@ -65,7 +65,7 @@ class MailController extends Controller {
     // ========================================
     // Product Form Email
     // ========================================
-    Public Function ProductFormEmail($data, $company){
+    Public Function ProductFormEmail($data, $company) {
         $mail = $this->setup();
 
         $mail->addAddress($company);
@@ -84,10 +84,109 @@ class MailController extends Controller {
 
         $mail->MsgHTML($body);
 
-        if(!$mail->send()){
+        if ( ! $mail->send()) {
             return false;
-        }else{
+        } else {
             return true;
         }
     }
+
+
+
+    // ========================================
+    // Sends Warning Email
+    // ========================================
+    public function WarningEmail($certificate, $member) {
+
+        $mail = $this->setup();
+
+        $mail->addAddress('caigertom@gmail.com');
+        $mail->addReplyTo('caigertom@gmail.com');
+        $mail->addCC('tom@weareonfire.co.nz');
+
+        $mail->Subject = 'Envirospec Document Expiry System';
+
+        $arraydata = new ArrayData(array(
+            'Certificate' => $certificate,
+            'Member'      => $member,
+            'Date'        => date("Y-m-d"),
+        ));
+
+        $body = $arraydata->renderWith('WarningEmail');
+
+        $mail->MsgHTML($body);
+
+        if ( ! $mail->send()) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+
+
+
+    // ========================================
+    // Sends Expired Email
+    // ========================================
+    public function ExpiredEmail($certificate, $member) {
+
+        $mail = $this->setup();
+
+        $mail->addAddress('caigertom@gmail.com');
+        $mail->addReplyTo('caigertom@gmail.com');
+        $mail->addCC('tom@weareonfire.co.nz');
+
+        $mail->Subject = 'Envirospec Document Expiry System';
+
+        $arraydata = new ArrayData(array(
+            'Certificate' => $certificate,
+            'Member'      => $member,
+            'Date'        => date("Y-m-d"),
+        ));
+
+        $body = $arraydata->renderWith('ExpiredEmail');
+
+        $mail->MsgHTML($body);
+
+        if ( ! $mail->send()) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+
+
+
+    // ========================================
+    // Sends Final Email
+    // ========================================
+    public function FinalEmail($certificate, $member) {
+
+        $mail = $this->setup();
+
+        $mail->addAddress('caigertom@gmail.com');
+        $mail->addReplyTo('caigertom@gmail.com');
+        $mail->addCC('tom@weareonfire.co.nz');
+
+        $mail->Subject = 'Envirospec Document Expiry System';
+
+        $arraydata = new ArrayData(array(
+            'Certificate' => $certificate,
+            'Member'      => $member,
+            'Date'        => date("Y-m-d"),
+        ));
+
+        $body = $arraydata->renderWith('FinalEmail');
+
+        $mail->MsgHTML($body);
+
+        if ( ! $mail->send()) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 }

@@ -4,7 +4,7 @@
 <table cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
     <tr>
         <td style="padding: 10px 40px 10px 15px;">
-            <p>Dear $Member->FirstName,</p>
+            <p>Dear $Member->Name,</p>
             <p>This is a polite reminder from Envirospec.nz that the following certificate expired 30 days ago:</p>
             <% with $Certificate %>
                 <p>Product: $Product->Title</p>
