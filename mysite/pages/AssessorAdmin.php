@@ -3,6 +3,8 @@
 
 class AssessorAdminPage extends Page implements PermissionProvider {
 
+    static $icon = 'mysite/icons/Admin';
+
     public function providePermissions() {
         return array(
             "VIEW_ASSESSOR_ADMIN" => "View Assessor Admin Page",

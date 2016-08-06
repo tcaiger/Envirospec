@@ -2,6 +2,8 @@
 
 class Home extends Page{
 
+	static $icon = 'mysite/icons/Home';
+
 	private static $db = array (
 		'Subheading' => 'Varchar(100)',
 		'WelcomeHeading' => 'Varchar(100)',

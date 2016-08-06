@@ -2,7 +2,7 @@
 
 
 class AdminInfoPage extends Page {
-
+    static $icon = 'mysite/icons/Admin';
 }
 
 
