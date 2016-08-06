@@ -19,8 +19,7 @@ class AssessorAdminPage extends Page implements PermissionProvider {
         'Subheading'   => 'Varchar(100)',
         'Caption'      => 'Text',
         'Instructions' => 'HTMLText',
-        'Disclaimer'   => 'HTMLText',
-        'PDFHeading'   => 'Varchar'
+        'Disclaimer'   => 'HTMLText'
     );
 
     private static $has_one = array(
@@ -38,11 +37,10 @@ class AssessorAdminPage extends Page implements PermissionProvider {
             HTMLEditorField::create('Instructions'),
             HTMLEditorField::create('Disclaimer'),
             HeaderField::create('PDF', 'PDF Cover Page', 4),
-            TextField::create('PDFHeading'),
-            $upload = UploadField::create('CoverImage')
+            $upload = UploadField::create('CoverImage', 'Cover Page')->setDescription('Must be a PDF')
         ), 'Metadata');
 
-        $upload->setFolderName('pdf-cover-images');
+        $upload->setFolderName('submission-packs');
 
         return $fields;
     }
@@ -71,7 +69,7 @@ class AssessorAdminPage_Controller extends Page_Controller {
 
                 // Set Up
                 //----------------------------------------------------
-                $summaryFile = '../' . $summary->Certificate()->Filename;
+                $summaryPath = '../' . $summary->Certificate()->Filename;
                 $product = $summary->Product();
                 $certificates = $product->Certificates()->filter(array(
                     'Compile' => 1
@@ -79,32 +77,36 @@ class AssessorAdminPage_Controller extends Page_Controller {
                 $date = date("j F Y");
                 $dateStamp = date("d.m.Y");
 
+                // Cover Page
+                $id = $this->CoverImageID;
+                $cover = Image::get()->byID($id);
+                $coverPath = '../' . $cover->Filename;
 
-                // Build Header Page
+
+                // Build Contents Page
                 //----------------------------------------------------
+
                 $pdf = new PDF();
                 $pdf->AddPage();
                 $pdf->SetFont('Arial', '', 32);
                 $pdf->setTextColor(45, 45, 45);
-                $pdf->setY(60);
-                $pdf->cell(0, 15, 'Green Star', 0, 1, 'C');
-                $pdf->cell(0, 15, 'Submission Pack', 0, 2, 'C');
-                $pdf->ln(20);
-                $pdf->Image('../mysite/templates/submission-packs/cover-img.png', 25, null, 160);
-                $pdf->SetFontSize(16);
-                $pdf->ln(20);
-                $pdf->cell(0, 10, 'Product: ' . $product->Title, 0, 2, 'C');
-                $pdf->cell(0, 10, 'Report No: ' . $reportNo, 0, 2, 'C');
-                $pdf->cell(0, 10, 'Created by: Envirospec.nz', 0, 2, 'C');
-                $pdf->cell(0, 10, 'Date: ' . $date, 0, 2, 'C');
 
-                // Build Table Of Contents
-                //----------------------------------------------------
-                $pdf->AddPage();
-                $pdf->setXY(30, 50);
-                $pdf->SetFontSize(24);
-                $pdf->cell(0, 40, 'Table of Contents', 0, 2);
-                $pdf->SetFontSize(16);
+                $pdf->setXY(30, 60);
+                $pdf->SetFontSize(20);
+                $pdf->cell(0, 10, 'Submission Pack Details', 0, 2);
+                $pdf->ln(4);
+                $pdf->SetFontSize(14);
+                $pdf->setX(30);
+                $pdf->cell(0, 10, 'Product: ' . $product->Title, 0, 2);
+                $pdf->cell(0, 10, 'Report No: ' . $reportNo, 0, 2);
+                $pdf->cell(0, 10, 'Date: ' . $date, 0, 2);
+                $pdf->ln(15);
+
+                $pdf->SetFontSize(20);
+                $pdf->setX(30);
+                $pdf->cell(0, 10, 'Table of Contents', 0, 2);
+                $pdf->ln(8);
+                $pdf->SetFontSize(14);
 
                 $i = 1;
                 $pdf->setX(30);
@@ -133,15 +135,16 @@ class AssessorAdminPage_Controller extends Page_Controller {
                     $i++;
                 }
 
-                $headerPath = '../assets/submission-packs/header.pdf';
-                $pdf->Output('F', $headerPath);
+                $contentsPath = '../assets/submission-packs/header.pdf';
+                $pdf->Output('F', $contentsPath);
 
                 //----------------------------------------------------
                 // Merge Files
                 //----------------------------------------------------
                 $m = new Merger();
-                $m->addFromFile($headerPath);
-                $m->addFromFile($summaryFile);
+                $m->addFromFile($coverPath);
+                $m->addFromFile($contentsPath);
+                $m->addFromFile($summaryPath);
 
 
                 foreach ($certificates as $certificate) {

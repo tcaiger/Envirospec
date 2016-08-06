@@ -9,7 +9,7 @@
         <div class="col-md-7">
             <p>You have logged in as <strong> Assessor / Auditor</strong></p>
             $Instructions
-
+            $CoverImage.URL
             <div class="hidden-sm hidden-xs">$Disclaimer</div>
         </div>
 
