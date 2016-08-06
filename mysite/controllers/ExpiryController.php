@@ -89,6 +89,7 @@ class ExpiryController extends Controller {
                 }
             }
         }
+        return true;
     }
 
 

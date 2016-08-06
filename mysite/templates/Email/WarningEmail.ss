@@ -7,7 +7,7 @@
             <p>Dear $Member.Name,</p>
             <p>This is a polite reminder from Envirospec.nz that the following certificate will expire in 30 days:</p>
             <% with $Certificate %>
-                <%--<p>Product: $Product()->Title</p>--%>
+                <p>Product: $Product.Title</p>
                 <p>Name: $Name</p>
                 <p>Expiry: $ValidUntil</p>
             <% end_with %>
