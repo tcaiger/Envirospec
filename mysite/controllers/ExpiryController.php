@@ -36,7 +36,7 @@ class ExpiryController extends Controller {
             ))->exclude(array(
                  'ValidUntil' => ''
             ))->filter(array(
-                'Name' => 'Test Certificate'
+                'Product.Title' => 'Test Product'
             ));
 
         echo 'There are ' . count($certificates) . ' certificates in total' . "\n <br>";
@@ -60,9 +60,16 @@ class ExpiryController extends Controller {
 
         foreach ($certificates as $certificate) {
 
+            if($certificate->NoExpiry){
+                break;
+            }
+
             $expiry = strtotime($certificate->ValidUntil);
 
-            if ($expiry > strtotime('0 Days') && $expiry < strtotime('30 Days')) {
+            if ($expiry > strtotime('0 Days') && $expiry < strtotime('30 Days') && !$certificate->MonthWarning) {
+
+                $certificate->MonthWarning = 1;
+                $certificate->write();
                 $WarningList->push($certificate);
                 if($member = $this->GetMember($certificate)){
                     $mail->WarningEmail($certificate, $member);
@@ -70,8 +77,10 @@ class ExpiryController extends Controller {
                    echo 'For Warning Email. Member Could Not Be Found';
                 }
 
-            } else if ($expiry > strtotime('-30 Days') && $expiry <= strtotime('0 Days')) {
+            } else if ($expiry > strtotime('-30 Days') && $expiry <= strtotime('0 Days') && !$certificate->ExpiredWarning) {
 
+                $certificate->ExpiredWarning = 1;
+                $certificate->write();
                 $ExpiredList->push($certificate);
                 if($member = $this->GetMember($certificate)){
                     $mail->ExpiredEmail($certificate, $member);
@@ -79,8 +88,10 @@ class ExpiryController extends Controller {
                     echo 'For Expired Email. Member Could Not Be Found';
                 }
 
-            } else if ($expiry < strtotime('-30 Days')) {
+            } else if ($expiry < strtotime('-30 Days') && !$certificate->FinalWarning) {
 
+                $certificate->FinalWarning = 1;
+                $certificate->write();
                 $FinalList->push($certificate);
                 if($member = $this->GetMember($certificate)){
                     $mail->FinalEmail($certificate, $member);
@@ -89,6 +100,8 @@ class ExpiryController extends Controller {
                 }
             }
         }
+
+        echo $WarningList->count() . ' first warning emails sent, ' . $ExpiredList->count() . ' expired emails sent and ' . $FinalList->count() . ' final warning emails sent';
         return true;
     }
 

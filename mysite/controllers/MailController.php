@@ -2,10 +2,13 @@
 
 class MailController extends Controller {
 
+    public $systemEmail;
+    public $contactEmail;
 
-    Public Function init() {
+    public Function init() {
         parent::init();
-
+        $this->systemEmail =  SiteConfig::current_site_config()->ExpirySystemEmail;
+        $this->contactEmail = SiteConfig::current_site_config()->ContactFormEmail;
     }
 
 
@@ -37,7 +40,7 @@ class MailController extends Controller {
     Public Function ContactFormEmail($data) {
         $mail = $this->setup();
 
-        $mail->addAddress('caigertom@gmail.com');
+        $mail->addAddress($this->contactEmail);
         $mail->addReplyTo('reply@envirospec.com');
         $mail->addCC('tom@weareonfire.co.nz');
 
@@ -100,7 +103,7 @@ class MailController extends Controller {
 
         $mail = $this->setup();
 
-        $mail->addAddress('caigertom@gmail.com');
+        $mail->addAddress($this->systemEmail);
         $mail->addReplyTo('caigertom@gmail.com');
         $mail->addCC('tom@weareonfire.co.nz');
 
@@ -133,7 +136,7 @@ class MailController extends Controller {
 
         $mail = $this->setup();
 
-        $mail->addAddress('caigertom@gmail.com');
+        $mail->addAddress($this->systemEmail);
         $mail->addReplyTo('caigertom@gmail.com');
         $mail->addCC('tom@weareonfire.co.nz');
 
@@ -166,7 +169,7 @@ class MailController extends Controller {
 
         $mail = $this->setup();
 
-        $mail->addAddress('caigertom@gmail.com');
+        $mail->addAddress($this->systemEmail);
         $mail->addReplyTo('caigertom@gmail.com');
         $mail->addCC('tom@weareonfire.co.nz');
 

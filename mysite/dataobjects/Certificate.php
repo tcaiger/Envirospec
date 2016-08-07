@@ -105,9 +105,9 @@ class Certificate extends DataObject {
 
 
             FieldGroup::create(
-                CheckboxField::create('MonthWarning', 'Month Warning Email Sent')->performDisabledTransformation(),
-                CheckboxField::create('ExpiredWarning', 'Expired Email Sent')->performDisabledTransformation(),
-                CheckboxField::create('FinalWarning', 'Final Email Sent')->performDisabledTransformation()
+                CheckboxField::create('MonthWarning', 'Month Warning Email Sent'),
+                CheckboxField::create('ExpiredWarning', 'Expired Email Sent'),
+                CheckboxField::create('FinalWarning', 'Final Email Sent')
             )->setTitle('Email Warnings'),
 
 
