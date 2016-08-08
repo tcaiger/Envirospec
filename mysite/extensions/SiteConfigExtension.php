@@ -59,30 +59,15 @@ class SiteConfigExtension extends DataExtension {
             LabelField::create('EmailLabel', 'This will send an email to all members to inform them that they need to review and sign off their product information.'),
             HTMLEditorField::create('ReminderEmailContent', 'Email Message')->setDescription('The email will automatically include a link to the sign off page for the member.')
         ));
+
+        $fields->push(FormAction::create('normal', 'Send the email'));
     }
 
-
-    // ========================================
-    // Send One Month Reminder
-    // ========================================
-    public function sendMonthReminder() {
-        $email = new Email();
-        $email
-            ->setFrom('"Envirospec One Month Reminder" <envirospec@mail.co.nz>')
-            ->setTo('caigertom@gmail.com')
-            ->setSubject('Envirospec One Month Reminder')
-            ->setTemplate('MonthReminder')
-            ->populateTemplate(new ArrayData(array(
-                'Name' => 'Bob Jones'
-            )));
-
-
-        $this->MonthReminderDate;
-
-        $email->send();
-
-        return 'Success';
+    public function getCMSActions(){
+        $fields = parent::getCMSActions();
+        $fields->push(FormAction::create('normal', 'Send the email'));
     }
+
 }
 
 
