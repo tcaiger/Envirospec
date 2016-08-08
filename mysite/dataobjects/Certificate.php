@@ -68,7 +68,7 @@ class Certificate extends DataObject {
                 array(
                     'Active'          => 'Active',
                     'Awaiting Review' => 'Awaiting Review',
-                    'Disable'         => 'Disabled'
+                    'Disabled'         => 'Disabled'
                 )
             )->setEmptyString('(Select One)'),
 
