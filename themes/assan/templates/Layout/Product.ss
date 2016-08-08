@@ -100,8 +100,8 @@
                             <h3>Green Building Information Summary Sheet</h3>
 
                             <div class="divide30"></div>
-                            <% if ShowGreenStarCertificate($ID) %>
-                                <% loop ShowGreenStarCertificate($ID) %>
+                            <% if $ShowGreenStarCertificate($ID) %>
+                                <% loop $ShowGreenStarCertificate($ID) %>
                                     <% include Certificate %>
                                     <h5>Summary Sheet Preview</h5>
                                     <embed src="$Certificate.URL" type="application/pdf" width="600" height="700"/>

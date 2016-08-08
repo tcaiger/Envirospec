@@ -68,10 +68,10 @@ class ExpiryController extends Controller {
 
             if ($expiry > strtotime('0 Days') && $expiry < strtotime('30 Days') && !$certificate->MonthWarning) {
 
-                $certificate->MonthWarning = 1;
-                $certificate->write();
-                $WarningList->push($certificate);
                 if($member = $this->GetMember($certificate)){
+                    $certificate->MonthWarning = 1;
+                    $certificate->write();
+                    $WarningList->push($certificate);
                     $mail->WarningEmail($certificate, $member);
                 }else{
                    echo 'For Warning Email. Member Could Not Be Found';
@@ -79,10 +79,10 @@ class ExpiryController extends Controller {
 
             } else if ($expiry > strtotime('-30 Days') && $expiry <= strtotime('0 Days') && !$certificate->ExpiredWarning) {
 
-                $certificate->ExpiredWarning = 1;
-                $certificate->write();
-                $ExpiredList->push($certificate);
                 if($member = $this->GetMember($certificate)){
+                    $certificate->ExpiredWarning = 1;
+                    $certificate->write();
+                    $ExpiredList->push($certificate);
                     $mail->ExpiredEmail($certificate, $member);
                 }else{
                     echo 'For Expired Email. Member Could Not Be Found';
@@ -90,10 +90,11 @@ class ExpiryController extends Controller {
 
             } else if ($expiry < strtotime('-30 Days') && !$certificate->FinalWarning) {
 
-                $certificate->FinalWarning = 1;
-                $certificate->write();
-                $FinalList->push($certificate);
                 if($member = $this->GetMember($certificate)){
+                    $certificate->FinalWarning = 1;
+                    $certificate->Status = 'Disabled';
+                    $certificate->write();
+                    $FinalList->push($certificate);
                     $mail->FinalEmail($certificate, $member);
                 }else{
                     echo 'For Final Email. Member Could Not Be Found';

@@ -304,6 +304,7 @@ class Product_Controller extends Page_Controller {
             ->exclude('Type', 'Green Building Rating Compatibility')
             ->filter(array(
                 'Display' => 1,
+                'Status' => 'Active'
             ))
             ->filterAny(array(
                 'ProductID' => $PageID,
