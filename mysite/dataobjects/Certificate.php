@@ -68,7 +68,7 @@ class Certificate extends DataObject {
                 array(
                     'Active'          => 'Active',
                     'Awaiting Review' => 'Awaiting Review',
-                    'Disabled'         => 'Disabled'
+                    'Disabled'        => 'Disabled'
                 )
             )->setEmptyString('(Select One)'),
 
@@ -108,11 +108,13 @@ class Certificate extends DataObject {
                 CheckboxField::create('MonthWarning', 'Month Warning Email Sent'),
                 CheckboxField::create('ExpiredWarning', 'Expired Email Sent'),
                 CheckboxField::create('FinalWarning', 'Final Email Sent')
-            )->setTitle('Email Warnings'),
+            )->setTitle('EmailWarnings'),
 
 
             $CertLoader = UploadField::create('Certificate'),
-            $ReportLoader = UploadField::create('FullReport', 'Full Report')
+            $ReportLoader = UploadField::create('FullReport', 'Full Report'),
+
+            HeaderField::create('* Press Save Below To Submit The Certificate For Review', '2')
         );
 
         $CertLoader->setFolderName('certificates');
@@ -120,19 +122,39 @@ class Certificate extends DataObject {
         $CertLoader->setAllowedExtensions(array('pdf'));
         $ReportLoader->setAllowedExtensions(array('pdf'));
 
+        if ( Permission::check('CMS_ACCESS_PAGES', 'any', $member)) {
+            $fields->removebyName(array(
+                'HeaderField* Press Save Below To Submit The Certificate For Review'
+            ));
+        }
 
         if ( ! Permission::check('CMS_ACCESS_PAGES', 'any', $member)) {
+
             $fields->removebyName(array(
                 'Type',
                 'Number',
                 'Expiry',
                 'Details',
-                'Status'
+                'EmailWarnings'
             ));
+
         }
 
         return $fields;
+
     }
 
+
+    function onBeforeWrite($member = null) {
+
+        if ( ! Permission::check('CMS_ACCESS_PAGES', 'any', $member)) {
+            $this->Status = 'Awaiting Review';
+
+            $mail = new MailController;
+            $mail->CertificateUploadEmail();
+        }
+
+        parent::onBeforeWrite();
+    }
 
 }

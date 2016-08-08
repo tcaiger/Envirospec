@@ -192,4 +192,33 @@ class MailController extends Controller {
         }
     }
 
+
+    // ========================================
+    // Sends Certificate Upload Email
+    // ========================================
+    public function CertificateUploadEmail() {
+
+        $mail = $this->setup();
+
+        $mail->addAddress($this->systemEmail);
+        $mail->addReplyTo('caigertom@gmail.com');
+        $mail->addCC('tom@weareonfire.co.nz');
+
+        $mail->Subject = 'Envirospec Certificate Upload';
+
+        $arraydata = new ArrayData(array(
+            'Name' => 'Test Name'
+        ));
+
+        $body = $arraydata->renderWith('CertificateUpload');
+
+        $mail->MsgHTML($body);
+
+        if ( ! $mail->send()) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 }

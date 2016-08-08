@@ -1,5 +1,4 @@
-.cms .margin-bottom{
-    display: block;
-    margin-top: -5px;
-    margin-bottom: 20px;
+#Form_EditForm_Metadata,
+#Form_EditForm_pa{
+    width : 700px;
 }

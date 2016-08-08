@@ -98,24 +98,18 @@ class Product extends Page {
         // =====================================================
         $fields->addFieldsToTab('Root.Descriptions', array(
 
-            ToggleCompositeField::create('gd', 'General Description', array(
-                HTMLEditorField::create('GeneralDescription', '')
-            )),
-            ToggleCompositeField::create('ba', 'Benefits & Advantages', array(
-                HTMLEditorField::create('BenefitsAdvantages', '')
-            )),
-            ToggleCompositeField::create('ap', 'Application & Purpose', array(
-                HTMLEditorField::create('ApplicationAndPurpose', '')
-            )),
-            ToggleCompositeField::create('im', 'Installation & Maintenance', array(
-                HTMLEditorField::create('InstallationAndMaintenance', '')
-            )),
-            ToggleCompositeField::create('kp', 'Key Properties', array(
-                HTMLEditorField::create('KeyProperties', '')
-            )),
-            ToggleCompositeField::create('ap', 'Additional Information', array(
-                HTMLEditorField::create('AdditionalInformation', '')
-            ))
+            HeaderField::create('General Description', '3'),
+            HTMLEditorField::create('GeneralDescription', ''),
+            HeaderField::create('Benefits and Advantages', '3'),
+            HTMLEditorField::create('BenefitsAdvantages', ''),
+            HeaderField::create('Application and Purpose', '3'),
+            HTMLEditorField::create('ApplicationAndPurpose', ''),
+            HeaderField::create('Installation and Maintenance', '3'),
+            HTMLEditorField::create('InstallationAndMaintenance', ''),
+            HeaderField::create('Key Properties', '3'),
+            HTMLEditorField::create('KeyProperties', ''),
+            HeaderField::create('Additional Information', '3'),
+            HTMLEditorField::create('AdditionalInformation', '')
         ));
 
         // =====================================================
@@ -266,20 +260,19 @@ class Product_Controller extends Page_Controller {
         $formSent = $request->getVar('Form');
         $active = $request->getvar('tab');
 
-        if($active){
-            if($active == 'tab1'){
+        if ($active) {
+            if ($active == 'tab1') {
                 return array('Tab1' => 'active');
-            }elseif($active == 'tab2'){
+            } elseif ($active == 'tab2') {
                 return array('Tab2' => 'active');
-            }elseif($active == 'tab3'){
+            } elseif ($active == 'tab3') {
                 return array('Tab3' => 'active');
-            }elseif($active == 'tab4'){
+            } elseif ($active == 'tab4') {
                 return array('Tab4' => 'active');
             }
         }
 
         return array('Tab1' => 'active');
-
 
 
     }
@@ -304,11 +297,11 @@ class Product_Controller extends Page_Controller {
             ->exclude('Type', 'Green Building Rating Compatibility')
             ->filter(array(
                 'Display' => 1,
-                'Status' => 'Active',
-                'Status' => 'Awaiting Review'
+                'Status'  => 'Active',
+                'Status'  => 'Active'
             ))
             ->filterAny(array(
-                'ProductID' => $PageID,
+                'ProductID'   => $PageID,
                 'CompaniesID' => $ManufacturerID,
                 'CompaniesID' => $SupplierID
             ))
@@ -433,9 +426,9 @@ class Product_Controller extends Page_Controller {
 
         $mail = new MailController;
 
-        if(!$mail->ProductFormEmail($data, $company)){
+        if ( ! $mail->ProductFormEmail($data, $company)) {
             $form->sessionMessage("There has been a problem with the form.", 'bad');
-        }else{
+        } else {
             $form->sessionMessage("Your enquiry has been sent. You will receive a response from the Envirospec team as soon as possible.", 'good');
         }
 

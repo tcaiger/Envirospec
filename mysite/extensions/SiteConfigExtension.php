@@ -16,18 +16,13 @@ class SiteConfigExtension extends DataExtension {
 
 
     private static $db = array(
-        'ESSummary'         => 'Text',
-        'ContactAddress'    => 'Text',
-        'ContactEmail'      => 'Varchar',
-        'ContactPhone'      => 'Varchar',
-        'ContactFormEmail'  => 'Varchar',
-        'ExpirySystemEmail'  => 'Varchar',
-        'MonthReminderDate' => 'Date',
-        'MonthReminderText' => 'HTMLText',
-        'WeekReminderDate'  => 'Date',
-        'WeekReminderText'  => 'HTMLText',
-        'FinalReminderDate' => 'Date',
-        'FinalReminderText' => 'HTMLText'
+        'ESSummary'            => 'Text',
+        'ContactAddress'       => 'Text',
+        'ContactEmail'         => 'Varchar',
+        'ContactPhone'         => 'Varchar',
+        'ContactFormEmail'     => 'Varchar',
+        'ExpirySystemEmail'    => 'Varchar',
+        'ReminderEmailContent' => 'HTMLText'
     );
 
     public function updateCMSFields(Fieldlist $fields) {
@@ -60,21 +55,9 @@ class SiteConfigExtension extends DataExtension {
 
             // Reminder Emails
             // ----------------------------------------
-            HeaderField::create('EmailHeading', 'Automated Reminder Emails', '2'),
-            LabelField::create('EmailLabel', 'These will be sent to all product suppliers to inform them that they need to review and sign off theit products.'),
-
-            ToggleCompositeField::create('Month', 'One Month Reminder Email', array(
-                DateField::create('MonthReminderDate', 'Date')->setConfig('showcalendar', true),
-                HTMLEditorField::create('MonthReminderText', 'Email Message')
-            ))->setStartClosed(true),
-            ToggleCompositeField::create('Week', 'Two Week Reminder Email', array(
-                DateField::create('WeekReminderDate', 'Date')->setConfig('showcalendar', true),
-                HTMLEditorField::create('WeekReminderText', 'Email Message')
-            )),
-            ToggleCompositeField::create('Final', 'Final Reminder Email', array(
-                DateField::create('FinalReminderDate', 'Date')->setConfig('showcalendar', true),
-                HTMLEditorField::create('FinalReminderText', 'Email Message')
-            ))
+            HeaderField::create('EmailHeading', 'Reminder Email', '2'),
+            LabelField::create('EmailLabel', 'This will send an email to all members to inform them that they need to review and sign off their product information.'),
+            HTMLEditorField::create('ReminderEmailContent', 'Email Message')->setDescription('The email will automatically include a link to the sign off page for the member.')
         ));
     }
 
