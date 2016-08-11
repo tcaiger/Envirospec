@@ -9,7 +9,7 @@
             </button>
             <a class="navbar-brand" href="$AbsoluteBaseURL"><img style="height: 68px; width: auto; margin-top: -24px; margin-left: -15px;" src="$ThemeDir/img/es-logo.png" alt="ENVIROSPEC"></a>
         </div>
-        <% if $ClassName != 'AssessorAdminPage' %>
+        <% if $ClassName != 'AssessorAdminPage' && $ClassName != 'Declaration' %>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
 

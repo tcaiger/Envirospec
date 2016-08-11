@@ -1,7 +1,7 @@
 <% include Header %>
 <body class="$ClassName">
 
-	<% if $ClassName != 'AssessorAdminPage' %>
+	<% if $ClassName != 'AssessorAdminPage' && $ClassName != 'Declaration'  %>
         <% include Topbar %>
 	<% end_if %>
 	<% include Navbar %>

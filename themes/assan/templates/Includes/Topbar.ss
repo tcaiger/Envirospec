@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="pull-left hidden-xs">
-                <ul style="margin-left: -0px;"class="list-inline top-dark-right">                      
+                <ul style="margin-left: 0px;"class="list-inline top-dark-right">
                     <li>
                         <a href="https://www.facebook.com/EnviroSpec" target="_blank">
                             <i class="fa fa-facebook"></i> 
