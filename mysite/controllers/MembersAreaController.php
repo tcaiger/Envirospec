@@ -75,4 +75,6 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
 
         return new SSViewer($templates);
     }
+
+
 }
