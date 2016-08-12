@@ -43,7 +43,6 @@ class Companies extends DataObject {
         $fields = FieldList::create(TabSet::create('Root'));
 
         $fields->addFieldsToTab('Root.Main', array(
-            CheckboxField::create(),
             TextField::create('Name', 'Company Name'),
             HTMLEditorField::create('Description', 'Company Description'),
             HeaderField::create('LogoHeader', 'Logo', '2'),

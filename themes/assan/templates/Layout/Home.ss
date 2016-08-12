@@ -4,7 +4,7 @@
 <!-- ========================================== -->
 <section id="home-parallax" class="parallax" style="background-image: url($CoverImage.URL);">
     <div class="container text-center">
-        <h1 class="typed-text">EnviroSpec</h1>
+        <h1 class="typed-text">EnviroSpec Members Area Branch</h1>
         <p class="main-lead text-uppercase">$Subheading</p>
         <span class="center-line"></span>
         <div class="divide40 hidden-xs"></div>
