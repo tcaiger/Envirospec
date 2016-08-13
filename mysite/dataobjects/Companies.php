@@ -28,7 +28,8 @@ class Companies extends DataObject {
     private static $has_many = array(
         'ManufacturerProducts' => 'Product.Manufacturer',
         'SupplierProducts'     => 'Product.Supplier',
-        'Certificates'         => 'Certificate'
+        'Certificates'         => 'Certificate',
+        'Declarations'         => 'Declaration'
     );
 
     private static $summary_fields = array(
@@ -43,7 +44,6 @@ class Companies extends DataObject {
         $fields = FieldList::create(TabSet::create('Root'));
 
         $fields->addFieldsToTab('Root.Main', array(
-            CheckboxField::create(),
             TextField::create('Name', 'Company Name'),
             HTMLEditorField::create('Description', 'Company Description'),
             HeaderField::create('LogoHeader', 'Logo', '2'),
