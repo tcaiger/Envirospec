@@ -1,18 +1,77 @@
-<% include Breadcrumbs %>
+<div class="breadcrumb-wrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4>Members Area</h4>
+            </div>
+            <div class="col-sm-6 hidden-xs text-right">
+                <ol class="breadcrumb">
+                    Members Area / Product
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="divide30"></div>
 
 <div class="container">
-
     <div class="row">
-        <div class="col-lg-4 col-md-5 col-sm-6">
-            <h3>Welcome To The Members Area / Product</h3>
-            <h3>Action: $PrintAction</h3>
-            <h3>ID: $PrintID</h3>
-
+        <div class="col-sm-3">
+            <div class="divide30"></div>
+            <div class="sidebar-box">
+                <h4>Product Images</h4>
+                <% loop $ProductImages %>
+                    $URL
+                <% end_loop %>
+                <img src="http://placehold.it/250x200">
+                <div class="divide20"></div>
+                <img src="http://placehold.it/250x200">
+                <div class="divide20"></div>
+                <img src="http://placehold.it/250x200">
+                <div class="divide20"></div>
+                <img src="http://placehold.it/250x200">
+            </div>
         </div>
-    </div>
 
+        <main class="col-sm-9">
+            <section>
+                <h3>$Title</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem dolorum error eveniet in possimus quaerat voluptas! Aut eius eos excepturi exercitationem harum ipsam neque optio sit veritatis. Eum, nobis, praesentium.</p>
+            </section>
+
+            <div class="divide30"></div>
+
+            <section>
+                <h3>Product Links</h3>
+                <p>$ProductSpecificWebsite</p>
+            </section>
+
+            <div class="divide30"></div>
+
+            <section>
+                <h3>Product Certificates</h3>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Status</th>
+                        <th>Edit</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <% loop $Certificates.Sort('Name', 'ASC') %>
+                        <tr>
+                            <td>$Name</td>
+                            <td>$Status</td>
+                            <td><a class="show-link" href="$MembersAreaLink">Edit</a></td>
+                        </tr>
+                        <% end_loop %>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
 </div>
 
-<div class="divide60"></div>
+<div class="divide30"></div>

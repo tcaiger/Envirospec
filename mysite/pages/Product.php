@@ -246,6 +246,13 @@ class Product extends Page {
             return '';
         }
     }
+
+    // =====================================================
+    //                 Members Area Link
+    // =====================================================
+    public function MembersAreaLink() {
+        return 'membersarea/product/' . $this->ID;
+    }
 }
 
 
@@ -364,6 +371,7 @@ class Product_Controller extends Page_Controller {
 
         return $output;
     }
+
 
     // =====================================================
     //                  Get Company

@@ -157,4 +157,11 @@ class Certificate extends DataObject {
         parent::onBeforeWrite();
     }
 
+    // =====================================================
+    //                 Members Area Link
+    // =====================================================
+    public function MembersAreaLink() {
+        return 'membersarea/certificate/' . $this->ID;
+    }
+
 }

@@ -33,12 +33,16 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
         return $this->render();
     }
 
-    public function product() {
-        return $this->render();
+    public function product($request) {
+        $ID = $request->param('ID');
+        $product = Product::get()->byID($ID);
+        return $this->customise($product)->render();
     }
 
-    public function certificate() {
-        return $this->render();
+    public function certificate($request) {
+        $ID = $request->param('ID');
+        $certificate = Certificate::get()->byID($ID);
+        return $this->customise($certificate)->render();
     }
 
 
@@ -48,6 +52,20 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
 
     public function PrintID(){
         return $this->request->param('ID');
+    }
+
+    public function MemberProducts(){
+        $ID = Member::currentUser()->Companies()->ID;
+        $products = Product::get()->filterAny(array(
+            'ManufacturerID' => $ID,
+            'SupplierID' => $ID
+        ));
+
+        return $products;
+    }
+
+    public function MemberCertificates(){
+        return Member::currentUser()->Companies()->Certificates();
     }
 
     public function getViewer($action) {

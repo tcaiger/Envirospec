@@ -1,18 +1,41 @@
-<% include Breadcrumbs %>
+<div class="breadcrumb-wrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4>Members Area</h4>
+            </div>
+            <div class="col-sm-6 hidden-xs text-right">
+                <ol class="breadcrumb">
+                    Members Area / Certificate
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="divide30"></div>
 
 <div class="container">
-
     <div class="row">
-        <div class="col-lg-4 col-md-5 col-sm-6">
-            <h3>Welcome To The Members Area / Certificate</h3>
-            <h3>Action: $PrintAction</h3>
-            <h3>ID: $PrintID</h3>
+        <div class="col-sm-3">
+            <div class="divide30"></div>
+            <div class="sidebar-box">
+                <h4>Certificate...</h4>
 
+            </div>
         </div>
-    </div>
 
+        <main class="col-sm-9">
+            <section>
+                <h3>$Name</h3>
+                <p>$Status</p>
+            </section>
+
+            <div class="divide30"></div>
+
+
+        </main>
+    </div>
 </div>
 
-<div class="divide60"></div>
+<div class="divide30"></div>
