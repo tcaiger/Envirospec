@@ -29,15 +29,7 @@
         <main class="col-sm-9">
             <section class="member">
                 <h3>Company Details</h3>
-                <% with $CurrentMember.Companies %>
-                    <h4>$Name</h4>
-                    <p>$Phone</p>
-                    <p>$Email</p>
-                    <p>$Fax</p>
-                    <p>$Website</p>
-                    <p>$Address</p>
-                    <p>$Post</p>
-                <% end_with %>
+                $MembersAreaForm
             </section>
 
             <div class="divide30"></div>

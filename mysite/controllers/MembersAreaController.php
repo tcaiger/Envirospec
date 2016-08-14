@@ -5,12 +5,27 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
 
     static $allowed_actions = array(
         'index',
+        'MembersAreaForm',
         'product',
-        'certificate'
+        'ProductForm',
+        'certificate',
+        'CertificateForm'
     );
+
+    private $product;
+    private $certificate;
+    private $company;
 
     public function init() {
         parent::init();
+    }
+
+    function URLSegment() {
+        return 'membersarea';
+    }
+
+    function Link($action = null) {
+        return 'membersarea';
     }
 
     public function providePermissions() {
@@ -30,19 +45,148 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
 
     public function index() {
         $this->checkUser();
+        $this->getCompany();
         return $this->render();
     }
 
-    public function product($request) {
-        $ID = $request->param('ID');
-        $product = Product::get()->byID($ID);
-        return $this->customise($product)->render();
+    public function getCompany(){
+        $this->company = Member::currentUser()->Companies();
+        return $this->company;
     }
 
-    public function certificate($request) {
-        $ID = $request->param('ID');
-        $certificate = Certificate::get()->byID($ID);
-        return $this->customise($certificate)->render();
+
+    public function MembersAreaForm(){
+
+        $fields = new FieldList(
+            HiddenField::create('ID'),
+            TextField::create('Phone'),
+            TextField::create('Email'),
+            TextField::create('Fax'),
+            TextField::create('Website')
+        );
+
+        $actions = new FieldList(
+            FormAction::create('membersareaformaction', 'Save Changes')->addExtraClass('btn btn-theme-bg btn-lg')
+        );
+
+        $form = new BootstrapForm($this, 'MembersAreaForm', $fields, $actions);
+        if($this->company){
+            $form->loadDataFrom($this->company);
+        }
+
+        return $form;
+    }
+
+    public function membersareaformaction($data, $form){
+        $this->company = Companies::get()->byID($data['ID']);
+        $form->saveInto($this->company);
+
+        if($this->company->write()){
+            $form->sessionMessage("Company details saved.", 'good');
+        }else{
+            $form->sessionMessage("There has been a problem with the form.", 'bad');
+        }
+
+        return $this->redirectBack();
+    }
+
+    public function product() {
+        $this->getProduct();
+        return $this->customise($this->product)->render();
+    }
+
+    public function getProduct(){
+        $ID = $this->request->param('ID');
+        $this->product = Product::get()->byID($ID);
+        return true;
+    }
+
+    public function ProductForm(){
+
+        $fields = new FieldList(
+            HiddenField::create('ID'),
+            TextField::create('ProductSpecificWebsite'),
+            TextField::create('ProductDistributor'),
+            TextField::create('ProductApplicators'),
+            TextField::create('InstallationManual'),
+            TextField::create('MaintenanceManual'),
+            TextField::create('ProductBrochure'),
+            TextField::create('CAD'),
+            TextField::create('MaterialSafetyDataSheet'),
+            TextField::create('TechnicalAppraisalDocument'),
+            TextField::create('ProductSpecification'),
+            TextField::create('SpecialAchievement')
+        );
+
+        $actions = new FieldList(
+            FormAction::create('productformaction', 'Save Changes')->addExtraClass('btn btn-theme-bg btn-lg')
+        );
+
+        $form = new BootstrapForm($this, 'ProductForm', $fields, $actions);
+
+        if($this->product){
+            $form->loadDataFrom($this->product);
+        }
+
+        return $form;
+    }
+
+    public function productformaction($data, $form){
+        $this->product = Product::get()->byID($data['ID']);
+        $form->saveInto($this->product);
+
+        if($this->product->write()){
+            $form->sessionMessage("Product update saved.", 'good');
+        }else{
+            $form->sessionMessage("There has been a problem with the form.", 'bad');
+        }
+
+        return $this->redirectBack();
+    }
+
+
+    public function certificate() {
+        $this->getCertificate();
+        return $this->customise($this->certificate)->render();
+    }
+
+    public function getCertificate(){
+        $ID = $this->request->param('ID');
+        $this->certificate = Certificate::get()->byID($ID);
+        return true;
+    }
+
+    public function CertificateForm(){
+
+        $fields = new FieldList(
+            HiddenField::create('ID'),
+            UploadField::create('Certificate')
+                ->setDescription('To do. set a description here')
+        );
+
+        $actions = new FieldList(
+            FormAction::create('certificateformaction', 'Submit For Review')->addExtraClass('btn btn-theme-bg btn-lg')
+        );
+
+        $form = new Form($this, 'CertificateForm', $fields, $actions);
+
+        if($this->certificate){
+            $form->loadDataFrom($this->certificate);
+        }
+
+        return $form;
+    }
+
+    public function certificateformaction($data, $form){
+        $this->certificate = Certificate::get()->byID($data['ID']);
+        $form->saveInto($this->product);
+
+        if($this->certificate->write()){
+            $form->sessionMessage("Your certificate has been submitted for review. You will receive a response from the Envirospec team as soon as possible.", 'good');
+        }else{
+            $form->sessionMessage("There has been a problem with the form.", 'bad');
+        }
+        return $this->redirectBack();
     }
 
 

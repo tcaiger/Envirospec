@@ -39,16 +39,7 @@
                 <h3>$Title</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem dolorum error eveniet in possimus quaerat voluptas! Aut eius eos excepturi exercitationem harum ipsam neque optio sit veritatis. Eum, nobis, praesentium.</p>
             </section>
-
             <div class="divide30"></div>
-
-            <section>
-                <h3>Product Links</h3>
-                <p>$ProductSpecificWebsite</p>
-            </section>
-
-            <div class="divide30"></div>
-
             <section>
                 <h3>Product Certificates</h3>
                 <table class="table table-striped">
@@ -70,6 +61,14 @@
                     </tbody>
                 </table>
             </section>
+            <div class="divide30"></div>
+            <section>
+                <h3>Product Links</h3>
+                <div class="product-form">
+                    $ProductForm
+                </div>
+            </section>
+            <div class="divide30"></div>
         </main>
     </div>
 </div>

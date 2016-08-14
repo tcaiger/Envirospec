@@ -27,8 +27,10 @@
 
         <main class="col-sm-9">
             <section>
-                <h3>$Name</h3>
-                <p>$Status</p>
+                <h3>Update Certificate</h3>
+                <div class="certificate-form">
+                    $CertificateForm
+                </div>
             </section>
 
             <div class="divide30"></div>
