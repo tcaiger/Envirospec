@@ -1,9 +1,6 @@
 <?php
 
 class Product extends Page {
-    public function canEdit($member = null) {
-        return Permission::check('CMS_ACCESS_MyInfoAdmin', 'any', $member);
-    }
 
     static $defaults = array(
         'ShowInMenus'  => false,
@@ -441,6 +438,6 @@ class Product_Controller extends Page_Controller {
         }
 
         return $this->redirectback();
-
     }
+
 }

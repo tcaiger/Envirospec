@@ -19,18 +19,8 @@
     <div class="row">
         <div class="col-sm-3">
             <div class="divide30"></div>
-            <div class="sidebar-box">
-                <h4>Product Images</h4>
-                <% loop $ProductImages %>
-                    $URL
-                <% end_loop %>
-                <img src="http://placehold.it/250x200">
-                <div class="divide20"></div>
-                <img src="http://placehold.it/250x200">
-                <div class="divide20"></div>
-                <img src="http://placehold.it/250x200">
-                <div class="divide20"></div>
-                <img src="http://placehold.it/250x200">
+            <div class="member-image-form">
+                $ProductImagesForm
             </div>
         </div>
 

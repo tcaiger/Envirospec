@@ -2,14 +2,6 @@
 
 class Companies extends DataObject {
 
-    public function canView($member = null) {
-        return Permission::check('CMS_ACCESS_MyInfoAdmin', 'any', $member);
-    }
-
-    public function canEdit($member = null) {
-        return Permission::check('CMS_ACCESS_MyInfoAdmin', 'any', $member);
-    }
-
     private static $db = array(
         'Name'        => 'Varchar',
         'Description' => 'HTMLText',
@@ -99,4 +91,21 @@ class Companies extends DataObject {
 
         return $fields;
     }
+
+    function canCreate($member = null) {
+        return true;
+    }
+
+    function canEdit($member = null) {
+        return true;
+    }
+
+    function canDelete($member = null) {
+        return true;
+    }
+
+    function canView($member = null) {
+        return true;
+    }
+
 }

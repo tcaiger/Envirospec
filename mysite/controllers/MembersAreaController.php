@@ -59,10 +59,14 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
 
         $fields = new FieldList(
             HiddenField::create('ID'),
-            TextField::create('Phone'),
-            TextField::create('Email'),
-            TextField::create('Fax'),
-            TextField::create('Website')
+            CompositeField::create(
+                TextField::create('Phone'),
+                TextField::create('Website')
+            ),
+            CompositeField::create(
+                TextField::create('Email'),
+                TextField::create('Fax')
+            )
         );
 
         $actions = new FieldList(
@@ -90,6 +94,38 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
         return $this->redirectBack();
     }
 
+    public function MemberLogoForm(){
+        $fields = new FieldList(
+            HiddenField::create('ID'),
+            UploadField::create('Logo')
+        );
+
+        $actions = new FieldList(
+            FormAction::create('memberlogoformaction', 'Save Changes')->addExtraClass('btn btn-theme-bg btn-lg')
+        );
+
+        $form = new Form($this, 'MemberLogoForm', $fields, $actions);
+
+        if($this->product){
+            $form->loadDataFrom($this->company);
+        }
+
+        return $form;
+    }
+
+    public function memberlogoformaction(){
+        $this->company = Companies::get()->byID($data['ID']);
+        $form->saveInto($this->company);
+
+        if($this->company->write()){
+            $form->sessionMessage("Company details saved.", 'good');
+        }else{
+            $form->sessionMessage("There has been a problem with the form.", 'bad');
+        }
+
+        return $this->redirectBack();
+    }
+
     public function product() {
         $this->getProduct();
         return $this->customise($this->product)->render();
@@ -98,7 +134,7 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
     public function getProduct(){
         $ID = $this->request->param('ID');
         $this->product = Product::get()->byID($ID);
-        return true;
+        return $this->product;
     }
 
     public function ProductForm(){
@@ -135,6 +171,37 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
         $this->product = Product::get()->byID($data['ID']);
         $form->saveInto($this->product);
 
+        if($this->product->write()){
+            $form->sessionMessage("Product update saved.", 'good');
+        }else{
+            $form->sessionMessage("There has been a problem with the form.", 'bad');
+        }
+
+        return $this->redirectBack();
+    }
+
+    public function ProductImagesForm(){
+        $fields = new FieldList(
+            HiddenField::create('ID'),
+            UploadField::create('ProductImages')
+        );
+
+        $actions = new FieldList(
+            FormAction::create('productimagesformaction', 'Save Changes')->addExtraClass('btn btn-theme-bg btn-lg')
+        );
+
+        $form = new Form($this, 'ProductImagesForm', $fields, $actions);
+
+        if($this->product){
+            $form->loadDataFrom($this->product);
+        }
+
+        return $form;
+    }
+
+    public function productimagesformaction($data, $form){
+        $this->product = Product::get()->byID($data['ID']);
+        $form->saveInto($this->product);
         if($this->product->write()){
             $form->sessionMessage("Product update saved.", 'good');
         }else{
@@ -207,6 +274,7 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
 
         return $products;
     }
+
 
     public function MemberCertificates(){
         return Member::currentUser()->Companies()->Certificates();

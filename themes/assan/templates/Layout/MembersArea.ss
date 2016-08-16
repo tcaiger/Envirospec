@@ -19,17 +19,19 @@
     <div class="row">
         <div class="col-sm-3">
             <div class="divide30"></div>
-            <div class="sidebar-box">
-                <p>Welcome <strong>$CurrentMember.FirstName</strong></p>
-                <h4>Company Logo</h4>
-                <img src="http://placehold.it/250x200">
+            <p>Welcome <strong>$CurrentMember.FirstName</strong></p>
+            <h4>Company Logo</h4>
+            <div class="member-image-form">
+                $MemberLogoForm
             </div>
         </div>
 
         <main class="col-sm-9">
-            <section class="member">
+            <section class="members-area-form">
                 <h3>Company Details</h3>
-                $MembersAreaForm
+                <div class="members-area-form">
+                    $MembersAreaForm
+                </div>
             </section>
 
             <div class="divide30"></div>
