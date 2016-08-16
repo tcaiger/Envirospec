@@ -1,13 +1,15 @@
 <?php
 
 
-class MembersArea_Controller extends Page_Controller implements PermissionProvider{
+class MembersArea_Controller extends Page_Controller implements PermissionProvider {
 
     static $allowed_actions = array(
         'index',
         'MembersAreaForm',
+        'MemberLogoForm',
         'product',
         'ProductForm',
+        'ProductImagesForm',
         'certificate',
         'CertificateForm'
     );
@@ -34,11 +36,11 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
         );
     }
 
-    public function checkUser(){
+    public function checkUser() {
         // May need to also check the permission type
-        if(Member::currentUserID()){
+        if (Member::currentUserID()) {
             return true;
-        }else{
+        } else {
             return $this->redirect(Director::absoluteBaseURL());
         }
     }
@@ -46,16 +48,18 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
     public function index() {
         $this->checkUser();
         $this->getCompany();
+
         return $this->render();
     }
 
-    public function getCompany(){
+    public function getCompany() {
         $this->company = Member::currentUser()->Companies();
+
         return $this->company;
     }
 
 
-    public function MembersAreaForm(){
+    public function MembersAreaForm() {
 
         $fields = new FieldList(
             HiddenField::create('ID'),
@@ -73,28 +77,28 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
             FormAction::create('membersareaformaction', 'Save Changes')->addExtraClass('btn btn-theme-bg btn-lg')
         );
 
-        $form = new BootstrapForm($this, 'MembersAreaForm', $fields, $actions);
-        if($this->company){
+        $form = new BootstrapForm($this, __FUNCTION__, $fields, $actions);
+        if ($this->company) {
             $form->loadDataFrom($this->company);
         }
 
         return $form;
     }
 
-    public function membersareaformaction($data, $form){
+    public function membersareaformaction($data, $form) {
         $this->company = Companies::get()->byID($data['ID']);
         $form->saveInto($this->company);
 
-        if($this->company->write()){
+        if ($this->company->write()) {
             $form->sessionMessage("Company details saved.", 'good');
-        }else{
+        } else {
             $form->sessionMessage("There has been a problem with the form.", 'bad');
         }
 
         return $this->redirectBack();
     }
 
-    public function MemberLogoForm(){
+    public function MemberLogoForm() {
         $fields = new FieldList(
             HiddenField::create('ID'),
             UploadField::create('Logo')
@@ -104,22 +108,22 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
             FormAction::create('memberlogoformaction', 'Save Changes')->addExtraClass('btn btn-theme-bg btn-lg')
         );
 
-        $form = new Form($this, 'MemberLogoForm', $fields, $actions);
+        $form = new Form($this, __FUNCTION__, $fields, $actions);
 
-        if($this->product){
+        if ($this->company) {
             $form->loadDataFrom($this->company);
         }
 
         return $form;
     }
 
-    public function memberlogoformaction(){
+    public function memberlogoformaction($data, $form) {
         $this->company = Companies::get()->byID($data['ID']);
         $form->saveInto($this->company);
 
-        if($this->company->write()){
+        if ($this->company->write()) {
             $form->sessionMessage("Company details saved.", 'good');
-        }else{
+        } else {
             $form->sessionMessage("There has been a problem with the form.", 'bad');
         }
 
@@ -128,16 +132,18 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
 
     public function product() {
         $this->getProduct();
+
         return $this->customise($this->product)->render();
     }
 
-    public function getProduct(){
+    public function getProduct() {
         $ID = $this->request->param('ID');
         $this->product = Product::get()->byID($ID);
+
         return $this->product;
     }
 
-    public function ProductForm(){
+    public function ProductForm() {
 
         $fields = new FieldList(
             HiddenField::create('ID'),
@@ -158,29 +164,29 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
             FormAction::create('productformaction', 'Save Changes')->addExtraClass('btn btn-theme-bg btn-lg')
         );
 
-        $form = new BootstrapForm($this, 'ProductForm', $fields, $actions);
+        $form = new BootstrapForm($this, __FUNCTION__, $fields, $actions);
 
-        if($this->product){
+        if ($this->product) {
             $form->loadDataFrom($this->product);
         }
 
         return $form;
     }
 
-    public function productformaction($data, $form){
+    public function productformaction($data, $form) {
         $this->product = Product::get()->byID($data['ID']);
         $form->saveInto($this->product);
 
-        if($this->product->write()){
+        if ($this->product->write()) {
             $form->sessionMessage("Product update saved.", 'good');
-        }else{
+        } else {
             $form->sessionMessage("There has been a problem with the form.", 'bad');
         }
 
         return $this->redirectBack();
     }
 
-    public function ProductImagesForm(){
+    public function ProductImagesForm() {
         $fields = new FieldList(
             HiddenField::create('ID'),
             UploadField::create('ProductImages')
@@ -190,21 +196,21 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
             FormAction::create('productimagesformaction', 'Save Changes')->addExtraClass('btn btn-theme-bg btn-lg')
         );
 
-        $form = new Form($this, 'ProductImagesForm', $fields, $actions);
+        $form = new Form($this, __FUNCTION__, $fields, $actions);
 
-        if($this->product){
+        if ($this->product) {
             $form->loadDataFrom($this->product);
         }
 
         return $form;
     }
 
-    public function productimagesformaction($data, $form){
+    public function productimagesformaction($data, $form) {
         $this->product = Product::get()->byID($data['ID']);
         $form->saveInto($this->product);
-        if($this->product->write()){
+        if ($this->product->write()) {
             $form->sessionMessage("Product update saved.", 'good');
-        }else{
+        } else {
             $form->sessionMessage("There has been a problem with the form.", 'bad');
         }
 
@@ -214,16 +220,18 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
 
     public function certificate() {
         $this->getCertificate();
+
         return $this->customise($this->certificate)->render();
     }
 
-    public function getCertificate(){
+    public function getCertificate() {
         $ID = $this->request->param('ID');
         $this->certificate = Certificate::get()->byID($ID);
+
         return true;
     }
 
-    public function CertificateForm(){
+    public function CertificateForm() {
 
         $fields = new FieldList(
             HiddenField::create('ID'),
@@ -235,48 +243,49 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
             FormAction::create('certificateformaction', 'Submit For Review')->addExtraClass('btn btn-theme-bg btn-lg')
         );
 
-        $form = new Form($this, 'CertificateForm', $fields, $actions);
+        $form = new Form($this, __FUNCTION__, $fields, $actions);
 
-        if($this->certificate){
+        if ($this->certificate) {
             $form->loadDataFrom($this->certificate);
         }
 
         return $form;
     }
 
-    public function certificateformaction($data, $form){
+    public function certificateformaction($data, $form) {
         $this->certificate = Certificate::get()->byID($data['ID']);
         $form->saveInto($this->product);
 
-        if($this->certificate->write()){
+        if ($this->certificate->write()) {
             $form->sessionMessage("Your certificate has been submitted for review. You will receive a response from the Envirospec team as soon as possible.", 'good');
-        }else{
+        } else {
             $form->sessionMessage("There has been a problem with the form.", 'bad');
         }
+
         return $this->redirectBack();
     }
 
 
-    public function PrintAction(){
+    public function PrintAction() {
         return $this->getAction();
     }
 
-    public function PrintID(){
+    public function PrintID() {
         return $this->request->param('ID');
     }
 
-    public function MemberProducts(){
+    public function MemberProducts() {
         $ID = Member::currentUser()->Companies()->ID;
         $products = Product::get()->filterAny(array(
             'ManufacturerID' => $ID,
-            'SupplierID' => $ID
+            'SupplierID'     => $ID
         ));
 
         return $products;
     }
 
 
-    public function MemberCertificates(){
+    public function MemberCertificates() {
         return Member::currentUser()->Companies()->Certificates();
     }
 
@@ -297,10 +306,10 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
         //Find templates by dataRecord
         //SSViewer::get_templates_by_class(get_class($this->dataRecord), $action, "SiteTree"),
         // Next, we need to add templates for all controllers
-        SSViewer::get_templates_by_class(get_class($this), $action, "Controller"),
-        // Fail-over to the same for the "index" action
-        SSViewer::get_templates_by_class(get_class($this->dataRecord), "", "SiteTree"),
-        SSViewer::get_templates_by_class(get_class($this), "", "Controller")
+            SSViewer::get_templates_by_class(get_class($this), $action, "Controller"),
+            // Fail-over to the same for the "index" action
+            SSViewer::get_templates_by_class(get_class($this->dataRecord), "", "SiteTree"),
+            SSViewer::get_templates_by_class(get_class($this), "", "Controller")
         );
 
         return new SSViewer($templates);
