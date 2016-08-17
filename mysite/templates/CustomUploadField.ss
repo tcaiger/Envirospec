@@ -14,8 +14,8 @@
                     </label>
                     <div class="ss-uploadfield-item-actions">
                         <% if $Top.isActive %>
-                            <button type="button" class="ss-uploadfield-item-remove ss-ui-button ui-corner-all" title="<%t UploadField.REMOVEINFO 'Remove this file from here, but do not delete it from the file store' %>" data-icon="plug-disconnect-prohibition">
-                                Update Image</button>
+                            <button type="button" class="ss-uploadfield-item-remove btn btn-grey upload-btn" title="<%t UploadField.REMOVEINFO 'Remove this file from here, but do not delete it from the file store' %>" data-icon="plug-disconnect-prohibition">
+                                Click here to update</button>
 
                             <% if $UploadField.canAttachExisting %>
                                 <button type="button" class="ss-uploadfield-item-choose-another ss-uploadfield-fromfiles ss-ui-button ui-corner-all" title="<%t UploadField.CHOOSEANOTHERINFO 'Replace this file with another one from the file store' %>" data-icon="network-cloud">
@@ -54,8 +54,8 @@
                 <% end_if %>
             </label>
             <% if $canUpload %>
-                <label class="ss-uploadfield-fromcomputer ss-ui-button ui-corner-all" title="<%t UploadField.FROMCOMPUTERINFO 'Upload from your computer' %>" data-icon="drive-upload">
-                    Select a file
+                <label class="ss-uploadfield-fromcomputer" title="<%t UploadField.FROMCOMPUTERINFO 'Upload from your computer' %>" data-icon="drive-upload">
+                    <span class="btn btn-grey upload-btn">Select a file</span>
                     <input id="$id" name="{$Name}[Uploads][]" class="$extraClass ss-uploadfield-fromcomputer-fileinput" data-config="$configString" type="file"<% if $multiple %> multiple="multiple"<% end_if %> />
                 </label>
             <% else %>

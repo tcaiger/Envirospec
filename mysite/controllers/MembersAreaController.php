@@ -101,9 +101,8 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
     public function MemberLogoForm() {
         $fields = new FieldList(
             HiddenField::create('ID'),
-            $field = UploadField::create('Logo')
+            UploadField::create('Logo')->setTemplate('CustomUploadField')
         );
-        $field->setTemplate('CustomUploadField');
         $actions = new FieldList(
             FormAction::create('memberlogoformaction', 'Save Changes')->addExtraClass('btn btn-theme-bg btn-lg')
         );
@@ -189,7 +188,7 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
     public function ProductImagesForm() {
         $fields = new FieldList(
             HiddenField::create('ID'),
-            UploadField::create('ProductImages')
+            UploadField::create('ProductImages')->setTemplate('CustomUploadField')
         );
 
         $actions = new FieldList(
@@ -235,8 +234,7 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
 
         $fields = new FieldList(
             HiddenField::create('ID'),
-            UploadField::create('Certificate')
-                ->setDescription('To do. set a description here')
+            UploadField::create('Certificate')->setTemplate('CustomUploadField')
         );
 
         $actions = new FieldList(
@@ -254,7 +252,7 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
 
     public function certificateformaction($data, $form) {
         $this->certificate = Certificate::get()->byID($data['ID']);
-        $form->saveInto($this->product);
+        $form->saveInto($this->certificate);
 
         if ($this->certificate->write()) {
             $form->sessionMessage("Your certificate has been submitted for review. You will receive a response from the Envirospec team as soon as possible.", 'good');

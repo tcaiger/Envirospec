@@ -17,14 +17,15 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-3">
-            <div class="divide30"></div>
-            <div class="member-image-form">
-                $ProductImagesForm
+        <div class="col-sm-4 membersarea-sidebar">
+            <div class="well">
+                <div class="member-image-form">
+                    $ProductImagesForm
+                </div>
             </div>
         </div>
 
-        <main class="col-sm-9">
+        <main class="col-sm-8">
             <section>
                 <h3>$Title</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem dolorum error eveniet in possimus quaerat voluptas! Aut eius eos excepturi exercitationem harum ipsam neque optio sit veritatis. Eum, nobis, praesentium.</p>

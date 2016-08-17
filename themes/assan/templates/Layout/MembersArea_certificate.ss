@@ -17,24 +17,23 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-3">
-            <div class="divide30"></div>
-            <div class="sidebar-box">
-                <h4>Certificate...</h4>
-
+        <div class="col-sm-3 membersarea-sidebar">
+            <div class="divide60"></div>
+            <div class="well">
+                <div class="divide20"></div>
+                <p>Once uploaded, the certificate will be reviewed by Envirospec and you will receive an email as soon as the certificate is approved. Approvals usually take 3- 5 working days.</p>
             </div>
         </div>
-
         <main class="col-sm-9">
             <section>
                 <h3>Update Certificate</h3>
                 <div class="certificate-form">
                     $CertificateForm
                 </div>
+                <div class="divide10"></div>
             </section>
 
             <div class="divide30"></div>
-
 
         </main>
     </div>

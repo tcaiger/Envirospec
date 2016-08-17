@@ -1,5 +1,11 @@
 // Members Area
 // -------------------
+.membersarea-sidebar{
+  padding-right: 40px;
+  .well{
+    padding :10px 30px 30px;
+  }
+}
 
 .members-area-form {
   .CompositeField {
@@ -14,8 +20,11 @@
 }
 
 #Form_ProductImagesForm,
-#Form_MemberLogoForm {
-  label {
+#Form_MemberLogoForm,
+#Form_CertificateForm{
+  label,
+  .ss-uploadfield-item-edit,
+  .ss-uploadfield-item-delete{
     display : none;
   }
   .ss-uploadfield-fromcomputer{
@@ -29,7 +38,7 @@
     background : none;
     width      : auto;
   }
-  .template-download{
+  .template-download, .ss-uploadfield-addfile{
     padding :15px 0;
   }
   .preview {
@@ -46,5 +55,12 @@
   .ss-uploadfield-item-info{
     float: initial;
     margin : 0;
+  }
+  .ss-uploadfield-item-preview.ss-uploadfield-dropzone{
+    float : initial;
+  }
+  .upload-btn{
+    //padding : 0;
+    margin :10px 0;
   }
 }

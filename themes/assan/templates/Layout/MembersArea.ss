@@ -17,18 +17,29 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-3">
-            <div class="divide30"></div>
-            <p>Welcome <strong>$CurrentMember.FirstName</strong></p>
-            <h4>Company Logo</h4>
-            <div class="member-image-form">
-                $MemberLogoForm
+        <div class="col-sm-4">
+            <h3>Welcome $CurrentMember.FirstName</h3>
+
+        </div>
+        <div class="col-sm-8">
+            <h3>You are managing $CurrentMember.Companies.Name</h3>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="divide10"></div>
+        <div class="col-sm-3 membersarea-sidebar">
+            <div class="well">
+                <h4>Company Logo</h4>
+                <div class="member-image-form">
+                    $MemberLogoForm
+                </div>
             </div>
         </div>
 
-        <main class="col-sm-9">
+        <main class="col-sm-8 col-md-offset-1">
             <section class="members-area-form">
-                <h3>Company Details</h3>
+                <h4>Company Details</h4>
                 <div class="members-area-form">
                     $MembersAreaForm
                 </div>

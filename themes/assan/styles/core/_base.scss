@@ -391,6 +391,7 @@ p.lead {
 
 }
 
+
 .btn-default:hover, .btn-default:focus {
   background-color : #333;
   border-color     : #333;
@@ -430,6 +431,19 @@ p.lead {
 .btn-theme-dark {
   background-color : #333;
   color            : #fff;
+}
+
+.btn-grey{
+  background-color : #fff;
+  border-color     : #bbb;
+  color : #666;
+  border-radius: 6px;
+}
+
+.btn-grey:hover{
+  background-color : #fff;
+  border-color     : #999;
+  color : #555;
 }
 
 .btn-theme-dark:hover {
