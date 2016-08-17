@@ -2,15 +2,6 @@
 
 class Certificate extends DataObject {
 
-    public function canView($member = null) {
-        return Permission::check('CMS_ACCESS_MyInfoAdmin', 'any', $member);
-    }
-
-    public function canEdit($member = null) {
-        return Permission::check('CMS_ACCESS_MyInfoAdmin', 'any', $member);
-    }
-
-
     private static $has_one = array(
         'Certificate' => 'File',
         'FullReport'  => 'File',
@@ -155,6 +146,29 @@ class Certificate extends DataObject {
         }
 
         parent::onBeforeWrite();
+    }
+
+    // =====================================================
+    //                 Members Area Link
+    // =====================================================
+    public function MembersAreaLink() {
+        return 'membersarea/certificate/' . $this->ID;
+    }
+
+    function canCreate($member = null) {
+        return true;
+    }
+
+    function canEdit($member = null) {
+        return true;
+    }
+
+    function canDelete($member = null) {
+        return true;
+    }
+
+    function canView($member = null) {
+        return true;
     }
 
 }

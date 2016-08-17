@@ -1,9 +1,6 @@
 <?php
 
 class Product extends Page {
-    public function canEdit($member = null) {
-        return Permission::check('CMS_ACCESS_MyInfoAdmin', 'any', $member);
-    }
 
     static $defaults = array(
         'ShowInMenus'  => false,
@@ -246,6 +243,13 @@ class Product extends Page {
             return '';
         }
     }
+
+    // =====================================================
+    //                 Members Area Link
+    // =====================================================
+    public function MembersAreaLink() {
+        return 'membersarea/product/' . $this->ID;
+    }
 }
 
 
@@ -365,6 +369,7 @@ class Product_Controller extends Page_Controller {
         return $output;
     }
 
+
     // =====================================================
     //                  Get Company
     // =====================================================
@@ -433,6 +438,6 @@ class Product_Controller extends Page_Controller {
         }
 
         return $this->redirectback();
-
     }
+
 }

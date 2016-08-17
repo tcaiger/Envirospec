@@ -1,0 +1,50 @@
+// Members Area
+// -------------------
+
+.members-area-form {
+  .CompositeField {
+    .form-group {
+      width : 49%;
+      float : left;
+      &:nth-child(even) {
+        float : right;
+      }
+    }
+  }
+}
+
+#Form_ProductImagesForm,
+#Form_MemberLogoForm {
+  label {
+    display : none;
+  }
+  .ss-uploadfield-fromcomputer{
+    display: block;
+  }
+  .middleColumn {
+    //height     : 300px;
+    min-width  : auto;
+    max-width  : none;
+    border     : none;
+    background : none;
+    width      : auto;
+  }
+  .template-download{
+    padding :15px 0;
+  }
+  .preview {
+    float : initial;
+    height : 100px;
+    width : 180px;
+    line-height: 10px;
+    text-align: left;
+    img{
+      height : 100%;
+      width :auto;
+    }
+  }
+  .ss-uploadfield-item-info{
+    float: initial;
+    margin : 0;
+  }
+}
