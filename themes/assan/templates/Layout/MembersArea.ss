@@ -16,19 +16,10 @@
 <div class="divide30"></div>
 
 <div class="container">
-    <div class="row">
-        <div class="col-sm-4">
-            <h3>Welcome $CurrentMember.FirstName</h3>
 
-        </div>
-        <div class="col-sm-8">
-            <h3>You are managing $CurrentMember.Companies.Name</h3>
-
-        </div>
-    </div>
     <div class="row">
-        <div class="divide10"></div>
-        <div class="col-sm-3 membersarea-sidebar">
+        <div class="col-sm-4 membersarea-sidebar">
+            <div class="divide60"></div>
             <div class="well">
                 <h4>Company Logo</h4>
                 <div class="member-image-form">
@@ -37,7 +28,12 @@
             </div>
         </div>
 
-        <main class="col-sm-8 col-md-offset-1">
+        <main class="col-sm-8">
+
+            <h3>Welcome $CurrentMember.FirstName</h3>
+            <p>You are managing <strong>$CurrentMember.Companies.Name</strong>.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam amet architecto blanditiis ipsam magni modi mollitia nobis, quos. Assumenda enim eos esse laborum molestiae nulla pariatur perspiciatis praesentium rerum saepe!</p>
+
             <section class="members-area-form">
                 <h4>Company Details</h4>
                 <div class="members-area-form">
