@@ -113,26 +113,7 @@ class Certificate extends DataObject {
         $CertLoader->setAllowedExtensions(array('pdf'));
         $ReportLoader->setAllowedExtensions(array('pdf'));
 
-        if ( Permission::check('CMS_ACCESS_PAGES', 'any', $member)) {
-            $fields->removebyName(array(
-                'HeaderField* Press Save Below To Submit The Certificate For Review'
-            ));
-        }
-
-        if ( ! Permission::check('CMS_ACCESS_PAGES', 'any', $member)) {
-
-            $fields->removebyName(array(
-                'Type',
-                'Number',
-                'Expiry',
-                'Details',
-                'EmailWarnings'
-            ));
-
-        }
-
         return $fields;
-
     }
 
 

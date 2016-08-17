@@ -28,8 +28,9 @@
     </div>
     <div class="row">
         <div class="divide10"></div>
-        <div class="col-sm-3 membersarea-sidebar">
+        <div class="col-sm-4 membersarea-sidebar">
             <div class="well">
+                <div class="divide30"></div>
                 <h4>Company Logo</h4>
                 <div class="member-image-form">
                     $MemberLogoForm
@@ -37,7 +38,7 @@
             </div>
         </div>
 
-        <main class="col-sm-8 col-md-offset-1">
+        <main class="col-sm-8">
             <section class="members-area-form">
                 <h4>Company Details</h4>
                 <div class="members-area-form">
