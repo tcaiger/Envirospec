@@ -13,77 +13,38 @@
   }
 }
 
-#Form_ProductImagesForm {
-  //label {
-  //  display : none;
-  //}
-  //.ss-uploadfield .middleColumn {
-  //  min-width  : auto;
-  //  max-width  : none;
-  //  border     : none;
-  //  background : none;
-  //  width      : auto;
-  //}
-
-  //.ss-uploadfield.field {
-  //  position : relative;
-  //}
-  //.ss-uploadfield-item-preview {
-  //  height : 140px;
-  //  width  : 140px;
-  //}
-  //.left {
-  //  position    : relative;
-  //  top         : 50px;
-  //  left        : 170px;
-  //  font-weight : 600;
-  //  font-size   : 20px;
-  //}
-  //.ss-ui-button:before {
-  //  content : none;
-  //}
-  //.middleColumn {
-  //  border-radius : 0;
-  //  background    : white;
-  //  border        : none;
-  //}
-  //.ss-uploadfield-item-name {
-  //  margin-top : 40px;
-  //  b, small {
-  //    display : none;
-  //  }
-  //  .name {
-  //    margin-left : 16px;
-  //    font-weight : 300;
-  //  }
-  //}
-  //.ss-uploadfield-item-edit,
-  //.ss-uploadfield-item-delete {
-  //  display : none;
-  //}
-  //.ss-uploadfield-item-actions {
-  //  margin-left : 59px;
-  //}
-  //.ss-uploadfield-fromcomputer,
-  //.ss-uploadfield-item-remove {
-  //  padding        : 8px 30px;
-  //  background     : color(brand);
-  //  color          : white;
-  //  border-radius  : 0;
-  //  border         : none;
-  //  text-transform : uppercase;
-  //}
-  //
-  //.description {
-  //  position : absolute;
-  //  bottom   : 15px;
-  //  left     : 170px;
-  //  color    : #999999;
-  //}
-  //
-  //.Actions {
-  //  margin-top    : 40px;
-  //  margin-bottom : 120px;
-  //  float         : right;
-  //}
+#Form_ProductImagesForm,
+#Form_MemberLogoForm {
+  label {
+    display : none;
+  }
+  .ss-uploadfield-fromcomputer{
+    display: block;
+  }
+  .middleColumn {
+    //height     : 300px;
+    min-width  : auto;
+    max-width  : none;
+    border     : none;
+    background : none;
+    width      : auto;
+  }
+  .template-download{
+    padding :15px 0;
+  }
+  .preview {
+    float : initial;
+    height : 100px;
+    width : 180px;
+    line-height: 10px;
+    text-align: left;
+    img{
+      height : 100%;
+      width :auto;
+    }
+  }
+  .ss-uploadfield-item-info{
+    float: initial;
+    margin : 0;
+  }
 }

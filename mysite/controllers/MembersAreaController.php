@@ -101,9 +101,9 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
     public function MemberLogoForm() {
         $fields = new FieldList(
             HiddenField::create('ID'),
-            UploadField::create('Logo')
+            $field = UploadField::create('Logo')
         );
-
+        $field->setTemplate('CustomUploadField');
         $actions = new FieldList(
             FormAction::create('memberlogoformaction', 'Save Changes')->addExtraClass('btn btn-theme-bg btn-lg')
         );

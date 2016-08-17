@@ -92,17 +92,17 @@ class Companies extends DataObject {
         return $fields;
     }
 
-    function canCreate($member = null) {
-        return true;
-    }
+    //function canCreate($member = null) {
+    //    return true;
+    //}
 
-    function canEdit($member = null) {
-        return true;
-    }
+    //function canEdit($member = null) {
+    //    return true;
+    //}
 
-    function canDelete($member = null) {
-        return true;
-    }
+    //function canDelete($member = null) {
+    //    return true;
+    //}
 
     function canView($member = null) {
         return true;
