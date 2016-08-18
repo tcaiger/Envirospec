@@ -103,9 +103,7 @@ class Certificate extends DataObject {
 
 
             $CertLoader = UploadField::create('Certificate'),
-            $ReportLoader = UploadField::create('FullReport', 'Full Report'),
-
-            HeaderField::create('* Press Save Below To Submit The Certificate For Review', '2')
+            $ReportLoader = UploadField::create('FullReport', 'Full Report')
         );
 
         $CertLoader->setFolderName('certificates');
@@ -125,6 +123,11 @@ class Certificate extends DataObject {
             $mail = new MailController;
             $mail->CertificateUploadEmail();
         }
+
+        // Reset email warnings
+        $this->MonthWarning = 0;
+        $this->ExpiredWarning = 0;
+        $this->FinalWarning = 0;
 
         parent::onBeforeWrite();
     }
