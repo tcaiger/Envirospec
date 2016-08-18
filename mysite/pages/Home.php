@@ -27,7 +27,8 @@ class Home extends Page{
 		'KP3Text' => 'Varchar(130)',
 		'KP4Text' => 'Varchar(130)',
 		'KP5Text' => 'Varchar(130)',
-		'KP6Text' => 'Varchar(130)'
+		'KP6Text' => 'Varchar(130)',
+		'VideoText' => 'Varchar(130)'
 	);
 
 	private static $has_one = array(
@@ -44,13 +45,16 @@ class Home extends Page{
 		$fields = parent::getCMSFields();
 		$fields->removeByName('Content');
 		$fields->addFieldsToTab('Root.Main', array (
+			HeaderField::create('LandingHeader', 'Landing Section', '2'),
 			TextField::create('Subheading'),
 			UploadField::create('CoverImage', 'Cover Image'),
 			TextField::create('WelcomeHeading'),
 			TextAreaField::create('WelcomeText'),
 			TextField::create('SummaryHeading', 'Envirospec Summary Heading'),
 			TextAreaField::create('SummaryText', 'Envirospec Summary Text'),
-			UploadField::create('VideoImage', 'Video Image')
+			HeaderField::create('VideoHeader', 'Video Section', '2'),
+			UploadField::create('VideoImage', 'Video Image'),
+			TextField::create('VideoText')
 
 
 		), 'Metadata');
