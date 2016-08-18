@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
-                <h4>Members Area</h4>
+                <a href="membersarea" style="margin-left: 15px;"><i style="margin-right: 6px" class="fa fa-arrow-circle-left"></i> Back To Members Area</a>
             </div>
             <div class="col-sm-6 hidden-xs text-right">
                 <ol class="breadcrumb">
@@ -18,6 +18,7 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-4 membersarea-sidebar">
+            <div class="divide60"></div>
             <div class="well">
                 <div class="member-image-form">
                     $ProductImagesForm

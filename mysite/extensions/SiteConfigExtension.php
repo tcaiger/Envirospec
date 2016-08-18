@@ -3,15 +3,22 @@
 
 class SiteConfigExtension extends DataExtension {
 
-    private static $allowed_actions = array(
-        'sendOneOffEmail'
-    );
 
     private static $has_one = array(
         'Page1' => 'SiteTree',
         'Page2' => 'SiteTree',
         'Page3' => 'SiteTree',
-        'Page4' => 'SiteTree'
+        'Page4' => 'SiteTree',
+        'GreenBuildingRatingCompatibility' => 'Image',
+        'IndoorAirQualityCertification' => 'Image',
+        'EnergyEfficiencyRating' => 'Image',
+        'LifecycleBasedEcolabel' => 'Image',
+        'EnvironmentalManagementSystem' => 'Image',
+        'QualityManagementSystems' => 'Image',
+        'FullBuildingProductAppraisal' => 'Image',
+        'ProductTechnicalPerformance' => 'Image',
+        'CarbonOffset' => 'Image',
+        'ResponsibleSourcing' => 'Image'
     );
 
 
@@ -21,8 +28,7 @@ class SiteConfigExtension extends DataExtension {
         'ContactEmail'         => 'Varchar',
         'ContactPhone'         => 'Varchar',
         'ContactFormEmail'     => 'Varchar',
-        'ExpirySystemEmail'    => 'Varchar',
-        'ReminderEmailContent' => 'HTMLText'
+        'ExpirySystemEmail'    => 'Varchar'
     );
 
     public function updateCMSFields(Fieldlist $fields) {
@@ -51,23 +57,40 @@ class SiteConfigExtension extends DataExtension {
             TreeDropdownField::create('Page1ID', 'Useful Page 1', 'SiteTree'),
             TreeDropdownField::create('Page2ID', 'Useful Page 2', 'SiteTree'),
             TreeDropdownField::create('Page3ID', 'Useful Page 3', 'SiteTree'),
-            TreeDropdownField::create('Page4ID', 'Useful Page 4', 'SiteTree'),
-
-            // Reminder Emails
-            // ----------------------------------------
-            HeaderField::create('EmailHeading', 'Reminder Email', '2'),
-            LabelField::create('EmailLabel', 'This will send an email to all members to inform them that they need to review and sign off their product information.'),
-            HTMLEditorField::create('ReminderEmailContent', 'Email Message')->setDescription('The email will automatically include a link to the sign off page for the member.')
+            TreeDropdownField::create('Page4ID', 'Useful Page 4', 'SiteTree')
         ));
 
-        $fields->push(FormAction::create('normal', 'Send the email'));
-    }
+        // Footer Links
+        // ----------------------------------------
+        $fields->addFieldsToTab('Root.CertificateLogos', array(
+           HeaderField::create('Logos', 'Certificate Logos', '2'),
+            LabelField::create('LogoLabel', 'The logos that are displayed on certificates depending on type.'),
+            $logo1 = UploadField::create('GreenBuildingRatingCompatibility'),
+            $logo2 = UploadField::create('IndoorAirQualityCertification'),
+            $logo3 = UploadField::create('EnergyEfficiencyRating'),
+            $logo4 = UploadField::create('LifecycleBasedEcolabel'),
+            $logo5 = UploadField::create('EnvironmentalManagementSystem'),
+            $logo6 = UploadField::create('QualityManagementSystems'),
+            $logo7 = UploadField::create('FullBuildingProductAppraisal'),
+            $logo8 = UploadField::create('ProductTechnicalPerformance'),
+            $logo9 = UploadField::create('CarbonOffset'),
+            $logo10 = UploadField::create('ResponsibleSourcing')
+        ));
 
-    public function getCMSActions(){
-        $fields = parent::getCMSActions();
-        $fields->push(FormAction::create('normal', 'Send the email'));
-    }
+        $logo1->setFolderName('certificates');
+        $logo2->setFolderName('certificates');
+        $logo3->setFolderName('certificates');
+        $logo4->setFolderName('certificates');
+        $logo5->setFolderName('certificates');
+        $logo6->setFolderName('certificates');
+        $logo7->setFolderName('certificates');
+        $logo8->setFolderName('certificates');
+        $logo9->setFolderName('certificates');
+        $logo10->setFolderName('certificates');
 
+        return $fields;
+
+    }
 }
 
 

@@ -128,7 +128,7 @@
                                 <% end_loop %>
                             <% else %>
                                 <h3>
-                                    <small> -- No Certificates For This Product -- $ManufacturerID $SupplierID</small>
+                                    <small> -- No Certificates For This Product -- </small>
                                 </h3>
                             <% end_if %>
                         </div>

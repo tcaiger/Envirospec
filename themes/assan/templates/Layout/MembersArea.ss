@@ -16,21 +16,11 @@
 <div class="divide30"></div>
 
 <div class="container">
-    <div class="row">
-        <div class="col-sm-4">
-            <h3>Welcome $CurrentMember.FirstName</h3>
 
-        </div>
-        <div class="col-sm-8">
-            <h3>You are managing $CurrentMember.Companies.Name</h3>
-
-        </div>
-    </div>
     <div class="row">
-        <div class="divide10"></div>
         <div class="col-sm-4 membersarea-sidebar">
+            <div class="divide60"></div>
             <div class="well">
-                <div class="divide30"></div>
                 <h4>Company Logo</h4>
                 <div class="member-image-form">
                     $MemberLogoForm
@@ -39,6 +29,21 @@
         </div>
 
         <main class="col-sm-8">
+
+            <h3>Welcome $CurrentMember.FirstName</h3>
+            <p>You are managing <strong>$CurrentMember.Companies.Name</strong>.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam amet architecto blanditiis ipsam magni modi mollitia nobis, quos. Assumenda enim eos esse laborum molestiae nulla pariatur perspiciatis praesentium rerum saepe!</p>
+            <div class="alert-info alert">
+                <h4>Product Information Disclaimer</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, asperiores cumque est fugiat nesciunt officia sequi voluptate? Autem, consequuntur, impedit in molestiae mollitia nemo obcaecati odio pariatur quae, rem totam.</p>
+                <div class="divide10"></div>
+                <form action="">
+                    <input name="example" type="checkbox"><label style="padding-left: 10px" for="example">Tick the checkbox</label><br>
+                    <div class="divide10"></div>
+                    <button class="btn btn-theme-dark">Submit</button>
+                </form>
+            </div>
+
             <section class="members-area-form">
                 <h4>Company Details</h4>
                 <div class="members-area-form">
