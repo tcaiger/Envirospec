@@ -68,9 +68,9 @@
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2">
             <div class="center-heading">
-                <h2 class="wow animated fadeIn" data-wow-duration="700ms">$WelcomeHeading</h2>
+                <h2 class="wow animated fadeIn" data-wow-duration="300ms">$WelcomeHeading</h2>
                 <span class="center-line"></span>
-                <p class="sub-text wow animated fadeIn" data-wow-duration="700ms">$WelcomeText</p>
+                <p class="sub-text wow animated fadeIn" data-wow-duration="300ms">$WelcomeText</p>
             </div>
         </div>
     </div>
@@ -99,8 +99,8 @@
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2">
             <div class="center-heading">
-                <h2 class="wow animated fadeIn" data-wow-duration="700ms">$SummaryHeading</h2>
-                <p class="sub-text wow animated fadeIn" data-wow-duration="700ms">$SummaryText</p>
+                <h2 class="wow animated fadeIn" data-wow-duration="300ms">$SummaryHeading</h2>
+                <p class="sub-text wow animated fadeIn" data-wow-duration="300ms">$SummaryText</p>
             </div>
         </div>
     </div>
@@ -109,7 +109,7 @@
 
     <div class="row">
         <div class="col-md-4 col-sm-12 margin30">
-            <div class="service-box-4 wow animated fadeIn" data-wow-duration="700ms">
+            <div class="service-box-4 wow animated fadeIn" data-wow-duration="300ms">
                 <div class="service-ico">
                     <i class="pe-7s-search"></i>
                 </div>
@@ -121,7 +121,7 @@
             </div>
         </div>
         <div class="col-md-4 col-sm-12 margin30">
-            <div class="service-box-4 wow animated fadeIn" data-wow-duration="700ms">
+            <div class="service-box-4 wow animated fadeIn" data-wow-duration="300ms">
                 <div class="service-ico">
                     <i class="pe-7s-graph1"></i>
                 </div>
@@ -133,7 +133,7 @@
             </div>
         </div>
         <div class="col-md-4 col-sm-12 margin30">
-            <div class="service-box-4 wow animated fadeIn" data-wow-duration="700ms">
+            <div class="service-box-4 wow animated fadeIn" data-wow-duration="300ms">
                 <div class="service-ico">
                     <i class="pe-7s-pen"></i>
                 </div>
@@ -145,7 +145,7 @@
             </div>
         </div>
         <div class="col-md-4 col-sm-12 margin30">
-            <div class="service-box-4 wow animated fadeIn" data-wow-duration="700ms">
+            <div class="service-box-4 wow animated fadeIn" data-wow-duration="300ms">
                 <div class="service-ico">
                     <i class="pe-7s-help1"></i>
                 </div>
@@ -157,7 +157,7 @@
             </div>
         </div>
         <div class="col-md-4 col-sm-12 margin30">
-            <div class="service-box-4 wow animated fadeIn" data-wow-duration="700ms">
+            <div class="service-box-4 wow animated fadeIn" data-wow-duration="300ms">
                 <div class="service-ico">
                     <i class="pe-7s-mail-open-file"></i>
                 </div>
@@ -169,7 +169,7 @@
             </div>
         </div>
         <div class="col-md-4 col-sm-12 margin30">
-            <div class="service-box-4 wow animated fadeIn" data-wow-duration="700ms">
+            <div class="service-box-4 wow animated fadeIn" data-wow-duration="300ms">
                 <div class="service-ico">
                     <i class="pe-7s-light"></i>
                 </div>
@@ -189,7 +189,7 @@
 <!-- ========================================== -->
 <section id="cta-1">
     <div class="container">
-        <h1 class="wow animated fadeIn" data-wow-duration="700ms">Want To List A Product With Us?</h1>
+        <h1 class="wow animated fadeIn" data-wow-duration="300ms">Want To List A Product With Us?</h1>
         <a data-wow-duration="700ms" href="contact-us" class="btn border-white btn-lg wow animated fadeIn">Contact us today</a>
     </div>
 </section>
