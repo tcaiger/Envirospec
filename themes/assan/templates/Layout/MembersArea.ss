@@ -33,16 +33,19 @@
             <h3>Welcome $CurrentMember.FirstName</h3>
             <p>You are managing <strong>$CurrentMember.Companies.Name</strong>.</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam amet architecto blanditiis ipsam magni modi mollitia nobis, quos. Assumenda enim eos esse laborum molestiae nulla pariatur perspiciatis praesentium rerum saepe!</p>
-            <div class="alert-info alert">
-                <h4>Product Information Disclaimer</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, asperiores cumque est fugiat nesciunt officia sequi voluptate? Autem, consequuntur, impedit in molestiae mollitia nemo obcaecati odio pariatur quae, rem totam.</p>
-                <div class="divide10"></div>
-                <form action="">
-                    <input name="example" type="checkbox"><label style="padding-left: 10px" for="example">Tick the checkbox</label><br>
+
+            <% if $MemberDeclaration %>
+                <div class="alert-info alert">
+                    <h4>Product Information Disclaimer</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, asperiores cumque est fugiat nesciunt officia sequi voluptate? Autem, consequuntur, impedit in molestiae mollitia nemo obcaecati odio pariatur quae, rem totam.</p>
                     <div class="divide10"></div>
-                    <button class="btn btn-theme-dark">Submit</button>
-                </form>
-            </div>
+                    $DeclarationForm
+                </div>
+            <% else %>
+                <div id="alert-only">
+                    $DeclarationForm
+                </div>
+            <% end_if %>
 
             <section class="members-area-form">
                 <h4>Company Details</h4>

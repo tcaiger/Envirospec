@@ -82,28 +82,28 @@ class Companies extends DataObject {
             GridFieldConfig_RecordEditor::create()
         ));
 
-        // Remove the ability to view name and description
-        if ( ! Permission::check('CMS_ACCESS_PAGES', 'any', $member)) {
-            $fields->removebyName(array(
-                'Name',
-                'Description'
-            ));
-        }
+        // ======== Declarations Tab ==============
+        $fields->addFieldsToTab('Root.Declarations', GridField::create(
+            'Declarations',
+            'Declarations',
+            $this->Declarations(),
+            GridFieldConfig_RecordEditor::create()
+        ));
 
         return $fields;
     }
 
-    //function canCreate($member = null) {
-    //    return true;
-    //}
+    function canCreate($member = null) {
+        return true;
+    }
 
-    //function canEdit($member = null) {
-    //    return true;
-    //}
+    function canEdit($member = null) {
+        return true;
+    }
 
-    //function canDelete($member = null) {
-    //    return true;
-    //}
+    function canDelete($member = null) {
+        return true;
+    }
 
     function canView($member = null) {
         return true;

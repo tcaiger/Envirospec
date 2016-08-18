@@ -11,7 +11,8 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
         'ProductForm',
         'ProductImagesForm',
         'certificate',
-        'CertificateForm'
+        'CertificateForm',
+        'DeclarationForm'
     );
 
     private $product;
@@ -54,7 +55,6 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
 
     public function getCompany() {
         $this->company = Member::currentUser()->Companies();
-
         return $this->company;
     }
 
@@ -74,7 +74,7 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
         );
 
         $actions = new FieldList(
-            FormAction::create('membersareaformaction', 'Save Changes')->addExtraClass('btn btn-theme-bg btn-lg')
+            FormAction::create('membersareaformaction', 'Save Changes')->addExtraClass('btn btn-theme-bg')
         );
 
         $form = new BootstrapForm($this, __FUNCTION__, $fields, $actions);
@@ -104,7 +104,7 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
             UploadField::create('Logo')->setTemplate('CustomUploadField')
         );
         $actions = new FieldList(
-            FormAction::create('memberlogoformaction', 'Save Changes')->addExtraClass('btn btn-theme-bg btn-lg')
+            FormAction::create('memberlogoformaction', 'Save Changes')->addExtraClass('btn btn-theme-bg')
         );
 
         $form = new Form($this, __FUNCTION__, $fields, $actions);
@@ -132,14 +132,12 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
 
     public function product() {
         $this->getProduct();
-
         return $this->customise($this->product)->render();
     }
 
     public function getProduct() {
         $ID = $this->request->param('ID');
         $this->product = Product::get()->byID($ID);
-
         return $this->product;
     }
 
@@ -161,7 +159,7 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
         );
 
         $actions = new FieldList(
-            FormAction::create('productformaction', 'Save Changes')->addExtraClass('btn btn-theme-bg btn-lg')
+            FormAction::create('productformaction', 'Save Changes')->addExtraClass('btn btn-theme-bg')
         );
 
         $form = new BootstrapForm($this, __FUNCTION__, $fields, $actions);
@@ -193,7 +191,7 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
         );
 
         $actions = new FieldList(
-            FormAction::create('productimagesformaction', 'Save Changes')->addExtraClass('btn btn-theme-bg btn-lg')
+            FormAction::create('productimagesformaction', 'Save Changes')->addExtraClass('btn btn-theme-bg')
         );
 
         $form = new Form($this, __FUNCTION__, $fields, $actions);
@@ -240,7 +238,7 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
         );
 
         $actions = new FieldList(
-            FormAction::create('certificateformaction', 'Submit For Review')->addExtraClass('btn btn-theme-bg btn-lg')
+            FormAction::create('certificateformaction', 'Submit For Review')->addExtraClass('btn btn-theme-bg')
         );
 
         $form = new Form($this, __FUNCTION__, $fields, $actions);
@@ -258,6 +256,47 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
         $form->saveInto($this->certificate);
 
         if ($this->certificate->write()) {
+            $form->sessionMessage("Your certificate has been submitted for review. You will receive a response from the Envirospec team as soon as possible.", 'good');
+        } else {
+            $form->sessionMessage("There has been a problem with the form.", 'bad');
+        }
+
+        return $this->redirectBack();
+    }
+
+    public function getDeclaration() {
+        //$this->company = Member::currentUser()->Companies();
+        //
+        //return $this->company;
+    }
+
+    public function DeclarationForm(){
+        $fields = new FieldList(
+            HiddenField::create('ID'),
+            CheckboxField::create('Confirmed', 'I confirm all the product information is correct')
+        );
+
+        $actions = new FieldList(
+            FormAction::create('declarationformaction', 'Submit Declaration')->addExtraClass('btn btn-theme-bg')
+        );
+
+        $form = new BootstrapForm($this, __FUNCTION__, $fields, $actions);
+
+        if ($this->company) {
+            $form->loadDataFrom($this->company);
+        }
+
+        return $form;
+    }
+
+    public function declarationformaction($data, $form){
+
+        $company = Companies::get()->byID($data['ID']);
+        $declaration = $company->Declarations()->Sort('Created', 'DESC')->last();
+
+        $form->saveInto($declaration);
+
+        if ($declaration->write()) {
             $form->sessionMessage("Your certificate has been submitted for review. You will receive a response from the Envirospec team as soon as possible.", 'good');
         } else {
             $form->sessionMessage("There has been a problem with the form.", 'bad');
@@ -288,6 +327,15 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
 
     public function MemberCertificates() {
         return Member::currentUser()->Companies()->Certificates();
+    }
+
+    public function MemberDeclaration() {
+        $declaration = Member::currentUser()->Companies()->Declarations()->Sort('Created', 'DESC')->last();
+        if($declaration->Confirmed){
+            return false;
+        }else{
+            return true;
+        }
     }
 
     public function getViewer($action) {

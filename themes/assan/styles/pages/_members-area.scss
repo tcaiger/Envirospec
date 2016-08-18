@@ -64,4 +64,14 @@
     //padding : 0;
     margin :10px 0;
   }
+  .ss-uploadfield .ss-uploadfield-item .ss-uploadfield-item-preview{
+    width :150px;
+    height :90px;
+  }
+}
+
+#alert-only{
+  .form-actions, fieldset{
+    display: none;
+  }
 }
