@@ -1,34 +1,32 @@
 <div class="sidebar-info-box">
     <div class="services-box wow animated fadeInUp animated">
-         <a href="$Certificate.URL" target="_blank">
+        <a href="$Certificate.URL" target="_blank">
             <div class="services-box-icon">
-                <%--<i class="fa fa-leaf"></i>--%>
                 <% if $Type == 'Green Building Rating Compatibility' %>
-                    <img src="$ThemeDir/img/icons/green-building-rating-compatible.jpg">
+                    <img src="SiteConfig.$GreenBuildingRatingCompatibility.URL">
                 <% else_if $Type == 'Indoor Air Quality Certification' %>
-                    <img src="$ThemeDir/img/icons/Indoor-air-quality.jpg">
+                    <img src="$SiteConfig.IndoorAirQualityCertification.URL">
                 <% else_if $Type == 'Environmental Management System' %>
-                    <img src="$ThemeDir/img/icons/Environmental-Management-System.jpg">
+                    <img src="$SiteConfig.EnvironmentalManagementSystem.URL">
                 <% else_if $Type == 'Carbon Offset' %>
-                    <img src="$ThemeDir/img/icons/carbon-offset.jpg">
-                <% else_if $Type == 'Energy Efficiency Rating' %>
-                    <img src="$ThemeDir/img/icons/energy-efficiency.jpg">
-
+                    <img src="$SiteConfig.CarbonOffset.URL">
+                <% else_if $Type == 'Lifecycle Based Ecolabel' %>
+                    <img src="$SiteConfig.LifecycleBasedEcolabel.URL">
+                <% else_if $Type == 'Product Technical Performance' %>
+                    <img src="$SiteConfig.ProductTechnicalPerformance.URL">
+                <% else_if $Type == 'Responsible Sourcing' %>
+                    <img src="$SiteConfig.ResponsibleSourcing.URL">
+                <% else_if $Type == 'Quality Management Systems' %>
+                    <img src="$SiteConfig.QualityManagementSystems.URL">
 
                     <%--Need To Be Supplied By Envirospec--%>
-                <% else_if $Type == 'Lifecycle Based Ecolabel' %>
-                    <img src="$ThemeDir/img/icons/np-icon.png">
-                <% else_if $Type == 'Quality Management Systems' %>
-                    <img src="$ThemeDir/img/icons/np-icon.png">
+                <% else_if $Type == 'Energy Efficiency Rating' %>
+                    <img src="$SiteConfig.EnergyEfficiencyRating.URL">
                 <% else_if $Type == 'Full Building Product Appraisal' %>
-                    <img src="$ThemeDir/img/icons/np-icon.png">
-                <% else_if $Type == 'Product Technical Performance' %>
-                    <img src="$ThemeDir/img/icons/np-icon.png">
-                <% else_if $Type == 'Responsible Sourcing' %>
+                    <img src="$SiteConfig.FullBuildingProductAppraisal.URL">
+                <% else %>
                     <img src="$ThemeDir/img/icons/np-icon.png">
                 <% end_if %>
-
-
             </div>
             <div class="services-box-info">
                 <% if $Type == 'Green Building Rating Compatibility' %>

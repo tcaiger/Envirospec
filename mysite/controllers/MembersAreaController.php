@@ -108,6 +108,7 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
         );
 
         $form = new Form($this, __FUNCTION__, $fields, $actions);
+        $form->setTemplate('MembersAreaForm');
 
         if ($this->company) {
             $form->loadDataFrom($this->company);
@@ -196,6 +197,7 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
         );
 
         $form = new Form($this, __FUNCTION__, $fields, $actions);
+        $form->setTemplate('MembersAreaForm');
 
         if ($this->product) {
             $form->loadDataFrom($this->product);
@@ -242,6 +244,7 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
         );
 
         $form = new Form($this, __FUNCTION__, $fields, $actions);
+        $form->setTemplate('MembersAreaForm');
 
         if ($this->certificate) {
             $form->loadDataFrom($this->certificate);
