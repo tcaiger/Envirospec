@@ -121,7 +121,9 @@ class Certificate extends DataObject {
             $this->Status = 'Awaiting Review';
 
             $mail = new MailController;
-            $mail->CertificateUploadEmail();
+            $member = Member::currentUser();
+
+            $mail->CertificateUploadEmail($this->Name, $member->FirstName);
         }
 
         // Reset email warnings

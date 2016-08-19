@@ -425,16 +425,16 @@ class Product_Controller extends Page_Controller {
     // ========================================
     public function submitContactForm($data, $form) {
 
-        //$companyID = $this->ManufacturerID;
-        //$company = Companies::get()->byID($companyID)->Email;
-        $company = 'caigertom@gmail.com';
+        $companyID = $this->ManufacturerID;
+        $company = Companies::get()->byID($companyID);
+        $member = $company->Member();
 
         $mail = new MailController;
 
-        if ( ! $mail->ProductFormEmail($data, $company)) {
-            $form->sessionMessage("There has been a problem with the form.", 'bad');
+        if ( $mail->ProductFormEmail($data, $member)) {
+            $form->sessionMessage("Thank you, your enquiry has been sent.", 'good');
         } else {
-            $form->sessionMessage("Your enquiry has been sent. You will receive a response from the Envirospec team as soon as possible.", 'good');
+            $form->sessionMessage("There has been a problem with the form.", 'bad');
         }
 
         return $this->redirectback();

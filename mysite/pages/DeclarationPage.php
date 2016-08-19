@@ -1,7 +1,7 @@
 <?php
 
 class DeclarationPage extends Page {
-
+    static $icon = 'mysite/icons/Admin';
 
 }
 
@@ -9,70 +9,78 @@ class DeclarationPage extends Page {
 class DeclarationPage_Controller extends Page_Controller {
 
     private static $allowed_actions = array(
-        'DeclarationForm',
         'DeclarationEmailForm'
     );
 
-    // ========================================
-    // Declaration Form
-    // ========================================
-    public function DeclarationForm() {
-
-        $form = BootstrapForm::create(
-            $this,
-            __Function__,
-            FieldList::create(
-                CheckboxField::create('Confirmation', 'Confirmation')
-            ),
-            Fieldlist::create(
-                FormAction::create('SubmitDeclarationForm', 'Submit Declaration')
-                    ->addExtraClass('btn btn-theme-bg btn-lg')
-            )
-        );
-
-        $required = new RequiredFields(array(
-            'Confirmation'
-        ));
-
-        $form->setValidator($required);
-
-        return $form;
-    }
-
-
-    // ========================================
-    // Declaration Email Form
-    // ========================================
     public function DeclarationEmailForm() {
 
-        $form = BootstrapForm::create(
-            $this,
-            __Function__,
-            FieldList::create(
-                TextareaField::create('EmailContent', 'Declaration Email Content')
-            ),
-            Fieldlist::create(
-                FormAction::create('SubmitEmail', 'Submit')
-                    ->addExtraClass('btn btn-theme-bg btn-lg')
-            )
+        $fields = FieldList::create(
+            TextareaField::create('EmailContent', 'Declaration Email Content', 'Please login to Envirospec.nz and confirm that all your product information is correct and up to date.')
+                ->setRows(10)
+        );
+
+        $actions = FieldList::create(
+            FormAction::create('declarationemailformaction', 'Submit')
+                ->addExtraClass('btn btn-theme-bg btn-lg')
         );
 
         $required = new RequiredFields(array(
-            'Email Content'
+            'EmailContent'
         ));
 
-        $form->setValidator($required);
+        $form = new BootstrapForm($this, __FUNCTION__, $fields, $actions, $required);
+
+        $form->addExtraClass('declaration - form');
 
         return $form;
     }
 
-    public function MemberTest($member = null){
+    public function declarationemailformaction($data, $form) {
 
-        if(Permission::check('CMS_ACCESS_PAGES', 'any', $member)){
-            return true;
-        }else{
-            return false;
+        $mail = new MailController;
+
+        $sent = new ArrayList;
+        $notSent = new ArrayList;
+
+        $members = Member::get()->filterByCallback(function ($item) {
+            if ($item->inGroup('Members')) {
+                return $item;
+            }
+        });
+
+        foreach ($members as $member) {
+            $email = $mail->DeclarationEmails($data, $member);
+
+            $item = new ArrayData(array(
+                'FirstName' => $member->FirstName,
+                'Email'     => $member->Email
+            ));
+
+            if ($email) {
+                $declaration = new Declaration();
+                $declaration->Year = '2016';
+                $declaration->Confirmed = false;
+                $declaration->CompaniesID = $member->Companies()->ID;
+                $declaration->write();
+                $sent->push($item);
+            } else {
+                $notSent->push($item);
+            }
         }
+
+        $form->sessionMessage("Emails have been sent sucessfully to: " . $sent->Count() . ' members', 'good');
+        //} else {
+        //    $form->sessionMessage("There has been a problem with the form.", 'bad');
+        //}
+
+        return $this->redirectback();
     }
 
+    public function GetMembers() {
+        return Member::get()->filterByCallback(function ($item) {
+            if ($item->inGroup('Members')) {
+                return $item;
+            }
+        });
+    }
 }

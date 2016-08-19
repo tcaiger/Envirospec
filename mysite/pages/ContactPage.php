@@ -65,10 +65,10 @@ class ContactPage_Controller extends Page_Controller {
 
         $mail = new MailController;
 
-        if(!$mail->ContactFormEmail($data)){
-            $form->sessionMessage("There has been a problem with the form.", 'bad');
-        }else{
+        if($mail->ContactFormEmail($data)){
             $form->sessionMessage("Your enquiry has been sent. You will receive a response from the Envirospec team as soon as possible.", 'good');
+        }else{
+            $form->sessionMessage("There was a problem with the form. Please try again.", 'bad');
         }
         return $this->redirectback();
     }

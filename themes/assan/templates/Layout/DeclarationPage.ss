@@ -6,16 +6,27 @@
     <div class="row">
         <div class="col-md-6 col-sm-12">
             <h3>$Title</h3>
-
-            <% if $MemberTest  %>
-                Welcome . Fill in the form below with the content which you would like to send to all users.
-                $DeclarationEmailForm
-            <% else %>
-                $Content
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi consequatur cumque error est labore molestias nisi officiis quaerat. Ab amet dolore dolorem enim et magni nesciunt omnis, placeat quidem repellendus.</p>
-                $DeclarationForm
-            <% end_if %>
-
+            <p>Submitting the form below will send an email to all users telling them to login to Envirospec.nz and confirm that all their product information is correct and up to date. The content from the field below will be the body of the email.</p>
+            $DeclarationEmailForm
+        </div>
+        <div class="col-md-6">
+            <h3>Member Details</h3>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Member</th>
+                    <th>Email Address</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <% loop $GetMembers %>
+                    <tr>
+                        <td>$FirstName</td>
+                        <td>$Email</td>
+                    </tr>
+                    <% end_loop %>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

@@ -18,11 +18,22 @@ class Declaration extends DataObject {
 
     private static $summary_fields = array(
         'Companies.Name' => 'Company',
-        'Year'      => 'Year',
-        'Confirmed' => 'Confirmed'
+        'Year'           => 'Year',
+        'Created.Nice'   => 'Created',
+        'Confirmed'      => 'Confirmed'
     );
 
-    private static $default_sort = 'Created';
+    private static $default_sort = 'Created DESC';
+
+
+    function onBeforeWrite($member = null) {
+
+        if ( $this->Confirmed) {
+            $this->ConfirmedDate = date("Y-m-d");
+        }
+
+        parent::onBeforeWrite();
+    }
 
 
     function canEdit($member = null) {

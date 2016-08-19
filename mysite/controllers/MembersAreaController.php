@@ -264,11 +264,6 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
         return $this->redirectBack();
     }
 
-    public function getDeclaration() {
-        //$this->company = Member::currentUser()->Companies();
-        //
-        //return $this->company;
-    }
 
     public function DeclarationForm(){
         $fields = new FieldList(
@@ -292,7 +287,7 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
     public function declarationformaction($data, $form){
 
         $company = Companies::get()->byID($data['ID']);
-        $declaration = $company->Declarations()->Sort('Created', 'DESC')->last();
+        $declaration = $company->Declarations()->Sort('Created', 'DESC')->first();
 
         $form->saveInto($declaration);
 
@@ -330,7 +325,7 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
     }
 
     public function MemberDeclaration() {
-        $declaration = Member::currentUser()->Companies()->Declarations()->Sort('Created', 'DESC')->last();
+        $declaration = Member::currentUser()->Companies()->Declarations()->Sort('Created', 'DESC')->first();
         if($declaration->Confirmed){
             return false;
         }else{

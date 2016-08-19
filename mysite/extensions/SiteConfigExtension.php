@@ -3,6 +3,15 @@
 
 class SiteConfigExtension extends DataExtension {
 
+    private static $db = array(
+        'ESSummary'            => 'Text',
+        'ContactAddress'       => 'Text',
+        'ContactEmail'         => 'Varchar',
+        'ContactPhone'         => 'Varchar',
+        'ContactFormEmail'     => 'Varchar(200)',
+        'ContactFormCC'     => 'Varchar(200)',
+        'ExpirySystemEmail'    => 'Varchar(200)'
+    );
 
     private static $has_one = array(
         'Page1' => 'SiteTree',
@@ -19,16 +28,6 @@ class SiteConfigExtension extends DataExtension {
         'ProductTechnicalPerformance' => 'Image',
         'CarbonOffset' => 'Image',
         'ResponsibleSourcing' => 'Image'
-    );
-
-
-    private static $db = array(
-        'ESSummary'            => 'Text',
-        'ContactAddress'       => 'Text',
-        'ContactEmail'         => 'Varchar',
-        'ContactPhone'         => 'Varchar',
-        'ContactFormEmail'     => 'Varchar',
-        'ExpirySystemEmail'    => 'Varchar'
     );
 
     public function updateCMSFields(Fieldlist $fields) {
@@ -48,6 +47,7 @@ class SiteConfigExtension extends DataExtension {
             // ----------------------------------------
             HeaderField::create('AdminEmailHeading', 'Admin Email Addresses', '2'),
             TextField::create('ContactFormEmail', 'Contact Form Email'),
+            TextField::create('ContactFormCC', 'Contact Form Email (Optional)'),
             TextField::create('ExpirySystemEmail', 'Expiry System Email'),
 
             // Footer Links

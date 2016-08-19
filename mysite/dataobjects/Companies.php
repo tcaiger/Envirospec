@@ -14,7 +14,8 @@ class Companies extends DataObject {
     );
 
     private static $has_one = array(
-        'Logo' => 'Image'
+        'Logo' => 'Image',
+        'Member' => 'Member'
     );
 
     private static $has_many = array(

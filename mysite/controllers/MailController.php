@@ -4,13 +4,7 @@ class MailController extends Controller {
 
     public $systemEmail;
     public $contactEmail;
-
-    public Function init() {
-        parent::init();
-        $this->systemEmail =  SiteConfig::current_site_config()->ExpirySystemEmail;
-        $this->contactEmail = SiteConfig::current_site_config()->ContactFormEmail;
-    }
-
+    public $contactEmailCC;
 
     // ========================================
     // Setup
@@ -28,6 +22,10 @@ class MailController extends Controller {
         $mail->From = 'admin@envirospec.com';
         $mail->FromName = "Envirospec Admin";
 
+        $this->systemEmail =  SiteConfig::current_site_config()->ExpirySystemEmail;
+        $this->contactEmail = SiteConfig::current_site_config()->ContactFormEmail;
+        $this->contactEmailCC = SiteConfig::current_site_config()->ContactFormCC;
+
         $mail->isHTML(true);
 
         return $mail;
@@ -41,8 +39,8 @@ class MailController extends Controller {
         $mail = $this->setup();
 
         $mail->addAddress($this->contactEmail);
-        $mail->addReplyTo('reply@envirospec.com');
-        $mail->addCC('tom@weareonfire.co.nz');
+        $mail->addReplyTo($this->contactEmail);
+        $mail->addCC($this->contactEmailCC);
 
         $mail->Subject = 'Envirospec Contact Form';
 
@@ -64,16 +62,15 @@ class MailController extends Controller {
     }
 
 
-
     // ========================================
     // Product Form Email
     // ========================================
-    Public Function ProductFormEmail($data, $company) {
+    Public Function ProductFormEmail($data, $member) {
         $mail = $this->setup();
 
-        $mail->addAddress($company);
-        $mail->addReplyTo($company);
-        $mail->addCC('tom@weareonfire.co.nz');
+        $mail->addAddress($member->Email);
+        $mail->addReplyTo($this->systemEmail);
+        $mail->addCC($this->systemEmail);
 
         $mail->Subject = 'Envirospec Product Enquiry';
 
@@ -103,9 +100,9 @@ class MailController extends Controller {
 
         $mail = $this->setup();
 
-        $mail->addAddress($this->systemEmail);
-        $mail->addReplyTo('caigertom@gmail.com');
-        $mail->addCC('tom@weareonfire.co.nz');
+        $mail->addAddress($member->Email);
+        $mail->addReplyTo($this->systemEmail);
+        $mail->addCC($this->systemEmail);
 
         $mail->Subject = 'Envirospec Document Expiry System';
 
@@ -136,9 +133,9 @@ class MailController extends Controller {
 
         $mail = $this->setup();
 
-        $mail->addAddress($this->systemEmail);
-        $mail->addReplyTo('caigertom@gmail.com');
-        $mail->addCC('tom@weareonfire.co.nz');
+        $mail->addAddress($member->Email);
+        $mail->addReplyTo($this->systemEmail);
+        $mail->addCC($this->systemEmail);
 
         $mail->Subject = 'Envirospec Document Expiry System';
 
@@ -169,9 +166,9 @@ class MailController extends Controller {
 
         $mail = $this->setup();
 
-        $mail->addAddress($this->systemEmail);
-        $mail->addReplyTo('caigertom@gmail.com');
-        $mail->addCC('tom@weareonfire.co.nz');
+        $mail->addAddress($member->Email);
+        $mail->addReplyTo($this->systemEmail);
+        $mail->addCC($this->systemEmail);
 
         $mail->Subject = 'Envirospec Document Expiry System';
 
@@ -196,18 +193,19 @@ class MailController extends Controller {
     // ========================================
     // Sends Certificate Upload Email
     // ========================================
-    public function CertificateUploadEmail() {
+    public function CertificateUploadEmail($certificate, $member) {
 
         $mail = $this->setup();
 
         $mail->addAddress($this->systemEmail);
-        $mail->addReplyTo('caigertom@gmail.com');
-        $mail->addCC('tom@weareonfire.co.nz');
+        $mail->addReplyTo($this->systemEmail);
+        $mail->addCC( $this->systemEmail);
 
         $mail->Subject = 'Envirospec Certificate Upload';
 
         $arraydata = new ArrayData(array(
-            'Name' => 'Test Name'
+            'FirstName' => $member,
+            'Certificate' => $certificate
         ));
 
         $body = $arraydata->renderWith('CertificateUpload');
@@ -218,6 +216,35 @@ class MailController extends Controller {
             return false;
         } else {
             return true;
+        }
+    }
+
+    // ========================================
+    // Sends Declaration Email To All Members
+    // ========================================
+    public function DeclarationEmails($data, $member) {
+
+        $mail = $this->setup();
+
+        $mail->addAddress($member->Email);
+        $mail->addReplyTo($this->systemEmail);
+        $mail->addCC($this->systemEmail);
+
+        $mail->Subject = 'Envirospec Declaration Email';
+
+        $arraydata = new ArrayData(array(
+            'FirstName' => $member->FirstName,
+            'Content' => $data['EmailContent']
+        ));
+
+        $body = $arraydata->renderWith('DeclarationEmail');
+
+        $mail->MsgHTML($body);
+
+        if ( $mail->send()) {
+            return true;
+        } else {
+            return false;
         }
     }
 

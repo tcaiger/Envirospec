@@ -114,15 +114,16 @@ class ExpiryController extends Controller {
 
         $member = null;
         if ($ID = $certificate->CompaniesID) {
-            $member = DataObject::get_by_id('Companies', $ID);
+            $company = DataObject::get_by_id('Companies', $ID);
         } else {
             if ($ID = $certificate->Product()->ManufacturerID) {
-                $member = DataObject::get_by_id('Companies', $ID);
+                $company = DataObject::get_by_id('Companies', $ID);
 
             } else if ($ID = $certificate->Product()->SupplierID) {
-                $member = DataObject::get_by_id('Companies', $ID);
+                $company = DataObject::get_by_id('Companies', $ID);
             }
         }
+        $member = $company->Member();
         return $member;
     }
 

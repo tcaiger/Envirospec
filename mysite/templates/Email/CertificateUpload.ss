@@ -1,3 +1,5 @@
-Hi Envirospec User,
+Hi Admin,
 
-Thank you for updating your certificate in Enirospec.nz. We will review and publish your certificate shortly.
+$FirstName has just update the following certificate on Envirospec.nz.<br><br>
+
+$Certificate
