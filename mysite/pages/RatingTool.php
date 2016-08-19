@@ -1,40 +1,38 @@
 <?php
 
-class RatingTool extends Page{
+class RatingTool extends Page {
 
-	static $defaults = array (
-		'ShowInMenus' => false,
-		'ShowInSearch' => false
-	);
-	
-	private static $can_be_root = false;
+    static $defaults = array(
+        'ShowInMenus'  => false,
+        'ShowInSearch' => false
+    );
 
-	private static $allowed_children = array (
-		'ImpactCategory'
-	);
+    private static $can_be_root = false;
 
-	static $icon = 'mysite/icons/data';
+    private static $allowed_children = array(
+        'ImpactCategory'
+    );
 
-	public function getCMSFields() {
+    static $icon = 'mysite/icons/data';
 
-		$fields = parent::getCMSFields();
-		$fields->removeByName('Content');
-		$fields->removeByName('Metadata');
+    public function getCMSFields() {
 
-		return $fields;
-	}
+        $fields = parent::getCMSFields();
+        $fields->removeByName('Content');
+        $fields->removeByName('Metadata');
 
-	public function GetChildren($ID){
-		return ImpactCategory::get()->filter(array(
-			'ParentID' => $ID
-		))->sort('Created', 'ASC');
-	}
-	
+        return $fields;
+    }
+
+    public function GetChildren($ID) {
+        return ImpactCategory::get()->filter(array(
+            'ParentID' => $ID
+        ))->sort('Created', 'ASC');
+    }
+
 }
 
-class RatingTool_Controller extends Page_Controller{
-
-	
+class RatingTool_Controller extends Page_Controller {
 
 
 }

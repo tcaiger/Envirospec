@@ -1,31 +1,30 @@
 <?php
 
-class ProductHolder extends Page{
+class ProductHolder extends Page {
 
-	private static $has_many = array (
-		'ProductCategories' => 'ProductCategory'
-	);
+    private static $has_many = array(
+        'ProductCategories' => 'ProductCategory'
+    );
 
-	static $icon = 'mysite/icons/BlueDatabase';
+    static $icon = 'mysite/icons/BlueDatabase';
 
-	private static $allowed_children = array (
-		'ProductCategory',
-		'Product'
-	);
+    private static $allowed_children = array(
+        'ProductCategory',
+        'Product'
+    );
 
-	public function getCMSFields() {
+    public function getCMSFields() {
 
-		$fields = parent::getCMSFields();
-		$fields->removeByName('Content');
-		$fields->removeByName('Metadata');
+        $fields = parent::getCMSFields();
+        $fields->removeByName('Content');
+        $fields->removeByName('Metadata');
 
-		return $fields;
-	}
-	
+        return $fields;
+    }
+
 }
 
-class ProductHolder_Controller extends Page_Controller{
-
+class ProductHolder_Controller extends Page_Controller {
 
 
 }

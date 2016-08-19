@@ -1,7 +1,6 @@
 <?php
 
-class ProductCategory extends Page
-{
+class ProductCategory extends Page {
 
     private static $has_many = array(
         'Products' => 'Product'
@@ -22,8 +21,7 @@ class ProductCategory extends Page
 
     static $icon = 'mysite/icons/BlueCategory';
 
-    public function getCMSFields()
-    {
+    public function getCMSFields() {
 
         $fields = parent::getCMSFields();
         $fields->removeByName('Content');
@@ -41,13 +39,11 @@ class ProductCategory extends Page
         return $fields;
     }
 
-    public function GetChildren($ID)
-    {
+    public function GetChildren($ID) {
         return $this->children();
     }
 
-    public function FilterLink()
-    {
+    public function FilterLink() {
         $page = InteractiveHouseResults::get()->first();
 
         if ($page) {
@@ -55,8 +51,7 @@ class ProductCategory extends Page
         }
     }
 
-    public function FilterLink1()
-    {
+    public function FilterLink1() {
         $page = ProductCategoriesPage::get()->first();
 
         if ($page) {
@@ -66,8 +61,7 @@ class ProductCategory extends Page
 
 }
 
-class ProductCategory_Controller extends Page_Controller
-{
+class ProductCategory_Controller extends Page_Controller {
 
 
 }

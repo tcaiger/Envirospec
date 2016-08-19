@@ -1,11 +1,9 @@
 <?php
 
-class SearchResults extends Page
-{
+class SearchResults extends Page {
 
 
-    public function getCMSFields()
-    {
+    public function getCMSFields() {
 
         $fields = parent::getCMSFields();
         $fields->removeByName('Content');
@@ -19,14 +17,12 @@ class SearchResults extends Page
 
 }
 
-class SearchResults_Controller extends Page_Controller
-{
+class SearchResults_Controller extends Page_Controller {
 
 
     protected $articleList;
 
-    public function index(SS_HTTPRequest $request)
-    {
+    public function index(SS_HTTPRequest $request) {
 
         $this->articleList = Product::get()->sort('ID', 'ASC');
 
@@ -35,7 +31,7 @@ class SearchResults_Controller extends Page_Controller
         // ========================================
         if ($search = $request->getVar('Keyword')) {
             $this->articleList = $this->articleList->filterAny(array(
-                'Title:PartialMatch' => $search,
+                'Title:PartialMatch'        => $search,
                 'SearchLabels:PartialMatch' => $search
             ));
         }
@@ -46,7 +42,7 @@ class SearchResults_Controller extends Page_Controller
         if ($search = $request->getVar('Manufacturer')) {
             $this->articleList = $this->articleList->filterAny(array(
                 'ManufacturerID' => $search,
-                'SupplierID' => $search
+                'SupplierID'     => $search
             ));
         }
 
@@ -60,8 +56,7 @@ class SearchResults_Controller extends Page_Controller
         );
     }
 
-    public function SearchName()
-    {
+    public function SearchName() {
 
         if ($search = $this->getRequest()->getVar('Keyword')) {
             return $search;

@@ -1,11 +1,9 @@
 <?php
 
-class ProductCategoriesPage extends Page
-{
+class ProductCategoriesPage extends Page {
     private static $can_be_root = false;
 
-    public function getCMSFields()
-    {
+    public function getCMSFields() {
 
         $fields = parent::getCMSFields();
         $fields->removeByName('Content');
@@ -16,8 +14,7 @@ class ProductCategoriesPage extends Page
 }
 
 
-class ProductCategoriesPage_Controller extends Page_Controller
-{
+class ProductCategoriesPage_Controller extends Page_Controller {
 
     private static $allowed_actions = array(
         'category'
@@ -25,8 +22,7 @@ class ProductCategoriesPage_Controller extends Page_Controller
 
     protected $articleList;
 
-    public function init()
-    {
+    public function init() {
         parent::init();
 
         $this->articleList = ProductCategory::get();
@@ -35,8 +31,7 @@ class ProductCategoriesPage_Controller extends Page_Controller
     // ========================================
     // Category Filter
     // =======================================
-    public function category(SS_HTTPRequest $r)
-    {
+    public function category(SS_HTTPRequest $r) {
         $category = ProductCategory::get()->byID(
             $r->param('ID')
         );
@@ -56,8 +51,7 @@ class ProductCategoriesPage_Controller extends Page_Controller
         );
     }
 
-    public function Results()
-    {
+    public function Results() {
 
         return PaginatedList::create(
             $this->articleList,

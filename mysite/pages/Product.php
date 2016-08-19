@@ -431,7 +431,7 @@ class Product_Controller extends Page_Controller {
 
         $mail = new MailController;
 
-        if ( $mail->ProductFormEmail($data, $member)) {
+        if ($mail->ProductFormEmail($data, $member)) {
             $form->sessionMessage("Thank you, your enquiry has been sent.", 'good');
         } else {
             $form->sessionMessage("There has been a problem with the form.", 'bad');

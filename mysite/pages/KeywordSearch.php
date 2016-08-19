@@ -1,10 +1,8 @@
 <?php
 
-class KeywordSearch extends Page
-{
+class KeywordSearch extends Page {
 
-    public function getCMSFields()
-    {
+    public function getCMSFields() {
 
         $fields = parent::getCMSFields();
         $fields->removeByName('Content');
@@ -15,17 +13,15 @@ class KeywordSearch extends Page
 
 }
 
-class KeywordSearch_Controller extends Page_Controller
-{
+class KeywordSearch_Controller extends Page_Controller {
 
     // ========================================
     // Manufacturer Dropdown Form
     // ========================================
-    public function ManufacturerSearchForm()
-    {
+    public function ManufacturerSearchForm() {
 
         $companies = Companies::get()->filterByCallback(function ($item) {
-            if ( $item->SupplierProducts()->count() > 0  OR  $item->ManufacturerProducts()->count() > 0 ) {
+            if ($item->SupplierProducts()->count() > 0 OR $item->ManufacturerProducts()->count() > 0) {
                 return $item;
             }
         });
@@ -59,8 +55,7 @@ class KeywordSearch_Controller extends Page_Controller
     // ========================================
     // Product Search Form
     // ========================================
-    public function KeywordSearchForm()
-    {
+    public function KeywordSearchForm() {
 
         $form = BootstrapForm::create(
             $this,

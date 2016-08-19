@@ -1,15 +1,13 @@
 <?php
 
-class Page extends SiteTree
-{
+class Page extends SiteTree {
 
     /**
      * Duplicate this page, and its DataObjects.
      *
      * @return Page
      */
-    public function duplicate($doWrite = true)
-    {
+    public function duplicate($doWrite = true) {
         $page = parent::duplicate();
 
         if ($this->Certificates()) {
@@ -34,15 +32,13 @@ class Page extends SiteTree
 }
 
 
-class Page_Controller extends ContentController
-{
+class Page_Controller extends ContentController {
 
-    private static $allowed_actions = array (
+    private static $allowed_actions = array(
         'logout'
     );
 
-    public function init()
-    {
+    public function init() {
         parent::init();
 
         ////////////////////////////////////////////////////////////
@@ -85,8 +81,7 @@ class Page_Controller extends ContentController
     // ========================================
     // Nav Search Form
     // ========================================
-    public function NavSearch()
-    {
+    public function NavSearch() {
 
         $form = BootstrapForm::create(
             $this,
@@ -110,13 +105,11 @@ class Page_Controller extends ContentController
     }
 
 
-    public function GetProdCats()
-    {
+    public function GetProdCats() {
         return ProductCategory::get();
     }
 
-    public function GetNews()
-    {
+    public function GetNews() {
         return SidebarPage::get()
             ->limit(4)
             ->filter(array(
@@ -130,7 +123,7 @@ class Page_Controller extends ContentController
     * */
     public function logout($redirect = true) {
         $member = Member::currentUser();
-        if($member) $member->logOut();
+        if ($member) $member->logOut();
 
         $this->redirect('/');
     }
