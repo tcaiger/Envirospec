@@ -4,10 +4,8 @@
             <div class="col-sm-6">
                 <h4>Members Area</h4>
             </div>
-            <div class="col-sm-6 hidden-xs text-right">
-                <ol class="breadcrumb">
-                    Members Area / Update Personal Details
-                </ol>
+            <div class="col-sm-6 text-right">
+                <a class="logout btn btn-grey btn-ico" href="home/logout">Logout <span class="fa fa-sign-out"></span></a>
             </div>
         </div>
     </div>

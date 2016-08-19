@@ -1,4 +1,15 @@
-<% include Breadcrumbs %>
+<div class="breadcrumb-wrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6">
+                <h4>$Title</h4>
+            </div>
+            <div class="col-xs-6 text-right">
+                <a class="logout btn btn-grey btn-ico" href="home/logout">Logout <span class="fa fa-sign-out"></span></a>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <div class="divide20"></div>

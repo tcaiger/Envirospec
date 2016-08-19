@@ -84,16 +84,6 @@
                     </ol>
                 </div>
 
-                <!-- Greenstar Search Results -->
-            <% else_if $ClassName == "AssessorAdminPage" %>
-
-                <div class="col-xs-6">
-                    <h4>$Title</h4>
-                </div>
-                <div class="col-xs-6 text-right">
-                    <a class="logout btn btn-theme-dark btn-ico" href="home/logout">Logout <span class="fa fa-sign-out"></span></a>
-                </div>
-
             <% else %>
 
                 <!-- ===================================== -->
