@@ -326,10 +326,10 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
 
     public function MemberDeclaration() {
         $declaration = Member::currentUser()->Companies()->Declarations()->Sort('Created', 'DESC')->first();
-        if($declaration->Confirmed){
-            return false;
-        }else{
+        if($declaration && !$declaration->Confirmed){
             return true;
+        }else{
+            return false;
         }
     }
 
