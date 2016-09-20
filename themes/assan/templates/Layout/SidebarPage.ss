@@ -12,14 +12,16 @@
             <h3>$Subheading</h3>
             $Content
             <div class="divide30 hidden-xs"></div>
-            <% loop AllChildren %>
-                <div class="results-box">
-                    <h3><a href="$Link">$Title</a></h3>
-                    $Content.LimitCharacters(300)
-                </div>
-                <a href="$Link">Read More <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
-                <hr>
-            <% end_loop %>
+            <% if $AllChildren %>
+                <% loop $AllChildren %>
+                    <div class="results-box">
+                        <h3><a href="$Link">$Title</a></h3>
+                        $Content.LimitCharacters(300)
+                    </div>
+                    <a href="$Link">Read More <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                    <hr>
+                <% end_loop %>
+            <% end_if %>
             <div class="divide30 hidden-xs"></div>
         </div>
 
