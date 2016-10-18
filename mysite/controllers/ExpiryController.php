@@ -35,8 +35,9 @@ class ExpiryController extends Controller {
                 'Product.Title' => '',
             ))->exclude(array(
                  'ValidUntil' => ''
-            ))->filter(array(
-                'Product.Title' => 'Test Product'
+            ))->filterAny(array(
+                'Product.Title' => 'Test Product',
+                'Companies.Name' => 'New Test Company'
             ));
 
         echo 'There are ' . count($certificates) . ' certificates in total' . "\n <br>";
