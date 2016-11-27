@@ -13,7 +13,7 @@ silverstripe-cache
 /silverstripe-cache/
 /silverstripe-bootstrap-forms/
 mysite/_config.php
-
+gridfieldextensions/
 
 
 # Server
@@ -96,3 +96,19 @@ themes/assan/node_modules/
 ehthumbs.db
 Thumbs.db
 
+
+gridfieldextensions/code/GridFieldAddNewInlineButton.php
+
+gridfieldextensions/code/GridFieldEditableColumns.php
+
+gridfieldextensions/code/GridFieldEditableColumns.php
+
+gridfieldextensions/code/GridFieldOrderableRows.php
+
+gridfieldextensions/css/GridFieldExtensions.css
+
+gridfieldextensions/javascript/GridFieldExtensions.js
+
+gridfieldextensions/templates/GridFieldAddNewInlineRow.ss
+
+gridfieldextensions/templates/GridFieldOrderableRowsDragHandle.ss
