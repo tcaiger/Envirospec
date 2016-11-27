@@ -43,7 +43,7 @@ class DeclarationPage_Controller extends Page_Controller {
         $notSent = new ArrayList;
 
         $members = Member::get()->filterByCallback(function ($item) {
-            if ($item->inGroup('Members')) {
+            if ($item->inGroup('Members') || $item->inGroup('Manufacturers & Suppliers')) {
                 return $item;
             }
         });
@@ -78,7 +78,7 @@ class DeclarationPage_Controller extends Page_Controller {
 
     public function GetMembers() {
         return Member::get()->filterByCallback(function ($item) {
-            if ($item->inGroup('Members')) {
+            if ($item->inGroup('Manufacturers & Suppliers')) {
                 return $item;
             }
         });
