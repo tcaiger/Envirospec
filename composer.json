@@ -7,7 +7,8 @@
     "iio/libmergepdf": "^3.0",
     "phpmailer/phpmailer": "^5.2",
     "league/oauth2-google": "^1.0",
-    "silverstripe/googlesitemaps": "^1.5"
+    "silverstripe/googlesitemaps": "^1.5",
+    "silverstripe/bootstrap-forms": "1.1.13"
   },
   "repositories": [
     {

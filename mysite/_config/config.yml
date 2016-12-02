@@ -19,6 +19,12 @@ SiteConfig:
   extensions:
     - SiteConfigExtension
 
+BootstrapForm:
+  bootstrap_included: true
+  jquery_included: true
+  bootstrap_form_included: false
+  bootstrap_select_included: false
+
 Member:
   extensions:
     - MemberExtension
