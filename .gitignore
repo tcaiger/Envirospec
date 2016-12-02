@@ -34,6 +34,7 @@ gridfieldextensions/
 nocaptcha/
 spamprotection/
 gridfield-bulk-editing-tools/
+GridFieldBulkEditingTools/
 focuspoint/
 dropzone/
 bootstrap-forms/
