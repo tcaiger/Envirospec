@@ -19,6 +19,7 @@ $(document).ready(function ($) {
             this.productTabs.init();
             this.toolTips.init();
             this.coverFlow.init();
+            this.icheck.init();
             this.showImage.init();
             this.greenstarSearch.init();
             this.sortGreenstarResults.init();
@@ -42,7 +43,13 @@ $(document).ready(function ($) {
                 }
             }
         },
-
+        icheck: {
+            init: function () {
+                $('input[type="checkbox"]').iCheck({
+                    checkboxClass: 'icheckbox_minimal',
+                });
+            },
+        },
         wow: {
             settings: {
                 boxClass    : 'wow', // animated element css class (default is wow)

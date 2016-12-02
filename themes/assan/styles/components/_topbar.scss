@@ -1,0 +1,188 @@
+//-------------------
+//TOP BARS
+//-------------------
+
+.top-bar-dark{
+  background-color: #333;
+}
+.top-bar-light{
+  background-color:#f3f3f3;
+  .top-dark-right li{
+    border-color:#ddd;
+  }
+  ul{
+    padding: 5px 0;
+  }
+
+}
+.top-bar-light .top-dark-right li a:hover{
+  color:$skincolor;
+}
+.top-bar-socials {
+  line-height: 18px;
+  padding-top: 5px;
+  a{
+    margin: 0px;
+  }
+}
+.top-dark-right{
+  margin: 0px;
+  padding: 0px;
+}
+.top-dark-right li{
+  // line-height: 40px;
+  border-left: 1px solid #444;
+  padding:0px 10px;
+}
+.top-dark-right li, .top-dark-right li a{
+  color:#bbb;
+  font-size: 12px;
+}
+.top-dark-right li i{
+  margin-right: 5px;
+}
+.top-dark-right li a:hover{
+  color:#fff;
+}
+
+/***search top bar**/
+.topbar-icons {
+  display: block;
+
+}
+.topbar-icons i {
+  margin: 0px !important;
+  display: block;
+}
+
+.search {
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 15px;
+  top: 0;
+  height: 100%;
+  z-index: 99999;
+}
+.search .form-control {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 300px;
+  right: 0;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  -ms-box-shadow: none;
+  box-shadow: none;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  border-radius: 0px;
+}
+
+.search-close {
+  position: absolute;
+  right: 9px;
+  top: 5px;
+  cursor: pointer;
+}
+
+#Form_SearchForm_action_doSearch{
+  position: absolute;
+  top: 0;
+  right: 300px;
+  border-radius: 0;
+  border: none;
+  padding: 7px 12px 8px;
+}
+/* Mega MENU */
+
+.yamm-content{
+  padding: 25px;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+.dropdown-menu .divider{
+  background-color:#222;
+}
+.yamm-content h3.heading{
+  border-bottom: none;
+  margin: 0 0 5px;
+  color: #000;
+  font-size: 13px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+.yamm-content h3:before{
+  content: "";
+  display:none;
+}
+
+.yamm-content .mega-vertical-nav{
+  margin-bottom: 30px;
+}
+.yamm-content .mega-vertical-nav li a{
+  padding: 8px 0px;
+  @include transition (all 0.3s ease-in);
+  color: #888;
+  border-bottom: 1px solid #fbfbfb;
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: capitalize;
+  /*    border-bottom: 0px;*/
+}
+.nav.mega-vertical-nav li a:hover{
+  background-color:transparent;
+  color:$skincolor;
+}
+.nav.mega-vertical-nav li a i{
+  margin-right: 10px;
+}
+.mega-contact p{
+  margin: 0;
+}
+.mega-contact i{
+  color:$skincolor;
+  margin-right: 5px;
+}
+/*navbar search form***/
+.dropdown-form{
+  padding: 10px 27px;
+  min-width: 213px;
+}
+.dropdown-form .form-control{
+  height: 34px;
+}
+
+/***header top bar with search***/
+.top-bar form{
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+}
+.top-bar button{
+  border: 0px;
+  background-color: transparent;
+  position: absolute;
+  top: 9px;
+  right: 13px;
+  margin:0px;
+  padding: 0px;
+  width: auto;
+  height: auto;
+  line-height: 15px;
+}
+.top-bar form .form-control{
+  @include border-radius (20px);
+  margin-top: 6px;
+  width:150px;
+  @include transition (all 0.3s ease-in-out);
+}
+.top-bar .form-group{
+  margin: 0px;
+}
+.top-bar .form-control:focus{
+  width:200px;
+}

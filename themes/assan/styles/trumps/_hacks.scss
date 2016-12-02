@@ -18,3 +18,10 @@
   color           : $green;
   text-decoration : underline;
 }
+
+#CustomLoginForm_LoginForm{
+  .icheckbox_minimal{
+    left: -15px;
+    top :-2px;
+  }
+}

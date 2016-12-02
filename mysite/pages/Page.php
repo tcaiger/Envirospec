@@ -44,7 +44,7 @@ class Page_Controller extends ContentController {
         ////////////////////////////////////////////////////////////
         // CSS Includes
         ////////////////////////////////////////////////////////////
-        Requirements::css("{$this->ThemeDir()}/css/main.min.css");
+        Requirements::css("{$this->ThemeDir()}/css/main.css");
         Requirements::css("{$this->ThemeDir()}/font-awesome/css/font-awesome.min.css");
         Requirements::css("{$this->ThemeDir()}/css/animate.css");
         Requirements::css("{$this->ThemeDir()}/css/magnific-popup.css");
@@ -65,6 +65,7 @@ class Page_Controller extends ContentController {
                 "{$this->ThemeDir()}/bootstrap/js/bootstrap.min.js",
                 "{$this->ThemeDir()}/js/third-party/jquery.easing.min.js",
                 "{$this->ThemeDir()}/js/third-party/wow.min.js",
+                "{$this->ThemeDir()}/js/third-party/icheck.min.js",
                 "{$this->ThemeDir()}/js/third-party/imagesloaded.min.js",
                 "{$this->ThemeDir()}/js/third-party/jquery.magnific-popup.min.js",
                 "http://maps.google.com/maps/api/js",

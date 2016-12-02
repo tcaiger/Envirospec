@@ -2,30 +2,30 @@
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,900,700,600,400italic,300italic,300);
 @import url('../pe-icons/Pe-icon-7-stroke.css');
 
-// Mixins & Variables
-@import "abstracts/mixins";
-@import "abstracts/variables";
 
-// Vendor
+// TOOLS
+@import "mixins";
+// SETTINGS
+@import "settings";
+// VENDOR
 @import "vendor/bootstrap/bootstrap";
 @import "vendor/bootstrap/bootstrap_theme";
 @import "vendor/assan/assan-style";
-
-// Core
-@import "core/base";
-
-// Layout
-@import "layout/header";
-@import "layout/footers";
-
-// Components
-@import "components/forms";
+@import "vendor/icheck";
+// GENERIC
+@import "generic";
+// COMPONENTS
 @import "components/breadcrumbs";
-
+@import "components/buttons";
+@import "components/footers";
+@import "components/forms";
+@import "components/header";
+@import "components/nav";
+@import "components/topbar";
 // Pages
-@import "pages/home-page";
-@import "pages/members-area";
-@import "pages/product-page";
-@import "pages/house-page";
-
-@import "temp";
+@import "trumps/home";
+@import "trumps/members-area";
+@import "trumps/product-page";
+@import "trumps/house-page";
+@import "trumps/utilities";
+@import "trumps/hacks";

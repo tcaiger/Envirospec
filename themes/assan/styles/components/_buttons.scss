@@ -1,0 +1,122 @@
+
+/*************************************************************/
+/************************** Buttons **************************/
+/*************************************************************/
+
+.btn {
+  font-weight    : 400;
+  letter-spacing : 0px;
+  @include border-radius(2px);
+  font-size      : 14px;
+  text-transform : uppercase;
+
+}
+
+
+.btn-default:hover, .btn-default:focus {
+  background-color : #333;
+  border-color     : #333;
+  color            : #fff;
+}
+
+.btn-lg {
+  padding     : 14px 28px 13px 28px;
+  font-size   : 15px;
+  font-weight : 400;
+}
+
+.btn:focus, .btn:hover {
+  outline : 0;
+  color   : #fff;
+}
+
+.btn-xs {
+  font-size : 12px;
+}
+
+.btn-theme-bg {
+  border-color     : $skincolor;
+  color            : #fff;
+  background-color : $skincolor;
+}
+
+.btn i {
+  margin-right : 10px;
+}
+
+.btn-theme-bg:hover {
+  background-color : #333;
+  border-color     : #333;
+}
+
+.btn-theme-dark {
+  background-color : #333;
+  color            : #fff;
+}
+
+.btn-grey{
+  background-color : #fff;
+  border-color     : #bbb;
+  color : #666;
+  border-radius: 6px;
+}
+
+.btn-grey:hover{
+  background-color : #fff;
+  border-color     : #999;
+  color : #555;
+}
+
+.btn-theme-dark:hover {
+  color            : #fff;
+  background-color : $skincolor;
+}
+
+/*********border-buttons**********/
+.border-black {
+  border           : 1px solid #999;
+  color            : #666;
+  background-color : transparent;
+}
+
+.border-black:hover, .border-black:focus {
+  //background-color : #000;
+  //border-color     : #000;
+  color            : #666 !important;
+}
+
+.border-white {
+  border : 1px solid #fff;
+  color  : #fff;
+}
+
+.border-white:hover {
+  background-color : #fff;
+  border-color     : #fff;
+  color            : #000;
+}
+
+.border-theme {
+  border : 1px solid $skincolor;
+  color  : $skincolor;
+}
+
+.border-theme:hover {
+  background-color : $skincolor;
+  border-color     : $skincolor;
+  color            : #fff;
+}
+
+.btn-3d {
+  border-bottom : 3px solid rgba(0, 0, 0, 0.3);
+}
+
+.btn-ico {
+  i {
+    margin-left : 5px;
+  }
+}
+
+.inline {
+  display : inline !important;
+}
