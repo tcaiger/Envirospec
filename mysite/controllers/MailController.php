@@ -6,9 +6,13 @@ class MailController extends Controller {
     public $contactEmail;
     public $contactEmailCC;
 
-    // ========================================
-    // Setup
-    // ========================================
+
+
+    /**
+     * Sets up php mail object
+     *
+     * @return PHPMailer
+     */
     public function setup() {
         $mail = new PHPMailer;
         $mail->isSMTP();
@@ -22,7 +26,7 @@ class MailController extends Controller {
         $mail->From = 'admin@envirospec.com';
         $mail->FromName = "Envirospec Admin";
 
-        $this->systemEmail =  SiteConfig::current_site_config()->ExpirySystemEmail;
+        $this->systemEmail = SiteConfig::current_site_config()->ExpirySystemEmail;
         $this->contactEmail = SiteConfig::current_site_config()->ContactFormEmail;
         $this->contactEmailCC = SiteConfig::current_site_config()->ContactFormCC;
 
@@ -32,9 +36,12 @@ class MailController extends Controller {
     }
 
 
-    // ========================================
-    // Contact Form Email
-    // ========================================
+    /**
+     * Sends main contact form email
+     *
+     * @param $data
+     * @return bool
+     */
     Public Function ContactFormEmail($data) {
         $mail = $this->setup();
 
@@ -62,9 +69,13 @@ class MailController extends Controller {
     }
 
 
-    // ========================================
-    // Product Form Email
-    // ========================================
+    /**
+     * Sends enquiry to manufacturers and suppliers
+     *
+     * @param $data
+     * @param $member
+     * @return bool
+     */
     Public Function ProductFormEmail($data, $member) {
         $mail = $this->setup();
 
@@ -92,44 +103,14 @@ class MailController extends Controller {
     }
 
 
-
-    // ========================================
-    // Sends Warning Email
-    // ========================================
-    public function WarningEmail($certificate, $member) {
-
-        $mail = $this->setup();
-
-        $mail->addAddress($member->Email);
-        $mail->addReplyTo($this->systemEmail);
-        $mail->addCC($this->systemEmail);
-
-        $mail->Subject = 'Envirospec Document Expiry System';
-
-        $arraydata = new ArrayData(array(
-            'Certificate' => $certificate,
-            'Member'      => $member,
-            'Date'        => date("Y-m-d"),
-        ));
-
-        $body = $arraydata->renderWith('WarningEmail');
-
-        $mail->MsgHTML($body);
-
-        if ( ! $mail->send()) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-
-
-
-    // ========================================
-    // Sends Expired Email
-    // ========================================
-    public function ExpiredEmail($certificate, $member) {
+    /**
+     * Sends Expiry System Emails
+     *
+     * @param $certificate
+     * @param $member
+     * @return bool
+     */
+    public function ExpiryEmail($certificate, $member, $type) {
 
         $mail = $this->setup();
 
@@ -145,7 +126,14 @@ class MailController extends Controller {
             'Date'        => date("Y-m-d"),
         ));
 
-        $body = $arraydata->renderWith('ExpiredEmail');
+        if ($type == 'month warning') {
+            $body = $arraydata->renderWith('WarningEmail');
+        } else if ($type == 'expired') {
+            $body = $arraydata->renderWith('ExpiredEmail');
+        } else {
+            $body = $arraydata->renderWith('FinalEmail');
+        }
+
 
         $mail->MsgHTML($body);
 
@@ -157,54 +145,25 @@ class MailController extends Controller {
     }
 
 
-
-
-    // ========================================
-    // Sends Final Email
-    // ========================================
-    public function FinalEmail($certificate, $member) {
-
-        $mail = $this->setup();
-
-        $mail->addAddress($member->Email);
-        $mail->addReplyTo($this->systemEmail);
-        $mail->addCC($this->systemEmail);
-
-        $mail->Subject = 'Envirospec Document Expiry System';
-
-        $arraydata = new ArrayData(array(
-            'Certificate' => $certificate,
-            'Member'      => $member,
-            'Date'        => date("Y-m-d"),
-        ));
-
-        $body = $arraydata->renderWith('FinalEmail');
-
-        $mail->MsgHTML($body);
-
-        if ( ! $mail->send()) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-
-    // ========================================
-    // Sends Certificate Upload Email
-    // ========================================
+    /**
+     *  Sends Certificate Upload Email
+     *
+     * @param $certificate
+     * @param $member
+     * @return bool
+     */
     public function CertificateUploadEmail($certificate, $member) {
 
         $mail = $this->setup();
 
         $mail->addAddress($this->systemEmail);
         $mail->addReplyTo($this->systemEmail);
-        $mail->addCC( $this->systemEmail);
+        $mail->addCC($this->systemEmail);
 
         $mail->Subject = 'Envirospec Certificate Upload';
 
         $arraydata = new ArrayData(array(
-            'FirstName' => $member,
+            'FirstName'   => $member,
             'Certificate' => $certificate
         ));
 
@@ -219,9 +178,15 @@ class MailController extends Controller {
         }
     }
 
-    // ========================================
-    // Sends Declaration Email To All Members
-    // ========================================
+
+
+    /**
+     * Sends Declaration Email To All Members
+     *
+     * @param $data
+     * @param $member
+     * @return bool
+     */
     public function DeclarationEmails($data, $member) {
 
         $mail = $this->setup();
@@ -234,14 +199,14 @@ class MailController extends Controller {
 
         $arraydata = new ArrayData(array(
             'FirstName' => $member->FirstName,
-            'Content' => $data['EmailContent']
+            'Content'   => $data['EmailContent']
         ));
 
         $body = $arraydata->renderWith('DeclarationEmail');
 
         $mail->MsgHTML($body);
 
-        if ( $mail->send()) {
+        if ($mail->send()) {
             return true;
         } else {
             return false;

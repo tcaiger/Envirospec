@@ -20,10 +20,9 @@ class ExpiryController extends Controller {
     }
 
 
-
-    // =======================================
-    // Get Certificates
-    // =======================================
+    /**
+     * @return DataList
+     */
     public function GetCertificates(){
 
         $certificates = Certificate::get()
@@ -46,9 +45,12 @@ class ExpiryController extends Controller {
     }
 
 
-    // =======================================
-    // Get Certificates
-    // =======================================
+    /**
+     * Check al certificates against expiry dates
+     *
+     * @param $certificates
+     * @return bool
+     */
     public function CheckExpiry($certificates){
 
         $mail = new MailController;
@@ -73,7 +75,7 @@ class ExpiryController extends Controller {
                     $certificate->MonthWarning = 1;
                     $certificate->write();
                     $WarningList->push($certificate);
-                    $mail->WarningEmail($certificate, $member);
+                    $mail->ExpiryEmail($certificate, $member, 'month warning');
                 }else{
                    echo 'For Warning Email. Member Could Not Be Found';
                 }
@@ -84,7 +86,7 @@ class ExpiryController extends Controller {
                     $certificate->ExpiredWarning = 1;
                     $certificate->write();
                     $ExpiredList->push($certificate);
-                    $mail->ExpiredEmail($certificate, $member);
+                    $mail->ExpiryEmail($certificate, $member, 'expired');
                 }else{
                     echo 'For Expired Email. Member Could Not Be Found';
                 }
@@ -96,7 +98,7 @@ class ExpiryController extends Controller {
                     $certificate->Status = 'Disabled';
                     $certificate->write();
                     $FinalList->push($certificate);
-                    $mail->FinalEmail($certificate, $member);
+                    $mail->ExpiryEmail($certificate, $member, 'final');
                 }else{
                     echo 'For Final Email. Member Could Not Be Found';
                 }
@@ -108,9 +110,12 @@ class ExpiryController extends Controller {
     }
 
 
-    // =======================================
-    // Gets member relating to certificate
-    // =======================================
+    /**
+     * Gets member relating to certificate
+     *
+     * @param $certificate
+     * @return $member
+     */
     public function GetMember($certificate) {
 
         $member = null;
