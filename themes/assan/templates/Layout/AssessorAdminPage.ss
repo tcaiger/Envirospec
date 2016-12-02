@@ -34,6 +34,11 @@
                     <label for="ReportSearch">Report Number</label>
                     <input type="text" name="ReportSearch" class="form-control report-search" placeholder="eg. ES-GSNZ-09-04c">
                 </div>
+                <div class="checkbox js-check">
+                    <label>
+                        <input type="checkbox"> I agree to the Disclaimer
+                    </label>
+                </div>
                 <div class="report-results"></div>
                 <button class="report-search-btn btn btn-theme-bg btn-lg">Find Report</button>
             </div>

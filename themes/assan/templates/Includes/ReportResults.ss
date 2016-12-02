@@ -1,4 +1,4 @@
-<% if $Report %>
+<% if $Message == 'good' %>
 	<div class="alert alert-success">
 		<button class="close" data-dismiss="alert">x</button>
 		<a class="text-success" href="$Report" target="_blank">
@@ -6,6 +6,14 @@
 			View Report.
 		</a>
 	</div>
+<% else_if $Message == 'not declared' %>
+    <div class="alert alert-danger">
+        <button class="close" data-dismiss="alert">x</button>
+        <p class="text-danger">
+            <i style="margin-right: 0.5em" class="fa fa-exclamation-circle"></i>
+            Please tick to confirm you agree to the Disclaimer.
+        </p>
+    </div>
 <% else %>
 	<div class="alert alert-danger">
 		<button class="close" data-dismiss="alert">x</button>
@@ -13,6 +21,5 @@
 			<i style="margin-right: 0.5em" class="fa fa-exclamation-circle"></i>
 			Please enter a valid report number.
 		</p>
-
 	</div>
 <% end_if %>

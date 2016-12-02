@@ -23,7 +23,7 @@ class AssessorAdminPage extends Page implements PermissionProvider {
     );
 
     private static $has_one = array(
-        'CoverImage'        => 'Image'
+        'CoverImage' => 'Image'
     );
 
     public function getCMSFields() {
@@ -51,122 +51,35 @@ use iio\libmergepdf\Pages;
 
 class AssessorAdminPage_Controller extends Page_Controller {
 
+
     public function index(SS_HTTPRequest $request) {
 
         if ($request->isAjax()) {
 
-            // Get the summary certificate
-            //----------------------------------------------------
-            if ($reportNo = $request->getVar('report')) {
-                $summary = Certificate::Get()->filter(array(
-                    'Number' => $reportNo
-                ))->first();
-            }
-
-            // Generate PDF (if the certificate is a summary document)
-            //----------------------------------------------------
-            if ($summary && $summary->IsSummary == 1) {
-
-                // Set Up
-                //----------------------------------------------------
-                $summaryPath = '../' . $summary->Certificate()->Filename;
-                $product = $summary->Product();
-                $certificates = $product->Certificates()->filter(array(
-                    'Compile' => 1
-                ))->exclude('ID', $summary->ID);
-                $date = date("j F Y");
-                $dateStamp = date("d.m.Y");
-
-                // Cover Page
-                $id = $this->CoverImageID;
-                $cover = Image::get()->byID($id);
-                $coverPath = '../' . $cover->Filename;
-
-
-                // Build Contents Page
-                //----------------------------------------------------
-
-                $pdf = new PDF();
-                $pdf->AddPage();
-                $pdf->SetFont('Arial', '', 32);
-                $pdf->setTextColor(45, 45, 45);
-
-                $pdf->setXY(30, 60);
-                $pdf->SetFontSize(20);
-                $pdf->cell(0, 10, 'Submission Pack Details', 0, 2);
-                $pdf->ln(4);
-                $pdf->SetFontSize(14);
-                $pdf->setX(30);
-                $pdf->cell(0, 10, 'Product: ' . $product->Title, 0, 2);
-                $pdf->cell(0, 10, 'Report No: ' . $reportNo, 0, 2);
-                $pdf->cell(0, 10, 'Date: ' . $date, 0, 2);
-                $pdf->ln(15);
-
-                $pdf->SetFontSize(20);
-                $pdf->setX(30);
-                $pdf->cell(0, 10, 'Table of Contents', 0, 2);
-                $pdf->ln(8);
-                $pdf->SetFontSize(14);
-
-                $i = 1;
-                $pdf->setX(30);
-                $pdf->cell(0, 0, $i . '. ' . $summary->Name, 0, 2);
-                $pdf->Ln(10);
-                $i++;
-
-                foreach ($certificates as $certificate) {
-                    $pdf->setX(30);
-                    if (substr($certificate->Certificate()->Filename, -3) == 'pdf') {
-                        $pdf->cell(0, 0, $i . '. ' . $certificate->Name, 0, 2);
-                    } else {
-                        $pdf->setTextColor(231, 76, 60);
-                        $pdf->cell(0, 0, $i . '. ' . $certificate->Name, 0, 2);
-                        $pdf->Ln(8);
-                        $pdf->setX(35);
-                        $pdf->SetFontSize(10);
-                        $pdf->cell(0, 0, 'This file is not a valid pdf and cannot be included.', 0, 2);
-                        $pdf->Ln(4);
-                        $pdf->setX(35);
-                        $pdf->cell(0, 0, 'Please contact Envirospec directly for the file.', 0, 2);
-                        $pdf->setTextColor(45, 45, 45);
-                        $pdf->SetFontSize(16);
-                    }
-                    $pdf->Ln(10);
-                    $i++;
+            if($request->getVar('checkbox') == 1){
+                // Get the summary certificate
+                if ($reportNo = $request->getVar('report')) {
+                    $summary = Certificate::Get()->filter(array(
+                        'Number' => $reportNo
+                    ))->first();
                 }
 
-                $contentsPath = '../assets/submission-packs/header.pdf';
-                $pdf->Output('F', $contentsPath);
-
-                //----------------------------------------------------
-                // Merge Files
-                //----------------------------------------------------
-                $m = new Merger();
-                $m->addFromFile($coverPath);
-                $m->addFromFile($contentsPath);
-                $m->addFromFile($summaryPath);
-
-
-                foreach ($certificates as $certificate) {
-
-                    if (substr($certificate->Certificate()->Filename, -3) == 'pdf') {
-                        //$m->addFromFile('../assets/submission-packs/templates/blank-page.pdf');
-                        $file = '../' . $certificate->Certificate()->Filename;
-                        $m->addFromFile($file);
-                    }
+                // Generate PDF (if the certificate is a summary document)
+                if ($summary && $summary->IsSummary == 1) {
+                    $Results = $this->GeneratePDF($reportNo, $summary);
+                    $Message = 'good';
+                } else {
+                    $Results = null;
+                    $Message = 'invalid number';
                 }
-
-                $outputPath = '../assets/submission-packs/SubmissionPack-' . $reportNo . '-' . $dateStamp . '.pdf';
-
-                file_put_contents($outputPath, $m->merge());
-
-                $Results = $outputPath;
-
-            } else {
+            }else{
                 $Results = null;
+                $Message = 'not declared';
             }
+
 
             return $this->customise(array(
+                'Message' => $Message,
                 'Report' => $Results
             ))->renderWith('ReportResults');
         }
@@ -176,7 +89,106 @@ class AssessorAdminPage_Controller extends Page_Controller {
         );
     }
 
+    /**
+     * Makes the pdf and returns a link to it
+     *
+     * @return string
+     */
+    public function GeneratePDF($reportNo, $summary) {
 
+        // Set Up
+        $summaryPath = '../' . $summary->Certificate()->Filename;
+        $product = $summary->Product();
+        $certificates = $product->Certificates()->filter(array(
+            'Compile' => 1
+        ))->exclude('ID', $summary->ID);
+        $date = date("j F Y");
+        $dateStamp = date("d.m.Y");
+
+        // Cover Page
+        $id = $this->CoverImageID;
+        $cover = Image::get()->byID($id);
+        $coverPath = '../' . $cover->Filename;
+
+
+        // Build Contents Page
+        $pdf = new PDF();
+        $pdf->AddPage();
+        $pdf->SetFont('Arial', '', 32);
+        $pdf->setTextColor(45, 45, 45);
+
+        $pdf->setXY(30, 60);
+        $pdf->SetFontSize(20);
+        $pdf->cell(0, 10, 'Submission Pack Details', 0, 2);
+        $pdf->ln(4);
+        $pdf->SetFontSize(14);
+        $pdf->setX(30);
+        $pdf->cell(0, 10, 'Product: ' . $product->Title, 0, 2);
+        $pdf->cell(0, 10, 'Report No: ' . $reportNo, 0, 2);
+        $pdf->cell(0, 10, 'Date: ' . $date, 0, 2);
+        $pdf->ln(15);
+
+        $pdf->SetFontSize(20);
+        $pdf->setX(30);
+        $pdf->cell(0, 10, 'Table of Contents', 0, 2);
+        $pdf->ln(8);
+        $pdf->SetFontSize(14);
+
+        $i = 1;
+        $pdf->setX(30);
+        $pdf->cell(0, 0, $i . '. ' . $summary->Name, 0, 2);
+        $pdf->Ln(10);
+        $i++;
+
+        foreach ($certificates as $certificate) {
+            $pdf->setX(30);
+            if (substr($certificate->Certificate()->Filename, -3) == 'pdf') {
+                $pdf->cell(0, 0, $i . '. ' . $certificate->Name, 0, 2);
+            } else {
+                $pdf->setTextColor(231, 76, 60);
+                $pdf->cell(0, 0, $i . '. ' . $certificate->Name, 0, 2);
+                $pdf->Ln(8);
+                $pdf->setX(35);
+                $pdf->SetFontSize(10);
+                $pdf->cell(0, 0, 'This file is not a valid pdf and cannot be included.', 0, 2);
+                $pdf->Ln(4);
+                $pdf->setX(35);
+                $pdf->cell(0, 0, 'Please contact Envirospec directly for the file.', 0, 2);
+                $pdf->setTextColor(45, 45, 45);
+                $pdf->SetFontSize(16);
+            }
+            $pdf->Ln(10);
+            $i++;
+        }
+
+        $contentsPath = '../assets/submission-packs/header.pdf';
+        $pdf->Output('F', $contentsPath);
+
+        //----------------------------------------------------
+        // Merge Files
+        //----------------------------------------------------
+        $m = new Merger();
+        $m->addFromFile($coverPath);
+        $m->addFromFile($contentsPath);
+        $m->addFromFile($summaryPath);
+
+
+        foreach ($certificates as $certificate) {
+
+            if (substr($certificate->Certificate()->Filename, -3) == 'pdf') {
+                //$m->addFromFile('../assets/submission-packs/templates/blank-page.pdf');
+                $file = '../' . $certificate->Certificate()->Filename;
+                $m->addFromFile($file);
+            }
+        }
+
+        $outputPath = '../assets/submission-packs/SubmissionPack-' . $reportNo . '-' . $dateStamp . '.pdf';
+
+        file_put_contents($outputPath, $m->merge());
+
+        return $outputPath;
+
+    }
 
 
 }

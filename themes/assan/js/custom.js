@@ -173,7 +173,13 @@ $(document).ready(function ($) {
             init  : function () {
                 this.button.click(function () {
 
-                    // Get Search Value
+                    var checkbox = $('.js-check .icheckbox_minimal');
+                    if(checkbox.hasClass('checked')){
+                        var checked = 1;
+                    }else{
+                        var checked = 0;
+                    }
+
                     var reportNumber = $('.report-search').val();
 
                     if (reportNumber == '') {
@@ -181,7 +187,7 @@ $(document).ready(function ($) {
                     }
 
                     // Send the ajax request
-                    var url = window.location.href + '?report=' + reportNumber;
+                    var url = window.location.href + '?report=' + reportNumber + '&checkbox=' + checked;
                     console.log(url);
 
                     $.ajax(url)
