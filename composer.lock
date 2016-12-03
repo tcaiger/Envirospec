@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d345186d2450c1a12ca0c653f5f8ff49",
-    "content-hash": "015044914e6a9b7e2c917c3c97396967",
+    "hash": "ce094fefd7570a6712cb834906d34ffd",
+    "content-hash": "9f42174ccb6e957b1cbea5951f1257aa",
     "packages": [
         {
             "name": "composer/installers",
@@ -1149,6 +1149,42 @@
                 "siteconfig"
             ],
             "time": "2016-11-28 12:35:18"
+        },
+        {
+            "name": "unclecheese/betterbuttons",
+            "version": "1.3.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/unclecheese/silverstripe-gridfield-betterbuttons.git",
+                "reference": "a703795fce8d4d50400c9ac2b82601fde1b67074"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/unclecheese/silverstripe-gridfield-betterbuttons/zipball/a703795fce8d4d50400c9ac2b82601fde1b67074",
+                "reference": "a703795fce8d4d50400c9ac2b82601fde1b67074",
+                "shasum": ""
+            },
+            "require": {
+                "silverstripe/framework": "~3.1"
+            },
+            "type": "silverstripe-module",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GNU"
+            ],
+            "authors": [
+                {
+                    "name": "Uncle Cheese",
+                    "email": "unclecheese@leftandmain.com"
+                }
+            ],
+            "description": "Adds new form actions and buttons to GridField detail form for usability enhancements.",
+            "keywords": [
+                "buttons",
+                "gridfield",
+                "silverstripe"
+            ],
+            "time": "2016-09-16 00:03:03"
         }
     ],
     "packages-dev": [],

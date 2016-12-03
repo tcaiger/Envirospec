@@ -4,12 +4,12 @@
 <table cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
     <tr>
         <td style="padding: 10px 40px 10px 15px;">
-            <p>Dear $Member.FirstName,</p>
-            <p>This is a polite reminder from Envirospec.nz that the following certificate expired today:</p>
+            <p>Dear $Member.Username $Member.Email $Member.FirstName,</p>
+            <p>$Message</p>
             <% with $Certificate %>
-                <p>Product: $Product.Title</p>
-                <p>Name: $Name</p>
-                <p>Expiry: $ValidUntil</p>
+                <p><strong>Product: </strong>$Product.Title</p>
+                <p><strong>Certificate: </strong>$Name</p>
+                <p><strong>Expiry: </strong>$ValidUntil</p>
             <% end_with %>
         </td>
     </tr>

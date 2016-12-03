@@ -2,22 +2,6 @@
 
 class Certificate extends DataObject {
 
-    private static $has_one = array(
-        'Certificate' => 'File',
-        'FullReport'  => 'File',
-        'Product'     => 'Product',
-        'Companies'   => 'Companies'
-    );
-
-    private static $summary_fields = array(
-        'Name'      => 'Name',
-        'Type'      => 'Type',
-        'Number'    => 'Number',
-        'IsSummary' => 'Summary Sheet',
-        'Compile'   => 'Include in Submission Pack',
-        'Display'   => 'Display On Site',
-        'Status'    => 'Status'
-    );
 
     private static $db = array(
         'Name'           => 'Varchar',
@@ -34,6 +18,23 @@ class Certificate extends DataObject {
         'FinalWarning'   => 'Boolean',
         'SortOrder'      => 'Int'
     );
+
+    private static $has_one = [
+        'Certificate' => 'File',
+        'FullReport'  => 'File',
+        'Product'     => 'Product',
+        'Companies'   => 'Companies'
+    ];
+
+    private static $summary_fields = [
+        'Name'      => 'Name',
+        'Type'      => 'Type',
+        'Number'    => 'Number',
+        'IsSummary' => 'Summary Sheet',
+        'Compile'   => 'Include in Submission Pack',
+        'Display'   => 'Display On Site',
+        'Status'    => 'Status'
+    ];
 
     public function IsSummary() {
         return ($this->IsSummary == true ? 'Yes' : 'No');
@@ -115,24 +116,24 @@ class Certificate extends DataObject {
     }
 
 
-    function onBeforeWrite($member = null) {
-
-        if ( ! Permission::check('CMS_ACCESS_PAGES', 'any', $member)) {
-            $this->Status = 'Awaiting Review';
-
-            $mail = new MailController;
-            $member = Member::currentUser();
-
-            $mail->CertificateUploadEmail($this->Name, $member->FirstName);
-        }
-
-        // Reset email warnings
-        $this->MonthWarning = 0;
-        $this->ExpiredWarning = 0;
-        $this->FinalWarning = 0;
-
-        parent::onBeforeWrite();
-    }
+    //function onBeforeWrite($member = null) {
+    //
+    //    if ( ! Permission::check('CMS_ACCESS_PAGES', 'any', $member)) {
+    //        $this->Status = 'Awaiting Review';
+    //
+    //        $mail = new MailController;
+    //        $member = Member::currentUser();
+    //
+    //        $mail->CertificateUploadEmail($this->Name, $member);
+    //    }
+    //
+    //    // Reset email warnings
+    //    $this->MonthWarning = 0;
+    //    $this->ExpiredWarning = 0;
+    //    $this->FinalWarning = 0;
+    //
+    //    parent::onBeforeWrite();
+    //}
 
     // =====================================================
     //                 Members Area Link

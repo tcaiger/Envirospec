@@ -14,9 +14,12 @@ class Companies extends DataObject {
     );
 
     private static $has_one = array(
-        'Logo' => 'Image',
-        'Member' => 'Member'
+        'Logo' => 'Image'
     );
+
+    private static $belongs_to = [
+        'member' => 'member'
+    ];
 
     private static $has_many = array(
         'ManufacturerProducts' => 'Product.Manufacturer',

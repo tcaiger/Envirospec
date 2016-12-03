@@ -2,24 +2,10 @@
 
 class Product extends Page {
 
-    static $defaults = array(
-        'ShowInMenus'  => false,
-        'ShowInSearch' => false
-    );
+
 
     private static $can_be_root = false;
 
-    private static $has_one = array(
-        'Supplier'        => 'Companies',
-        'Manufacturer'    => 'Companies',
-        'ProductCategory' => 'ProductCategory'
-    );
-
-    private static $has_many = array(
-        'ProductImages' => 'Image',
-        'Certificates'  => 'Certificate',
-        'Credits'       => 'Credit'
-    );
 
     static $icon = 'mysite/icons/BlueFile';
 
@@ -61,6 +47,23 @@ class Product extends Page {
         'CircularEconomyModelOffice'    => 'Boolean',
         'SearchLabels'                  => 'Varchar(100)'
     );
+
+    static $defaults = [
+        'ShowInMenus'  => false,
+        'ShowInSearch' => false
+    ];
+
+    private static $has_one = [
+        'Supplier'        => 'Companies',
+        'Manufacturer'    => 'Companies',
+        'ProductCategory' => 'ProductCategory'
+    ];
+
+    private static $has_many = [
+        'ProductImages' => 'Image',
+        'Certificates'  => 'Certificate',
+        'Credits'       => 'Credit'
+    ];
 
 
     public function getCMSFields($member = null) {

@@ -1,47 +1,14 @@
 <?php
 
-class ExpiryController extends Controller {
+class ExpirySystemTask extends BuildTask {
 
+    protected $title = 'Expiry System Task';
+    protected $description = 'Checks certificates for expiry. Run daily by cron job.';
+    protected $enabled = true;
 
-    private static $allowed_actions = array(
-        'index'
-    );
-
-    function init() {
-        parent::init();
-
-        echo "\n Expiry Controller \n -------------------------\n\n";
-    }
-
-    public function index(){
+    function run($request) {
         $certificates = $this->GetCertificates();
         $this->CheckExpiry($certificates);
-        return true;
-    }
-
-
-    /**
-     * @return DataList
-     */
-    public function GetCertificates(){
-
-        $certificates = Certificate::get()
-            ->exclude(array(
-                'NoExpiry' => true
-            ))->exclude(array(
-                'Type' => 'Green Building Rating Compatibility'
-            ))->exclude(array(
-                'Product.Title' => '',
-            ))->exclude(array(
-                 'ValidUntil' => ''
-            ))->filterAny(array(
-                'Product.Title' => 'Test Product',
-                'Companies.Name' => 'New Test Company'
-            ));
-
-        echo 'There are ' . count($certificates) . ' certificates in total' . "\n <br>";
-
-        return $certificates;
     }
 
 
@@ -51,7 +18,7 @@ class ExpiryController extends Controller {
      * @param $certificates
      * @return bool
      */
-    public function CheckExpiry($certificates){
+    public function CheckExpiry($certificates) {
 
         $mail = new MailController;
 
@@ -60,61 +27,102 @@ class ExpiryController extends Controller {
         $FinalList = new ArrayList();
 
 
-
         foreach ($certificates as $certificate) {
 
-            if($certificate->NoExpiry){
+            if ($certificate->NoExpiry) {
                 break;
             }
 
             $expiry = strtotime($certificate->ValidUntil);
 
-            if ($expiry > strtotime('0 Days') && $expiry < strtotime('30 Days') && !$certificate->MonthWarning) {
+            if ($expiry > strtotime('0 Days') && $expiry < strtotime('30 Days') && ! $certificate->MonthWarning) {
 
-                if($member = $this->GetMember($certificate)){
+                if ($member = $this->GetMember($certificate)) {
                     $certificate->MonthWarning = 1;
                     $certificate->write();
                     $WarningList->push($certificate);
                     $mail->ExpiryEmail($certificate, $member, 'month warning');
-                }else{
-                   echo 'For Warning Email. Member Could Not Be Found';
+                } else {
+                    echo 'For Warning Email. Member Could Not Be Found';
                 }
 
-            } else if ($expiry > strtotime('-30 Days') && $expiry <= strtotime('0 Days') && !$certificate->ExpiredWarning) {
+            } else if ($expiry > strtotime('-30 Days') && $expiry <= strtotime('0 Days') && ! $certificate->ExpiredWarning) {
 
-                if($member = $this->GetMember($certificate)){
+                if ($member = $this->GetMember($certificate)) {
                     $certificate->ExpiredWarning = 1;
                     $certificate->write();
                     $ExpiredList->push($certificate);
                     $mail->ExpiryEmail($certificate, $member, 'expired');
-                }else{
+                } else {
                     echo 'For Expired Email. Member Could Not Be Found';
                 }
 
-            } else if ($expiry < strtotime('-30 Days') && !$certificate->FinalWarning) {
+            } else if ($expiry < strtotime('-30 Days') && ! $certificate->FinalWarning) {
 
-                if($member = $this->GetMember($certificate)){
+                if ($member = $this->GetMember($certificate)) {
                     $certificate->FinalWarning = 1;
                     $certificate->Status = 'Disabled';
                     $certificate->write();
                     $FinalList->push($certificate);
                     $mail->ExpiryEmail($certificate, $member, 'final');
-                }else{
+                } else {
                     echo 'For Final Email. Member Could Not Be Found';
                 }
             }
         }
 
         echo $WarningList->count() . ' first warning emails sent, ' . $ExpiredList->count() . ' expired emails sent and ' . $FinalList->count() . ' final warning emails sent';
+
         return true;
     }
 
 
     /**
-     * Gets member relating to certificate
+     * @return DataList
+     */
+    public function GetCertificates() {
+
+
+        $products = Product::get()->filter([
+            'Manufacturer.Name' => 'Test Company',
+            'Supplier.Name' => 'Test Company'
+        ]);
+
+
+        $productIDs = [];
+
+        foreach ($products as $product){
+            array_push($productIDs, $product->ID);
+        }
+
+
+        $certificates = Certificate::get()
+            ->filterAny([
+                'Product.ID'=> $productIDs,
+                'Companies.Name' => 'Test Company',
+                'Companies.Name' => 'New test company'
+            ])
+            ->exclude(['NoExpiry' => true])
+            ->exclude(['Type' => 'Green Building Rating Compatibility'])
+            ->exclude(['Product.Title' => ''])
+            ->exclude(['ValidUntil' => '']);
+
+
+
+        echo "-------------------------<br>
+               Expiry Controller <br>
+              -------------------------<br>
+                There are " . count($certificates) . " certificates in total. <br>";
+
+        return $certificates;
+    }
+
+
+    /**
+     *  Gets member relating to certificate
      *
      * @param $certificate
-     * @return $member
+     * @return null
      */
     public function GetMember($certificate) {
 
@@ -129,10 +137,10 @@ class ExpiryController extends Controller {
                 $company = DataObject::get_by_id('Companies', $ID);
             }
         }
-        $member = $company->Member();
+        $member = Member::get()->filter('CompaniesID', $company->ID)->First();
+
         return $member;
     }
-
 
 
 }

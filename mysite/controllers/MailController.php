@@ -7,7 +7,6 @@ class MailController extends Controller {
     public $contactEmailCC;
 
 
-
     /**
      * Sets up php mail object
      *
@@ -104,36 +103,39 @@ class MailController extends Controller {
 
 
     /**
-     * Sends Expiry System Emails
+     *  Sends Expiry System Emails
      *
      * @param $certificate
      * @param $member
+     * @param $type
      * @return bool
      */
     public function ExpiryEmail($certificate, $member, $type) {
-
+        Debug::dump($member);
         $mail = $this->setup();
 
-        $mail->addAddress($member->Email);
+        $mail->addAddress('caigertom@gmail.com');
         $mail->addReplyTo($this->systemEmail);
-        $mail->addCC($this->systemEmail);
+        $mail->addCC('tom@swordfox.nz');
 
         $mail->Subject = 'Envirospec Document Expiry System';
 
-        $arraydata = new ArrayData(array(
+        if ($type == 'month warning') {
+            $message = 'This is a polite reminder from Envirospec.nz that the following certificate will expire in 30 days.';
+        } else if ($type == 'expired') {
+            $message = 'This is a polite reminder from Envirospec.nz that the following certificate expired today.';
+        } else {
+            $message = 'This is a polite reminder from Envirospec.nz that the following certificate expired 30 days ago.';
+        }
+
+        $data = new ArrayData(array(
             'Certificate' => $certificate,
             'Member'      => $member,
             'Date'        => date("Y-m-d"),
+            'Message'     => $message
         ));
 
-        if ($type == 'month warning') {
-            $body = $arraydata->renderWith('WarningEmail');
-        } else if ($type == 'expired') {
-            $body = $arraydata->renderWith('ExpiredEmail');
-        } else {
-            $body = $arraydata->renderWith('FinalEmail');
-        }
-
+        $body = $data->renderWith('ExpiryEmail');
 
         $mail->MsgHTML($body);
 
@@ -163,7 +165,7 @@ class MailController extends Controller {
         $mail->Subject = 'Envirospec Certificate Upload';
 
         $arraydata = new ArrayData(array(
-            'FirstName'   => $member,
+            'FirstName'   => $member->FirstName,
             'Certificate' => $certificate
         ));
 
@@ -177,7 +179,6 @@ class MailController extends Controller {
             return true;
         }
     }
-
 
 
     /**
