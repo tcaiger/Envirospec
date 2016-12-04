@@ -42,7 +42,7 @@ class CustomLoginForm extends MemberLoginForm {
 
         if ($member->inGroup('green-star-assessors')) {
             return $this->controller->redirect($url . 'assessor-admin');
-        } elseif ($member->inGroup('Members') || $member->inGroup('Manufacturers & Suppliers')){
+        } else if ($member->inGroup('content-authors')){
             return $this->controller->redirect($url . 'membersarea');
         } else {
             return $this->controller->redirect($url . 'admin');
