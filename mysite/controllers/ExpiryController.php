@@ -7,8 +7,13 @@ class ExpirySystemTask extends BuildTask {
     protected $enabled = true;
 
     function run($request) {
-        $certificates = $this->GetCertificates();
-        $this->CheckExpiry($certificates);
+
+        echo "-------------------------<br>Expiry Controller <br>-------------------------<br>";
+
+        $certificates = $this->getCertificates();
+        $companyCertificates = $this->getCompanyCertificates();
+        $this->CheckExpiry($certificates, 'general');
+        $this->CheckExpiry($companyCertificates, 'company');
     }
 
 
@@ -18,7 +23,7 @@ class ExpirySystemTask extends BuildTask {
      * @param $certificates
      * @return bool
      */
-    public function CheckExpiry($certificates) {
+    public function CheckExpiry($certificates, $type) {
 
         $mail = new MailController;
 
@@ -71,6 +76,12 @@ class ExpirySystemTask extends BuildTask {
             }
         }
 
+        if ($type == 'company') {
+            echo '<p><strong>Company Certificate Results</strong></p>';
+        } else {
+            echo '<p><strong>Certificates Results</strong></p>';
+        }
+
         echo $WarningList->count() . ' first warning emails sent, ' . $ExpiredList->count() . ' expired emails sent and ' . $FinalList->count() . ' final warning emails sent';
 
         return true;
@@ -80,37 +91,50 @@ class ExpirySystemTask extends BuildTask {
     /**
      * @return DataList
      */
-    public function GetCertificates() {
-
-
-        $products = Product::get()->filter([
-            'Manufacturer.Name' => 'Test Company',
-            'Supplier.Name' => 'Test Company'
-        ]);
-
-
-        $productIDs = [];
-
-        foreach ($products as $product){
-            array_push($productIDs, $product->ID);
-        }
-
+    public function getCompanyCertificates() {
 
         $certificates = Certificate::get()
-            ->filterAny([
-                'Product.ID'=> $productIDs,
-                'Companies.Name' => 'Test Company'
+            ->filter([
+                'Companies.Name' => 'Test Company',
             ])
             ->exclude(['NoExpiry' => true])
             ->exclude(['Type' => 'Green Building Rating Compatibility'])
             ->exclude(['ValidUntil' => '']);
 
 
+        echo "There are " . count($certificates) . " company certificates being checked. <br>";
 
-        echo "-------------------------<br>
-               Expiry Controller <br>
-              -------------------------<br>
-                There are " . count($certificates) . " certificates in total. <br>";
+        return $certificates;
+    }
+
+
+    /**
+     * @return DataList
+     */
+    public function getCertificates() {
+
+        $products = Product::get()->filter([
+            'Manufacturer.Name' => 'Test Company',
+            'Supplier.Name'     => 'Test Company'
+        ]);
+
+
+        $productIDs = [];
+
+        foreach ($products as $product) {
+            array_push($productIDs, $product->ID);
+        }
+
+
+        $certificates = Certificate::get()
+            ->filterAny([
+                'Product.ID'     => $productIDs
+            ])
+            ->exclude(['NoExpiry' => true])
+            ->exclude(['Type' => 'Green Building Rating Compatibility'])
+            ->exclude(['ValidUntil' => '']);
+
+        echo "There are " . count($certificates) . " certificates being checked. <br>";
 
         return $certificates;
     }
