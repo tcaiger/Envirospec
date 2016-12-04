@@ -22,7 +22,7 @@
             <div class="well">
                 <div class="divide20"></div>
                 <h5>$Name</h5>
-                <p>Expiry Date: <strong>12 March 2016</strong><br>
+                <p>Expiry Date: <strong>$ValidUntil</strong><br>
                 Status: <strong>$Status</strong></p>
             </div>
         </div>
