@@ -116,24 +116,24 @@ class Certificate extends DataObject {
     }
 
 
-    function onBeforeWrite($member = null) {
-
-        if ( ! Permission::check('CMS_ACCESS_PAGES', 'any', $member)) {
-            $this->Status = 'Awaiting Review';
-
-            $mail = new MailController;
-            $member = Member::currentUser();
-
-            $mail->CertificateUploadEmail($this->Name, $member);
-
-            // Reset email warnings
-            $this->MonthWarning = 0;
-            $this->ExpiredWarning = 0;
-            $this->FinalWarning = 0;
-        }
-
-        parent::onBeforeWrite();
-    }
+    //function onBeforeWrite($member = null) {
+    //
+    //    if ( ! Permission::check('CMS_ACCESS_PAGES', 'any', $member)) {
+    //        $this->Status = 'Awaiting Review';
+    //
+    //        $mail = new MailController;
+    //        $member = Member::currentUser();
+    //
+    //        $mail->CertificateUploadEmail($this->Name, $member);
+    //
+    //        // Reset email warnings
+    //        $this->MonthWarning = 0;
+    //        $this->ExpiredWarning = 0;
+    //        $this->FinalWarning = 0;
+    //    }
+    //
+    //    parent::onBeforeWrite();
+    //}
 
     // =====================================================
     //                 Members Area Link
