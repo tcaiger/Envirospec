@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ce094fefd7570a6712cb834906d34ffd",
-    "content-hash": "9f42174ccb6e957b1cbea5951f1257aa",
+    "hash": "55a2e1065722f9629ba4198e15a5f370",
+    "content-hash": "1ce711becb72b12d388b10a56506d5ef",
     "packages": [
         {
             "name": "composer/installers",
@@ -1185,6 +1185,48 @@
                 "silverstripe"
             ],
             "time": "2016-09-16 00:03:03"
+        },
+        {
+            "name": "unclecheese/dropzone",
+            "version": "1.4.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/unclecheese/silverstripe-dropzone.git",
+                "reference": "b526399b2b89f9d91e0057208cbd4ee681ca3eb7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/unclecheese/silverstripe-dropzone/zipball/b526399b2b89f9d91e0057208cbd4ee681ca3eb7",
+                "reference": "b526399b2b89f9d91e0057208cbd4ee681ca3eb7",
+                "shasum": ""
+            },
+            "require": {
+                "silverstripe/framework": "3.*"
+            },
+            "type": "silverstripe-module",
+            "extra": {
+                "installer-name": "dropzone"
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Uncle Cheese",
+                    "email": "unclecheese@leftandmain.com"
+                }
+            ],
+            "description": "An HTML5 upload field for the CMS and frontend forms.",
+            "keywords": [
+                "Forms",
+                "cms",
+                "files",
+                "silverstripe",
+                "upload",
+                "uploader"
+            ],
+            "time": "2016-12-01 06:49:38"
         }
     ],
     "packages-dev": [],

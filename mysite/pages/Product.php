@@ -389,7 +389,6 @@ class Product_Controller extends Page_Controller {
         } else {
             return '/';
         }
-
     }
 
     // =====================================================

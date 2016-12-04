@@ -30,7 +30,7 @@
 
             <h3>Welcome $CurrentMember.FirstName</h3>
             <p>You are managing <strong>$CurrentMember.Companies.Name</strong>.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam amet architecto blanditiis ipsam magni modi mollitia nobis, quos. Assumenda enim eos esse laborum molestiae nulla pariatur perspiciatis praesentium rerum saepe!</p>
+            <p>In this area you can manage your company information including Products, Certificates, Logos and Images.</p>
 
             <% if $MemberDeclaration %>
                 <div class="alert-info alert">
@@ -103,4 +103,5 @@
     </div>
 </div>
 
-<div class="divide30"></div>
+<div class="divide80"></div>
+<div class="divide80"></div>

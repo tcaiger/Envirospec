@@ -29,7 +29,7 @@
         <main class="col-sm-8">
             <section>
                 <h3>$Title</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem dolorum error eveniet in possimus quaerat voluptas! Aut eius eos excepturi exercitationem harum ipsam neque optio sit veritatis. Eum, nobis, praesentium.</p>
+                $GeneralDescription
             </section>
             <div class="divide30"></div>
             <section>

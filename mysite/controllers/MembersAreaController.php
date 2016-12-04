@@ -86,6 +86,7 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
      */
     public function product() {
         $this->getProduct();
+
         return $this->customise($this->product)->render();
     }
 
@@ -111,9 +112,9 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
      */
     public function getCompany() {
         $this->company = Member::currentUser()->Companies();
+
         return $this->company;
     }
-
 
 
     /**
@@ -122,9 +123,9 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
     public function getProduct() {
         $ID = $this->request->param('ID');
         $this->product = Product::get()->byID($ID);
+
         return $this->product;
     }
-
 
 
     /**
@@ -135,6 +136,15 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
         $this->certificate = Certificate::get()->byID($ID);
 
         return true;
+    }
+
+    public function getBackLink() {
+        if (isset($_SERVER['HTTP_REFERER'])) {
+            return $_SERVER['HTTP_REFERER'];
+        } else {
+            return 'membersarea';
+        }
+
     }
 
 
@@ -181,9 +191,9 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
      */
     public function MemberDeclaration() {
         $declaration = Member::currentUser()->Companies()->Declarations()->Sort('Created', 'DESC')->first();
-        if($declaration && !$declaration->Confirmed){
+        if ($declaration && ! $declaration->Confirmed) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -245,15 +255,19 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
      * @return Form
      */
     public function MemberLogoForm() {
-        $fields = new FieldList(
+
+
+        $fields = FieldList::create(
             HiddenField::create('ID'),
-            UploadField::create('Logo')->setTemplate('CustomUploadField')
-        );
-        $actions = new FieldList(
+            FileAttachmentField::create('Logo')->setTemplate('CustomUploadField')
+        )->bootstrapIgnore('Logo');
+
+
+        $actions = FieldList::create(
             FormAction::create('memberlogoformaction', 'Save Changes')->addExtraClass('btn btn-theme-bg')
         );
 
-        $form = new Form($this, __FUNCTION__, $fields, $actions);
+        $form = new BootstrapForm($this, __FUNCTION__, $fields, $actions);
         $form->setTemplate('MembersAreaForm');
 
         if ($this->company) {
@@ -281,8 +295,6 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
 
         return $this->redirectBack();
     }
-
-
 
 
     /**
@@ -342,16 +354,17 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
      * @return Form
      */
     public function ProductImagesForm() {
-        $fields = new FieldList(
-            HiddenField::create('ID'),
-            UploadField::create('ProductImages')->setTemplate('CustomUploadField')
-        );
 
-        $actions = new FieldList(
+        $fields = FieldList::create(
+            HiddenField::create('ID'),
+            FileAttachmentField::create('ProductImages')->setTemplate('CustomUploadField')
+        )->bootstrapIgnore('ProductImages');
+
+        $actions = FieldList::create(
             FormAction::create('productimagesformaction', 'Save Changes')->addExtraClass('btn btn-theme-bg')
         );
 
-        $form = new Form($this, __FUNCTION__, $fields, $actions);
+        $form = new BootstrapForm($this, __FUNCTION__, $fields, $actions);
         $form->setTemplate('MembersAreaForm');
 
         if ($this->product) {
@@ -385,16 +398,16 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
      */
     public function CertificateForm() {
 
-        $fields = new FieldList(
+        $fields = FieldList::create(
             HiddenField::create('ID'),
-            UploadField::create('Certificate')->setTemplate('CustomUploadField')
-        );
+            FileAttachmentField::create('Certificate')->setTemplate('CustomUploadField')
+        )->bootstrapIgnore('Certificate');
 
-        $actions = new FieldList(
+        $actions = FieldList::create(
             FormAction::create('certificateformaction', 'Submit For Review')->addExtraClass('btn btn-theme-bg')
         );
 
-        $form = new Form($this, __FUNCTION__, $fields, $actions);
+        $form = new BootstrapForm($this, __FUNCTION__, $fields, $actions);
         $form->setTemplate('MembersAreaForm');
 
         if ($this->certificate) {
@@ -421,7 +434,7 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
     /**
      * @return BootstrapForm
      */
-    public function DeclarationForm(){
+    public function DeclarationForm() {
         $fields = new FieldList(
             HiddenField::create('ID'),
             CheckboxField::create('Confirmed', 'I confirm all the product information is correct')
@@ -440,7 +453,7 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
         return $form;
     }
 
-    public function declarationformaction($data, $form){
+    public function declarationformaction($data, $form) {
 
         $company = Companies::get()->byID($data['ID']);
         $declaration = $company->Declarations()->Sort('Created', 'DESC')->first();
