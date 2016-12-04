@@ -111,7 +111,7 @@ class MailController extends Controller {
      * @return bool
      */
     public function ExpiryEmail($certificate, $member, $type) {
-        Debug::dump($member);
+
         $mail = $this->setup();
 
         $mail->addAddress('caigertom@gmail.com');

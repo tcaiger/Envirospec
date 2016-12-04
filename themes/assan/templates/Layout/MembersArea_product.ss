@@ -56,6 +56,7 @@
             <div class="divide30"></div>
             <section>
                 <h3>Product Links</h3>
+                <p>eg. https://www.google.co.nz</p>
                 <div class="product-form">
                     $ProductForm
                 </div>
@@ -65,4 +66,4 @@
     </div>
 </div>
 
-<div class="divide30"></div>
+<div class="divide80"></div>

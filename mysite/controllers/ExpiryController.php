@@ -98,13 +98,11 @@ class ExpirySystemTask extends BuildTask {
 
         $certificates = Certificate::get()
             ->filterAny([
-                'Product.ID'=> $productIDs,
-                'Companies.Name' => 'Test Company',
-                'Companies.Name' => 'New test company'
+                //'Product.ID'=> $productIDs,
+                'Companies.Name' => 'Test Company'
             ])
             ->exclude(['NoExpiry' => true])
             ->exclude(['Type' => 'Green Building Rating Compatibility'])
-            ->exclude(['Product.Title' => ''])
             ->exclude(['ValidUntil' => '']);
 
 

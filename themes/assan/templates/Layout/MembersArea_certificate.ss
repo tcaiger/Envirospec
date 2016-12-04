@@ -42,4 +42,4 @@
     </div>
 </div>
 
-<div class="divide30"></div>
+<div class="divide80"></div>
