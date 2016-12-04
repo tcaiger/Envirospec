@@ -6,10 +6,24 @@ class MemberExtension extends DataExtension {
         'Companies' => 'Companies'
     );
 
-    public function updateCMSFields(FieldList $currentFields) {
+    private static $summary_fields = [
+        'FirstName'      => 'FirstName',
+        'Surname'        => 'Surname',
+        'Email'          => 'Email',
+        'Companies.Name' => 'Company',
+        'GroupTitle'   => 'Group'
+    ];
 
-        $currentFields->renameField("FirstName", "Username");
-        $currentFields->removeByName("Surname");
+    public function GroupTitle(){
+        return $this->owner->Groups()->First()->Title;
+    }
+
+
+    public function updateSummaryFields(&$fields) {
+        $fields = Config::inst()->get($this->class, 'summary_fields');
+    }
+
+    public function updateCMSFields(FieldList $currentFields) {
 
         $currentFields->insertBefore("Email",
             DropdownField::create('CompaniesID', 'Company',

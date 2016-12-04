@@ -23,20 +23,41 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
         parent::init();
     }
 
+
+
+    // ===========================================================
+    // STRUCTURAL FUNCTIONS
+    // ===========================================================
+    /**
+     * @return string
+     */
     function URLSegment() {
         return 'membersarea';
     }
 
+
+    /**
+     * @param null $action
+     * @return string
+     */
     function Link($action = null) {
         return 'membersarea';
     }
 
+
+    /**
+     * @return array
+     */
     public function providePermissions() {
         return array(
             "VIEW_MEMBERSAREA" => "Access the members area",
         );
     }
 
+
+    /**
+     * @return bool|SS_HTTPResponse
+     */
     public function checkUser() {
         // May need to also check the permission type
         if (Member::currentUserID()) {
@@ -46,6 +67,13 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
         }
     }
 
+    // ===========================================================
+    // RENDERING
+    // ===========================================================
+
+    /**
+     * @return string
+     */
     public function index() {
         $this->checkUser();
         $this->getCompany();
@@ -53,12 +81,121 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
         return $this->render();
     }
 
+    /**
+     * @return mixed
+     */
+    public function product() {
+        $this->getProduct();
+        return $this->customise($this->product)->render();
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function certificate() {
+        $this->getCertificate();
+
+        return $this->customise($this->certificate)->render();
+    }
+
+
+
+
+    // ===========================================================
+    // GETTERS
+    // ===========================================================
+
+    /**
+     * @return mixed
+     */
     public function getCompany() {
         $this->company = Member::currentUser()->Companies();
         return $this->company;
     }
 
 
+
+    /**
+     * @return DataObject
+     */
+    public function getProduct() {
+        $ID = $this->request->param('ID');
+        $this->product = Product::get()->byID($ID);
+        return $this->product;
+    }
+
+
+
+    /**
+     * @return bool
+     */
+    public function getCertificate() {
+        $ID = $this->request->param('ID');
+        $this->certificate = Certificate::get()->byID($ID);
+
+        return true;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function PrintAction() {
+        return $this->getAction();
+    }
+
+
+    /**
+     * @return string
+     */
+    public function PrintID() {
+        return $this->request->param('ID');
+    }
+
+
+    /**
+     * @return DataList
+     */
+    public function MemberProducts() {
+        $ID = Member::currentUser()->Companies()->ID;
+        $products = Product::get()->filterAny(array(
+            'ManufacturerID' => $ID,
+            'SupplierID'     => $ID
+        ));
+
+        return $products;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function MemberCertificates() {
+        return Member::currentUser()->Companies()->Certificates();
+    }
+
+
+    /**
+     * @return bool
+     */
+    public function MemberDeclaration() {
+        $declaration = Member::currentUser()->Companies()->Declarations()->Sort('Created', 'DESC')->first();
+        if($declaration && !$declaration->Confirmed){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
+    // ===========================================================
+    // FORMS
+    // ===========================================================
+
+    /**
+     * @return BootstrapForm
+     */
     public function MembersAreaForm() {
 
         $fields = new FieldList(
@@ -85,6 +222,12 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
         return $form;
     }
 
+
+    /**
+     * @param $data
+     * @param $form
+     * @return bool|SS_HTTPResponse
+     */
     public function membersareaformaction($data, $form) {
         $this->company = Companies::get()->byID($data['ID']);
         $form->saveInto($this->company);
@@ -98,6 +241,9 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
         return $this->redirectBack();
     }
 
+    /**
+     * @return Form
+     */
     public function MemberLogoForm() {
         $fields = new FieldList(
             HiddenField::create('ID'),
@@ -117,6 +263,12 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
         return $form;
     }
 
+
+    /**
+     * @param $data
+     * @param $form
+     * @return bool|SS_HTTPResponse
+     */
     public function memberlogoformaction($data, $form) {
         $this->company = Companies::get()->byID($data['ID']);
         $form->saveInto($this->company);
@@ -130,17 +282,12 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
         return $this->redirectBack();
     }
 
-    public function product() {
-        $this->getProduct();
-        return $this->customise($this->product)->render();
-    }
 
-    public function getProduct() {
-        $ID = $this->request->param('ID');
-        $this->product = Product::get()->byID($ID);
-        return $this->product;
-    }
 
+
+    /**
+     * @return BootstrapForm
+     */
     public function ProductForm() {
 
         $fields = new FieldList(
@@ -171,6 +318,12 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
         return $form;
     }
 
+
+    /**
+     * @param $data
+     * @param $form
+     * @return bool|SS_HTTPResponse
+     */
     public function productformaction($data, $form) {
         $this->product = Product::get()->byID($data['ID']);
         $form->saveInto($this->product);
@@ -184,6 +337,10 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
         return $this->redirectBack();
     }
 
+
+    /**
+     * @return Form
+     */
     public function ProductImagesForm() {
         $fields = new FieldList(
             HiddenField::create('ID'),
@@ -204,6 +361,12 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
         return $form;
     }
 
+
+    /**
+     * @param $data
+     * @param $form
+     * @return bool|SS_HTTPResponse
+     */
     public function productimagesformaction($data, $form) {
         $this->product = Product::get()->byID($data['ID']);
         $form->saveInto($this->product);
@@ -217,19 +380,9 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
     }
 
 
-    public function certificate() {
-        $this->getCertificate();
-
-        return $this->customise($this->certificate)->render();
-    }
-
-    public function getCertificate() {
-        $ID = $this->request->param('ID');
-        $this->certificate = Certificate::get()->byID($ID);
-
-        return true;
-    }
-
+    /**
+     * @return Form
+     */
     public function CertificateForm() {
 
         $fields = new FieldList(
@@ -265,6 +418,9 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
     }
 
 
+    /**
+     * @return BootstrapForm
+     */
     public function DeclarationForm(){
         $fields = new FieldList(
             HiddenField::create('ID'),
@@ -301,38 +457,15 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
     }
 
 
-    public function PrintAction() {
-        return $this->getAction();
-    }
 
-    public function PrintID() {
-        return $this->request->param('ID');
-    }
+    // ===========================================================
+    // OTHER
+    // ===========================================================
 
-    public function MemberProducts() {
-        $ID = Member::currentUser()->Companies()->ID;
-        $products = Product::get()->filterAny(array(
-            'ManufacturerID' => $ID,
-            'SupplierID'     => $ID
-        ));
-
-        return $products;
-    }
-
-
-    public function MemberCertificates() {
-        return Member::currentUser()->Companies()->Certificates();
-    }
-
-    public function MemberDeclaration() {
-        $declaration = Member::currentUser()->Companies()->Declarations()->Sort('Created', 'DESC')->first();
-        if($declaration && !$declaration->Confirmed){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
+    /**
+     * @param string $action
+     * @return SSViewer
+     */
     public function getViewer($action) {
         // Manually set templates should be dealt with by Controller::getViewer()
         if (isset($this->templates[$action]) && $this->templates[$action]
