@@ -4,30 +4,33 @@
 class SiteConfigExtension extends DataExtension {
 
     private static $db = array(
-        'ESSummary'            => 'Text',
-        'ContactAddress'       => 'Text',
-        'ContactEmail'         => 'Varchar',
-        'ContactPhone'         => 'Varchar',
-        'ContactFormEmail'     => 'Varchar(200)',
+        'ESSummary'         => 'Text',
+        'ContactAddress'    => 'Text',
+        'ContactEmail'      => 'Varchar',
+        'ContactPhone'      => 'Varchar',
+        'ContactFormEmail'  => 'Varchar(200)',
         'ContactFormCC'     => 'Varchar(200)',
-        'ExpirySystemEmail'    => 'Varchar(200)'
+        'ExpirySystemEmail' => 'Varchar(200)',
+        'WarningEmail'      => 'HTMLText',
+        'ExpiryEmail'       => 'HTMLText',
+        'FinalEmail'        => 'HTMLText'
     );
 
     private static $has_one = array(
-        'Page1' => 'SiteTree',
-        'Page2' => 'SiteTree',
-        'Page3' => 'SiteTree',
-        'Page4' => 'SiteTree',
+        'Page1'                            => 'SiteTree',
+        'Page2'                            => 'SiteTree',
+        'Page3'                            => 'SiteTree',
+        'Page4'                            => 'SiteTree',
         'GreenBuildingRatingCompatibility' => 'Image',
-        'IndoorAirQualityCertification' => 'Image',
-        'EnergyEfficiencyRating' => 'Image',
-        'LifecycleBasedEcolabel' => 'Image',
-        'EnvironmentalManagementSystem' => 'Image',
-        'QualityManagementSystems' => 'Image',
-        'FullBuildingProductAppraisal' => 'Image',
-        'ProductTechnicalPerformance' => 'Image',
-        'CarbonOffset' => 'Image',
-        'ResponsibleSourcing' => 'Image'
+        'IndoorAirQualityCertification'    => 'Image',
+        'EnergyEfficiencyRating'           => 'Image',
+        'LifecycleBasedEcolabel'           => 'Image',
+        'EnvironmentalManagementSystem'    => 'Image',
+        'QualityManagementSystems'         => 'Image',
+        'FullBuildingProductAppraisal'     => 'Image',
+        'ProductTechnicalPerformance'      => 'Image',
+        'CarbonOffset'                     => 'Image',
+        'ResponsibleSourcing'              => 'Image'
     );
 
     public function updateCMSFields(Fieldlist $fields) {
@@ -63,7 +66,7 @@ class SiteConfigExtension extends DataExtension {
         // Footer Links
         // ----------------------------------------
         $fields->addFieldsToTab('Root.CertificateLogos', array(
-           HeaderField::create('Logos', 'Certificate Logos', '2'),
+            HeaderField::create('Logos', 'Certificate Logos', '2'),
             LabelField::create('LogoLabel', 'The logos that are displayed on certificates depending on type.'),
             $logo1 = UploadField::create('GreenBuildingRatingCompatibility'),
             $logo2 = UploadField::create('IndoorAirQualityCertification'),
@@ -75,6 +78,12 @@ class SiteConfigExtension extends DataExtension {
             $logo8 = UploadField::create('ProductTechnicalPerformance'),
             $logo9 = UploadField::create('CarbonOffset'),
             $logo10 = UploadField::create('ResponsibleSourcing')
+        ));
+
+        $fields->addFieldsToTab('Root.Emails', array(
+            HTMLEditorField::create('WarningEmail', 'Warning Email Body'),
+            HTMLEditorField::create('FinalEmail', 'Final Warning Email Body'),
+            HTMLEditorField::create('ExpiryEmail', 'Expiry Email Body')
         ));
 
         $logo1->setFolderName('certificates');
@@ -91,6 +100,8 @@ class SiteConfigExtension extends DataExtension {
         return $fields;
 
     }
+
+
 }
 
 

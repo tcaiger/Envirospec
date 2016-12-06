@@ -2,6 +2,7 @@
 
 class MailController extends Controller {
 
+    public $config;
     public $systemEmail;
     public $contactEmail;
     public $contactEmailCC;
@@ -25,9 +26,10 @@ class MailController extends Controller {
         $mail->From = 'admin@envirospec.com';
         $mail->FromName = "Envirospec Admin";
 
-        $this->systemEmail = SiteConfig::current_site_config()->ExpirySystemEmail;
-        $this->contactEmail = SiteConfig::current_site_config()->ContactFormEmail;
-        $this->contactEmailCC = SiteConfig::current_site_config()->ContactFormCC;
+        $this->config = SiteConfig::current_site_config();
+        $this->systemEmail = $this->config->ExpirySystemEmail;
+        $this->contactEmail = $this->config->ContactFormEmail;
+        $this->contactEmailCC = $this->config->ContactFormCC;
 
         $mail->isHTML(true);
 
@@ -121,11 +123,11 @@ class MailController extends Controller {
         $mail->Subject = 'Envirospec Document Expiry System';
 
         if ($type == 'month warning') {
-            $message = 'This is a polite reminder from Envirospec.nz that the following certificate will expire in 30 days.';
+            $message = $this->config->WarningEmail;
         } else if ($type == 'expired') {
-            $message = 'This is a polite reminder from Envirospec.nz that the following certificate expired today.';
+            $message = $this->config->FinalEmail;
         } else {
-            $message = 'This is a polite reminder from Envirospec.nz that the following certificate expired 30 days ago.';
+            $message = $this->config->ExpiryEmail;
         }
 
         $data = new ArrayData(array(
