@@ -11,7 +11,7 @@ assets/
 
 
 # composer vendor folder
-vendor/
+/vendor/
 
 
 #config

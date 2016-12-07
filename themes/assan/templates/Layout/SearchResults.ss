@@ -30,18 +30,16 @@
                     </tr>
                     </thead>
                     <tbody>
-
-                        <% loop Results.Sort('Title', 'ASC') %>
+                        <% loop $Results.Sort('Title', 'ASC') %>
                         <tr>
-                            <% loop GetManufacturer($SupplierID) %>
+                            <% with $GetManufacturer($SupplierID).First %>
                                 <td>$Name</td>
-                            <% end_loop %>
+                            <% end_with %>
                             <td>$Title</td>
-                            <td>$Parent.Title</td>
+                            <td><% if $Parent.Title %>$Parent.Title<% else %> - <% end_if %></td>
                             <td><a class="show-link" href="$Link">View</a></td>
                         </tr>
                         <% end_loop %>
-
                     </tbody>
                 </table>
             <% else %>

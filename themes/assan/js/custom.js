@@ -20,6 +20,7 @@ $(document).ready(function ($) {
             this.toolTips.init();
             this.coverFlow.init();
             this.icheck.init();
+            this.datePicker.init();
             this.showImage.init();
             this.greenstarSearch.init();
             this.sortGreenstarResults.init();
@@ -63,7 +64,13 @@ $(document).ready(function ($) {
                 wow.init();
             }
         },
-
+        datePicker: {
+            init: function () {
+                if ($('.js-date').length) {
+                    $('.js-date').datepicker({dateFormat: "yy-mm-dd"});
+                }
+            },
+        },
         toolTips: {
             tip : $("[data-toggle=tooltip]"),
             init: function () {

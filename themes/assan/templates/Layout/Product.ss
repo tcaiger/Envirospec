@@ -3,8 +3,8 @@
     <div class="second-nav">
         <div class="container">
             <div class="row">
-                <div class="col-sm-3 hidden-xs" style="padding: 10px">
-                    <a href="$BackLink"><i class="fa fa-arrow-circle-left"></i> Search Results</a>
+                <div class="col-sm-3 hidden-xs">
+                    <a class="t-back-link--margin" href="$BackLink"><i class="fa fa-arrow-circle-left"></i> Search Results</a>
                 </div>
                 <div class="col-sm-9 tab-cont">
 
@@ -45,8 +45,7 @@
                     <h4>Useful Resources</h4>
                     <ul class="list-unstyled cat-list">
 
-                        <% loop DisplayLinks %>
-
+                        <% loop $DisplayLinks %>
                             <li>
                                 <a href="$URL" target="_blank">$Title</a>
                                 <i class="fa fa-angle-right"></i>
@@ -67,11 +66,12 @@
 
                         <div class="col-sm-12">
                             <h3>Product Description</h3>
-
                             $GeneralDescription
 
-                            <h4>Technical and Environmental Benefits</h4>
-                            $BenefitsAdvantages
+                            <% if $BenefitsAdvantages %>
+                                <h4>Technical and Environmental Benefits</h4>
+                                $BenefitsAdvantages
+                            <% end_if %>
 
                             <% if $Company($SupplierID).title  == $Company($ManufacturerID).title %>
                                 <h4>Manufacturer and Supplier Information - $Company($SupplierID).title</h4>
@@ -84,11 +84,15 @@
                             <% end_if %>
 
 
-                            <h4>Application and Purpose</h4>
-                            $ApplicationAndPurpose
+                            <% if $ApplicationAndPurpose %>
+                                <h4>Application and Purpose</h4>
+                                $ApplicationAndPurpose
+                            <% end_if %>
 
-                            <h4>Installation and Maintenance</h4>
-                            $InstallationAndMaintenance
+                            <% if $InstallationAndMaintenance %>
+                                <h4>Installation and Maintenance</h4>
+                                $InstallationAndMaintenance
+                            <% end_if %>
                         </div>
                     </div>
                 </div>
@@ -128,7 +132,7 @@
                                 <% end_loop %>
                             <% else %>
                                 <h3>
-                                    <small> -- No Certificates For This Product -- </small>
+                                    <small> -- No Certificates For This Product --</small>
                                 </h3>
                             <% end_if %>
                         </div>

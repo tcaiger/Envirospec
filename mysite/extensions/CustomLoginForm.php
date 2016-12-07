@@ -34,14 +34,16 @@ class CustomLoginForm extends MemberLoginForm {
         }
     }
 
-    public function redirectByGroup($data) {
-        // gets the current member that is logging in
+    public function redirectByGroup() {
+
         $member = Member::currentUser();
 
         $url = Director::absoluteBaseURL();
 
         if ($member->inGroup('green-star-assessors')) {
             return $this->controller->redirect($url . 'assessor-admin');
+
+            // content-authors is the group code for Manufacturers & Suppliers
         } else if ($member->inGroup('content-authors')){
             return $this->controller->redirect($url . 'membersarea');
         } else {

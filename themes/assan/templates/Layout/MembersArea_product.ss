@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
-                <a href="membersarea" style="margin-left: 15px;"><i style="margin-right: 6px" class="fa fa-arrow-circle-left"></i> Back To Members Area</a>
+                <a href="membersarea"><i class="fa fa-arrow-circle-left"></i> Back To Members Area</a>
             </div>
             <div class="col-sm-6 hidden-xs text-right">
                 <ol class="breadcrumb">

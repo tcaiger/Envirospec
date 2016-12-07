@@ -138,13 +138,8 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
         return true;
     }
 
-    public function getBackLink() {
-        if (isset($_SERVER['HTTP_REFERER'])) {
-            return $_SERVER['HTTP_REFERER'];
-        } else {
-            return 'membersarea';
-        }
-
+    public function getBackLink($id) {
+        return 'membersarea/product/'. $id;
     }
 
 
@@ -400,6 +395,8 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
 
         $fields = FieldList::create(
             HiddenField::create('ID'),
+            TextField::create('Number'),
+            TextField::create('ValidUntil')->addExtraClass('js-date'),
             FileAttachmentField::create('Certificate')->setTemplate('CustomUploadField')
         )->bootstrapIgnore('Certificate');
 
@@ -417,9 +414,23 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
         return $form;
     }
 
+
+    /**
+     * Submit the certificate for review
+     *
+     * @param $data
+     * @param $form
+     * @return bool|SS_HTTPResponse
+     */
     public function certificateformaction($data, $form) {
+
         $this->certificate = Certificate::get()->byID($data['ID']);
         $form->saveInto($this->certificate);
+        $this->certificate->Status = 'Awaiting Review';
+        $this->certificate->MonthWarning = false;
+        $this->certificate->ExpiredWarning = false;
+        $this->certificate->FinalWarning = false;
+
 
         if ($this->certificate->write()) {
             $form->sessionMessage("Your certificate has been submitted for review. You will receive a response from the Envirospec team as soon as possible.", 'good');
@@ -453,6 +464,12 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
         return $form;
     }
 
+
+    /**
+     * @param $data
+     * @param $form
+     * @return bool|SS_HTTPResponse
+     */
     public function declarationformaction($data, $form) {
 
         $company = Companies::get()->byID($data['ID']);

@@ -58,8 +58,8 @@ class Page_Controller extends ContentController {
         Requirements::combine_files(
             'main.js',
             array(
-
                 "{$this->ThemeDir()}/js/third-party/jquery.min.js",
+                "{$this->ThemeDir()}/js/third-party/jquery-ui.min.js",
                 "{$this->ThemeDir()}/js/third-party/jquery.flipster.min.js",
                 "{$this->ThemeDir()}/js/YTBVideo.js",
                 "{$this->ThemeDir()}/bootstrap/js/bootstrap.min.js",
