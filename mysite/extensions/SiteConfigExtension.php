@@ -4,16 +4,15 @@
 class SiteConfigExtension extends DataExtension {
 
     private static $db = array(
-        'ESSummary'         => 'Text',
-        'ContactAddress'    => 'Text',
-        'ContactEmail'      => 'Varchar',
-        'ContactPhone'      => 'Varchar',
-        'ContactFormEmail'  => 'Varchar(200)',
-        'ContactFormCC'     => 'Varchar(200)',
-        'ExpirySystemEmail' => 'Varchar(200)',
-        'WarningEmail'      => 'HTMLText',
-        'ExpiryEmail'       => 'HTMLText',
-        'FinalEmail'        => 'HTMLText'
+        'ESSummary'      => 'Text',
+        'ContactAddress' => 'Text',
+        'ContactEmail'   => 'Varchar',
+        'ContactPhone'   => 'Varchar',
+        'SystemEmail'    => 'Varchar(200)',
+        'CCEmail'        => 'Varchar(200)',
+        'WarningEmail'   => 'HTMLText',
+        'ExpiryEmail'    => 'HTMLText',
+        'FinalEmail'     => 'HTMLText'
     );
 
     private static $has_one = array(
@@ -49,9 +48,8 @@ class SiteConfigExtension extends DataExtension {
             // Envirospec Admin Email Addresses
             // ----------------------------------------
             HeaderField::create('AdminEmailHeading', 'Admin Email Addresses', '2'),
-            TextField::create('ContactFormEmail', 'Contact Form Email'),
-            TextField::create('ContactFormCC', 'Contact Form Email (Optional)'),
-            TextField::create('ExpirySystemEmail', 'Expiry System Email'),
+            TextField::create('SystemEmail', 'System Email Address'),
+            TextField::create('CCEmail', 'System Email CC Address (Optional)'),
 
             // Footer Links
             // ----------------------------------------

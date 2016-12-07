@@ -4,8 +4,7 @@ class MailController extends Controller {
 
     public $config;
     public $systemEmail;
-    public $contactEmail;
-    public $contactEmailCC;
+    public $CCEmail;
 
 
     /**
@@ -27,9 +26,8 @@ class MailController extends Controller {
         $mail->FromName = "Envirospec Admin";
 
         $this->config = SiteConfig::current_site_config();
-        $this->systemEmail = $this->config->ExpirySystemEmail;
-        $this->contactEmail = $this->config->ContactFormEmail;
-        $this->contactEmailCC = $this->config->ContactFormCC;
+        $this->systemEmail = $this->config->SystemEmail;
+        $this->CCEmail = $this->config->CCEmail;
 
         $mail->isHTML(true);
 
@@ -46,9 +44,9 @@ class MailController extends Controller {
     Public Function ContactFormEmail($data) {
         $mail = $this->setup();
 
-        $mail->addAddress($this->contactEmail);
-        $mail->addReplyTo($this->contactEmail);
-        $mail->addCC($this->contactEmailCC);
+        $mail->addAddress($this->systemEmail);
+        $mail->addReplyTo($this->systemEmail);
+        $mail->addCC($this->CCEmail);
 
         $mail->Subject = 'Envirospec Contact Form';
 
@@ -82,7 +80,7 @@ class MailController extends Controller {
 
         $mail->addAddress($member->Email);
         $mail->addReplyTo($this->systemEmail);
-        $mail->addCC($this->systemEmail);
+        $mail->addCC($this->CCEmail);
 
         $mail->Subject = 'Envirospec Product Enquiry';
 
@@ -118,7 +116,7 @@ class MailController extends Controller {
 
         $mail->addAddress('rochelle@envirospec.co.nz');
         $mail->addReplyTo($this->systemEmail);
-        $mail->addCC('tom@swordfox.nz');
+        $mail->addCC($this->CCEmail);
 
         $mail->Subject = 'Envirospec Document Expiry System';
 
@@ -162,7 +160,7 @@ class MailController extends Controller {
 
         $mail->addAddress($this->systemEmail);
         $mail->addReplyTo($this->systemEmail);
-        $mail->addCC($this->systemEmail);
+        $mail->addCC($this->CCEmail);
 
         $mail->Subject = 'Envirospec Certificate Upload';
 
@@ -196,7 +194,7 @@ class MailController extends Controller {
 
         $mail->addAddress($member->Email);
         $mail->addReplyTo($this->systemEmail);
-        $mail->addCC($this->systemEmail);
+        $mail->addCC($this->CCEmail);
 
         $mail->Subject = 'Envirospec Declaration Email';
 

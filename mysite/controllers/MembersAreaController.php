@@ -77,7 +77,6 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
     public function index() {
         $this->checkUser();
         $this->getCompany();
-
         return $this->render();
     }
 
@@ -86,7 +85,6 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
      */
     public function product() {
         $this->getProduct();
-
         return $this->customise($this->product)->render();
     }
 
@@ -96,7 +94,6 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
      */
     public function certificate() {
         $this->getCertificate();
-
         return $this->customise($this->certificate)->render();
     }
 
@@ -234,6 +231,7 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
      * @return bool|SS_HTTPResponse
      */
     public function membersareaformaction($data, $form) {
+
         $this->company = Companies::get()->byID($data['ID']);
         $form->saveInto($this->company);
 
@@ -251,12 +249,10 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
      */
     public function MemberLogoForm() {
 
-
         $fields = FieldList::create(
             HiddenField::create('ID'),
             FileAttachmentField::create('Logo')->setTemplate('CustomUploadField')
         )->bootstrapIgnore('Logo');
-
 
         $actions = FieldList::create(
             FormAction::create('memberlogoformaction', 'Save Changes')->addExtraClass('btn btn-theme-bg')
@@ -279,6 +275,7 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
      * @return bool|SS_HTTPResponse
      */
     public function memberlogoformaction($data, $form) {
+
         $this->company = Companies::get()->byID($data['ID']);
         $form->saveInto($this->company);
 
@@ -433,6 +430,9 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
 
 
         if ($this->certificate->write()) {
+
+            $mail = new MailController;
+            $mail->CertificateUploadEmail($this->certificate, Member::currentUser());
             $form->sessionMessage("Your certificate has been submitted for review. You will receive a response from the Envirospec team as soon as possible.", 'good');
         } else {
             $form->sessionMessage("There has been a problem with the form.", 'bad');
@@ -446,6 +446,7 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
      * @return BootstrapForm
      */
     public function DeclarationForm() {
+
         $fields = new FieldList(
             HiddenField::create('ID'),
             CheckboxField::create('Confirmed', 'I confirm all the product information is correct')
