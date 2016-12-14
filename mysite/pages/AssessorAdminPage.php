@@ -116,10 +116,9 @@ class AssessorAdminPage_Controller extends Page_Controller {
             ])
             ->filter([
                 'Compile' => 1,
-                'Active' => 1
+                'Status' => 'Active'
             ])
             ->exclude('ID', $summary->ID);
-        Debug::Dump($certificates->count());
 
         $date = date("j F Y");
         $dateStamp = date("d.m.Y");
