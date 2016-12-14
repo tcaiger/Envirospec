@@ -2,7 +2,11 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
-                <a class="t-back-link" href="$getBackLink($Product.ID)"><i class="fa fa-arrow-circle-left"></i> Back To Product</a>
+                <% if $Product.ID == 0 %>
+                    <a class="t-back-link" href="membersarea"><i class="fa fa-arrow-circle-left"></i> Back To Members Area</a>
+                <% else %>
+                    <a class="t-back-link" href="$getBackLink($Product.ID)"><i class="fa fa-arrow-circle-left"></i> Back To Product</a>
+                <% end_if %>
             </div>
             <div class="col-sm-6 hidden-xs text-right">
                 <ol class="breadcrumb">
