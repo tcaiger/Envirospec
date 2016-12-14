@@ -56,7 +56,7 @@ class AssessorAdminPage_Controller extends Page_Controller {
 
         if ($request->isAjax()) {
 
-            if($request->getVar('checkbox') == 1){
+            if ($request->getVar('checkbox') == 1) {
                 // Get the summary certificate
                 if ($reportNo = $request->getVar('report')) {
                     $summary = Certificate::Get()->filter(array(
@@ -72,7 +72,7 @@ class AssessorAdminPage_Controller extends Page_Controller {
                     $Results = null;
                     $Message = 'invalid number';
                 }
-            }else{
+            } else {
                 $Results = null;
                 $Message = 'not declared';
             }
@@ -80,7 +80,7 @@ class AssessorAdminPage_Controller extends Page_Controller {
 
             return $this->customise(array(
                 'Message' => $Message,
-                'Report' => $Results
+                'Report'  => $Results
             ))->renderWith('ReportResults');
         }
 
@@ -99,9 +99,28 @@ class AssessorAdminPage_Controller extends Page_Controller {
         // Set Up
         $summaryPath = '../' . $summary->Certificate()->Filename;
         $product = $summary->Product();
-        $certificates = $product->Certificates()->filter(array(
-            'Compile' => 1
-        ))->exclude('ID', $summary->ID);
+
+
+        if ($product->ManufacturerID == $product->SupplierID) {
+            $companyIDs = $product->ManufacturerID;
+        } else {
+            $companyIDs = array();
+            array_push($companyIDs, $product->ManufacturerID, $product->SupplierID);
+        }
+
+
+        $certificates = Certificate::get()
+            ->filterAny([
+                'ProductID'   => $product->ID,
+                'CompaniesID' => $companyIDs
+            ])
+            ->filter([
+                'Compile' => 1,
+                'Active' => 1
+            ])
+            ->exclude('ID', $summary->ID);
+        Debug::Dump($certificates->count());
+
         $date = date("j F Y");
         $dateStamp = date("d.m.Y");
 

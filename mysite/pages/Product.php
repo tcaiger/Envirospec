@@ -203,11 +203,11 @@ class Product extends Page {
     // =====================================================
     //       Get The Name Of The Manufacturer
     // =====================================================
-    public function getManufacturer($CompanyID) {
-        return Companies::get()->filter(array(
-            'ID' => $CompanyID
-        ));
-    }
+    //public function getManufacturer($CompanyID) {
+    //    return Companies::get()->filter(array(
+    //        'ID' => $CompanyID
+    //    ));
+    //}
 
     // =====================================================
     //                  Get Credit Points
