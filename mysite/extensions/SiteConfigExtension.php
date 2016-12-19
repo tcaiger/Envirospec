@@ -4,15 +4,17 @@
 class SiteConfigExtension extends DataExtension {
 
     private static $db = array(
-        'ESSummary'      => 'Text',
-        'ContactAddress' => 'Text',
-        'ContactEmail'   => 'Varchar',
-        'ContactPhone'   => 'Varchar',
-        'SystemEmail'    => 'Varchar(200)',
-        'CCEmail'        => 'Varchar(200)',
-        'WarningEmail'   => 'HTMLText',
-        'ExpiryEmail'    => 'HTMLText',
-        'FinalEmail'     => 'HTMLText'
+        'ESSummary'        => 'Text',
+        'ContactAddress'   => 'Text',
+        'ContactEmail'     => 'Varchar',
+        'ContactPhone'     => 'Varchar',
+        'SystemEmail'      => 'Varchar(200)',
+        'CCEmail'          => 'Varchar(200)',
+        'WarningEmail'     => 'HTMLText',
+        'ExpiryEmail'      => 'HTMLText',
+        'FinalEmail'       => 'HTMLText',
+        'DeclarationEmail' => 'HTMLText',
+        'DeclarationText'  => 'Text'
     );
 
     private static $has_one = array(
@@ -78,10 +80,15 @@ class SiteConfigExtension extends DataExtension {
             $logo10 = UploadField::create('ResponsibleSourcing')
         ));
 
-        $fields->addFieldsToTab('Root.Emails', array(
+        $fields->addFieldsToTab('Root.ExpirySystem', array(
             HTMLEditorField::create('WarningEmail', 'Warning Email Body'),
             HTMLEditorField::create('FinalEmail', 'Final Warning Email Body'),
             HTMLEditorField::create('ExpiryEmail', 'Expiry Email Body')
+        ));
+
+        $fields->addFieldsToTab('Root.Declarations', array(
+            HTMLEditorField::create('DeclarationEmail'),
+            TextareaField::create('DeclarationText')
         ));
 
         $logo1->setFolderName('certificates');

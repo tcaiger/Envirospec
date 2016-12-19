@@ -449,7 +449,7 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
 
         $fields = new FieldList(
             HiddenField::create('ID'),
-            CheckboxField::create('Confirmed', 'I confirm all the product information is correct')
+            CheckboxField::create('Confirmed', 'I agree to the above statement, terms and conditions')
         );
 
         $actions = new FieldList(

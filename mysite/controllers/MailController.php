@@ -184,11 +184,10 @@ class MailController extends Controller {
     /**
      * Sends Declaration Email To All Members
      *
-     * @param $data
      * @param $member
      * @return bool
      */
-    public function DeclarationEmails($data, $member) {
+    public function DeclarationEmails($member) {
 
         $mail = $this->setup();
 
@@ -198,12 +197,12 @@ class MailController extends Controller {
 
         $mail->Subject = 'Envirospec Declaration Email';
 
-        $arraydata = new ArrayData(array(
-            'FirstName' => $member->FirstName,
-            'Content'   => $data['EmailContent']
+        $data = new ArrayData(array(
+            'Member'  => $member,
+            'Message' => $this->config->DeclarationEmail
         ));
 
-        $body = $arraydata->renderWith('DeclarationEmail');
+        $body = $data->renderWith('DeclarationEmail');
 
         $mail->MsgHTML($body);
 

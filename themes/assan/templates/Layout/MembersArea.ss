@@ -33,9 +33,9 @@
             <p>In this area you can manage your company information including Products, Certificates, Logos and Images.</p>
 
             <% if $MemberDeclaration %>
-                <div class="alert-info alert">
+                <div class="t-declaration-alert alert-warning alert">
                     <h4>Product Information Disclaimer</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, asperiores cumque est fugiat nesciunt officia sequi voluptate? Autem, consequuntur, impedit in molestiae mollitia nemo obcaecati odio pariatur quae, rem totam.</p>
+                    <p>$SiteConfig.DeclarationText</p>
                     <div class="divide10"></div>
                     $DeclarationForm
                 </div>
