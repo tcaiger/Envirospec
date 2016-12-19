@@ -114,7 +114,7 @@ class MailController extends Controller {
 
         $mail = $this->setup();
 
-        $mail->addAddress('rochelle@envirospec.co.nz');
+        $mail->addAddress($member->Email);
         $mail->addReplyTo($this->systemEmail);
         $mail->addCC($this->CCEmail);
 

@@ -79,7 +79,7 @@ class ExpirySystemTask extends BuildTask {
         if ($type == 'company') {
             echo '<p><strong>Company Certificate Results</strong></p>';
         } else {
-            echo '<p><strong>Certificates Results</strong></p>';
+            echo '<p><strong>Product Certificates Results</strong></p>';
         }
 
         echo $WarningList->count() . ' first warning emails sent, ' . $ExpiredList->count() . ' expired emails sent and ' . $FinalList->count() . ' final warning emails sent';
@@ -134,7 +134,7 @@ class ExpirySystemTask extends BuildTask {
             ->exclude(['Type' => 'Green Building Rating Compatibility'])
             ->exclude(['ValidUntil' => '']);
 
-        echo "There are " . count($certificates) . " certificates being checked. <br>";
+        echo "There are " . count($certificates) . " product certificates being checked. <br>";
 
         return $certificates;
     }
