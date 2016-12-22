@@ -70,7 +70,7 @@ class DeclarationTask extends BuildTask {
         //    }
         //});
 
-        $members = Member::get()->filter('FirstName', 'Test Member');
+        $members = Member::get()->filter('FirstName', 'Test supplier');
         return $members;
     }
 
