@@ -479,7 +479,7 @@ class MembersArea_Controller extends Page_Controller implements PermissionProvid
         $form->saveInto($declaration);
 
         if ($declaration->write()) {
-            $form->sessionMessage("Your certificate has been submitted for review. You will receive a response from the Envirospec team as soon as possible.", 'good');
+            $form->sessionMessage("Your declaration has been saved. Thank you for taking the time to review your content.", 'good');
         } else {
             $form->sessionMessage("There has been a problem with the form.", 'bad');
         }

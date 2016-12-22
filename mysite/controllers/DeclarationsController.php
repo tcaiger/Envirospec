@@ -4,7 +4,8 @@
 class DeclarationTask extends BuildTask {
 
     protected $title = 'Declarations Task';
-    protected $description = 'Sends an email to all users which content asking them to review their product content.';
+    protected $description = 'Emails all Manufacturers and Suppliers requesting them to review their content and sets up a declaration form in their members area. <br> Declarations are also recorded in the Declarations tab of the admin area.';
+
     protected $enabled = true;
 
     function run($request) {
@@ -21,23 +22,17 @@ class DeclarationTask extends BuildTask {
 
         $mail = new MailController;
 
-        $sent = new ArrayList;
-        $notSent = new ArrayList;
+        $sent = 0;
 
         $members = $this->getMembers();
 
         foreach ($members as $member) {
-            $email = $mail->DeclarationEmails($member);
 
-            $data = new ArrayData(array(
-                'Member' => $member
-            ));
+            $email = $mail->DeclarationEmails($member);
 
             if ($email) {
                 $this->writeDeclaration($member);
-                $sent->push($data);
-            } else {
-                $notSent->push($data);
+                $sent++;
             }
         }
 
@@ -63,6 +58,11 @@ class DeclarationTask extends BuildTask {
         return $declaration;
     }
 
+    /**
+     * Gets member list for sending emails to and creating declarations for
+     *
+     * @return DataList
+     */
     private function getMembers() {
         //$members = Member::get()->filterByCallback(function ($item) {
         //    if ($item->inGroup('Members') || $item->inGroup('Manufacturers & Suppliers')) {

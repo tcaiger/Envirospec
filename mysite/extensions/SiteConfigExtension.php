@@ -87,8 +87,13 @@ class SiteConfigExtension extends DataExtension {
         ));
 
         $fields->addFieldsToTab('Root.Declarations', array(
-            HTMLEditorField::create('DeclarationEmail'),
-            TextareaField::create('DeclarationText')
+            HTMLEditorField::create('DeclarationEmail', 'Declaration Email.')
+                ->setDescription('This is the content for the email which gets sent to Manufacturers and Suppliers'),
+            TextareaField::create('DeclarationText', 'Declaration Text.')
+                ->setDescription('This is the text that goes into the Members Area above the checkbox'),
+            HeaderField::create('DecHeader', 'Send Declaration Emails', 4),
+            LiteralField::create('RunText','<p>Clicking the link below will run the declaration system which will: 1) Send an email to each Manufacturer and Supplier, and 2) Create a declaration record for each Manufacturer and Supplier.</p>'),
+            LiteralField::create('RunLink','<a href="dev/tasks/DeclarationTask" target="_blank">Run Declaration System Now</a>'),
         ));
 
         $logo1->setFolderName('certificates');
