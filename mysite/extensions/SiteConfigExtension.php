@@ -14,7 +14,8 @@ class SiteConfigExtension extends DataExtension {
         'ExpiryEmail'      => 'HTMLText',
         'FinalEmail'       => 'HTMLText',
         'DeclarationEmail' => 'HTMLText',
-        'DeclarationText'  => 'Text'
+        'DeclarationText'  => 'Text',
+        'MembersIntro' => 'HTMLText',
     );
 
     private static $has_one = array(
@@ -60,7 +61,12 @@ class SiteConfigExtension extends DataExtension {
             TreeDropdownField::create('Page1ID', 'Useful Page 1', 'SiteTree'),
             TreeDropdownField::create('Page2ID', 'Useful Page 2', 'SiteTree'),
             TreeDropdownField::create('Page3ID', 'Useful Page 3', 'SiteTree'),
-            TreeDropdownField::create('Page4ID', 'Useful Page 4', 'SiteTree')
+            TreeDropdownField::create('Page4ID', 'Useful Page 4', 'SiteTree'),
+
+            // Members Area
+            // ----------------------------------------
+            HeaderField::create('MembersHeading', 'Members Area', '2'),
+            HtmlEditorField::create('MembersIntro', 'Members Area Intro Text'),
         ));
 
         // Footer Links
