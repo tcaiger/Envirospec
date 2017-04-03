@@ -69,10 +69,11 @@ class Page_Controller extends ContentController {
                 "{$this->ThemeDir()}/js/third-party/imagesloaded.min.js",
                 "{$this->ThemeDir()}/js/third-party/jquery.magnific-popup.min.js",
                 "http://maps.google.com/maps/api/js",
-                "{$this->ThemeDir()}/js/custom.js",
-
+                "{$this->ThemeDir()}/js/custom.js"
             )
         );
+        Requirements::backend()->combine_js_with_jsmin = false;
+
     }
 
 
