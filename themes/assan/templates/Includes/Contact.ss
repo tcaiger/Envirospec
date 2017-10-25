@@ -11,13 +11,13 @@
     <li>
         <p>
             <strong><i class="fa fa-envelope"></i> Website:</strong>
-            <a href="#"> $Website</a>
+            <a href="$Website" target="_blank"> $Website</a>
         </p>
     </li>
     <li>
         <p>
             <strong><i class="fa fa-envelope"></i> Email:</strong>
-            $Email
+            <a href="mailto:$Email"> $Email</a>
         </p>
     </li>
     <li>
