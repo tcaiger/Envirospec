@@ -11,7 +11,7 @@
     <li>
         <p>
             <strong><i class="fa fa-envelope"></i> Website:</strong>
-            <a href="$Website" target="_blank"> $Website</a>
+            <a href="http://$Website" target="_blank"> $Website</a>
         </p>
     </li>
     <li>
