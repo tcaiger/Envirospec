@@ -30,7 +30,7 @@
 
             <h3>Welcome $CurrentMember.FirstName</h3>
             <p>You are managing <strong>$CurrentMember.Companies.Name</strong>.</p>
-            <p>In this area you can manage your company information including Products, Certificates, Logos and Images.</p>
+            <p>$SiteConfig.MembersIntro</p>
 
             <% if $MemberDeclaration %>
                 <div class="t-declaration-alert alert-warning alert">

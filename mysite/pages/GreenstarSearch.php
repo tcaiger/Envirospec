@@ -1,15 +1,13 @@
 <?php
 
-class GreenstarSearch extends Page
-{
+class GreenstarSearch extends Page {
 
     private static $has_many = array(
         'CompanyLogos' => 'Image'
     );
 
 
-    public function getCMSFields($member = null)
-    {
+    public function getCMSFields($member = null) {
         $fields = parent::getCMSFields();
 
         $fields->addFieldsToTab('Root.Main', array(
@@ -30,18 +28,27 @@ class GreenstarSearch extends Page
     }
 }
 
-class GreenstarSearch_Controller extends Page_Controller
-{
-    public function index(SS_HTTPRequest $request)
-    {
+class GreenstarSearch_Controller extends Page_Controller {
+
+    public function index(SS_HTTPRequest $request) {
         if ($request->isAjax()) {
+
             if ($reportNo = $request->getVar('report')) {
-                $Report = Certificate::Get()->filter(array(
+
+                $report = Certificate::Get()->filter(array(
                     'Number' => $reportNo
                 ))->first();
 
+                if ($report) {
+                    $certificate = $report->Certificate()->Filename;
+                    $message = 'good';
+                }else{
+                    $certificate = null;
+                    $message = 'invalid number';
+                }
                 return $this->customise(array(
-                    'Report' => $Report->Certificate()->Filename
+                    'Message' => $message,
+                    'Report' => $certificate
                 ))->renderWith('ReportResults');
 
             } else {
@@ -65,8 +72,7 @@ class GreenstarSearch_Controller extends Page_Controller
     // ========================================
     // Credit Dropdown Form
     // ========================================
-    public function CreditSearchForm($tool, $category, $credit, $subCredit)
-    {
+    public function CreditSearchForm($tool, $category, $credit, $subCredit) {
         $form = BootstrapForm::create(
             $this,
             __Function__,
@@ -81,19 +87,19 @@ class GreenstarSearch_Controller extends Page_Controller
                     'Category',
                     ImpactCategory::get()->filter('ParentID', $tool)
                         ->map('ID', 'Title'), $category)
-                        ->setEmptyString('Select-One'),
+                    ->setEmptyString('Select-One'),
                 $creditField = DropDownField::create(
                     'Credit',
                     'Credit',
                     AvailableCredit::get()->filter('ParentID', $category)
                         ->map('ID', 'Title'), $credit)
-                        ->setEmptyString('Select-One'),
+                    ->setEmptyString('Select-One'),
                 $subCreditField = DropDownField::create(
                     'SubCredit',
                     'SubCredit',
                     AvailableCredit::get()->filter('ParentID', $credit)
                         ->map('ID', 'Title'), $subCredit)
-                        ->setEmptyString('Select-One')
+                    ->setEmptyString('Select-One')
             ),
             Fieldlist::create(
                 FormAction::create('Go', 'Go')

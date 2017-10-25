@@ -17,10 +17,11 @@ class Declaration extends DataObject {
     );
 
     private static $summary_fields = array(
-        'Companies.Name' => 'Company',
-        'Year'           => 'Year',
-        'Created.Nice'   => 'Created',
-        'Confirmed'      => 'Confirmed'
+        'Companies.Name'     => 'Company',
+        'Year'               => 'Year',
+        'Created.Nice'       => 'Created Date',
+        'Confirmed'          => 'Confirmed',
+        'ConfirmedDate.Nice' => 'Confirmed Date'
     );
 
     private static $default_sort = 'Created DESC';
@@ -28,7 +29,7 @@ class Declaration extends DataObject {
 
     function onBeforeWrite($member = null) {
 
-        if ( $this->Confirmed) {
+        if ($this->Confirmed) {
             $this->ConfirmedDate = date("Y-m-d");
         }
 
